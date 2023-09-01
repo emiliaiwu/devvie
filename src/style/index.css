@@ -1,0 +1,128 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*Logo*/
+.logo-name {
+	background-image: url("../assets/text-gradient.png");
+	background-size: contain;
+	background-clip: text;
+	--webkit-background-clip: text;
+	color: transparent;
+}
+
+/* Hamburger Menu*/
+
+.hamburger-menu {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	cursor: pointer;
+	width: 30px;
+	height: 20px;
+	transition: transform 0.3s ease;
+}
+
+.hamburger-menu .bar {
+	width: 100%;
+	height: 3px;
+	border-radius: 2px;
+	background-color: #ffffff;
+	transition: transform 0.3s ease, opacity 0.3s ease;
+	
+}
+
+.hamburger-menu.active .bar:nth-child(1) {
+	transform: translateY(10px) rotate(45deg);
+}
+
+.hamburger-menu.active .bar:nth-child(2) {
+	/* opacity: 0; */
+	display: none;
+}
+
+.hamburger-menu.active .bar:nth-child(3) {
+	transform: translateY(-7px) rotate(-45deg);
+}
+
+
+
+
+/* HERO IMAGES */
+.left-top {
+	left: 7%;
+	top: -5%;
+	transform: rotate(-8deg);
+	transform-origin: bottom right;
+}
+
+.left-middle {
+	left: 0;
+	top: 50%;
+	transform: translateY(-50%);
+}
+
+.left-bottom {
+	left: 9%;
+	bottom: 0%;
+	transform: rotate(8deg);
+	transform-origin: bottom left;
+}
+
+.right-top {
+	right: 7%;
+	top: -5%;
+	transform: rotate(8deg);
+	transform-origin: bottom left;
+}
+
+.right-middle {
+	right: 0;
+	top: 50%;
+	transform: translateY(-50%);
+}
+
+.right-bottom {
+	right: 9%;
+	bottom: 0%;
+	transform: rotate(-8deg);
+	transform-origin: bottom right;
+}
+
+/* CHANGING TEXT */
+
+.bg-changing-text {
+	/* background: white; */
+}
+
+.changing-text {
+	position: relative;
+	background-color: rgba(8, 47, 40, 0.7);
+	border-radius: 4px;
+	line-height: 1.2;
+}
+
+.wipe-text {
+	position: absolute;
+	right: 0%;
+	width: 100%;
+	height: 100%;
+	background: black;
+	animation: wipe 4s infinite;
+	display: inline-block;
+	border-left: 3px solid #b6ff9c;
+}
+
+@keyframes wipe {
+	50% {
+		width: 0%;
+	}
+
+	100% {
+		width: 100%;
+	}
+}
+
+
+
+
