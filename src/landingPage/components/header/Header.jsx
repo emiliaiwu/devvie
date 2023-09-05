@@ -20,7 +20,7 @@ const Header = () => {
 					</nav>
 					<div className={`${flexBetween} gap-4 hidden lg:flex`}>
 						<Button
-							url={"login"}
+							url={"signin"}
 							text={"Log in"}
 							className={" text-white bg-landingGrey"}
 						/>

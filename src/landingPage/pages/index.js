@@ -1,7 +1,7 @@
 import LandingPage from "./LandingPage";
-import Login from "./Login";
+import Signin from "./Signin";
 import Signup from "./Signup";
 import NotFound from "./NotFound";
 export {
-    LandingPage, Login, Signup, NotFound
+    LandingPage, Signin, Signup, NotFound
 }

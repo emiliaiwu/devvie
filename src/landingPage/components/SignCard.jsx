@@ -1,23 +1,22 @@
 import { styles } from "../../style/reusableStyles";
-import Form from "./Form";
 import Button from "../components/Button";
+import { useLocation } from "react-router-dom";
 
-const Login = () => {
-	const { container, flexCenter } = styles;
+const SignCard = ({ children }) => {
+    const { container, flexCenter } = styles;
+    const location = useLocation()
 
 	return (
 		<section className={`${container} bg-black min-h-screen`}>
 			<div className={`${flexCenter} `}>
 				<div className=' my-10 py-10 w-full max-w-[500px]'>
 					<div className='sign-box relative w-full'>
-						<div className=' bg-white rounded-[40px] w-full'>
-							<Form paragraph={"Enter your login details below"}  welcomeText={"Welcome Back!"} moreInfo={"Or sign in with"} buttonText={"sign me in"}/>
-						</div>
+						<div className=' bg-white rounded-[40px] w-full'>{children}</div>
 
 						<svg
 							xmlns='http://www.w3.org/2000/svg'
 							viewBox='0 0 100 100'
-							className='absolute right-[131px] top-0 w-[30px] rotate-90'
+							className='absolute right-[160px] top-0 w-[30px] rotate-90'
 						>
 							<path
 								d='m100,0H0v100C0,44.77,44.77,0,100,0Z'
@@ -34,11 +33,11 @@ const Login = () => {
 								fill='#000000'
 							></path>
 						</svg>
-						<div className='bg-black p-5 absolute right-0 top-0 rounded-bl-[40px] '>
+						<div className='bg-black p-5 absolute right-0 top-0 rounded-bl-[40px] w-40 '>
 							<Button
-								url={"/signup"}
-								text={"Sign up"}
-								className={" text-black bg-landingPrimary block  px-10"}
+								url={location.pathname === '/signin' ? '/signup' : '/signin'}
+								text={location.pathname === '/signin' ? 'sign up' : 'sign in'}
+								className={" text-black bg-landingPrimary block py-10"}
 							/>
 						</div>
 					</div>
@@ -48,4 +47,4 @@ const Login = () => {
 	);
 };
 
-export default Login;
+export default SignCard;

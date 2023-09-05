@@ -2,7 +2,11 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
 import "./style/index.css";
-import { MobileMenuProvider, SignProvider, AuthContextProvider } from "./context";
+import {
+	MobileMenuProvider,
+	SignupAndSigninProvider,
+	AuthContextProvider,
+} from "./context";
 
 
 
@@ -10,11 +14,11 @@ import { MobileMenuProvider, SignProvider, AuthContextProvider } from "./context
 ReactDOM.createRoot(document.getElementById("root")).render(
 	<React.StrictMode>
 		<AuthContextProvider>
-			<SignProvider>
+			<SignupAndSigninProvider>
 				<MobileMenuProvider>
 					<App />
 				</MobileMenuProvider>
-			</SignProvider>
+			</SignupAndSigninProvider>
 		</AuthContextProvider>
 	</React.StrictMode>
 );

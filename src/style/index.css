@@ -29,7 +29,6 @@
 	border-radius: 2px;
 	background-color: #ffffff;
 	transition: transform 0.3s ease, opacity 0.3s ease;
-	
 }
 
 .hamburger-menu.active .bar:nth-child(1) {
@@ -44,9 +43,6 @@
 .hamburger-menu.active .bar:nth-child(3) {
 	transform: translateY(-7px) rotate(-45deg);
 }
-
-
-
 
 /* HERO IMAGES */
 .left-top {
@@ -123,6 +119,17 @@
 	}
 }
 
+/*FORM*/
 
+.glow-input {
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+	transition: border 0.2s linear 0s, box-shadow 0.2s linear 0s;
+}
 
-
+.glow-input:focus,
+.glow-input:hover {
+	border-color: rgba(34, 197, 94, 0.8);
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset,
+		0 0 8px rgba(82, 168, 236, 0.6);
+	outline: 0 none;
+}
