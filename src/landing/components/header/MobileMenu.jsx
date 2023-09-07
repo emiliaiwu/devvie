@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import HamburgerMenu from "./HamburgerMenu";
 import Button from "../Button";
-import MobileMenuContext from "../../../context/MobileMenuContext";
+import { MobileMenuContext } from "../../context";
 import NavLinks from "./NavLinks";
 
 const MobileMenu = () => {

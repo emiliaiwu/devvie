@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import MobileMenuContext from "../../../context/MobileMenuContext";
+import { MobileMenuContext } from "../../context";
 
 const HamburgerMenu = () => {
 	const { toggleMobileMenu, isMobileMenuOpen } = useContext(MobileMenuContext);

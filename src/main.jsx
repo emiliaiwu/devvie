@@ -4,9 +4,10 @@ import App from "./App.jsx";
 import "./style/index.css";
 import {
 	MobileMenuProvider,
-	SignupAndSigninProvider,
 	AuthContextProvider,
-} from "./context";
+	SignInContextProvider,
+	SignUpContextProvider,
+} from "./landing/context";
 
 
 
@@ -14,11 +15,13 @@ import {
 ReactDOM.createRoot(document.getElementById("root")).render(
 	<React.StrictMode>
 		<AuthContextProvider>
-			<SignupAndSigninProvider>
-				<MobileMenuProvider>
-					<App />
-				</MobileMenuProvider>
-			</SignupAndSigninProvider>
+			<SignInContextProvider>
+				<SignUpContextProvider>
+					<MobileMenuProvider>
+						<App />
+					</MobileMenuProvider>
+				</SignUpContextProvider>
+			</SignInContextProvider>
 		</AuthContextProvider>
 	</React.StrictMode>
 );
