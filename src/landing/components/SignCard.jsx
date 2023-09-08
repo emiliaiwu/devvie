@@ -6,6 +6,22 @@ const SignCard = ({ children }) => {
 	const { container, flexCenter } = styles;
 	const location = useLocation();
 
+	let linkText, linkUrl;
+
+	if (location.pathname === "/forgot-password") {
+		linkText = "Sign Up";
+		linkUrl = "/signup";
+	} else if (location.pathname === "/signin") {
+		linkText = "Sign Up";
+		linkUrl = "/signup";
+	} else if (location.pathname === "/reset-password") {
+		linkText = "Sign In";
+		linkUrl = "/signin";
+	} else {
+		linkText = "Sign In";
+		linkUrl = "/signin";
+	}
+
 	return (
 		<section className={`${container} bg-black min-h-screen`}>
 			<div className={`${flexCenter} `}>
@@ -35,8 +51,8 @@ const SignCard = ({ children }) => {
 						</svg>
 						<div className='bg-black p-5 absolute right-0 top-0 rounded-bl-[40px] w-40 '>
 							<Button
-								url={location.pathname === "/signin" ? "/signup" : "/signin"}
-								text={location.pathname === "/signin" ? "sign up" : "sign in"}
+								url={linkUrl}
+								text={linkText}
 								className={" text-black bg-landingPrimary block py-10"}
 							/>
 						</div>

@@ -1,7 +1,7 @@
 import { useContext} from "react";
-import { FaLock, FaGithub } from "react-icons/fa";
+import { FaGithub } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
-import { MdEmail } from "react-icons/md";
+import { AiOutlineUser, AiOutlineLock } from "react-icons/ai";
 import { Link, useNavigate } from "react-router-dom";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { ClipLoader } from "react-spinners";
@@ -28,7 +28,7 @@ const SignInForm = () => {
 	const navigate = useNavigate();
 
 	return (
-		<div className='w-full pt-24 pb-12 px-6 flex flex-col justify-between items-left gap-10 '>
+		<div className='w-full pt-24 pb-12 px-6 flex flex-col justify-between items-left gap-8 '>
 			<div className='mt-2'>
 				<h1 className='font-Inter text-3xl font-[800] tracking-tight mb-1 text-center'>
 					Welcome Back!
@@ -52,9 +52,9 @@ const SignInForm = () => {
 							placeholder='example@gmail.com'
 							name='email'
 							onChange={(e) => handleEmailChange(e.target.value)}
-							className='w-full py-3 pl-10 font-DMSans outline-none border border-gray-300 text-base rounded-md glow-input'
+							className='w-full py-3 pl-11 pr-10 font-DMSans outline-none border border-gray-300 text-base rounded-md glow-input'
 						/>
-						<MdEmail className='absolute ml-4 text-gray-400 text-lg' />
+						<AiOutlineUser className='absolute ml-4 text-gray-400 text-xl' />
 					</label>
 					{emailErr && (
 						<p className='text-red-500 font-DMSans text-sm font-bold pt-2'>
@@ -77,9 +77,9 @@ const SignInForm = () => {
 							type={isPasswordVisible ? "text" : "password"}
 							placeholder='6+ strong characters'
 							onChange={(e) => handlePasswordChange(e.target.value)}
-							className='w-full py-3 pl-10 font-DMSans outline-none border border-gray-300 text-base rounded-md glow-input '
+							className='w-full py-3 pl-11 pr-10 font-DMSans outline-none border border-gray-300 text-base rounded-md glow-input '
 						/>
-						<FaLock className='absolute ml-4 text-gray-400 text-base' />
+						<AiOutlineLock className='absolute ml-4 text-gray-400 text-xl' />
 						<button
 							type='button'
 							onClick={() => setIsPasswordVisible(!isPasswordVisible)}
@@ -108,7 +108,10 @@ const SignInForm = () => {
 						</label>
 
 						<div>
-							<Link className='text-green-600 cursor-pointer border-b border-green-600 hover:text-green-700 hover:border-green-700'>
+							<Link
+								to={"/forgot-password"}
+								className='text-green-600 cursor-pointer border-b border-green-600 hover:text-green-700 hover:border-green-700'
+							>
 								Forgot Password?
 							</Link>
 						</div>
@@ -117,12 +120,13 @@ const SignInForm = () => {
 					{/* SUBMIT BUTTON */}
 					<button
 						type='submit'
+						disabled={!(email && password)}
 						className={`${
 							email && password ? "bg-green-500" : "bg-landingPrimary"
-						} h-14 w-full rounded-[40px] text-base font-DMSans font-[600] text-black hover:bg-green-500 transition-all duration-200 ease cursor-pointer`}
+						} h-12 w-full rounded-md text-base font-DMSans font-[600] text-black hover:bg-green-500 transition-all duration-200 ease cursor-pointer flex justify-center items-center`}
 					>
 						{isSubmitting ? (
-							<ClipLoader loading={true} color={"#ffffff"} size={30} />
+							<ClipLoader loading={true} color={"#B6FF9C"} size={32} />
 						) : (
 							"sign in"
 						)}

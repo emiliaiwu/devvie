@@ -1,11 +1,13 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useState, useEffect } from "react";
 import AuthContext from "./AuthContext";
 import { authErrors } from "../../firebase";
+import { useLocation } from "react-router-dom";
 
 const SignInContext = createContext();
 
 export const SignInContextProvider = ({ children }) => {
-	const { signIn, googleSignIn } = useContext(AuthContext);
+	const { signIn, googleSignIn, forgotPassword, signOutUser } =
+		useContext(AuthContext);
 
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
@@ -15,8 +17,8 @@ export const SignInContextProvider = ({ children }) => {
 	const [agreeToTerms, setAgreeToTerms] = useState(false);
 	const [rememberPassword, setRememberPassword] = useState(false);
 	const [isPasswordVisible, setIsPasswordVisible] = useState(false);
-	const [rememberMe, setRememberMe] = useState();
 	const [isSubmitting, setIsSubmitting] = useState(false);
+	const [resetPasswordEmailSent, setResetPasswordEmailSent] = useState(false);
 
 	// handle email change
 	const handleEmailChange = (newEmail) => {
@@ -34,6 +36,8 @@ export const SignInContextProvider = ({ children }) => {
 	const handleSignIn = async (e, navigate) => {
 		e.preventDefault();
 		setError("");
+		setEmailErr("")
+		setPasswordErr("")
 		setIsPasswordVisible(false);
 		setIsSubmitting(true);
 
@@ -63,6 +67,26 @@ export const SignInContextProvider = ({ children }) => {
 		}
 	};
 
+	// handle Forgot Password
+	const handleForgotPassword = async (e) => {
+		e.preventDefault();
+		setError("");
+		setIsSubmitting(true);
+
+		try {
+			await forgotPassword(email);
+			setIsSubmitting(false);
+			setResetPasswordEmailSent(true);
+		} catch (err) {
+			setIsSubmitting(false);
+			const errorCode = err.code;
+			let errorMessage =
+				authErrors[errorCode] ||
+				"An unknown error occurred. Please try again later.";
+			setError(errorMessage);
+		}
+	};
+
 	// Google sign
 	const handleGoogleSignIn = async (e, navigate) => {
 		e.preventDefault();
@@ -71,9 +95,20 @@ export const SignInContextProvider = ({ children }) => {
 			navigate("/user/dashboard");
 		} catch (err) {
 			setError(err.message);
-			console.log(error);
 		}
 	};
+
+	// logout function:
+	const handleSignOut = async () => {
+		setError("");
+		try {
+			await signOutUser();
+		} catch (err) {
+			setError(err.message);
+		}
+	};
+
+
 
 	return (
 		<SignInContext.Provider
@@ -99,6 +134,11 @@ export const SignInContextProvider = ({ children }) => {
 				setEmailErr,
 				setPasswordErr,
 				handleGoogleSignIn,
+				handleForgotPassword,
+				resetPasswordEmailSent,
+				setResetPasswordEmailSent,
+				handleSignOut,
+				setIsSubmitting
 			}}
 		>
 			{children}
