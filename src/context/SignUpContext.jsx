@@ -1,21 +1,29 @@
 import { createContext, useContext, useState } from "react";
 import AuthContext from "./AuthContext";
-import { authErrors } from "../../firebase";
+import { authErrors } from "../firebase";
 
 const SignUpContext = createContext();
 
 export const SignUpContextProvider = ({ children }) => {
-	const { signUp, googleSignIn } = useContext(AuthContext);
+	const { signUpUser, googleSignIn, updateDisplayName } =
+		useContext(AuthContext);
 
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [error, setError] = useState("");
 	const [passwordErr, setPasswordErr] = useState("");
 	const [emailErr, setEmailErr] = useState("");
-	const [agreeToTerms, setAgreeToTerms] = useState(false);
+	const [userName, setUserName] = useState("");
 	const [rememberPassword, setRememberPassword] = useState(false);
 	const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 	const [isSubmitting, setIsSubmitting] = useState(false);
+	const [nameError, setNameError] = useState("");
+
+	// handle email change
+	const handleUserNameChange = (username) => {
+		setUserName(username);
+		setNameError("");
+	};
 
 	// handle email change
 	const handleEmailChange = (newEmail) => {
@@ -37,9 +45,16 @@ export const SignUpContextProvider = ({ children }) => {
 		setIsSubmitting(true);
 
 		try {
-			await signUp(email, password);
-			setIsSubmitting(false);
-			navigate("/user/dashboard");
+			await signUpUser(email, password);
+
+			try {
+				await updateDisplayName(userName);
+				setIsSubmitting(false);
+				navigate("/user/dashboard");
+			} catch (err) {
+				setIsSubmitting(false);
+				setNameError(err.message);
+			}
 		} catch (err) {
 			setIsSubmitting(false);
 			const errorCode = err.code;
@@ -68,8 +83,8 @@ export const SignUpContextProvider = ({ children }) => {
 			await googleSignIn();
 			navigate("/user/dashboard");
 		} catch (err) {
-			setError(err.message)
-			console.log(error)
+			setError(err.message);
+			console.log(error);
 		}
 	};
 
@@ -83,8 +98,8 @@ export const SignUpContextProvider = ({ children }) => {
 				password,
 				error,
 				handleSignUp,
-				agreeToTerms,
-				setAgreeToTerms,
+				userName,
+				handleUserNameChange,
 				rememberPassword,
 				setRememberPassword,
 				isPasswordVisible,
@@ -96,7 +111,9 @@ export const SignUpContextProvider = ({ children }) => {
 				isSubmitting,
 				setEmailErr,
 				setPasswordErr,
-				handleGoogleSignIn
+				handleGoogleSignIn,
+				nameError,
+				setNameError,
 			}}
 		>
 			{children}

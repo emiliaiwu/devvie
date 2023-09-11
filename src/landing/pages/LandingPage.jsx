@@ -4,7 +4,7 @@ const LandingPage = () => {
 	return (
 		<>
 			<Header />
-			<main className="bg-black">
+			<main className='bg-black'>
 				<Hero />
 			</main>
 		</>

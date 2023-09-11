@@ -5,7 +5,8 @@ import img3 from "./composite-collage-of-happy-diverse-multicultural-4-G8UCHFH.j
 import img4 from "./composite-collage-of-happy-diverse-multicultural-5-G8UCHFH.jpg";
 import img5 from "./composite-collage-of-happy-diverse-multicultural-6-G8UCHFH.jpg";
 import img6 from "./composite-collage-of-happy-diverse-multicultural-7-G8UCHFH.jpg";
-import gradient from "./text-gradient.png"
+import gradient from "./text-gradient.png";
+import devvieboard from "./devvieboard.png"
 
 
-export { devvie, img1, img2, img3, img4, img5, img6, gradient };
+export { devvie, img1, img2, img3, img4, img5, img6, gradient, devvieboard };

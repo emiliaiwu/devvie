@@ -9,15 +9,20 @@ import {
 	sendPasswordResetEmail,
 	sendEmailVerification,
 	confirmPasswordReset,
+	updateProfile,
 } from "firebase/auth";
-import { auth } from "../../firebase";
+import { auth } from "../firebase";
 
 const AuthContext = createContext();
 
 export const AuthContextProvider = ({ children }) => {
 	const [user, setUser] = useState();
 
-	const signUp = (email, password) => {
+	const updateDisplayName = (userName) => {
+		return updateProfile(auth.currentUser, { displayName: userName });
+	};
+
+	const signUpUser = (email, password) => {
 		return createUserWithEmailAndPassword(auth, email, password);
 	};
 
@@ -58,7 +63,7 @@ export const AuthContextProvider = ({ children }) => {
 	return (
 		<AuthContext.Provider
 			value={{
-				signUp,
+				signUpUser,
 				user,
 				signIn,
 				signOutUser,
@@ -66,6 +71,7 @@ export const AuthContextProvider = ({ children }) => {
 				forgotPassword,
 				verifyEmail,
 				resetPassword,
+				updateDisplayName,
 			}}
 		>
 			{children}

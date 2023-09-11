@@ -1,10 +1,12 @@
-import { AuthContext, SignInContext } from "../../landing/context";
+import { AuthContext, SignInContext } from "../../context";
 import { useContext } from "react";
 import { ClipLoader } from "react-spinners";
 
 const Dashboard = () => {
 	const { isSubmitting, handleSignOut } = useContext(SignInContext);
 	const { user } = useContext(AuthContext);
+
+	console.log(user)
 
 	const extractUsername = (email) => {
 		const match = email.match(/^(.*?)@gmail\.com/);

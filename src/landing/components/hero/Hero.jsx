@@ -41,7 +41,7 @@ const Hero = () => {
 							</p>
 						</div>
 						<div>
-							<h1 className='text-white w-[320px] font-Inter text-[45px] text-center leading-[50px] font-[800] sm:w-[70vw] md:text-[55px] lg:text-[60px] xl:text-[65px] md:leading-[70px] xl:w-[900px] tracking-tight xl:leading-[80px] overflow-hidden'>
+							<h1 className='text-white w-[320px] font-Kanit text-[45px] text-center leading-[50px] font-[800] sm:w-[70vw] md:text-[55px] lg:text-[60px] xl:text-[65px] md:leading-[70px] xl:w-[900px] tracking-tight xl:leading-[80px] overflow-hidden'>
 								The Best Tool for Aspiring
 								<DynamicText />
 								Developers

@@ -1,6 +1,6 @@
-import { createContext, useContext, useState, useEffect } from "react";
+import { createContext, useContext, useState, } from "react";
 import AuthContext from "./AuthContext";
-import { authErrors } from "../../firebase";
+import { authErrors } from "../firebase";
 import { useLocation } from "react-router-dom";
 
 const SignInContext = createContext();
@@ -36,8 +36,8 @@ export const SignInContextProvider = ({ children }) => {
 	const handleSignIn = async (e, navigate) => {
 		e.preventDefault();
 		setError("");
-		setEmailErr("")
-		setPasswordErr("")
+		setEmailErr("");
+		setPasswordErr("");
 		setIsPasswordVisible(false);
 		setIsSubmitting(true);
 
@@ -108,8 +108,6 @@ export const SignInContextProvider = ({ children }) => {
 		}
 	};
 
-
-
 	return (
 		<SignInContext.Provider
 			value={{
@@ -138,7 +136,7 @@ export const SignInContextProvider = ({ children }) => {
 				resetPasswordEmailSent,
 				setResetPasswordEmailSent,
 				handleSignOut,
-				setIsSubmitting
+				setIsSubmitting,
 			}}
 		>
 			{children}
