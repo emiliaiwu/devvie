@@ -5,7 +5,7 @@ import { authErrors } from "../firebase";
 const SignUpContext = createContext();
 
 export const SignUpContextProvider = ({ children }) => {
-	const { signUpUser, googleSignIn, updateDisplayName } =
+	const { signUpUser, googleSignIn, updateDisplayName, githubSignIn } =
 		useContext(AuthContext);
 
 	const [email, setEmail] = useState("");
@@ -88,6 +88,17 @@ export const SignUpContextProvider = ({ children }) => {
 		}
 	};
 
+	// Github sign
+	const handleGithubSignIn = async (e, navigate) => {
+		e.preventDefault();
+		try {
+			await githubSignIn();
+			navigate("/user/dashboard");
+		} catch (err) {
+			setError(err.message);
+		}
+	};
+
 	return (
 		<SignUpContext.Provider
 			value={{
@@ -112,6 +123,7 @@ export const SignUpContextProvider = ({ children }) => {
 				setEmailErr,
 				setPasswordErr,
 				handleGoogleSignIn,
+				handleGithubSignIn,
 				nameError,
 				setNameError,
 			}}

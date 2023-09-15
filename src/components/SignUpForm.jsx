@@ -15,13 +15,14 @@ const SignUpForm = () => {
 		handleSignUp,
 		isPasswordVisible,
 		setIsPasswordVisible,
-		error,
+		// error,
 		emailErr,
 		passwordErr,
 		handleEmailChange,
 		handlePasswordChange,
 		isSubmitting,
 		handleGoogleSignIn,
+		handleGithubSignIn,
 		userName,
 		handleUserNameChange,
 		nameError,
@@ -30,29 +31,53 @@ const SignUpForm = () => {
 	const navigate = useNavigate();
 
 	return (
-		<div className='w-full py-20 px-4 sm:px-6 flex flex-col justify-between items-left gap-10 '>
+		<div className='w-full py-10 md:pt-20 px-3 sm:px-6 flex flex-col justify-between items-left gap-8 md:gap-10  '>
 			<div className='flex justify-center items-center flex-col'>
-				<div className='lg:hidden mb-8'>
+				<div className='lg:hidden mb-6'>
 					<img src={devvieboard} width={50} height={50} alt='logo' />
 				</div>
 
-				<h1 className='font-Kanit sm:text-4xl text-3xl font-[700] mb-2 text-center'>
+				<h1 className='font-DMSans sm:text-4xl text-3xl lg:text-[42px] font-[800] mb-1 text-center'>
 					Hello Dev!
 				</h1>
 				<p className='text-sm text-gray-400 font-DMSans font-[500] text-center'>
-					Create a free account below
+					Get started for free
 				</p>
+			</div>
+			<div className='w-full flex justify-between gap-4'>
+				<button
+					onClick={(e) => handleGoogleSignIn(e, navigate)}
+					className='w-1/2 border-[1.5px]   border-gray-300 py-3 rounded-md flex justify-center items-center font-DMSans font-[800] text-base glow-input cursor-pointer'
+				>
+					<FcGoogle size={25} className='mr-2' />{" "}
+					<span className='hidden sm:inline-block'>Google</span>
+				</button>
+				<button
+					onClick={(e) => handleGithubSignIn(e, navigate)}
+					className='w-1/2 border-[1.5px]  border-gray-300 py-3 rounded-md flex justify-center items-center font-DMSans font-[800] text-base glow-input cursor-pointer'
+				>
+					<FaGithub size={25} className='mr-2' />{" "}
+					<span className='hidden sm:inline-block'>Github</span>
+				</button>
+			</div>
+
+			{/* continue with */}
+			<div className='w-full flex justify-center items-center relative'>
+				<div className='w-full h-[1px] bg-gray-300 '></div>
+				<span className='absolute text-sm font-DMSans text-gray-400 px-4 bg-white'>
+					Or continue with
+				</span>
 			</div>
 
 			<form
 				className='flex flex-col gap-5'
 				onSubmit={(e) => handleSignUp(e, navigate)}
 			>
-				{error && (
+				{/* {error && (
 					<div className='text-red-500 font-DMSans text-sm font-bold mt-2'>
 						{error}
 					</div>
-				)}
+				)} */}
 				<div>
 					<label
 						htmlFor='userName'
@@ -65,7 +90,9 @@ const SignUpForm = () => {
 							required
 							value={userName}
 							onChange={(e) => handleUserNameChange(e.target.value)}
-							className='w-full pr-10  py-3 pl-11 font-DMSans outline-none border-[1.5px] border-gray-300 text-base rounded-md glow-input'
+							className={`${
+								nameError ? "border-red-500" : "border-gray-300"
+							} w-full py-3 pl-11 pr-10 font-DMSans outline-none border-[1.5px] border-gray-300 text-sm ss:text-base rounded-md glow-input`}
 						/>
 						<AiOutlineUser className='absolute ml-4 text-gray-400 text-xl' />
 					</label>
@@ -83,9 +110,13 @@ const SignUpForm = () => {
 						<input
 							type='email'
 							placeholder='Enter your email'
+							required
+							value={email}
 							name='email'
 							onChange={(e) => handleEmailChange(e.target.value)}
-							className='w-full pr-10  py-3 pl-11 font-DMSans outline-none border-[1.5px] border-gray-300 text-base rounded-md glow-input'
+							className={`${
+								emailErr ? "border-red-500" : "border-gray-300"
+							} w-full py-3 pl-11 pr-10 font-DMSans outline-none border-[1.5px] border-gray-300 text-sm ss:text-base rounded-md glow-input`}
 						/>
 						<AiOutlineMail className='absolute ml-4 text-gray-400 text-xl' />
 					</label>
@@ -95,6 +126,7 @@ const SignUpForm = () => {
 						</p>
 					)}
 				</div>
+				{/* PASSWORD */}
 				<div>
 					<label
 						htmlFor='password'
@@ -103,10 +135,13 @@ const SignUpForm = () => {
 						<input
 							type={isPasswordVisible ? "text" : "password"}
 							value={password}
+							required
 							name='password'
-							placeholder='6+ strong characters'
+							placeholder='Enter 6+ strong characters'
 							onChange={(e) => handlePasswordChange(e.target.value)}
-							className='w-full py-3 pl-11 pr-10 font-DMSans outline-none border-[1.5px] border-gray-300 text-base rounded-md glow-input '
+							className={`${
+								passwordErr ? "border-red-500" : "border-gray-300"
+							} w-full py-3 pl-11 pr-10 font-DMSans outline-none border-[1.5px] border-gray-300 text-sm ss:text-base rounded-md glow-input`}
 						/>
 						<AiOutlineLock className='absolute ml-4 text-gray-400 text-xl' />
 						<button
@@ -124,14 +159,11 @@ const SignUpForm = () => {
 					)}
 				</div>
 
-				<div>
+				<div className="mt-5">
 					{/* SUBMIT BUTTON */}
 					<button
 						type='submit'
-						disabled={!(email && password && userName)}
-						className={`${
-							email && password && userName ? "bg-black" : "bg-gray-400"
-						} h-12 w-full rounded-md text-base font-DMSans font-[500] text-white transition-all duration-200 ease cursor-pointer flex justify-center items-center`}
+						className='bg-black h-12 w-full rounded-md button-hover text-base font-DMSans font-[500] text-white transition-all duration-200 ease cursor-pointer flex justify-center items-center'
 					>
 						{isSubmitting ? (
 							<ClipLoader loading={true} color={"#FFFFFF"} size={32} />
@@ -142,28 +174,7 @@ const SignUpForm = () => {
 				</div>
 			</form>
 
-			<div className='w-full flex justify-center items-center relative'>
-				<div className='w-full h-[1px] bg-gray-300 '></div>
-				<span className='absolute text-sm font-DMSans text-gray-400 px-3 bg-white'>
-					Or sign up with
-				</span>
-			</div>
-
-			{/* GOOGLE AND GITHUB */}
-			<div className='w-full flex justify-between gap-8'>
-				<button
-					onClick={(e) => handleGoogleSignIn(e, navigate)}
-					className='w-1/2 border-[1.5px]   border-gray-300 py-3 rounded-md flex justify-center items-center font-Syne font-[800] text-base glow-input cursor-pointer'
-				>
-					<FcGoogle size={25} className='mr-2' />{" "}
-					<span className='hidden ss:inline-block'>Google</span>
-				</button>
-				<button className='w-1/2 border-[1.5px]  border-gray-300 py-3 rounded-md flex justify-center items-center font-Syne font-[800] text-base glow-input cursor-pointer'>
-					<FaGithub size={25} className='mr-2' />{" "}
-					<span className='hidden ss:inline-block'>Google</span>
-				</button>
-			</div>
-			<div className='text-gray-400 font-DMSans text-sm text-center'>
+			<div className='text-gray-400 font-DMSans text-sm text-center mt-5 md:mt-10'>
 				Already have an account?{" "}
 				<Link to={"/signin"} className='font-bold text-black hover:text-blue'>
 					Login

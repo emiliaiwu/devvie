@@ -1,7 +1,9 @@
 import { SignContainer } from "../components";
 import { SignInForm } from "../components";
+import { useScrollToTop } from "../hooks";
 
 const SignInPage = () => {
+	useScrollToTop();
 	return (
 		<SignContainer
 			welcomeText={"Welcome back to your coding journey! Your projects await."}

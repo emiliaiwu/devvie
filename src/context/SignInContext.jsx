@@ -1,13 +1,18 @@
-import { createContext, useContext, useState, } from "react";
+import { createContext, useContext, useState } from "react";
 import AuthContext from "./AuthContext";
 import { authErrors } from "../firebase";
-import { useLocation } from "react-router-dom";
 
 const SignInContext = createContext();
 
 export const SignInContextProvider = ({ children }) => {
-	const { signIn, googleSignIn, forgotPassword, signOutUser } =
-		useContext(AuthContext);
+	const {
+		signIn,
+		googleSignIn,
+		forgotPassword,
+		signOutUser,
+		githubSignIn,
+		user,
+	} = useContext(AuthContext);
 
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
@@ -15,7 +20,7 @@ export const SignInContextProvider = ({ children }) => {
 	const [passwordErr, setPasswordErr] = useState("");
 	const [emailErr, setEmailErr] = useState("");
 	const [agreeToTerms, setAgreeToTerms] = useState(false);
-	const [rememberPassword, setRememberPassword] = useState(false);
+	const [rememberMe, setRememberMe] = useState(false);
 	const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 	const [isSubmitting, setIsSubmitting] = useState(false);
 	const [resetPasswordEmailSent, setResetPasswordEmailSent] = useState(false);
@@ -24,12 +29,15 @@ export const SignInContextProvider = ({ children }) => {
 	const handleEmailChange = (newEmail) => {
 		setEmail(newEmail);
 		setEmailErr("");
+		setPasswordErr("");
+		setError("");
 	};
 
 	// handle password change
 	const handlePasswordChange = (newPassword) => {
 		setPassword(newPassword);
-		setPasswordErr(""); // Clear email error when the email input changes
+		setPasswordErr("");
+		setError("");
 	};
 
 	// SignIn function
@@ -42,24 +50,20 @@ export const SignInContextProvider = ({ children }) => {
 		setIsSubmitting(true);
 
 		try {
-			await signIn(email, password);
+			await signIn(email, password, rememberMe);
 			setIsSubmitting(false);
 			navigate("/user/dashboard");
 		} catch (err) {
 			// Handle authentication errors
 			setIsSubmitting(false);
 			const errorCode = err.code;
-			let errorMessage = "An unknown error occurred. Please try again later.";
+			let errorMessage = err.message;
 
 			if (errorCode.includes("password")) {
-				errorMessage =
-					authErrors[errorCode] ||
-					"An unknown error occurred. Please try again later.";
+				errorMessage = authErrors[errorCode];
 				setPasswordErr(errorMessage);
 			} else if (errorCode.includes("user") || errorCode.includes("email")) {
-				errorMessage =
-					authErrors[errorCode] ||
-					"An unknown error occurred. Please try again later.";
+				errorMessage = authErrors[errorCode];
 				setEmailErr(errorMessage);
 			} else {
 				setError(errorMessage);
@@ -80,9 +84,7 @@ export const SignInContextProvider = ({ children }) => {
 		} catch (err) {
 			setIsSubmitting(false);
 			const errorCode = err.code;
-			let errorMessage =
-				authErrors[errorCode] ||
-				"An unknown error occurred. Please try again later.";
+			let errorMessage = authErrors[errorCode];
 			setError(errorMessage);
 		}
 	};
@@ -92,6 +94,17 @@ export const SignInContextProvider = ({ children }) => {
 		e.preventDefault();
 		try {
 			await googleSignIn();
+			navigate("/user/dashboard");
+		} catch (err) {
+			setError(err.message);
+		}
+	};
+
+	// Google sign
+	const handleGithubSignIn = async (e, navigate) => {
+		e.preventDefault();
+		try {
+			await githubSignIn();
 			navigate("/user/dashboard");
 		} catch (err) {
 			setError(err.message);
@@ -114,13 +127,14 @@ export const SignInContextProvider = ({ children }) => {
 				setEmail,
 				setPassword,
 				setError,
+				user,
 				email,
 				password,
 				error,
 				agreeToTerms,
 				setAgreeToTerms,
-				rememberPassword,
-				setRememberPassword,
+				rememberMe,
+				setRememberMe,
 				isPasswordVisible,
 				setIsPasswordVisible,
 				passwordErr,
@@ -137,6 +151,7 @@ export const SignInContextProvider = ({ children }) => {
 				setResetPasswordEmailSent,
 				handleSignOut,
 				setIsSubmitting,
+				handleGithubSignIn,
 			}}
 		>
 			{children}

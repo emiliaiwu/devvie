@@ -18,7 +18,7 @@ export const devImages = [
 	{
 		label: "Mobile Dev.",
 		image: img2,
-		bgColor: "bg-blue-100",
+		bgColor: "bg-green-100",
 		textColor: "text-blue-700",
 		dotColor: "bg-blue-300",
 	},

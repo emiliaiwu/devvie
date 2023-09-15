@@ -3,45 +3,39 @@ import { SignInContext, AuthContext } from "../context";
 import { useContext, useState } from "react";
 import { FaEyeSlash, FaEye } from "react-icons/fa";
 import { AiOutlineLock } from "react-icons/ai";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { authErrors } from "../firebase";
 import { devvieboard } from "../assets";
 import PasswordResetDone from "./PasswordResetDone";
+import InvalidLink from "./InvalidLink";
 
-const ResetPasswordForm = () => {
+const ResetPasswordForm = ({ query, isActionCodeValid }) => {
 	const {
 		isSubmitting,
 		isPasswordVisible,
 		setIsPasswordVisible,
-		error,
-		setError,
 		setIsSubmitting,
 	} = useContext(SignInContext);
 
-	function useQuery() {
-		const location = useLocation();
-		return new URLSearchParams(location.search);
-	}
-
-	const query = useQuery();
 	const { resetPassword } = useContext(AuthContext);
 	const [newPassword, setNewPassword] = useState("");
 	const [confirmNewPassword, setConfirmNewPassword] = useState("");
 	const [confirmError, setConfirmError] = useState("");
-	const [passwordConfirmed, setPasswordConfirmed] = useState("");
 	const [isConfirmPasswordVisible, setIsConfirmPasswordVisible] =
 		useState(false);
+	const [error, setError] = useState("");
 	const [passwordChanged, setPasswordChanged] = useState(false);
 
 	const handlePasswordChange = (e) => {
 		setNewPassword(e.target.value);
-		setError(" ");
-		setConfirmError(" ");
+		setError("");
+		setConfirmError("");
 	};
 
 	const handleConfirmPasswordChange = (e) => {
 		setConfirmNewPassword(e.target.value);
-		setConfirmError(" ");
+		setError("");
+		setConfirmError("");
 	};
 
 	const handleResetPassword = async (e) => {
@@ -50,52 +44,38 @@ const ResetPasswordForm = () => {
 		setConfirmError("");
 		setIsSubmitting(true);
 		setPasswordChanged(false);
-
-		if (!newPassword) {
-			setError("Enter your new password");
-			setIsSubmitting(false);
-			return;
-		}
-
-		if (!confirmNewPassword) {
-			setConfirmError("Confirm your new password");
-			setIsSubmitting(false);
-			return;
-		}
+		setIsPasswordVisible(false);
+		setIsConfirmPasswordVisible(false);
 
 		if (newPassword !== confirmNewPassword) {
 			setConfirmError("Passwords don't match");
+			setError("Passwords don't match");
 			setIsSubmitting(false);
-			return;
 		} else {
-			setPasswordConfirmed(newPassword);
-		}
-
-		try {
-			await resetPassword(query.get("oobCode"), passwordConfirmed);
-			setIsSubmitting(false);
-			setPasswordChanged(true);
-		} catch (err) {
-			setIsSubmitting(false);
-			const errorCode = err.code;
-			let errorMessage =
-				authErrors[errorCode] ||
-				"An unknown error occurred. Please try again later.";
-			setError(errorMessage);
+			try {
+				await resetPassword(query.get("oobCode"), newPassword);
+				setPasswordChanged(true);
+			} catch (err) {
+				const errorCode = err.code;
+				const errorMessage = authErrors[errorCode];
+				setError(errorMessage);
+			} finally {
+				setIsSubmitting(false);
+			}
 		}
 	};
 
 	return (
-		<div className='w-full pt-20 pb-12 px-6 flex flex-col justify-between items-center '>
-			{passwordChanged ? (
-				<PasswordResetDone />
-			) : (
-				<div className='flex justify-center items-center flex-col gap-10 w-full'>
+		<div className='w-full pt-10 sm:pt-14 pb-12 sm:px-6  px-3 flex flex-col justify-between items-center '>
+			{passwordChanged && <PasswordResetDone />}
+			{!isActionCodeValid && <InvalidLink />}
+			{isActionCodeValid && !passwordChanged && (
+				<div className='flex justify-center items-center flex-col gap-8 w-full'>
 					<div>
 						<img src={devvieboard} width={50} height={50} alt='logo' />
 					</div>
-					<div className='mt-2'>
-						<h1 className='font-Kanit text-3xl sm:text-4xl font-[800] tracking-tight mb-3 text-center'>
+					<div className=''>
+						<h1 className='font-DMSans text-3xl sm:text-4xl font-[800] tracking-tight mb-3 text-center'>
 							Reset password
 						</h1>
 						<p className='text-sm text-gray-400 font-DMSans font-[500] text-center max-w-[300px]'>
@@ -116,9 +96,12 @@ const ResetPasswordForm = () => {
 									<input
 										type={isPasswordVisible ? "text" : "password"}
 										value={newPassword}
-										placeholder='6+ strong characters'
+										required
+										placeholder='Enter 6+ strong characters'
 										onChange={handlePasswordChange}
-										className='w-full py-3 pl-11 pr-10 font-DMSans outline-none border-[1.5px] border-gray-300 text-base rounded-md glow-input '
+										className={`${
+											error ? "border-red-500" : "border-gray-300"
+										} w-full py-3 pl-11 pr-10 font-DMSans outline-none border-[1.5px] text-base rounded-md glow-input`}
 									/>
 									<AiOutlineLock className='absolute ml-4 text-gray-400 text-xl' />
 									<button
@@ -143,9 +126,12 @@ const ResetPasswordForm = () => {
 									<input
 										type={isConfirmPasswordVisible ? "text" : "password"}
 										value={confirmNewPassword}
+										required
 										placeholder='Confirm password'
 										onChange={handleConfirmPasswordChange}
-										className='w-full py-3 pl-11 pr-10 font-DMSans outline-none border-[1.5px] border-gray-300 text-base rounded-md glow-input '
+										className={`${
+											confirmError ? "border-red-500" : "border-gray-300"
+										} w-full py-3 pl-11 pr-10 font-DMSans outline-none border-[1.5px] text-base rounded-md glow-input`}
 									/>
 									<AiOutlineLock className='absolute ml-4 text-gray-400 text-xl' />
 									<button
@@ -165,6 +151,7 @@ const ResetPasswordForm = () => {
 								)}
 							</div>
 						</div>
+						{/* SUBMIT BUTTON */}
 						<button
 							type='submit'
 							className='
@@ -177,8 +164,8 @@ const ResetPasswordForm = () => {
 							)}
 						</button>
 					</form>
-					<div className='max-w-[320px] text-sm text-gray-400 font-[500] font-DMSans text-center mt-10'>
-						Remember password?{" "}
+					<div className='max-w-[320px] text-sm text-gray-400 font-[500] font-DMSans text-center mt-5'>
+						Remembered password?{" "}
 						<Link
 							to={"/signin"}
 							className='font-[600] text-black cursor-pointer hover:border-b-[1.5px] hover:border-black '

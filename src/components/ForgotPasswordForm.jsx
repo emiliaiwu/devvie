@@ -1,5 +1,5 @@
-import { useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { useContext, useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import { SignInContext } from "../context";
 import { AiOutlineMail } from "react-icons/ai";
 import { ClipLoader } from "react-spinners";
@@ -20,9 +20,10 @@ const ForgotPasswordForm = () => {
 		setError,
 	} = useContext(SignInContext);
 	const navigate = useNavigate();
+
 	const handleEmailChange = (newEmail) => {
 		setEmail(newEmail);
-		setError(" ");
+		setError("");
 	};
 
 	const handleCancel = () => {
@@ -30,8 +31,15 @@ const ForgotPasswordForm = () => {
 		navigate("/signin");
 	};
 
+	const location = useLocation();
+
+	// clear Errors
+	useEffect(() => {
+		setEmail("");
+	}, [location]);
+
 	return (
-		<div className='w-full pt-20 pb-12 px-6 flex flex-col justify-between items-center gap-8 '>
+		<div className='w-full py-10 md:pt-20 sm:px-6 px-3 flex flex-col justify-between items-center gap-8 '>
 			{resetPasswordEmailSent ? (
 				<MailSent
 					handleCancel={handleCancel}
@@ -39,20 +47,21 @@ const ForgotPasswordForm = () => {
 					setResetPasswordEmailSent={setResetPasswordEmailSent}
 				/>
 			) : (
-				<div className='flex justify-center items-center flex-col gap-10 w-full'>
-					<div>
-						<img src={devvieboard} width={50} height={50} alt='logo' />
-					</div>
-
-					<div>
-						<h1 className='font-Kanit text-3xl sm:text-4xl font-[800] tracking-tight text-center mb-3'>
-							Forgot Password?
-						</h1>
-						<p className='text-sm text-gray-400 font-DMSans font-[500] text-center max-w-[300px]'>
-							{
-								"Enter the email address associated with your account to get password reset instructions"
-							}
-						</p>
+				<div className='flex justify-center items-center flex-col gap-8 md:gap-10 w-full'>
+					<div className=' flex justify-center items-center flex-col'>
+						<div className=' mb-6'>
+							<img src={devvieboard} width={50} height={50} alt='logo' />
+						</div>
+						<div>
+							<h1 className='font-DMSans text-3xl sm:text-4xl font-[800] tracking-tight text-center mb-3'>
+								Forgot Password?
+							</h1>
+							<p className='text-sm text-gray-400 font-DMSans font-[500] text-center max-w-[300px]'>
+								{
+									"Enter the email address associated with your account to get password reset link"
+								}
+							</p>
+						</div>
 					</div>
 
 					<form
@@ -68,9 +77,10 @@ const ForgotPasswordForm = () => {
 									type='email'
 									placeholder='Enter your email here'
 									name='email'
+									required
 									value={email}
 									onChange={(e) => handleEmailChange(e.target.value)}
-									className='w-full py-3 pl-11 font-DMSans outline-none border-[1.5px] border-gray-300 text-base rounded-md glow-input'
+									className='w-full py-3 pl-11 font-DMSans outline-none border-[1.5px] border-gray-300 text-sm ss:text-base rounded-md glow-input'
 								/>
 								<AiOutlineMail className='absolute ml-4 text-gray-400 text-xl' />
 							</label>
@@ -82,31 +92,28 @@ const ForgotPasswordForm = () => {
 						</div>
 						<button
 							type='submit'
-							disabled={!email || isSubmitting}
-							className={`${
-								email ? "bg-black" : "bg-gray-400"
-							} h-12 w-full rounded-md text-base font-DMSans font-[600] text-white transition-all duration-200 ease cursor-pointer flex justify-center items-center`}
+							className='bg-black h-12 w-full button-hover rounded-md text-base font-DMSans font-[600] text-white cursor-pointer flex justify-center items-center'
 						>
 							{isSubmitting ? (
 								<ClipLoader loading={true} color={"#FFFFFF"} size={32} />
 							) : (
-								"Send instructions"
+								"Send reset link"
 							)}
 						</button>
 						<Link
 							to={"/signin"}
-							className='h-12 border border-gray-300 w-full rounded-md text-base font-DMSans font-[600] text-black hover:text-white hover:bg-black transition-all duration-200 ease cursor-pointer flex justify-center items-center'
+							className='h-12 border border-gray-500 w-full rounded-md text-base font-DMSans font-[600] text-black hover:text-white hover:bg-black transition-colors duration-200 ease-in-out cursor-pointer flex justify-center items-center'
 						>
 							<BsArrowLeft className='mr-2' /> Back to Login
 						</Link>
 					</form>
-					<div className='text-gray-400 font-DMSans text-sm text-center mt-3'>
-						{"Don't have an account?"}{" "}
+					<div className='text-gray-400 font-DMSans font-[500] text-sm text-center mt-5'>
+						New to Devvie?{" "}
 						<Link
 							to={"/signup"}
 							className='font-bold text-black hover:text-blue'
 						>
-							Sign up
+							Create an account
 						</Link>
 					</div>
 				</div>

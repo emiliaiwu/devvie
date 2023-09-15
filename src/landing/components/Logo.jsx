@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { devvie } from "../../assets/index";
+import { devvieboard } from "../../assets/index";
 
 const Logo = () => {
 	return (
@@ -7,10 +7,10 @@ const Logo = () => {
 			to={"/"}
 			className='cursor-pointer hover:translate-y-[-5px] transition-all duration-200 ease-in-out'
 		>
-			<div className='flex items-end gap-1'>
-				<img src={devvie} alt='logo' width={40} />
+			<div className='flex items-center gap-1'>
+				<img src={devvieboard} alt='logo' width={30} height={30} />
 				<h1
-					className={`font-DMSans text-3xl font-[700] tracking-tighter logo-name `}
+					className={`font-DMSans text-3xl font-[700] ml-1 text-white`}
 				>
 					Devvie
 				</h1>

@@ -4,9 +4,11 @@ import DevTestimonials from "./DevTestimonials";
 import SignInForm from "./SignInForm";
 import ForgotPasswordForm from "./ForgotPasswordForm";
 import ResetPasswordForm from "./ResetPasswordForm";
+import DevvieLoader from "./DevvieLoader";
+import InvalidLink from "./InvalidLink";
 
 
 
 export {
-    SignContainer, SignUpForm, DevTestimonials, SignInForm, ForgotPasswordForm, ResetPasswordForm
+    SignContainer, SignUpForm, DevTestimonials, SignInForm, ForgotPasswordForm, ResetPasswordForm, DevvieLoader, InvalidLink
 }
