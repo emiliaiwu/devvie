@@ -14,9 +14,10 @@ import {
 } from "./pages";
 import ComingSoon from "./careers/ComingSoon";
 import AppLayout from "./app/layout/AppLayout";
-import { Dashboard } from "./app/pages";
+import { Dashboard, Theme, Settings } from "./app/pages";
 import ProtectedRoute from "./app/ProtectedRoute";
 import "./style/devvieLoader.css";
+import "./style/app.css";
 
 // Lazy
 // const LazyDashboard = React.lazy
@@ -34,7 +35,7 @@ const App = () => {
 				<Route path='reset-password' element={<ResetPasswordPage />} />
 				<Route path='*' element={<NotFound />} />
 				<Route
-					path='/user/*'
+					path='user'
 					element={
 						<ProtectedRoute>
 							<AppLayout />
@@ -42,7 +43,9 @@ const App = () => {
 					}
 				>
 					<Route path='dashboard' element={<Dashboard />} />
-					{/* <Route path='profile' element={<UserProfile />} /> */}
+					<Route path='settings' element={<Settings />}>
+						<Route path='appearance' element={<Theme />} />
+					</Route>
 				</Route>
 			</Route>
 		)

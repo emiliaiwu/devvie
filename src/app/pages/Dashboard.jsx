@@ -18,7 +18,7 @@ const Dashboard = () => {
 	};
 
 	return (
-		<div className='flex justify-center items-center w-full h-screen bg-landingPrimary flex-col gap-4'>
+		<div className='flex justify-center items-center bg-gray-700 flex-col gap-4 h-full'>
 			<h1 className='font-Inter font-[800] text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-black text-center'>
 				Welcome{""} {getUsernameOrEmail()}
 			</h1>

@@ -1,7 +1,5 @@
-
 // notes
-
-export function Notes(props) {
+export function NoteIcon(props) {
 	return (
 		<svg
 			xmlns='http://www.w3.org/2000/svg'
@@ -21,10 +19,8 @@ export function Notes(props) {
 	);
 }
 
-
-
 // bell
-export function SolarBell(props) {
+export function BellIcon(props) {
 	return (
 		<svg
 			xmlns='http://www.w3.org/2000/svg'
@@ -44,10 +40,9 @@ export function SolarBell(props) {
 	);
 }
 
+// library
 
-// library 
-
-export function SolarLibraryLinear(props) {
+export function LibraryIcon(props) {
 	return (
 		<svg
 			xmlns='http://www.w3.org/2000/svg'
@@ -57,7 +52,10 @@ export function SolarLibraryLinear(props) {
 			{...props}
 		>
 			<g fill='none' stroke='currentColor' strokeWidth='1.5'>
-				<path d='M19.562 7a2.132 2.132 0 0 0-2.1-2.5H6.538a2.132 2.132 0 0 0-2.1 2.5M17.5 4.5c.028-.26.043-.389.043-.496a2 2 0 0 0-1.787-1.993C15.65 2 15.52 2 15.26 2H8.74c-.26 0-.391 0-.497.011a2 2 0 0 0-1.787 1.993c0 .107.014.237.043.496'></path>
+				<path
+					d='M19.562 7a2.132 2.132 0 0 0-2.1-2.5H6.538a2.132 2.132 0 0 0-2.1 2.5M17.5 4.5c.028-.26.043-.389.043-.496a2 2 0 0 0-1.787-1.993C15.65 2 15.52 2 15.26 2H8.74c-.26 0-.391 0-.497.011a2 2 0 0 0-1.787 1.993c0 .107.014.237.043.496'
+					opacity='.5'
+				></path>
 				<path strokeLinecap='round' d='M15 18H9'></path>
 				<path d='M2.384 13.793c-.447-3.164-.67-4.745.278-5.77C3.61 7 5.298 7 8.672 7h6.656c3.374 0 5.062 0 6.01 1.024c.947 1.024.724 2.605.278 5.769l-.422 3c-.35 2.48-.525 3.721-1.422 4.464c-.897.743-2.22.743-4.867.743h-5.81c-2.646 0-3.97 0-4.867-.743c-.897-.743-1.072-1.983-1.422-4.464l-.422-3Z'></path>
 			</g>
@@ -65,9 +63,9 @@ export function SolarLibraryLinear(props) {
 	);
 }
 
-// Teams 
+// Teams
 
-export function SolarUsersLinear(props) {
+export function TeamIcon(props) {
 	return (
 		<svg
 			xmlns='http://www.w3.org/2000/svg'
@@ -92,10 +90,9 @@ export function SolarUsersLinear(props) {
 	);
 }
 
+// Account
 
-// Account 
-
-export function SolarUserRoundedLinear(props) {
+export function AccountIcon(props) {
 	return (
 		<svg
 			xmlns='http://www.w3.org/2000/svg'
@@ -112,10 +109,9 @@ export function SolarUserRoundedLinear(props) {
 	);
 }
 
+// collaborate
 
-// collaborate 
-
-export function SolarUserPlusBroken(props) {
+export function CollaborateIcon(props) {
 	return (
 		<svg
 			xmlns='http://www.w3.org/2000/svg'
@@ -135,10 +131,9 @@ export function SolarUserPlusBroken(props) {
 	);
 }
 
+// calendar
 
-// calendar 
-
-export function SolarCalendarMarkLinear(props) {
+export function CalendarIcon(props) {
 	return (
 		<svg
 			xmlns='http://www.w3.org/2000/svg'
@@ -157,10 +152,9 @@ export function SolarCalendarMarkLinear(props) {
 	);
 }
 
+// dashboard
 
-// dashboard 
-
-export function SolarWidget5Linear(props) {
+export function DashboardIcon(props) {
 	return (
 		<svg
 			xmlns='http://www.w3.org/2000/svg'
@@ -169,19 +163,24 @@ export function SolarWidget5Linear(props) {
 			viewBox='0 0 24 24'
 			{...props}
 		>
-			<path
-				fill='none'
-				stroke='currentColor'
-				strokeWidth='1.5'
-				d='M13.5 15.5c0-1.886 0-2.828.586-3.414c.586-.586 1.528-.586 3.414-.586c1.886 0 2.828 0 3.414.586c.586.586.586 1.528.586 3.414v2c0 1.886 0 2.828-.586 3.414c-.586.586-1.528.586-3.414.586c-1.886 0-2.828 0-3.414-.586c-.586-.586-.586-1.528-.586-3.414v-2ZM2 8.5c0 1.886 0 2.828.586 3.414c.586.586 1.528.586 3.414.586c1.886 0 2.828 0 3.414-.586C10 11.328 10 10.386 10 8.5v-2c0-1.886 0-2.828-.586-3.414C8.828 2.5 7.886 2.5 6 2.5c-1.886 0-2.828 0-3.414.586C2 3.672 2 4.614 2 6.5v2Zm11.5-3c0-.932 0-1.398.152-1.765a2 2 0 0 1 1.083-1.083c.367-.152.833-.152 1.765-.152h2c.932 0 1.398 0 1.765.152a2 2 0 0 1 1.083 1.083c.152.367.152.833.152 1.765c0 .932 0 1.398-.152 1.765a2 2 0 0 1-1.083 1.083c-.367.152-.833.152-1.765.152h-2c-.932 0-1.398 0-1.765-.152a2 2 0 0 1-1.083-1.083C13.5 6.898 13.5 6.432 13.5 5.5ZM2 18.5c0 .932 0 1.398.152 1.765a2 2 0 0 0 1.083 1.083c.367.152.833.152 1.765.152h2c.932 0 1.398 0 1.765-.152a2 2 0 0 0 1.083-1.083C10 19.898 10 19.432 10 18.5c0-.932 0-1.398-.152-1.765a2 2 0 0 0-1.083-1.083C8.398 15.5 7.932 15.5 7 15.5H5c-.932 0-1.398 0-1.765.152a2 2 0 0 0-1.083 1.083C2 17.102 2 17.568 2 18.5Z'
-			></path>
+			<g fill='none' stroke='currentColor' strokeWidth='1.5'>
+				<path
+					d='M13.5 15.5c0-1.886 0-2.828.586-3.414c.586-.586 1.528-.586 3.414-.586c1.886 0 2.828 0 3.414.586c.586.586.586 1.528.586 3.414v2c0 1.886 0 2.828-.586 3.414c-.586.586-1.528.586-3.414.586c-1.886 0-2.828 0-3.414-.586c-.586-.586-.586-1.528-.586-3.414v-2Z'
+					opacity='.5'
+				></path>
+				<path d='M2 8.5c0 1.886 0 2.828.586 3.414c.586.586 1.528.586 3.414.586c1.886 0 2.828 0 3.414-.586C10 11.328 10 10.386 10 8.5v-2c0-1.886 0-2.828-.586-3.414C8.828 2.5 7.886 2.5 6 2.5c-1.886 0-2.828 0-3.414.586C2 3.672 2 4.614 2 6.5v2Zm11.5-3c0-.932 0-1.398.152-1.765a2 2 0 0 1 1.083-1.083c.367-.152.833-.152 1.765-.152h2c.932 0 1.398 0 1.765.152a2 2 0 0 1 1.083 1.083c.152.367.152.833.152 1.765c0 .932 0 1.398-.152 1.765a2 2 0 0 1-1.083 1.083c-.367.152-.833.152-1.765.152h-2c-.932 0-1.398 0-1.765-.152a2 2 0 0 1-1.083-1.083C13.5 6.898 13.5 6.432 13.5 5.5Z'></path>
+				<path
+					d='M2 18.5c0 .932 0 1.398.152 1.765a2 2 0 0 0 1.083 1.083c.367.152.833.152 1.765.152h2c.932 0 1.398 0 1.765-.152a2 2 0 0 0 1.083-1.083C10 19.898 10 19.432 10 18.5c0-.932 0-1.398-.152-1.765a2 2 0 0 0-1.083-1.083C8.398 15.5 7.932 15.5 7 15.5H5c-.932 0-1.398 0-1.765.152a2 2 0 0 0-1.083 1.083C2 17.102 2 17.568 2 18.5Z'
+					opacity='.5'
+				></path>
+			</g>
 		</svg>
 	);
 }
 
 // search
 
-export function SolarMagniferLinear(props) {
+export function SearchIcon(props) {
 	return (
 		<svg
 			xmlns='http://www.w3.org/2000/svg'
@@ -200,7 +199,7 @@ export function SolarMagniferLinear(props) {
 
 // job
 
-export function SolarCaseRoundMinimalisticLinear(props) {
+export function JobIcon(props) {
 	return (
 		<svg
 			xmlns='http://www.w3.org/2000/svg'
@@ -222,11 +221,11 @@ export function SolarCaseRoundMinimalisticLinear(props) {
 
 // Github
 
-
-export function SolarCodeSquareLinear(props) {
+export function GitBoard(props) {
 	return (
 		<svg
-			xmlns='http://www.w3.org/2000/svg'
+			xmlns='http://www.
+			w3.org/2000/svg'
 			width='1em'
 			height='1em'
 			viewBox='0 0 24 24'
@@ -243,10 +242,9 @@ export function SolarCodeSquareLinear(props) {
 	);
 }
 
-
 // portfolio
 
-export function SolarWindowFrameLinear(props) {
+export function PortfolioIcon(props) {
 	return (
 		<svg
 			xmlns='http://www.w3.org/2000/svg'
@@ -278,7 +276,7 @@ export function SolarWindowFrameLinear(props) {
 
 // chatroom
 
-export function SolarChatSquareCodeLinear(props) {
+export function ChatroomIcon(props) {
 	return (
 		<svg
 			xmlns='http://www.w3.org/2000/svg'
@@ -296,7 +294,8 @@ export function SolarChatSquareCodeLinear(props) {
 					stroke='currentColor'
 					strokeLinecap='round'
 					strokeWidth='1.5'
-					d='m15.5 7.83l.172.172c1.333 1.333 2 2 2 2.828c0 .829-.667 1.495-2 2.829l-.172.171M13.294 6L12 10.83l-1.294 4.83M8.5 7.83l-.171.172c-1.334 1.333-2 2-2 2.828c0 .829.666 1.495 2 2.829l.171.171'
+					d='m15.5 7.83l.172.172c1.333 1.333 2 2 2 2.828c0 .829-.667 1.495-2 2.829l-.172.171M13.294 6L12 10.83l-1.294 4.83M8.5 7.83l-.172.172c-1.333 1.333-2 2-2 2.828c0 .829.667 1.495 2 2.829l.172.171'
+					opacity='.5'
 				></path>
 			</g>
 		</svg>
@@ -305,8 +304,7 @@ export function SolarChatSquareCodeLinear(props) {
 
 // analytics
 
-
-export function SolarDiagramUpLinear(props) {
+export function AnalyticsIcon(props) {
 	return (
 		<svg
 			xmlns='http://www.w3.org/2000/svg'
@@ -321,16 +319,19 @@ export function SolarDiagramUpLinear(props) {
 				strokeLinecap='round'
 				strokeWidth='1.5'
 			>
-				<path d='M22 22H12c-4.714 0-7.071 0-8.536-1.465C2 19.072 2 16.714 2 12V2'></path>
+				<path
+					d='M22 22H12c-4.714 0-7.071 0-8.536-1.465C2 19.072 2 16.714 2 12V2'
+					opacity='.5'
+				></path>
 				<path d='m19 7l-3.118 3.926c-.477.602-.716.903-.99 1.05a1.5 1.5 0 0 1-1.357.029c-.28-.135-.531-.425-1.035-1.005c-.503-.58-.755-.87-1.035-1.005a1.5 1.5 0 0 0-1.356.03c-.274.146-.513.447-.99 1.048L6 15'></path>
 			</g>
 		</svg>
 	);
 }
 
-// log out 
+// log out
 
-export function SolarLogout2Linear(props) {
+export function LogoutIcon(props) {
 	return (
 		<svg
 			xmlns='http://www.w3.org/2000/svg'
@@ -345,7 +346,10 @@ export function SolarLogout2Linear(props) {
 				strokeLinecap='round'
 				strokeWidth='1.5'
 			>
-				<path d='M9.002 7c.012-2.175.109-3.353.877-4.121C10.758 2 12.172 2 15 2h1c2.829 0 4.243 0 5.122.879C22 3.757 22 5.172 22 8v8c0 2.828 0 4.243-.878 5.121C20.242 22 18.829 22 16 22h-1c-2.828 0-4.242 0-5.121-.879c-.768-.768-.865-1.946-.877-4.121'></path>
+				<path
+					d='M9.002 7c.012-2.175.109-3.353.877-4.121C10.758 2 12.172 2 15 2h1c2.829 0 4.243 0 5.122.879C22 3.757 22 5.172 22 8v8c0 2.828 0 4.243-.878 5.121C20.242 22 18.829 22 16 22h-1c-2.828 0-4.242 0-5.121-.879c-.768-.768-.865-1.946-.877-4.121'
+					opacity='.5'
+				></path>
 				<path strokeLinejoin='round' d='M15 12H2m0 0l3.5-3M2 12l3.5 3'></path>
 			</g>
 		</svg>
@@ -354,7 +358,7 @@ export function SolarLogout2Linear(props) {
 
 // setting
 
-export function SolarSettingsLinear(props) {
+export function SettingsIcon(props) {
 	return (
 		<svg
 			xmlns='http://www.w3.org/2000/svg'
@@ -365,7 +369,10 @@ export function SolarSettingsLinear(props) {
 		>
 			<g fill='none' stroke='currentColor' strokeWidth='1.5'>
 				<circle cx='12' cy='12' r='3'></circle>
-				<path d='M13.765 2.152C13.398 2 12.932 2 12 2c-.932 0-1.398 0-1.765.152a2 2 0 0 0-1.083 1.083c-.092.223-.129.484-.143.863a1.617 1.617 0 0 1-.79 1.353a1.617 1.617 0 0 1-1.567.008c-.336-.178-.579-.276-.82-.308a2 2 0 0 0-1.478.396C4.04 5.79 3.806 6.193 3.34 7c-.466.807-.7 1.21-.751 1.605a2 2 0 0 0 .396 1.479c.148.192.355.353.676.555c.473.297.777.803.777 1.361c0 .558-.304 1.064-.777 1.36c-.321.203-.529.364-.676.556a2 2 0 0 0-.396 1.479c.052.394.285.798.75 1.605c.467.807.7 1.21 1.015 1.453a2 2 0 0 0 1.479.396c.24-.032.483-.13.819-.308a1.617 1.617 0 0 1 1.567.008c.483.28.77.795.79 1.353c.014.38.05.64.143.863a2 2 0 0 0 1.083 1.083C10.602 22 11.068 22 12 22c.932 0 1.398 0 1.765-.152a2 2 0 0 0 1.083-1.083c.092-.223.129-.483.143-.863c.02-.558.307-1.074.79-1.353a1.617 1.617 0 0 1 1.567-.008c.336.178.579.276.819.308a2 2 0 0 0 1.479-.396c.315-.242.548-.646 1.014-1.453c.466-.807.7-1.21.751-1.605a2 2 0 0 0-.396-1.479c-.148-.192-.355-.353-.676-.555A1.617 1.617 0 0 1 19.562 12c0-.558.304-1.064.777-1.36c.321-.203.529-.364.676-.556a2 2 0 0 0 .396-1.479c-.052-.394-.285-.798-.75-1.605c-.467-.807-.7-1.21-1.015-1.453a2 2 0 0 0-1.479-.396c-.24.032-.483.13-.82.308a1.617 1.617 0 0 1-1.566-.008a1.617 1.617 0 0 1-.79-1.353c-.014-.38-.05-.64-.143-.863a2 2 0 0 0-1.083-1.083Z'></path>
+				<path
+					d='M13.765 2.152C13.398 2 12.932 2 12 2c-.932 0-1.398 0-1.765.152a2 2 0 0 0-1.083 1.083c-.092.223-.129.484-.143.863a1.617 1.617 0 0 1-.79 1.353a1.617 1.617 0 0 1-1.567.008c-.336-.178-.579-.276-.82-.308a2 2 0 0 0-1.478.396C4.04 5.79 3.806 6.193 3.34 7c-.466.807-.7 1.21-.751 1.605a2 2 0 0 0 .396 1.479c.148.192.355.353.676.555c.473.297.777.803.777 1.361c0 .558-.304 1.064-.777 1.36c-.321.203-.529.364-.676.556a2 2 0 0 0-.396 1.479c.052.394.285.798.75 1.605c.467.807.7 1.21 1.015 1.453a2 2 0 0 0 1.479.396c.24-.032.483-.13.819-.308a1.617 1.617 0 0 1 1.567.008c.483.28.77.795.79 1.353c.014.38.05.64.143.863a2 2 0 0 0 1.083 1.083C10.602 22 11.068 22 12 22c.932 0 1.398 0 1.765-.152a2 2 0 0 0 1.083-1.083c.092-.223.129-.483.143-.863c.02-.558.307-1.074.79-1.353a1.617 1.617 0 0 1 1.567-.008c.336.178.579.276.819.308a2 2 0 0 0 1.479-.396c.315-.242.548-.646 1.014-1.453c.466-.807.7-1.21.751-1.605a2 2 0 0 0-.396-1.479c-.148-.192-.355-.353-.676-.555A1.617 1.617 0 0 1 19.562 12c0-.558.304-1.064.777-1.36c.321-.203.529-.364.676-.556a2 2 0 0 0 .396-1.479c-.052-.394-.285-.798-.75-1.605c-.467-.807-.7-1.21-1.015-1.453a2 2 0 0 0-1.479-.396c-.24.032-.483.13-.82.308a1.617 1.617 0 0 1-1.566-.008a1.617 1.617 0 0 1-.79-1.353c-.014-.38-.05-.64-.143-.863a2 2 0 0 0-1.083-1.083Z'
+					opacity='.5'
+				></path>
 			</g>
 		</svg>
 	);
@@ -394,11 +401,35 @@ export function SolarRoundAltArrowRightLinear(props) {
 	);
 }
 
-
-
 // left arrow
 
-export function SolarRoundAltArrowLeftLinear(props) {
+export function ArrowCollaspse(props) {
+	
+
+	return (
+		<svg
+			xmlns='http://www.w3.org/2000/svg'
+			width='1em'
+			height='1em'
+			viewBox='0 0 24 24'
+			{...props}
+		>
+			<path
+				fill='currentColor'
+				d='M18.29 17.29a.996.996 0 0 0 0-1.41L14.42 12l3.88-3.88a.996.996 0 1 0-1.41-1.41L12.3 11.3a.996.996 0 0 0 0 1.41l4.59 4.59c.38.38 1.01.38 1.4-.01z'
+			></path>
+			<path
+				fill='currentColor'
+				d='M11.7 17.29a.996.996 0 0 0 0-1.41L7.83 12l3.88-3.88a.996.996 0 1 0-1.41-1.41L5.71 11.3a.996.996 0 0 0 0 1.41l4.59 4.59c.38.38 1.01.38 1.4-.01z'
+			></path>
+		</svg>
+	);
+}
+
+
+// Inspiration
+
+export function Inspiration(props) {
 	return (
 		<svg
 			xmlns='http://www.w3.org/2000/svg'
@@ -408,20 +439,22 @@ export function SolarRoundAltArrowLeftLinear(props) {
 			{...props}
 		>
 			<g fill='none' stroke='currentColor' strokeWidth='1.5'>
-				<circle cx='12' cy='12' r='10'></circle>
+				<path d='M4.5 9.5a7.5 7.5 0 1 1 12.501 5.59c-1.12 1.003-1.68 1.505-1.832 1.69c-.487.601-.508.65-.63 1.413c-.039.237-.039.593-.039 1.307c0 .935 0 1.402-.201 1.75a1.5 1.5 0 0 1-.549.549C13.402 22 12.935 22 12 22s-1.402 0-1.75-.201a1.5 1.5 0 0 1-.549-.549c-.201-.348-.201-.815-.201-1.75c0-.713 0-1.07-.038-1.307c-.123-.763-.144-.812-.631-1.412c-.151-.186-.712-.688-1.832-1.692A7.482 7.482 0 0 1 4.5 9.5Z'></path>
+				<path d='M14.5 19.5h-5' opacity='.5'></path>
 				<path
 					strokeLinecap='round'
 					strokeLinejoin='round'
-					d='m13.5 9l-3 3l3 3'
+					d='m12.786 8.5l-2.143 3h3l-2.143 3'
+					opacity='.5'
 				></path>
 			</g>
 		</svg>
 	);
 }
 
-// explore
+// task
 
-export function SolarCompassSquareLinear(props) {
+export function TaskIcon(props) {
 	return (
 		<svg
 			xmlns='http://www.w3.org/2000/svg'
@@ -431,26 +464,10 @@ export function SolarCompassSquareLinear(props) {
 			{...props}
 		>
 			<g fill='none' stroke='currentColor' strokeWidth='1.5'>
-				<path d='M13.024 14.56c-2.31.924-3.465 1.386-4.124.938a1.5 1.5 0 0 1-.398-.398c-.448-.66.014-1.814.938-4.124c.197-.493.295-.74.465-.933c.043-.049.09-.095.139-.138c.193-.17.44-.268.932-.465c2.31-.924 3.464-1.386 4.124-.938a1.5 1.5 0 0 1 .398.398c.448.66-.014 1.814-.938 4.124c-.197.493-.296.739-.465.932a1.49 1.49 0 0 1-.139.139c-.193.17-.44.268-.932.465Z'></path>
-				<path d='M2 12c0-4.714 0-7.071 1.464-8.536C4.93 2 7.286 2 12 2c4.714 0 7.071 0 8.535 1.464C22 4.93 22 7.286 22 12c0 4.714 0 7.071-1.465 8.535C19.072 22 16.714 22 12 22s-7.071 0-8.536-1.465C2 19.072 2 16.714 2 12Z'></path>
-			</g>
-		</svg>
-	);
-}
-
-// task 
-
-export function SolarChecklistMinimalisticLinear(props) {
-	return (
-		<svg
-			xmlns='http://www.w3.org/2000/svg'
-			width='1em'
-			height='1em'
-			viewBox='0 0 24 24'
-			{...props}
-		>
-			<g fill='none' stroke='currentColor' strokeWidth='1.5'>
-				<path d='M2 12c0-4.714 0-7.071 1.464-8.536C4.93 2 7.286 2 12 2c4.714 0 7.071 0 8.535 1.464C22 4.93 22 7.286 22 12c0 4.714 0 7.071-1.465 8.535C19.072 22 16.714 22 12 22s-7.071 0-8.536-1.465C2 19.072 2 16.714 2 12Z'></path>
+				<path
+					d='M2 12c0-4.714 0-7.071 1.464-8.536C4.93 2 7.286 2 12 2c4.714 0 7.071 0 8.535 1.464C22 4.93 22 7.286 22 12c0 4.714 0 7.071-1.465 8.535C19.072 22 16.714 22 12 22s-7.071 0-8.536-1.465C2 19.072 2 16.714 2 12Z'
+					opacity='.5'
+				></path>
 				<path
 					strokeLinecap='round'
 					strokeLinejoin='round'
@@ -464,7 +481,7 @@ export function SolarChecklistMinimalisticLinear(props) {
 
 // collections
 
-export function SolarBedsideTable3Linear(props) {
+export function CollectionIcon(props) {
 	return (
 		<svg
 			xmlns='http://www.w3.org/2000/svg'
@@ -484,7 +501,7 @@ export function SolarBedsideTable3Linear(props) {
 
 // projects
 
-export function SolarFolder2Linear(props) {
+export function ProjectIcon(props) {
 	return (
 		<svg
 			xmlns='http://www.w3.org/2000/svg'
@@ -494,16 +511,24 @@ export function SolarFolder2Linear(props) {
 			{...props}
 		>
 			<g fill='none' stroke='currentColor' strokeWidth='1.5'>
-				<path strokeLinecap='round' d='M22 11H2'></path>
-				<path d='M2 6.95c0-.883 0-1.324.07-1.692A4 4 0 0 1 5.257 2.07C5.626 2 6.068 2 6.95 2c.386 0 .58 0 .766.017a4 4 0 0 1 2.18.904c.144.119.28.255.554.529L11 4c.816.816 1.224 1.224 1.712 1.495a4 4 0 0 0 .848.352C14.098 6 14.675 6 15.828 6h.374c2.632 0 3.949 0 4.804.77c.079.07.154.145.224.224c.77.855.77 2.172.77 4.804V14c0 3.771 0 5.657-1.172 6.828C19.657 22 17.771 22 14 22h-4c-3.771 0-5.657 0-6.828-1.172C2 19.657 2 17.771 2 14V6.95Z'></path>
+				<path
+					strokeLinecap='round'
+					d='M22 10.5V12c0 4.714 0 7.071-1.465 8.535C19.072 22 16.714 22 12 22s-7.071 0-8.536-1.465C2 19.072 2 16.714 2 12s0-7.071 1.464-8.536C4.93 2 7.286 2 12 2h1.5'
+					opacity='.5'
+				></path>
+				<path
+					strokeLinecap='round'
+					d='m7 14l1.797-2.156c.712-.855 1.068-1.282 1.536-1.282c.469 0 .825.427 1.537 1.282l.26.312c.712.855 1.068 1.282 1.537 1.282c.468 0 .824-.427 1.536-1.282L17 10'
+				></path>
+				<circle cx='19' cy='5' r='3'></circle>
 			</g>
 		</svg>
 	);
 }
 
-// support 
+// support
 
-export function SolarHeadphonesRoundLinear(props) {
+export function SupportIcon(props) {
 	return (
 		<svg
 			xmlns='http://www.w3.org/2000/svg'
@@ -521,9 +546,9 @@ export function SolarHeadphonesRoundLinear(props) {
 	);
 }
 
-// Theme 
+// Theme
 
-export function SolarPallete2Linear(props) {
+export function ThemeIcon(props) {
 	return (
 		<svg
 			xmlns='http://www.w3.org/2000/svg'
@@ -542,3 +567,80 @@ export function SolarPallete2Linear(props) {
 	);
 }
 
+
+
+
+// security
+
+export function SecurityIcon(props) {
+	return (
+		<svg
+			xmlns='http://www.w3.org/2000/svg'
+			width='1em'
+			height='1em'
+			viewBox='0 0 24 24'
+			{...props}
+		>
+			<g fill='none'>
+				<path
+					stroke='currentColor'
+					strokeWidth='1.5'
+					d='M2 16c0-2.828 0-4.243.879-5.121C3.757 10 5.172 10 8 10h8c2.828 0 4.243 0 5.121.879C22 11.757 22 13.172 22 16c0 2.828 0 4.243-.879 5.121C20.243 22 18.828 22 16 22H8c-2.828 0-4.243 0-5.121-.879C2 20.243 2 18.828 2 16Z'
+				></path>
+				<path
+					stroke='currentColor'
+					strokeLinecap='round'
+					strokeWidth='1.5'
+					d='M6 10V8a6 6 0 1 1 12 0v2'
+					opacity='.5'
+				></path>
+				<path
+					fill='currentColor'
+					d='M9 16a1 1 0 1 1-2 0a1 1 0 0 1 2 0Zm4 0a1 1 0 1 1-2 0a1 1 0 0 1 2 0Zm4 0a1 1 0 1 1-2 0a1 1 0 0 1 2 0Z'
+					opacity='.5'
+				></path>
+			</g>
+		</svg>
+	);
+}
+
+
+export function DeleteAccountIcon(props) {
+	return (
+		<svg
+			xmlns='http://www.w3.org/2000/svg'
+			width='1em'
+			height='1em'
+			viewBox='0 0 24 24'
+			{...props}
+		>
+			<g fill='none' stroke='currentColor' strokeWidth='1.5'>
+				<circle cx='12' cy='6' r='4'></circle>
+				<circle cx='17' cy='18' r='4'></circle>
+				<path d='m20 15l-6 6'></path>
+				<path
+					d='M14 20.834c-.634.108-1.305.166-2 .166c-3.866 0-7-1.79-7-4s3.134-4 7-4c1.713 0 3.283.352 4.5.936'
+					opacity='.5'
+				></path>
+			</g>
+		</svg>
+	);
+}
+
+
+export function RoundCheck(props) {
+	return (
+		<svg
+			xmlns='http://www.w3.org/2000/svg'
+			width='1em'
+			height='1em'
+			viewBox='0 0 24 24'
+			{...props}
+		>
+			<path
+				fill='currentColor'
+				d='M9 16.17L5.53 12.7a.996.996 0 1 0-1.41 1.41l4.18 4.18c.39.39 1.02.39 1.41 0L20.29 7.71a.996.996 0 1 0-1.41-1.41L9 16.17z'
+			></path>
+		</svg>
+	);
+}

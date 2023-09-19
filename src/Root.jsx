@@ -1,10 +1,13 @@
 import { Outlet } from "react-router-dom";
+import { AppLayoutProvider } from "./app/context";
 
 const Root = () => {
 	return (
-		<div className="w-full h-full">
-			<Outlet />
-		</div>
+		<AppLayoutProvider>
+			<div className='max-w-[100vw] min-h-screen h-screen'>
+				<Outlet />
+			</div>
+		</AppLayoutProvider>
 	);
 };
 

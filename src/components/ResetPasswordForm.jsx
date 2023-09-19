@@ -47,6 +47,18 @@ const ResetPasswordForm = ({ query, isActionCodeValid }) => {
 		setIsPasswordVisible(false);
 		setIsConfirmPasswordVisible(false);
 
+		// Your password validation regex pattern
+		const passwordRegex =
+			/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+
+		if (!passwordRegex.test(newPassword)) {
+			setError(
+				"Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one number, and one special character."
+			);
+			setIsSubmitting(false);
+			return;
+		}
+
 		if (newPassword !== confirmNewPassword) {
 			setConfirmError("Passwords don't match");
 			setError("Passwords don't match");

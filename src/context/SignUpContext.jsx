@@ -44,6 +44,18 @@ export const SignUpContextProvider = ({ children }) => {
 		setIsPasswordVisible(false);
 		setIsSubmitting(true);
 
+		// Your password validation regex pattern
+		const passwordRegex =
+			/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+
+		if (!passwordRegex.test(password)) {
+			setPasswordErr(
+				"Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one number, and one special character."
+			);
+			setIsSubmitting(false);
+			return;
+		}
+
 		try {
 			await signUpUser(email, password);
 

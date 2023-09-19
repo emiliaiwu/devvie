@@ -1,0 +1,22 @@
+/* Base tooltip style */
+.sidebar-tooltip {
+  position: relative; /* Establishes a positioning context for child elements */
+  display: inline-block; /* Display the tooltip inline with the content */
+  padding: 10px; /* Adjust padding as needed for content */
+  background-color: #333; /* Background color of the tooltip */
+  color: #fff; /* Text color */
+  border-radius: 4px; /* Rounded corners for the tooltip */
+}
+
+/* Arrow (pointed left) */
+.sidebar-tooltip::before {
+  content: ""; /* Create a pseudo-element */
+  position: absolute; /* Position it absolutely inside the tooltip container */
+  top: 50%; /* Position it vertically in the middle */
+  left: -20px; /* Adjust the distance of the arrow from the tooltip */
+  margin-top: -5px; /* Center the arrow vertically */
+  border-width: 5px 10px; /* Create a triangular shape for the arrow */
+  border-style: solid;
+  border-color: transparent transparent transparent #333; 
+  transform: rotate(180deg);
+}

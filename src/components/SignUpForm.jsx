@@ -137,7 +137,7 @@ const SignUpForm = () => {
 							value={password}
 							required
 							name='password'
-							placeholder='Enter 6+ strong characters'
+							placeholder='12345abcXYZ@$%'
 							onChange={(e) => handlePasswordChange(e.target.value)}
 							className={`${
 								passwordErr ? "border-red-500" : "border-gray-300"

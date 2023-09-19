@@ -8,7 +8,7 @@ const SignContainer = ({ children, paragraph, welcomeText }) => {
 
 	return (
 		<section className={`${container} ${flexCenter} bg-offwhite lg:py-24 px-3 py-6 min-h-screen `}>
-			<div className='max-w-[900px] w-full flex justify-center items-center rounded-2xl p-3 backdrop border border-white'>
+			<div className='max-w-[1000px] w-full flex justify-center items-center rounded-2xl p-3 backdrop border border-white'>
 				<div className='w-full bg-white rounded-2xl lg:flex overflow-hidden gap-4'>
 					<div className='hidden lg:flex bg-black backdrop-blur-xl w-[50%] p-10 pb-10 flex-col justify-between gap-16'>
 						<div>

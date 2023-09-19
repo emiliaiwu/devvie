@@ -25,6 +25,7 @@ export const SignInContextProvider = ({ children }) => {
 	const [isSubmitting, setIsSubmitting] = useState(false);
 	const [resetPasswordEmailSent, setResetPasswordEmailSent] = useState(false);
 
+
 	// handle email change
 	const handleEmailChange = (newEmail) => {
 		setEmail(newEmail);
