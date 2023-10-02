@@ -2,12 +2,12 @@ import { AppLayoutContext } from "../context";
 import { useContext } from "react";
 
 const HamburgerMenu = () => {
-	const { setIsSidebarOpen, isSidebarOpen } = useContext(AppLayoutContext);
+	const { setIsMenuOpen, isMenuOpen } = useContext(AppLayoutContext);
 
 	return (
 		<button
-			onClick={() => setIsSidebarOpen((prev) => !prev)}
-			className={`${isSidebarOpen ? "active" : ""} hamburger-menu`}
+			onClick={() => setIsMenuOpen((prev) => !prev)}
+			className={`${isMenuOpen ? "active" : ""} hamburger-menu`}
 		>
 			<div className='bar'></div>
 			<div className='bar'></div>

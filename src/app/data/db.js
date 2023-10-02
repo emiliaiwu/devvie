@@ -18,8 +18,8 @@ import {
 	PortfolioIcon,
 	Inspiration,
 	SecurityIcon,
-	DeleteAccountIcon
-
+	DeleteAccountIcon,
+	GeneralIcon,
 } from "./icon";
 
 export const menuLeftTop = [
@@ -28,30 +28,28 @@ export const menuLeftTop = [
 		url: "/user/dashboard",
 		icon: DashboardIcon,
 	},
-	
+
 	{
 		title: "Inspiration",
 		url: "/user/find-inspiration",
 		icon: Inspiration,
 	},
-	
+
 	{
 		title: "CodeRoom",
 		url: "/user/coderoom",
 		icon: ChatroomIcon,
 	},
-	
+
 	{
 		title: "Analytics",
 		url: "/user/analytics",
 		icon: AnalyticsIcon,
 		spacing: true,
 	},
-	
 ];
 
 export const menuLeftBottom = [
-	
 	{
 		title: "Settings",
 		url: "/user/settings",
@@ -82,41 +80,54 @@ export const menuLeftMiddle = [
 	},
 ];
 
-
-
-
 // SETTINGS
 
-export const settingsList = [
-	{
-		title: "General",
-		url: "/user/settings/general",
-		icon: SettingsIcon,
-	},
-	{
-		title: "Profile",
-		url: "/user/settings/profile",
-		icon: AccountIcon,
-	},
-	{
-		title: "Portfolio",
-		url: "/user/settings/portfolio",
-		icon: PortfolioIcon,
-	},
-	{
-		title: "Appearance",
-		url: "/user/settings/appearance",
-		icon: ThemeIcon,
-	},
-	{
-		title: "Password",
-		url: "/user/settings/password",
-		icon: SecurityIcon,
-	},
-	{
-		title: "Delete Account",
-		url: "/user/settings/delete-account",
-		icon: DeleteAccountIcon,
-		spacing: true,
-	},
-];
+export const settingsList = {
+	
+	profile: [
+		{
+			title: "General",
+			url: "/user/settings/general",
+			icon: SettingsIcon,
+		},
+		{
+			title: "Edit profile",
+			url: "/user/settings/profile",
+			icon: AccountIcon,
+		},
+		{
+			title: "Portfolio",
+			url: "/user/settings/portfolio",
+			icon: PortfolioIcon,
+		},
+	],
+	
+	
+	preferences: [
+		{
+			title: "Appearance",
+			url: "/user/settings/appearance",
+			icon: ThemeIcon,
+		},
+	],
+	
+
+	
+	security: [
+		{
+			title: "Password",
+			url: "/user/settings/password",
+			icon: SecurityIcon,
+		},
+	],
+	
+	other: [
+		{
+			title: "Delete Account",
+			url: "/user/settings/delete-account",
+			icon: DeleteAccountIcon,
+			spacing: true,
+		},
+	],
+	
+};

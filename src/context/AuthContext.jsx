@@ -75,7 +75,7 @@ export const AuthContextProvider = ({ children }) => {
 
 	useEffect(() => {
 		const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-			setLoading(false);
+			// setLoading(false);
 			if (currentUser) {
 				setUser(currentUser);
 			} else {
@@ -92,6 +92,7 @@ export const AuthContextProvider = ({ children }) => {
 			value={{
 				signUpUser,
 				loading,
+				setLoading,
 				user,
 				signIn,
 				signOutUser,

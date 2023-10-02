@@ -20,3 +20,19 @@
   border-color: transparent transparent transparent #333; 
   transform: rotate(180deg);
 }
+
+
+
+/* Accent Color*/
+.scroll::-webkit-scrollbar {
+  width: 8px; /* Width of the scrollbar */
+}
+
+.scroll:hover::-webkit-scrollbar-thumb {
+  background: #888; 
+  border-radius: 5px; 
+
+}
+
+scrollbar-width: thin; 
+scrollbar-color: #888 #f0f0f0; 

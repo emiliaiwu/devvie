@@ -102,8 +102,34 @@ export function AccountIcon(props) {
 			{...props}
 		>
 			<g fill='none' stroke='currentColor' strokeWidth='1.5'>
-				<circle cx='12' cy='6' r='4'></circle>
-				<ellipse cx='12' cy='17' rx='7' ry='4'></ellipse>
+				<circle cx='12' cy='9' r='3' opacity='.5'></circle>
+				<circle cx='12' cy='12' r='10'></circle>
+				<path
+					strokeLinecap='round'
+					d='M17.97 20c-.16-2.892-1.045-5-5.97-5s-5.81 2.108-5.97 5'
+					opacity='.5'
+				></path>
+			</g>
+		</svg>
+	);
+}
+
+
+export function GeneralIcon(props) {
+	return (
+		<svg
+			xmlns='http://www.w3.org/2000/svg'
+			width='1em'
+			height='1em'
+			viewBox='0 0 24 24'
+			{...props}
+		>
+			<g fill='none' stroke='currentColor' strokeWidth='1.5'>
+				<path
+					d='M7.843 3.802C9.872 2.601 10.886 2 12 2c1.114 0 2.128.6 4.157 1.802l.686.406c2.029 1.202 3.043 1.803 3.6 2.792c.557.99.557 2.19.557 4.594v.812c0 2.403 0 3.605-.557 4.594c-.557.99-1.571 1.59-3.6 2.791l-.686.407C14.128 21.399 13.114 22 12 22c-1.114 0-2.128-.6-4.157-1.802l-.686-.407c-2.029-1.2-3.043-1.802-3.6-2.791C3 16.01 3 14.81 3 12.406v-.812C3 9.19 3 7.989 3.557 7c.557-.99 1.571-1.59 3.6-2.792l.686-.406Z'
+					opacity='.5'
+				></path>
+				<circle cx='12' cy='12' r='3'></circle>
 			</g>
 		</svg>
 	);
@@ -404,8 +430,6 @@ export function SolarRoundAltArrowRightLinear(props) {
 // left arrow
 
 export function ArrowCollaspse(props) {
-	
-
 	return (
 		<svg
 			xmlns='http://www.w3.org/2000/svg'
@@ -425,7 +449,6 @@ export function ArrowCollaspse(props) {
 		</svg>
 	);
 }
-
 
 // Inspiration
 
@@ -567,9 +590,6 @@ export function ThemeIcon(props) {
 	);
 }
 
-
-
-
 // security
 
 export function SecurityIcon(props) {
@@ -604,7 +624,6 @@ export function SecurityIcon(props) {
 	);
 }
 
-
 export function DeleteAccountIcon(props) {
 	return (
 		<svg
@@ -627,7 +646,6 @@ export function DeleteAccountIcon(props) {
 	);
 }
 
-
 export function RoundCheck(props) {
 	return (
 		<svg
@@ -640,6 +658,66 @@ export function RoundCheck(props) {
 			<path
 				fill='currentColor'
 				d='M9 16.17L5.53 12.7a.996.996 0 1 0-1.41 1.41l4.18 4.18c.39.39 1.02.39 1.41 0L20.29 7.71a.996.996 0 1 0-1.41-1.41L9 16.17z'
+			></path>
+		</svg>
+	);
+}
+
+export function DropdownArrowIcon(props) {
+	return (
+		<svg
+			xmlns='http://www.w3.org/2000/svg'
+			width='1em'
+			height='1em'
+			viewBox='0 0 24 24'
+			{...props}
+		>
+			<g fill='currentColor'>
+				<path d='m8.303 12.404l3.327 3.431c.213.22.527.22.74 0l6.43-6.63C19.201 8.79 18.958 8 18.43 8h-5.723l-4.404 4.404Z'></path>
+				<path
+					d='M11.293 8H5.57c-.528 0-.771.79-.37 1.205l2.406 2.481L11.293 8Z'
+					opacity='.5'
+				></path>
+			</g>
+		</svg>
+	);
+}
+
+
+export function CheckCircle(props) {
+	return (
+		<svg
+			xmlns='http://www.w3.org/2000/svg'
+			width='1em'
+			height='1em'
+			viewBox='0 0 24 24'
+			{...props}
+		>
+			<path
+				fill='currentColor'
+				fillRule='evenodd'
+				d='M22 12c0 5.523-4.477 10-10 10S2 17.523 2 12S6.477 2 12 2s10 4.477 10 10Zm-5.97-3.03a.75.75 0 0 1 0 1.06l-5 5a.75.75 0 0 1-1.06 0l-2-2a.75.75 0 1 1 1.06-1.06l1.47 1.47l2.235-2.236L14.97 8.97a.75.75 0 0 1 1.06 0Z'
+				clipRule='evenodd'
+			></path>
+		</svg>
+	);
+}
+
+
+export function ArrowRight(props) {
+	return (
+		<svg
+			xmlns='http://www.w3.org/2000/svg'
+			width='1em'
+			height='1em'
+			viewBox='0 0 24 24'
+			{...props}
+		>
+			<path
+				fill='currentColor'
+				fillRule='evenodd'
+				d='M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2S2 6.477 2 12s4.477 10 10 10ZM9.97 8.47a.75.75 0 0 1 1.06 0l3 3a.75.75 0 0 1 0 1.06l-3 3a.75.75 0 1 1-1.06-1.06L12.44 12L9.97 9.53a.75.75 0 0 1 0-1.06Z'
+				clipRule='evenodd'
 			></path>
 		</svg>
 	);

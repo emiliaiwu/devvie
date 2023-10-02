@@ -3,7 +3,7 @@ import { createContext, useState, useEffect } from "react";
 const AppLayoutContext = createContext();
 
 export const AppLayoutProvider = ({ children }) => {
-	const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+	const [isMenuOpen, setIsMenuOpen] = useState(false);
 
 	// Function to check if the viewport width is 1024px or above
 	// function isViewportWideEnough() {
@@ -25,7 +25,7 @@ export const AppLayoutProvider = ({ children }) => {
 	// }, []);
 
 	return (
-		<AppLayoutContext.Provider value={{ isSidebarOpen, setIsSidebarOpen }}>
+		<AppLayoutContext.Provider value={{ isMenuOpen, setIsMenuOpen }}>
 			{children}
 		</AppLayoutContext.Provider>
 	);

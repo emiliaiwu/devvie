@@ -1,58 +1,7 @@
-const generateTheme = (theme) => {
-	const lightShades = {
-		shade1: {
-			background: "#ffffff",
-			text: "#000000",
-		},
-		shade2: {
-			background: "#f2f2f2",
-			text: "#333333",
-		},
-		shade3: {
-			background: "#e5e5e5",
-			text: "#444444",
-		},
-	};
-
-	const darkShades = {
-		black: {
-			background: "#060408",
-			card: "#14151A",
-			text: "#ffffff",
-			other: "#28282E",
-		},
-		dark: {
-			background: "#242424",
-			card: "#313131",
-			text: "#ffffff",
-			other: "#707070",
-		},
-		darker: {
-			background: "#0C0D10",
-			card: "#252731",
-			text: "#ffffff",
-			other: "#3A3D44",
-		},
-		darkBlue: {
-			background: "10141F",
-			card: "#161B32",
-			text: "#ffffff",
-			other: "#2D334A",
-		},
-	};
-
-	const shades = theme.mode === "light" ? lightShades : darkShades;
-
-	return {
-		...shades[theme.shade],
-		primary: theme.accentColor,
-	};
-};
-
 // accent color:
 export const accentColors = [
-	#FF5733,
-	#33FF57,
+	"#FF5733",
+	"#33FF57",
 	"#4058F2",
 	"#EABE10",
 	"#EA1093",
@@ -70,3 +19,159 @@ export const accentColors = [
 	"#FF00FE",
 	"#F6DAB0",
 ];
+
+// font style
+export const fontOptions = [
+	"DM Sans, sans-serif",
+	"Fira Mono, monospace",
+	"Inter, sans-serif",
+	"Lato, sans-serif",
+	"Montserrat, sans-serif",
+	"Nunito, sans-serif",
+	"Open Sans, sans-serif",
+	"Poppins, sans-serif",
+	"Roboto, sans-serif",
+	"Roboto Mono, monospace",
+];
+
+export const borderRadiusOptions = [
+	{ name: "Sharp", style: "rounded-none" },
+	{ name: "Slightly Rounded", style: "rounded-sm" },
+	{ name: "Normal", style: "rounded-md" },
+	{ name: "Rounded", style: "rounded-lg" },
+	{ name: "Very Rounded", style: "rounded-xl" },
+	{ name: "2XL Rounded", style: "rounded-2xl" },
+	{ name: "3XL Rounded", style: "rounded-3xl" },
+];
+
+// export const lightShades = {
+// 	DayScript: {
+// 		background: "#EAEAEA",
+// 		card: "#ffffff",
+// 		other: "#c4c4c4",
+// 		text: "#000000",
+// 	},
+// 	LumiCode: {
+// 		background: "#f2f2f2",
+// 		card: "#ffffff",
+// 		other: "#c4c4c4",
+// 		text: "#333333",
+// 	},
+// 	LightScript: {
+// 		background: "#e5e5e5",
+// 		card: "#ffffff",
+// 		other: "#c4c4c4",
+// 		text: "#444444",
+// 	},
+// };
+
+// export const darkShades = {
+// 	NightScript: {
+// 		background: "rgb(1,0,1)",
+// 		card: "#14151A",
+// 		card2: "#161618",
+// 		card3: "#212124",
+// 		text: {
+// 			primaryText: "#ffffff",
+// 			secondaryText: "#818181",
+// 		},
+// 		other: "#28282E",
+// 	},
+// 	ShadowCode: {
+// 		background: "#242424",
+// 		card: "#313131",
+// 		text: "#ffffff",
+// 		other: "#707070",
+// 	},
+// 	DarkCoder: {
+// 		background: "#0C0D10",
+// 		card: "#252731",
+// 		text: "#ffffff",
+// 		other: "#3A3D44",
+// 	},
+// };
+
+
+export const darkShades = {
+	DarkCoder: {
+		background: "#181818",
+		card: "#212121",
+		text: {
+			primaryText: "#ffffff",
+			secondaryText: "#AAAAAA",
+		},
+		other: "#3D3D3D",
+	},
+
+	NightScript: {
+		background: "rgb(1,0,1)",
+		card: "#161618",
+		text: {
+			primaryText: "#ffffff",
+			secondaryText: "#818181",
+		},
+		other: "#28282E",
+	},
+
+	Sombernode: {
+		background: "#121212",
+		card: "#181818",
+		text: {
+			primaryText: "#ffffff",
+			secondaryText: "#B3B3B3",
+		},
+		other: "#404040",
+	},
+
+	UmbraScript: {
+		background: "#0A0A0A",
+		card: "#242526",
+		text: {
+			primaryText: "#ffffff",
+			secondaryText: "#BFBFBF",
+		},
+		other: "#343B3C",
+	},
+};
+
+export const lightShades = {
+	DayScript: {
+		background: "#FFFFFF",
+		card: "#F5F5F5",
+		text: {
+			primaryText: "#000000",
+			secondaryText: "#555555",
+		},
+		other: "#E0E0E0",
+	},
+
+	LumiCode: {
+		background: "#F6F7FB",
+		card: "#FFFFFF",
+		text: {
+			primaryText: "#000000",
+			secondaryText: "#777777",
+		},
+		other: "#E3E6F0",
+	},
+
+	LightScript: {
+		background: "#FDFDFD",
+		card: "#EFEFEF",
+		text: {
+			primaryText: "#000000",
+			secondaryText: "#888888",
+		},
+		other: "#D6D6D6",
+	},
+
+	Raynode: {
+		background: "#F5F5F7",
+		card: "#FFFFFF",
+		text: {
+			primaryText: "#000000",
+			secondaryText: "#666666",
+		},
+		other: "#D9D9D9",
+	},
+};

@@ -1,6 +1,7 @@
-import { firestore, auth, storage } from "./firebase";
+import { firestore, auth, storage, database } from "./firebase";
 import authErrors from "./FirebaseAuthErrors";
 
+
 export {
-    firestore, auth, storage, authErrors
+    firestore, auth, storage, authErrors, database
 }

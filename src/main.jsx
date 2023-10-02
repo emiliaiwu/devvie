@@ -6,6 +6,8 @@ import {
 	AuthContextProvider,
 	SignInContextProvider,
 	SignUpContextProvider,
+	ThemeContextProvider,
+	UserPreferencesProvider
 } from "./context";
 
 import { MobileMenuProvider } from "./landing/context";
@@ -15,9 +17,13 @@ ReactDOM.createRoot(document.getElementById("root")).render(
 		<AuthContextProvider>
 			<SignInContextProvider>
 				<SignUpContextProvider>
-					<MobileMenuProvider>
-						<App />
-					</MobileMenuProvider>
+					<UserPreferencesProvider>
+						<ThemeContextProvider>
+							<MobileMenuProvider>
+								<App />
+							</MobileMenuProvider>
+						</ThemeContextProvider>
+					</UserPreferencesProvider>
 				</SignUpContextProvider>
 			</SignInContextProvider>
 		</AuthContextProvider>
