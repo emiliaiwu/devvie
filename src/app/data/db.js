@@ -52,7 +52,7 @@ export const menuLeftTop = [
 export const menuLeftBottom = [
 	{
 		title: "Settings",
-		url: "/user/settings",
+		url: "/user/settings/general",
 		icon: SettingsIcon,
 	},
 	{
@@ -83,7 +83,6 @@ export const menuLeftMiddle = [
 // SETTINGS
 
 export const settingsList = {
-	
 	profile: [
 		{
 			title: "General",
@@ -101,8 +100,7 @@ export const settingsList = {
 			icon: PortfolioIcon,
 		},
 	],
-	
-	
+
 	preferences: [
 		{
 			title: "Appearance",
@@ -110,9 +108,7 @@ export const settingsList = {
 			icon: ThemeIcon,
 		},
 	],
-	
 
-	
 	security: [
 		{
 			title: "Password",
@@ -120,14 +116,13 @@ export const settingsList = {
 			icon: SecurityIcon,
 		},
 	],
-	
+
 	other: [
+		{ title: "Logout", url: "/user/logout", icon: LogoutIcon },
 		{
 			title: "Delete Account",
 			url: "/user/settings/delete-account",
 			icon: DeleteAccountIcon,
-			spacing: true,
 		},
 	],
-	
 };

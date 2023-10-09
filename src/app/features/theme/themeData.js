@@ -137,10 +137,10 @@ export const darkShades = {
 export const lightShades = {
 	DayScript: {
 		background: "#FFFFFF",
-		card: "#F5F5F5",
+		card: "#F0F0F0",
 		text: {
 			primaryText: "#000000",
-			secondaryText: "#555555",
+			secondaryText: "#999999",
 		},
 		other: "#E0E0E0",
 	},
@@ -150,7 +150,7 @@ export const lightShades = {
 		card: "#FFFFFF",
 		text: {
 			primaryText: "#000000",
-			secondaryText: "#777777",
+			secondaryText: "#999999",
 		},
 		other: "#E3E6F0",
 	},
@@ -160,17 +160,17 @@ export const lightShades = {
 		card: "#EFEFEF",
 		text: {
 			primaryText: "#000000",
-			secondaryText: "#888888",
+			secondaryText: "#999999",
 		},
 		other: "#D6D6D6",
 	},
 
 	Raynode: {
-		background: "#F5F5F7",
+		background: "#E8E8E8",
 		card: "#FFFFFF",
 		text: {
 			primaryText: "#000000",
-			secondaryText: "#666666",
+			secondaryText: "#999999",
 		},
 		other: "#D9D9D9",
 	},

@@ -1,8 +1,8 @@
-import { AppLayoutContext } from "../context";
+import { AppContext } from "../context";
 import { useContext } from "react";
 
 const HamburgerMenu = () => {
-	const { setIsMenuOpen, isMenuOpen } = useContext(AppLayoutContext);
+	const { setIsMenuOpen, isMenuOpen } = useContext(AppContext);
 
 	return (
 		<button

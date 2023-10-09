@@ -9,7 +9,7 @@ const BorderRadius = () => {
 	} = useContext(ThemeContext);
 
 	return (
-		<div className='flex flex-wrap gap-3 max-w-[600px]'>
+		<div className='flex flex-wrap gap-3 md:max-w-[600px]'>
 			{borderRadiusOptions.map((border) => (
 				<span
 					onClick={() => handleBorderClick(border.style)}
@@ -22,7 +22,7 @@ const BorderRadius = () => {
 								? newUserPreferences.color
 								: newUserPreferences.shade.text.primaryText,
 					}}
-					className={`${border.style} font-DMSans text-sm py-3 px-6 hover:scale-[1.05] ease cursor-pointer transition-all duration-100`}
+					className={`${border.style} font-DMSans text-sm py-3 md:px-6 px-4 hover:scale-[1.05] ease cursor-pointer transition-all duration-100`}
 				>
 					{border.name}
 				</span>

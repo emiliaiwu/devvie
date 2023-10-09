@@ -12,12 +12,10 @@ const FontStyle = () => {
 		fontNames,
 		newUserPreferences,
 		setIsOpen,
-		handleMouseEnter,
-		handleMouseLeave
 	} = useContext(ThemeContext);
 
 	return (
-		<div className='w-1/3 relative'>
+		<div className='lg:w-1/3 relative w-full sm:w-2/3'>
 			<div
 				style={{ backgroundColor: newUserPreferences.shade.other }}
 				onClick={toggleDropdown}
@@ -25,7 +23,7 @@ const FontStyle = () => {
 			>
 				<span
 					style={{ color: newUserPreferences.shade.text.primaryText }}
-					className=' text-base font-medium'
+					className=' text-sm md:text-base font-medium'
 				>
 					{newUserPreferences.font.fontName}
 				</span>
@@ -53,8 +51,6 @@ const FontStyle = () => {
 									transition: ".2s all ease",
 									color: newUserPreferences.shade.text.primaryText,
 								}}
-								onMouseEnter={handleMouseEnter}
-								onMouseLeave={handleMouseLeave}
 								className={`${newUserPreferences.border} w-full cursor-pointer text-sm h-10 px-4 flex items-center`}
 							>
 								<span className=''>{fontNames[index]}</span>

@@ -19,9 +19,9 @@ const LightDarkMode = () => {
 
 
 	return (
-		<div className=''>
-			<div className='lg:flex gap-6 mb-10'>
-				<div className='flex flex-col items-center gap-5'>
+		<div className='w-full lg:px-0 flex lg:items-start flex-col'>
+			<div className='flex flex-col sm:flex-row gap-6 mb-10'>
+				<div className='flex flex-col items-start lg:items-center gap-5 mb-6 lg:mb-0'>
 					<button
 						className={`${newUserPreferences.border} p-2 relative hover:scale-[1.05] transition-all duration-200 ease`}
 						onClick={handleLightMode}
@@ -53,12 +53,12 @@ const LightDarkMode = () => {
 							fontFamily: newUserPreferences.font.fontFamily,
 							color: newUserPreferences.shade.text.primaryText,
 						}}
-						className='text-sm font-medium'
+						className='text-sm font-medium text-center pl-2'
 					>
 						Light Mode
 					</h3>
 				</div>
-				<div className='flex flex-col items-center gap-5'>
+				<div className='flex flex-col lg:items-center items-start gap-5'>
 					<button
 						onClick={handleDarkMode}
 						className={`${newUserPreferences.border} pt-2 px-2 relative hover:scale-[1.05] transition-all duration-200 ease`}
@@ -90,7 +90,7 @@ const LightDarkMode = () => {
 							fontFamily: newUserPreferences.font.fontFamily,
 							color: newUserPreferences.shade.text.primaryText,
 						}}
-						className='text-sm font-medium'
+						className='text-sm font-medium pl-2'
 					>
 						Dark Mode
 					</h3>
@@ -102,11 +102,11 @@ const LightDarkMode = () => {
 					fontFamily: newUserPreferences.font.fontFamily,
 					color: newUserPreferences.shade.text.primaryText,
 				}}
-				className=' text-base font-medium mb-5'
+				className=' text-sm font-medium mb-5 sm:text-left text-center'
 			>
 				Choose your preferred shade
 			</h3>
-			<div className='flex flex-row gap-4 w-56'>
+			<div className='grid grid-cols-1 sm:grid-cols-3 xs:grid-cols-2 grid-flow-row md:grid-cols-4 lg:items-start lg:flex-row gap-5 w-full'>
 				{newUserPreferences.mode === "light"
 					? Object.keys(lightShades).map((shade, index) => (
 							<div key={index} className='flex flex-col items-center w-full '>

@@ -1,9 +1,11 @@
-import AppLayoutContext from "./AppLayoutContext";
-import { AppLayoutProvider } from "./AppLayoutContext";
 import UserPreferencesContext from "./UserPreferencesContext";
 import { UserPreferencesProvider } from "./UserPreferencesContext";
-
+import AppContext from "./AppContext";
+import { AppContextProvider } from "./AppContext";
 
 export {
-    AppLayoutContext, AppLayoutProvider, UserPreferencesContext, UserPreferencesProvider
-}
+	UserPreferencesContext,
+	UserPreferencesProvider,
+	AppContext,
+	AppContextProvider,
+};

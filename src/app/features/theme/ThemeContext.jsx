@@ -25,6 +25,7 @@ export const ThemeContextProvider = ({ children }) => {
 		isUpdating,
 		isUpdated,
 		setIsUpdated,
+		hoverColor
 	} = useContext(UserPreferencesContext);
 
 	const lightShade = {
@@ -36,6 +37,9 @@ export const ThemeContextProvider = ({ children }) => {
 		...darkShades.DarkCoder,
 		name: "DarkCoder",
 	};
+
+
+	
 
 	// Hover
 	const handleMouseEnter = (event) => {
@@ -172,6 +176,7 @@ export const ThemeContextProvider = ({ children }) => {
 				isUpdating,
 				isUpdated,
 				setIsUpdated,
+				hoverColor,
 			}}
 		>
 			{children}

@@ -3,6 +3,7 @@ import {
 	createRoutesFromElements,
 	Route,
 	RouterProvider,
+	Navigate
 } from "react-router-dom";
 import Root from "./Root";
 import { LandingPage, NotFound } from "./landing/pages";
@@ -14,15 +15,21 @@ import {
 } from "./pages";
 import ComingSoon from "./careers/ComingSoon";
 import AppLayout from "./app/layout/AppLayout";
-import { Dashboard, Theme, Settings } from "./app/pages";
+import SettingsLayout from "./app/layout/SettingsLayout";
+import { Dashboard, Theme, Settings , General, Profile} from "./app/pages";
 import ProtectedRoute from "./app/ProtectedRoute";
 import "./style/devvieLoader.css";
 import "./style/app.css";
+import { AppContext } from "./app/context";
+import { useContext } from "react";
+import MobileSettings from './app/layout/MobileSettings'
 
 // Lazy
 // const LazyDashboard = React.lazy
 
 const App = () => {
+	const { isMobile } = useContext(AppContext);
+
 	const router = createBrowserRouter(
 		createRoutesFromElements(
 			<Route path='/' element={<Root />}>
@@ -43,8 +50,15 @@ const App = () => {
 					}
 				>
 					<Route path='dashboard' element={<Dashboard />} />
-					<Route path='settings' element={<Settings />}>
+
+					<Route
+						path='settings'
+						element={isMobile ? <MobileSettings /> : <SettingsLayout />}
+					>
+						{isMobile && <Route index element={<Settings />} />}
 						<Route path='appearance' element={<Theme />} />
+						<Route path='general' element={<General />} />
+						<Route path='profile' element={<Profile />} />
 					</Route>
 				</Route>
 			</Route>

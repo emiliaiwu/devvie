@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { UserPreferencesContext } from "../context";
 
-export const ColoredButton = ({ children, color, font, border,  }) => {
+export const ColoredButton = ({ children, color, font, border }) => {
 	const { userPreferences } = useContext(UserPreferencesContext);
 
 	return (
@@ -11,11 +11,11 @@ export const ColoredButton = ({ children, color, font, border,  }) => {
 			}}
 			className={`${
 				border || userPreferences.border
-			} h-12 w-44 flex justify-center items-center hover:opacity-50 transition-all duration-200 ease`}
+			} h-12 w-32 flex justify-center items-center hover:opacity-50 transition-all duration-200 ease`}
 		>
 			<span
 				style={{ fontFamily: font || userPreferences.font.fontFamily }}
-				className='text-base font-semibold text-black'
+				className='text-base  font-semibold text-black'
 			>
 				{children}
 			</span>
@@ -29,7 +29,7 @@ export const OutlineButton = ({ children, color, border, font, textColor }) => {
 	return (
 		<div
 			style={{
-				border: `1px solid ${color || userPreferences.color}`,
+				border: `2px solid ${color || userPreferences.color}`,
 				borderColor: color || userPreferences.color,
 			}}
 			className={`${
@@ -41,7 +41,7 @@ export const OutlineButton = ({ children, color, border, font, textColor }) => {
 					fontFamily: font || userPreferences.font.fontFamily,
 					color: textColor,
 				}}
-				className='text-base font-semibold'
+				className='text-base  font-semibold'
 			>
 				{children}
 			</span>

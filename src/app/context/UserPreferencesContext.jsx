@@ -22,7 +22,6 @@ export const UserPreferencesProvider = ({ children }) => {
 	const [selectedDarkShade, setSelectedDarkShade] = useState("DarkCoder");
 
 	// const selectedShade = "DarkCoder";
-
 	const selectedShade = {
 		...darkShades.DarkCoder,
 		name: "DarkCoder",
@@ -75,6 +74,9 @@ export const UserPreferencesProvider = ({ children }) => {
 		}
 	};
 
+
+
+	// update 
 	useEffect(() => {
 		if (user) {
 			const userPreferencesRef = ref(database, `userPreferences/${user.uid}`);
@@ -136,6 +138,12 @@ export const UserPreferencesProvider = ({ children }) => {
 		updateUserPreferences(newUserPreferences, true);
 	};
 
+	// Hover
+	const color = userPreferences.color;
+	const hoverColor = `bg-[${color}]`;
+	console.log(hoverColor);
+	
+
 	return (
 		<UserPreferencesContext.Provider
 			value={{
@@ -165,6 +173,7 @@ export const UserPreferencesProvider = ({ children }) => {
 				setIsUpdated,
 				isReseting,
 				setIsReseting,
+				hoverColor
 			}}
 		>
 			{children}

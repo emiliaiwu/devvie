@@ -7,10 +7,12 @@ import {
 	SignInContextProvider,
 	SignUpContextProvider,
 	ThemeContextProvider,
-	UserPreferencesProvider
+	UserPreferencesProvider,
 } from "./context";
 
 import { MobileMenuProvider } from "./landing/context";
+import { AppContextProvider } from "./app/context/AppContext.jsx";
+
 
 ReactDOM.createRoot(document.getElementById("root")).render(
 	<React.StrictMode>
@@ -20,7 +22,9 @@ ReactDOM.createRoot(document.getElementById("root")).render(
 					<UserPreferencesProvider>
 						<ThemeContextProvider>
 							<MobileMenuProvider>
-								<App />
+								<AppContextProvider>
+									<App />
+								</AppContextProvider>
 							</MobileMenuProvider>
 						</ThemeContextProvider>
 					</UserPreferencesProvider>

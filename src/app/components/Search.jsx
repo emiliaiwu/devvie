@@ -1,9 +1,9 @@
 import { SearchIcon } from "../data/icon";
-import { AppLayoutContext } from "../context";
+import { AppContext } from "../context";
 import { useContext } from "react";
 
 const Search = () => {
-	const { isSidebarOpen } = useContext(AppLayoutContext);
+	const { isSidebarOpen } = useContext(AppContext);
 
 	return (
 		<div className='rounded-2xl flex items-center h-10 overflow-hidden transition-width duration-200 ease bg-gray-600 bg-opacity-40'>

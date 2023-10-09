@@ -7,7 +7,7 @@ const AccentColor = () => {
 
 
 	return (
-		<div className='grid grid-cols-12 gap-2 gap-y-8 max-w-[500px] my-6'>
+		<div className='grid xs:grid-cols-9 grid-cols-6 sm:grid-cols-12 gap-2 gap-y-8 w-full max-w-[500px] my-6'>
 			{accentColors.map((color, index) => (
 				<label
 					key={index}

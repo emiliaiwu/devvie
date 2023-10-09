@@ -1,38 +1,59 @@
 /* Base tooltip style */
 .sidebar-tooltip {
-  position: relative; /* Establishes a positioning context for child elements */
-  display: inline-block; /* Display the tooltip inline with the content */
-  padding: 10px; /* Adjust padding as needed for content */
-  background-color: #333; /* Background color of the tooltip */
-  color: #fff; /* Text color */
-  border-radius: 4px; /* Rounded corners for the tooltip */
+	position: relative;
+	display: inline-block;
+	padding: 10px;
+	background-color: #666666;
+	color: #fff;
+	border-radius: 4px;
 }
 
 /* Arrow (pointed left) */
 .sidebar-tooltip::before {
-  content: ""; /* Create a pseudo-element */
-  position: absolute; /* Position it absolutely inside the tooltip container */
-  top: 50%; /* Position it vertically in the middle */
-  left: -20px; /* Adjust the distance of the arrow from the tooltip */
-  margin-top: -5px; /* Center the arrow vertically */
-  border-width: 5px 10px; /* Create a triangular shape for the arrow */
-  border-style: solid;
-  border-color: transparent transparent transparent #333; 
-  transform: rotate(180deg);
+	content: ""; /* Create a pseudo-element */
+	position: absolute; /* Position it absolutely inside the tooltip container */
+	top: 50%; /* Position it vertically in the middle */
+	left: -20px; /* Adjust the distance of the arrow from the tooltip */
+	margin-top: -5px; /* Center the arrow vertically */
+	border-width: 5px 10px; /* Create a triangular shape for the arrow */
+	border-style: solid;
+	border-color: transparent transparent transparent var(--tooltip-color);
+	transform: rotate(180deg);
 }
-
-
 
 /* Accent Color*/
 .scroll::-webkit-scrollbar {
-  width: 8px; /* Width of the scrollbar */
+	width: 8px; /* Width of the scrollbar */
 }
 
 .scroll:hover::-webkit-scrollbar-thumb {
-  background: #888; 
-  border-radius: 5px; 
-
+	background: #777;
+	border-radius: 5px;
 }
 
-scrollbar-width: thin; 
-scrollbar-color: #888 #f0f0f0; 
+scrollbar-width: thin;
+scrollbar-color: #888 #f0f0f0;
+
+.left-shadow {
+	-webkit-box-shadow: 5px 0 10px rgba(0, 0, 0);
+	box-shadow: 5px 0 10px rgba(0, 0, 0);
+}
+
+.crumb:before {
+	content: ">";
+	margin-right: 10px;
+}
+
+.crumb:first-child:before {
+	display: none;
+	
+}
+
+.crumb:hover {
+	color: var(--hover-color);
+}
+
+h1 .crumb:not(:first-child) {
+  font-size: 18px;
+}
+

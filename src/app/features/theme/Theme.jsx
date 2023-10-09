@@ -30,26 +30,26 @@ const Theme = () => {
 	return (
 		<section
 			style={{ backgroundColor: newUserPreferences.shade.card }}
-			className={` flex-1 ml-8 p-10 rounded-tl-3xl`}
+			className={`p-8 lg:flex-1 lg:ml-8 sm:p-10 lg:rounded-tl-3xl lg:shadow-lg h-full`}
 		>
 			<div
 				style={{
 					borderBottom: `1px solid ${newUserPreferences.shade.other}`,
 				}}
-				className='mb-8 px-2'
+				className='mb-8 px-2 hidden lg:block'
 			>
 				<h2
 					style={{
 						fontFamily: newUserPreferences.font.fontFamily,
 						color: newUserPreferences.shade.text.primaryText,
 					}}
-					className='text-2xl pb-4 font-medium'
+					className='text-xl pb-4 font-medium'
 				>
 					Appearance
 				</h2>
 			</div>
-			<div className=' flex flex-col gap-8 mb-5 px-2'>
-				<div>
+			<div className=' flex flex-col items-center lg:items-start gap-8 mb-5 lg:px-2'>
+				<div className='w-full'>
 					<h3
 						style={{
 							fontFamily: newUserPreferences.font.fontFamily,
@@ -62,7 +62,7 @@ const Theme = () => {
 					<AccentColor />
 				</div>
 
-				<div className='mb-2'>
+				<div className='mb-2 w-full'>
 					<h3
 						style={{
 							fontFamily: newUserPreferences.font.fontFamily,
@@ -74,7 +74,7 @@ const Theme = () => {
 					</h3>
 					<BorderRadius />
 				</div>
-				<div>
+				<div className='w-full'>
 					<h3
 						style={{
 							fontFamily: newUserPreferences.font.fontFamily,
@@ -86,7 +86,7 @@ const Theme = () => {
 					</h3>
 					<FontStyle />
 				</div>
-				<div>
+				<div className="w-full">
 					<h3
 						style={{
 							fontFamily: newUserPreferences.font.fontFamily,
@@ -100,7 +100,7 @@ const Theme = () => {
 					<LightDarkMode />
 				</div>
 			</div>
-			<div className='flex justify-between mt-20 py-4 px-2'>
+			<div className='flex flex-col-reverse sm:flex-row gap-8 items-center justify-between lg:mt-20 mt-10 py-4 px-2'>
 				<div>
 					<button
 						onClick={handleResetPreferences}
@@ -121,7 +121,7 @@ const Theme = () => {
 					</button>
 				</div>
 
-				<div className='flex flex-row gap-10'>
+				<div className='flex flex-row items-center gap-10 mb-5 sm:mb-0'>
 					<button
 						onClick={handleCancelPreferences}
 						style={{
@@ -144,7 +144,9 @@ const Theme = () => {
 							{isUpdating ? (
 								<ClipLoader loading={true} color={"#FFFFFF"} size={32} />
 							) : (
-								<span>{isUpdated ? "Preferences saved" : "Save Preferences"}</span>
+								<span>
+									{isUpdated ? "Saved" : "Save"}
+								</span>
 							)}
 						</ColoredButton>
 					</button>

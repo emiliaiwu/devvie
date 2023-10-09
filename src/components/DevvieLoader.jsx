@@ -2,7 +2,7 @@
 
 const DevvieLoader = () => {
 	return (
-		<div className="w-full flex justify-center items-center min-h-screen">
+		<div className="flex justify-center items-center h-screen w-screen">
 			<div className='loader'>
 				<div className='loader2'>
 					<div></div>
