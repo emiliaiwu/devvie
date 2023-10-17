@@ -8,7 +8,7 @@ const Mode = ({ bgColor, card, other }) => {
 	return (
 		<div
 			style={{ backgroundColor: bgColor }}
-			className='w-60 rounded-2xl py-4 h-48 px-4 overflow-hidden'
+			className='md:w-60 w-52 rounded-2xl py-4 h-48 px-4 overflow-hidden'
 		>
 			<div
 				style={{ backgroundColor: card }}

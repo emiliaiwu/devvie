@@ -22,4 +22,3 @@ export const database = getDatabase(app);
 export const auth = getAuth(app);
 
 
-

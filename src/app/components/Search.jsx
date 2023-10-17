@@ -1,23 +1,30 @@
 import { SearchIcon } from "../data/icon";
-import { AppContext } from "../context";
+import { UserPreferencesContext } from "../context";
 import { useContext } from "react";
 
 const Search = () => {
-	const { isSidebarOpen } = useContext(AppContext);
+	const { userPreferences } = useContext(UserPreferencesContext);
 
 	return (
-		<div className='rounded-2xl flex items-center h-10 overflow-hidden transition-width duration-200 ease bg-gray-600 bg-opacity-40'>
-			<button className='text-white h-full flex justify-center items-center min-w-[55px]'>
+		<div
+			style={{
+				color: userPreferences.shade.text.secondaryText,
+				backgroundColor: userPreferences.shade.other,
+			}}
+			className={`${userPreferences.border} flex items-center md:h-10 h-9 md:w-[250px] lg:w-[350px] md:px-6 w-10 justify-center`}
+		>
+			<button className='h-full flex justify-center items-center md:mr-3 w-full md:w-5'>
 				<SearchIcon className='w-5 h-5' />
 			</button>
 
 			<input
+				style={{
+					color: userPreferences.shade.text.primaryText,
+				}}
 				type='text'
 				id='searchInput'
 				placeholder='Search...'
-				className={`${
-					!isSidebarOpen && "hidden"
-				}  text-sm text-white outline-none h-full bg-transparent whitespace-nowrap flex-1 `}
+				className='text-sm outline-none h-full hidden md:flex bg-transparent whitespace-nowrap flex-1'
 			/>
 		</div>
 	);

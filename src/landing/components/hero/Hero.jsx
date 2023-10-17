@@ -18,7 +18,7 @@ const Hero = () => {
 
 	return (
 		<section
-			className={`${container} bg-black min-h-screen flex items-center justify-center`}
+			className={`${container} bg-black h-screen flex items-center justify-center`}
 		>
 			<div className={`${boxWidth} ${flexCenter} w-full h-full`}>
 				<div className='relative w-full h-full'>

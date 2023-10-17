@@ -106,7 +106,7 @@ const LightDarkMode = () => {
 			>
 				Choose your preferred shade
 			</h3>
-			<div className='grid grid-cols-1 sm:grid-cols-3 xs:grid-cols-2 grid-flow-row md:grid-cols-4 lg:items-start lg:flex-row gap-5 w-full'>
+			<div className='grid grid-cols-1 sm:grid-cols-3 xs:grid-cols-2 grid-flow-row md:grid-cols-4 lg:items-start lg:flex-row gap-5'>
 				{newUserPreferences.mode === "light"
 					? Object.keys(lightShades).map((shade, index) => (
 							<div key={index} className='flex flex-col items-center w-full '>

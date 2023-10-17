@@ -11,7 +11,7 @@ export const ColoredButton = ({ children, color, font, border }) => {
 			}}
 			className={`${
 				border || userPreferences.border
-			} h-12 w-32 flex justify-center items-center hover:opacity-50 transition-all duration-200 ease`}
+			} h-12 w-36 flex justify-center items-center hover:opacity-50 transition-all duration-200 ease`}
 		>
 			<span
 				style={{ fontFamily: font || userPreferences.font.fontFamily }}
@@ -34,7 +34,7 @@ export const OutlineButton = ({ children, color, border, font, textColor }) => {
 			}}
 			className={`${
 				border || userPreferences.border
-			} py-3 px-8 flex justify-center items-center hover:opacity-50 transition-all duration-200 ease`}
+			} py-3 px-4 flex justify-center items-center hover:opacity-50 transition-all duration-200 ease`}
 		>
 			<span
 				style={{

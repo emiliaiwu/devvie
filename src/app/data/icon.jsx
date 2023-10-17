@@ -114,7 +114,6 @@ export function AccountIcon(props) {
 	);
 }
 
-
 export function GeneralIcon(props) {
 	return (
 		<svg
@@ -404,29 +403,6 @@ export function SettingsIcon(props) {
 	);
 }
 
-// right arrow
-
-export function SolarRoundAltArrowRightLinear(props) {
-	return (
-		<svg
-			xmlns='http://www.w3.org/2000/svg'
-			width='1em'
-			height='1em'
-			viewBox='0 0 24 24'
-			{...props}
-		>
-			<g fill='none' stroke='currentColor' strokeWidth='1.5'>
-				<circle cx='12' cy='12' r='10'></circle>
-				<path
-					strokeLinecap='round'
-					strokeLinejoin='round'
-					d='m10.5 9l3 3l-3 3'
-				></path>
-			</g>
-		</svg>
-	);
-}
-
 // left arrow
 
 export function ArrowCollaspse(props) {
@@ -535,15 +511,10 @@ export function ProjectIcon(props) {
 		>
 			<g fill='none' stroke='currentColor' strokeWidth='1.5'>
 				<path
-					strokeLinecap='round'
-					d='M22 10.5V12c0 4.714 0 7.071-1.465 8.535C19.072 22 16.714 22 12 22s-7.071 0-8.536-1.465C2 19.072 2 16.714 2 12s0-7.071 1.464-8.536C4.93 2 7.286 2 12 2h1.5'
+					d='M11.146 11.023c.38-.682.57-1.023.854-1.023c.284 0 .474.34.854 1.023l.098.176c.108.194.162.29.246.354c.085.064.19.088.4.135l.19.044c.738.167 1.107.25 1.195.532c.088.283-.164.577-.667 1.165l-.13.152c-.143.167-.215.25-.247.354c-.032.104-.021.215 0 .438l.02.203c.076.785.114 1.178-.115 1.352c-.23.174-.576.015-1.267-.303l-.178-.082c-.197-.09-.295-.135-.399-.135c-.104 0-.202.045-.399.135l-.178.082c-.691.319-1.037.477-1.267.303c-.23-.174-.191-.567-.115-1.352l.02-.203c.021-.223.032-.334 0-.438c-.032-.103-.104-.187-.247-.354l-.13-.152c-.503-.588-.755-.882-.667-1.165c.088-.282.457-.365 1.195-.532l.19-.044c.21-.047.315-.07.4-.135c.084-.064.138-.16.246-.354l.098-.176Z'
 					opacity='.5'
 				></path>
-				<path
-					strokeLinecap='round'
-					d='m7 14l1.797-2.156c.712-.855 1.068-1.282 1.536-1.282c.469 0 .825.427 1.537 1.282l.26.312c.712.855 1.068 1.282 1.537 1.282c.468 0 .824-.427 1.536-1.282L17 10'
-				></path>
-				<circle cx='19' cy='5' r='3'></circle>
+				<path d='M2 6.95c0-.883 0-1.324.07-1.692A4 4 0 0 1 5.257 2.07C5.626 2 6.068 2 6.95 2c.386 0 .58 0 .766.017a4 4 0 0 1 2.18.904c.144.119.28.255.554.529L11 4c.816.816 1.224 1.224 1.712 1.495a4 4 0 0 0 .848.352C14.098 6 14.675 6 15.828 6h.374c2.632 0 3.949 0 4.804.77c.079.07.154.145.224.224c.77.855.77 2.172.77 4.804V14c0 3.771 0 5.657-1.172 6.828C19.657 22 17.771 22 14 22h-4c-3.771 0-5.657 0-6.828-1.172C2 19.657 2 17.771 2 14V6.95Z'></path>
 			</g>
 		</svg>
 	);
@@ -683,7 +654,6 @@ export function DropdownArrowIcon(props) {
 	);
 }
 
-
 export function CheckCircle(props) {
 	return (
 		<svg
@@ -702,7 +672,6 @@ export function CheckCircle(props) {
 		</svg>
 	);
 }
-
 
 export function ArrowRight(props) {
 	return (
@@ -723,7 +692,6 @@ export function ArrowRight(props) {
 	);
 }
 
-
 export function BackArrow(props) {
 	return (
 		<svg
@@ -739,6 +707,133 @@ export function BackArrow(props) {
 				d='M13.47 5.47a.75.75 0 0 1 1.06 0l6 6a.75.75 0 0 1 0 1.06l-6 6a.75.75 0 1 1-1.06-1.06l4.72-4.72H4a.75.75 0 0 1 0-1.5h14.19l-4.72-4.72a.75.75 0 0 1 0-1.06Z'
 				clipRule='evenodd'
 			></path>
+		</svg>
+	);
+}
+
+export function DarkIcon(props) {
+	return (
+		<svg
+			xmlns='http://www.w3.org/2000/svg'
+			width='1em'
+			height='1em'
+			viewBox='0 0 24 24'
+			{...props}
+		>
+			<path
+				fill='currentColor'
+				d='M12 22c5.523 0 10-4.477 10-10c0-.463-.694-.54-.933-.143a6.5 6.5 0 1 1-8.924-8.924C12.54 2.693 12.463 2 12 2C6.477 2 2 6.477 2 12s4.477 10 10 10Z'
+			></path>
+		</svg>
+	);
+}
+
+export function LightIcon(props) {
+	return (
+		<svg
+			xmlns='http://www.w3.org/2000/svg'
+			width='1em'
+			height='1em'
+			viewBox='0 0 24 24'
+			{...props}
+		>
+			<g fill='currentColor'>
+				<path d='M17 12a5 5 0 1 1-10 0a5 5 0 0 1 10 0Z'></path>
+				<path
+					fillRule='evenodd'
+					d='M12 1.25a.75.75 0 0 1 .75.75v2a.75.75 0 0 1-1.5 0V2a.75.75 0 0 1 .75-.75ZM3.669 3.716a.75.75 0 0 1 1.06-.047L6.95 5.7a.75.75 0 1 1-1.012 1.107L3.716 4.776a.75.75 0 0 1-.047-1.06Zm16.662 0a.75.75 0 0 1-.047 1.06l-2.222 2.031A.75.75 0 0 1 17.05 5.7l2.222-2.031a.75.75 0 0 1 1.06.047ZM1.25 12a.75.75 0 0 1 .75-.75h2a.75.75 0 0 1 0 1.5H2a.75.75 0 0 1-.75-.75Zm18 0a.75.75 0 0 1 .75-.75h2a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1-.75-.75Zm-2.224 5.025a.75.75 0 0 1 1.06 0l2.222 2.223a.75.75 0 0 1-1.06 1.06l-2.223-2.222a.75.75 0 0 1 0-1.06Zm-10.051 0a.75.75 0 0 1 0 1.061l-2.223 2.222a.75.75 0 0 1-1.06-1.06l2.222-2.223a.75.75 0 0 1 1.06 0ZM12 19.25a.75.75 0 0 1 .75.75v2a.75.75 0 0 1-1.5 0v-2a.75.75 0 0 1 .75-.75Z'
+					clipRule='evenodd'
+				></path>
+			</g>
+		</svg>
+	);
+}
+
+export function DoneIcon(props) {
+	return (
+		<svg
+			xmlns='http://www.w3.org/2000/svg'
+			width='1em'
+			height='1em'
+			viewBox='0 0 24 24'
+			{...props}
+		>
+			<g fill='none' stroke='currentColor' strokeWidth='1.5'>
+				<path
+					d='M16 4c2.175.012 3.353.109 4.121.877C21 5.756 21 7.17 21 9.998v6c0 2.829 0 4.243-.879 5.122c-.878.878-2.293.878-5.121.878H9c-2.828 0-4.243 0-5.121-.878C3 20.24 3 18.827 3 15.998v-6c0-2.828 0-4.242.879-5.121C4.647 4.109 5.825 4.012 8 4'
+					opacity='.5'
+				></path>
+				<path
+					strokeLinecap='round'
+					strokeLinejoin='round'
+					d='m9 13.4l1.714 1.6L15 11'
+				></path>
+				<path d='M8 3.5A1.5 1.5 0 0 1 9.5 2h5A1.5 1.5 0 0 1 16 3.5v1A1.5 1.5 0 0 1 14.5 6h-5A1.5 1.5 0 0 1 8 4.5v-1Z'></path>
+			</g>
+		</svg>
+	);
+}
+
+export function DeployedIcon(props) {
+	return (
+		<svg
+			xmlns='http://www.w3.org/2000/svg'
+			width='1em'
+			height='1em'
+			viewBox='0 0 24 24'
+			{...props}
+		>
+			<g fill='none' stroke='currentColor' strokeWidth='1.5'>
+				<path d='M2 12c0-4.714 0-7.071 1.464-8.536C4.93 2 7.286 2 12 2c4.714 0 7.071 0 8.535 1.464C22 4.93 22 7.286 22 12c0 4.714 0 7.071-1.465 8.535C19.072 22 16.714 22 12 22s-7.071 0-8.536-1.465C2 19.072 2 16.714 2 12Z'></path>
+				<path
+					strokeLinecap='round'
+					d='M17 15h-5m-5-5l.234.195c1.282 1.068 1.923 1.602 1.923 2.305c0 .703-.64 1.237-1.923 2.305L7 15'
+				></path>
+			</g>
+		</svg>
+	);
+}
+
+export function FilterIcon(props) {
+	return (
+		<svg
+			xmlns='http://www.w3.org/2000/svg'
+			width='1em'
+			height='1em'
+			viewBox='0 0 24 24'
+			{...props}
+		>
+			<g fill='none' stroke='currentColor' strokeWidth='1.5'>
+				<path d='M9.5 14a3 3 0 1 1 0 6a3 3 0 0 1 0-6Zm5-10a3 3 0 1 0 0 6a3 3 0 0 0 0-6Z'></path>
+				<path
+					strokeLinecap='round'
+					d='M15 16.959h7M9 6.958H2m0 10.001h2M22 6.958h-2'
+				></path>
+			</g>
+		</svg>
+	);
+}
+
+export function SortIcon(props) {
+	return (
+		<svg
+			xmlns='http://www.w3.org/2000/svg'
+			width='1em'
+			height='1em'
+			viewBox='0 0 24 24'
+			{...props}
+		>
+			<g
+				fill='none'
+				stroke='currentColor'
+				strokeLinecap='round'
+				strokeWidth='1.5'
+			>
+				<path d='M4 8h9'></path>
+				<path d='M6 13h7' opacity='.7'></path>
+				<path d='M8 18h5' opacity='.4'></path>
+				<path strokeLinejoin='round' d='M17 20V4l3 4'></path>
+			</g>
 		</svg>
 	);
 }

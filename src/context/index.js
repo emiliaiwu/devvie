@@ -7,6 +7,8 @@ import { SignUpContextProvider } from "./SignUpContext";
 import ThemeContext from "../app/features/theme/ThemeContext";
 import { ThemeContextProvider } from "../app/features/theme/ThemeContext";
 import { UserPreferencesProvider } from "../app/context";
+import { UserContextProvider } from "../app/context/UserContext";
+import UserContext from "../app/context/UserContext";
 export {
 	AuthContext,
 	SignInContext,
@@ -16,5 +18,7 @@ export {
 	SignUpContextProvider,
 	ThemeContext,
     ThemeContextProvider,
-    UserPreferencesProvider
+	UserPreferencesProvider,
+	UserContextProvider,
+	UserContext
 };

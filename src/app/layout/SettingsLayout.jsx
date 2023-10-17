@@ -14,7 +14,7 @@ const Settings = () => {
 	return (
 		<section
 			style={{ backgroundColor: userPreferences.shade.background }}
-			className='w-full md:pl-20 min-h-screen mt-[70px] md:mt-0'
+			className='w-screen md:pl-20 min-h-screen mt-[70px] md:mt-0'
 		>
 			<div
 				style={{ backgroundColor: userPreferences.shade.background }}
@@ -31,7 +31,7 @@ const Settings = () => {
 							isSidebarOpen ? "md:w-60 md:opacity-100" : "md:w-0 md:opacity-0"
 						} flex flex-col border-opacity-40 pb-5 min-h-screen md:h-screen md:fixed md:left-[80px] md:right-0 bg-black transition-width duration-500 ease shadow-md`}
 					>
-						<div className=' h-[70px] px-7 flex pt-2'>
+						<div className='h-20 px-7 flex'>
 							<h1
 								style={{
 									color: userPreferences.shade.text.primaryText,
@@ -43,7 +43,7 @@ const Settings = () => {
 							</h1>
 						</div>
 
-						<div className='flex-1 pl-8 scroll md:overflow-y-scroll md:pt-8 pt-5 '>
+						<div className='flex-1 pl-8 scroll md:overflow-y-scroll pt-5 '>
 							<ul className='flex flex-col justify-between gap-6'>
 								{Object.keys(settingsList).map((sectionName, index) => (
 									<li key={index}>
@@ -52,7 +52,7 @@ const Settings = () => {
 												color: userPreferences.shade.text.secondaryText,
 												fontFamily: userPreferences.font.fontFamily,
 											}}
-											className='uppercase text-sm md:text-xs font-semibold tracking-wider mb-2'
+											className='uppercase text-xs md:text-xs font-semibold tracking-wider mb-2'
 										>
 											{sectionName}
 										</h2>
@@ -60,7 +60,7 @@ const Settings = () => {
 											{settingsList[sectionName].map((menu) => (
 												<li
 													key={menu.title}
-													className={`cursor-pointer mb-2 h-8 flex flex-row px-3 hover:bg-${userPreferences.color} hover-color`}
+													className={`cursor-pointer mb-2 h-8 flex flex-row px-3 hover-color`}
 												>
 													<NavLink
 														style={({ isActive }) => ({
@@ -95,11 +95,9 @@ const Settings = () => {
 						style={{ backgroundColor: userPreferences.shade.background }}
 						className={`${
 							isSidebarOpen ? "md:ml-60 " : "md:ml-0"
-						} flex-1 hidden md:flex flex-col gap-10 relative w-full transition-width duration-500 ease ml-0`}
+						} flex-1 max-w-full transition-width duration-500 ease ml-0 mt-10`}
 					>
-						<div className='right-0 left-0 relative z-1 hidden lg:flex'>
-							<Header />
-						</div>
+						
 						<div className='mt-20'>
 							<Outlet />
 						</div>

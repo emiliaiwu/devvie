@@ -14,14 +14,19 @@ const UserPreferencesContext = createContext();
 export const UserPreferencesProvider = ({ children }) => {
 	const { user, setLoading, loading } = useContext(AuthContext);
 	const [isHovered, setIsHovered] = useState(false);
-	const [mode, setMode] = useState("dark");
 	const [isUpdating, setIsUpdating] = useState(false);
 	const [isUpdated, setIsUpdated] = useState(false);
 	const [isReseting, setIsReseting] = useState(false);
 	const [selectedLightShade, setSelectedLightShade] = useState("DayScript");
 	const [selectedDarkShade, setSelectedDarkShade] = useState("DarkCoder");
+	const [isLightMode, setIsLightMode] = useState(false);
+	const [mode, setMode] = useState(isLightMode ? "light" : "dark");
 
-	// const selectedShade = "DarkCoder";
+
+	useEffect(() => {
+		setMode(isLightMode ? "light" : "dark");
+	}, [isLightMode]);
+
 	const selectedShade = {
 		...darkShades.DarkCoder,
 		name: "DarkCoder",
@@ -37,6 +42,7 @@ export const UserPreferencesProvider = ({ children }) => {
 		color: selectedColor,
 		border: selectedBorder,
 		mode: mode,
+		isLightMode: isLightMode,
 		shade: selectedShade,
 		font: {
 			fontFamily: selectedFont,
@@ -74,9 +80,7 @@ export const UserPreferencesProvider = ({ children }) => {
 		}
 	};
 
-
-
-	// update 
+	// update
 	useEffect(() => {
 		if (user) {
 			const userPreferencesRef = ref(database, `userPreferences/${user.uid}`);
@@ -90,6 +94,7 @@ export const UserPreferencesProvider = ({ children }) => {
 						const preferences = snapshot.val();
 						setUserPreferences(preferences);
 						setNewUserPreferences(preferences);
+						setIsLightMode(preferences.isLightMode);
 						setLoading(false);
 					} else {
 						// If preferences don't exist, set default preferences
@@ -141,8 +146,6 @@ export const UserPreferencesProvider = ({ children }) => {
 	// Hover
 	const color = userPreferences.color;
 	const hoverColor = `bg-[${color}]`;
-	console.log(hoverColor);
-	
 
 	return (
 		<UserPreferencesContext.Provider
@@ -173,7 +176,9 @@ export const UserPreferencesProvider = ({ children }) => {
 				setIsUpdated,
 				isReseting,
 				setIsReseting,
-				hoverColor
+				hoverColor,
+				isLightMode,
+				setIsLightMode,
 			}}
 		>
 			{children}

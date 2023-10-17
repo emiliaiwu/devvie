@@ -1,14 +1,13 @@
-import { NavLink, Outlet } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { settingsList } from "../../data/db";
 import { useScrollToTop } from "../../../hooks";
-import { Header } from "../../components";
+
 import { useContext } from "react";
 import { UserPreferencesContext } from "../../context";
-import { AppContext } from "../../context";
 
 const Settings = () => {
 	useScrollToTop();
-	const { isSidebarOpen } = useContext(AppContext);
+
 	const { userPreferences } = useContext(UserPreferencesContext);
 
 	return (

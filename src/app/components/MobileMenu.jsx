@@ -31,10 +31,10 @@ const MobileMenu = () => {
 						>
 							<Link to={menu.url} className='flex items-center h-full w-full'>
 								<div className='flex justify-center items-center h-full min-w-[55px]'>
-									{<menu.icon className='w-6 h-8' />}
+									{<menu.icon className='w-7 h-5' />}
 								</div>
 
-								<span className='menu-title text-lg h-full flex items-center flex-1'>
+								<span className='menu-title text-base h-full flex items-center flex-1'>
 									{menu.title}
 								</span>
 							</Link>
@@ -50,10 +50,10 @@ const MobileMenu = () => {
 						>
 							<Link to={menu.url} className='flex items-center h-full w-full'>
 								<div className='  flex justify-center items-center h-full min-w-[55px]'>
-									{<menu.icon className='w-6 h-8' />}
+									{<menu.icon className='w-7 h-5' />}
 								</div>
 
-								<span className='menu-title text-lg  h-full flex items-center flex-1'>
+								<span className='menu-title text-base  h-full flex items-center flex-1'>
 									{menu.title}
 								</span>
 							</Link>
@@ -69,10 +69,10 @@ const MobileMenu = () => {
 						>
 							<Link to={menu.url} className='flex items-center h-full w-full'>
 								<div className='  flex justify-center items-center h-full min-w-[55px]'>
-									{<menu.icon className='w-6 h-8' />}
+									{<menu.icon className='w-7 h-5' />}
 								</div>
 
-								<span className='menu-title text-lg  h-full flex items-center flex-1'>
+								<span className='menu-title text-base  h-full flex items-center flex-1'>
 									{menu.title}
 								</span>
 							</Link>

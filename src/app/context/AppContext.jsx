@@ -1,11 +1,9 @@
-import { createContext, useContext, useState, useEffect } from "react";
-import UserPreferencesContext from "./UserPreferencesContext";
+import { createContext, useState, useEffect } from "react";
 
 const AppContext = createContext();
 
 export const AppContextProvider = ({ children }) => {
 	const [isSidebarOpen, setIsSidebarOpen] = useState(true);
-	const { userPreferences } = useContext(UserPreferencesContext);
 	const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -21,10 +19,6 @@ export const AppContextProvider = ({ children }) => {
 			window.removeEventListener("resize", handleResize);
 		};
 	}, []);
-
-	console.log(isMobile);
-
-	
 
 	return (
 		<AppContext.Provider

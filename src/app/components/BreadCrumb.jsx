@@ -25,8 +25,7 @@ function BreadCrumb() {
 				</div>
 			);
         });
-    
-    console.log(currentLink)
+
 
 	return (
 		<nav

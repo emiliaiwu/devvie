@@ -14,18 +14,18 @@ export const ThemeContextProvider = ({ children }) => {
 		setSelectedDarkShade,
 		setSelectedLightShade,
 		mode,
-		setMode,
 		fontNames,
 		setNewUserPreferences,
 		newUserPreferences,
-		isHovered,
-		setIsHovered,
 		loading,
 		setLoading,
 		isUpdating,
 		isUpdated,
 		setIsUpdated,
-		hoverColor
+		hoverColor,
+		updateUserPreferences,
+		isLightMode,
+		setIsLightMode,
 	} = useContext(UserPreferencesContext);
 
 	const lightShade = {
@@ -38,23 +38,9 @@ export const ThemeContextProvider = ({ children }) => {
 		name: "DarkCoder",
 	};
 
-
-	
-
-	// Hover
-	const handleMouseEnter = (event) => {
-		event.target.style.backgroundColor = newUserPreferences.shade.background;
-	};
-
-	const handleMouseLeave = (event) => {
-		event.target.style.backgroundColor = "transparent";
-	};
-
 	// theme
-	const [isLightMode, setIsLightMode] = useState(false);
 
-	const shades = isLightMode ? lightShades : darkShades;
-
+	// handle light shade
 	const handleLightShade = (shadeName) => {
 		setSelectedLightShade(shadeName);
 		setNewUserPreferences((prevUserPreferences) => ({
@@ -67,6 +53,7 @@ export const ThemeContextProvider = ({ children }) => {
 		setIsUpdated(false);
 	};
 
+	// handle dark shade
 	const handleDarkShade = (shadeName) => {
 		setSelectedDarkShade(shadeName);
 		setNewUserPreferences((prevUserPreferences) => ({
@@ -79,23 +66,46 @@ export const ThemeContextProvider = ({ children }) => {
 		setIsUpdated(false);
 	};
 
+	// toggle mode
 	const toggleMode = () => {
-		setIsLightMode(!isLightMode);
-		setMode(isLightMode ? "light" : "dark");
-	};
-
-	const handleLightMode = () => {
+		setLoading(true);
+		const newIsLightMode = userPreferences.isLightMode ? false : true;
 		setNewUserPreferences((prevUserPreferences) => ({
 			...prevUserPreferences,
+			isLightMode: newIsLightMode,
+			mode: newIsLightMode ? "light" : "dark",
+			shade: newIsLightMode ? lightShade : darkShade,
+		}));
+		updateUserPreferences(
+			{
+				...userPreferences,
+				isLightMode: newIsLightMode,
+				mode: newIsLightMode ? "light" : "dark",
+				shade: newIsLightMode ? lightShade : darkShade,
+			},
+			true
+		);
+		setLoading(false);
+	};
+
+	// light mode
+	const handleLightMode = () => {
+		setIsLightMode(true);
+		setNewUserPreferences((prevUserPreferences) => ({
+			...prevUserPreferences,
+			isLightMode: true,
 			mode: "light",
 			shade: lightShade,
 		}));
 		setIsUpdated(false);
 	};
 
+	// dark mode
 	const handleDarkMode = () => {
+		setIsLightMode(false);
 		setNewUserPreferences((prevUserPreferences) => ({
 			...prevUserPreferences,
+			isLightMode: false,
 			mode: "dark",
 			shade: darkShade,
 		}));
@@ -156,7 +166,6 @@ export const ThemeContextProvider = ({ children }) => {
 				toggleMode,
 				mode,
 				selectedShade,
-				shades,
 				handleLightMode,
 				handleDarkMode,
 				selectedLightShade,
@@ -167,10 +176,6 @@ export const ThemeContextProvider = ({ children }) => {
 				handleDarkShade,
 				userPreferences,
 				newUserPreferences,
-				isHovered,
-				setIsHovered,
-				handleMouseEnter,
-				handleMouseLeave,
 				loading,
 				setLoading,
 				isUpdating,

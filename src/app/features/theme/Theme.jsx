@@ -86,7 +86,7 @@ const Theme = () => {
 					</h3>
 					<FontStyle />
 				</div>
-				<div className="w-full">
+				<div className='w-full'>
 					<h3
 						style={{
 							fontFamily: newUserPreferences.font.fontFamily,
@@ -144,9 +144,7 @@ const Theme = () => {
 							{isUpdating ? (
 								<ClipLoader loading={true} color={"#FFFFFF"} size={32} />
 							) : (
-								<span>
-									{isUpdated ? "Saved" : "Save"}
-								</span>
+								<span>{isUpdated ? "Changes saved" : "Save changes"}</span>
 							)}
 						</ColoredButton>
 					</button>

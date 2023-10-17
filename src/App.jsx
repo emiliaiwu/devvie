@@ -16,7 +16,7 @@ import {
 import ComingSoon from "./careers/ComingSoon";
 import AppLayout from "./app/layout/AppLayout";
 import SettingsLayout from "./app/layout/SettingsLayout";
-import { Dashboard, Theme, Settings , General, Profile} from "./app/pages";
+import { Dashboard, Theme, Settings , General, Profile, Project} from "./app/pages";
 import ProtectedRoute from "./app/ProtectedRoute";
 import "./style/devvieLoader.css";
 import "./style/app.css";
@@ -40,6 +40,7 @@ const App = () => {
 				<Route path='discover-projects' element={<ComingSoon />} />
 				<Route path='forgot-password' element={<ForgotPasswordPage />} />
 				<Route path='reset-password' element={<ResetPasswordPage />} />
+
 				<Route path='*' element={<NotFound />} />
 				<Route
 					path='user'
@@ -50,6 +51,7 @@ const App = () => {
 					}
 				>
 					<Route path='dashboard' element={<Dashboard />} />
+					<Route path='project' element={<Project />} />
 
 					<Route
 						path='settings'
