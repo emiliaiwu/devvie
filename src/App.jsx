@@ -14,9 +14,9 @@ import {
 	ResetPasswordPage,
 } from "./pages";
 import ComingSoon from "./careers/ComingSoon";
-import AppLayout from "./app/layout/AppLayout";
+import { AppLayout, ProjectLayout } from "./app/layout";
 import SettingsLayout from "./app/layout/SettingsLayout";
-import { Dashboard, Theme, Settings , General, Profile, Project} from "./app/pages";
+import { Dashboard, Theme, Settings , General, Profile, Project, CreateNewProjectPage} from "./app/pages";
 import ProtectedRoute from "./app/ProtectedRoute";
 import "./style/devvieLoader.css";
 import "./style/app.css";
@@ -51,7 +51,10 @@ const App = () => {
 					}
 				>
 					<Route path='dashboard' element={<Dashboard />} />
-					<Route path='project' element={<Project />} />
+					<Route path='project' element={<ProjectLayout />}>
+						<Route index element={<Project/>}/>
+						<Route path="new" element={<CreateNewProjectPage/> } />
+					</Route>
 
 					<Route
 						path='settings'

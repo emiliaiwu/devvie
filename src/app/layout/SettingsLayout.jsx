@@ -14,7 +14,7 @@ const Settings = () => {
 	return (
 		<section
 			style={{ backgroundColor: userPreferences.shade.background }}
-			className='w-screen md:pl-20 min-h-screen mt-[70px] md:mt-0'
+			className='max-w-full md:pl-20 min-h-screen mt-[70px] md:mt-0 overflow-x-hidden'
 		>
 			<div
 				style={{ backgroundColor: userPreferences.shade.background }}
@@ -28,7 +28,7 @@ const Settings = () => {
 					<div
 						style={{ backgroundColor: userPreferences.shade.card }}
 						className={`${
-							isSidebarOpen ? "md:w-60 md:opacity-100" : "md:w-0 md:opacity-0"
+							isSidebarOpen ? "md:w-56 md:opacity-100" : "md:w-0 md:opacity-0"
 						} flex flex-col border-opacity-40 pb-5 min-h-screen md:h-screen md:fixed md:left-[80px] md:right-0 bg-black transition-width duration-500 ease shadow-md`}
 					>
 						<div className='h-20 px-7 flex'>
@@ -94,10 +94,9 @@ const Settings = () => {
 					<div
 						style={{ backgroundColor: userPreferences.shade.background }}
 						className={`${
-							isSidebarOpen ? "md:ml-60 " : "md:ml-0"
-						} flex-1 max-w-full transition-width duration-500 ease ml-0 mt-10`}
+							isSidebarOpen ? "md:ml-56 " : "md:ml-0"
+						} flex-1 max-w-full transition-width duration-500 ease ml-0 mt-10 `}
 					>
-						
 						<div className='mt-20'>
 							<Outlet />
 						</div>

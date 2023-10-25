@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { UserPreferencesContext } from "../../context";
 import { BsArrowRight } from "react-icons/bs";
+import { HoverAccentColor } from "../../components";
 const ProjectCategory = () => {
 	const { userPreferences } = useContext(UserPreferencesContext);
 	return (
@@ -10,7 +11,7 @@ const ProjectCategory = () => {
 				color: userPreferences.shade.text.primaryText,
 				backgroundColor: userPreferences.shade.card,
 			}}
-			className={`${userPreferences.border} self-start w-full flex flex-col justify-between gap-4 p-6 shadow-md`}
+			className={`${userPreferences.border} w-full self-start flex flex-col justify-between gap-4 p-6 shadow-sm`}
 		>
 			<div className='flex justify-between items-center'>
 				<h1
@@ -20,7 +21,7 @@ const ProjectCategory = () => {
 					Category
 				</h1>
 
-				<span style={{ color: userPreferences.color }} className='text-xs'>
+				<span style={{ color: userPreferences.color }} className='text-xs cursor-pointer hover:opacity-80'>
 					See all category
 				</span>
 			</div>
@@ -38,12 +39,15 @@ const ProjectCategory = () => {
 					</div>
 
 					<div>
-						<div className='flex justify-between mb-1'>
+						<HoverAccentColor
+							className={"flex justify-between mb-1 items-center cursor-pointer"}
+						>
 							<span className='text-sm'>Personal</span>
 							<span>
 								<BsArrowRight />
 							</span>
-						</div>
+						</HoverAccentColor>
+
 						<div
 							style={{ color: userPreferences.shade.text.secondaryText }}
 							className='text-xs'
@@ -64,12 +68,14 @@ const ProjectCategory = () => {
 					</div>
 
 					<div>
-						<div className='flex justify-between mb-1'>
+						<HoverAccentColor
+							className={"flex justify-between mb-1 items-center cursor-pointer"}
+						>
 							<span className='text-sm'>Teams</span>
 							<span>
 								<BsArrowRight />
 							</span>
-						</div>
+						</HoverAccentColor>
 						<div
 							style={{ color: userPreferences.shade.text.secondaryText }}
 							className='text-xs'

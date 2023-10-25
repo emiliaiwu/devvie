@@ -29,7 +29,7 @@ export const OutlineButton = ({ children, color, border, font, textColor }) => {
 	return (
 		<div
 			style={{
-				border: `2px solid ${color || userPreferences.color}`,
+				border: `1px solid ${color || userPreferences.color}`,
 				borderColor: color || userPreferences.color,
 			}}
 			className={`${

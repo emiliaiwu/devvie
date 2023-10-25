@@ -4,6 +4,7 @@ const AppContext = createContext();
 
 export const AppContextProvider = ({ children }) => {
 	const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+
 	const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -28,6 +29,7 @@ export const AppContextProvider = ({ children }) => {
 				isMobile,
 				isMenuOpen,
 				setIsMenuOpen,
+				
 			}}
 		>
 			{children}

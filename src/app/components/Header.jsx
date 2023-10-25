@@ -16,8 +16,8 @@ const Header = () => {
 		<header
 			style={{ backgroundColor: userPreferences.shade.background }}
 			className={`${
-				isSidebarOpen ? "lg:left-[320px]" : "lg:left-20"
-			} h-[70px] px-3 md:h-20 md:px-5 lg:px-6 fixed top-0 right-0 left-0 z-50 transition-all duration-500 ease flex items-center justify-center md:py-2 max-w-full`}
+				isSidebarOpen ? "lg:left-[304px]" : "lg:left-20"
+			} h-[70px] px-3 md:h-20 md:px-5 lg:px-6 fixed top-0 right-0 left-0 z-20 transition-all duration-500 ease flex items-center justify-center md:py-2 max-w-full`}
 		>
 			<div className='flex justify-between items-center w-full'>
 				{/* MENU */}

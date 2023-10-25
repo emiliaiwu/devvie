@@ -11,7 +11,7 @@ const SidebarLeft = () => {
 	return (
 		<nav
 			style={{ backgroundColor: userPreferences.shade.background }}
-			className='z-40 w-20 h-screen fixed px-3 py-2 top-0 lg:flex flex-col left-0 hidden shadow-md'
+			className='z-20 w-20 h-screen fixed px-3 py-2 top-0 lg:flex flex-col left-0 hidden shadow-md'
 		>
 			<header className='flex items-center relative h-16 py-5'>
 				<div className='flex justify-center items-center min-w-[55px] '>

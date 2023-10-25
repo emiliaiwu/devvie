@@ -11,7 +11,7 @@ const ProjectStack = () => {
 				color: userPreferences.shade.text.primaryText,
 				backgroundColor: userPreferences.shade.card,
 			}}
-			className={`${userPreferences.border} w-full flex flex-col p-6 justify-between gap-4 shadow-md items`}
+			className={`${userPreferences.border} w-full flex flex-col p-6 justify-between gap-4 shadow-sm items`}
 		>
 			<div className='flex justify-between items-center'>
 				<h1
@@ -21,7 +21,10 @@ const ProjectStack = () => {
 					Top Tech Stack
 				</h1>
 
-				<span style={{ color: userPreferences.color }} className='text-xs'>
+				<span
+					style={{ color: userPreferences.color }}
+					className='text-xs hover:opacity-80 cursor-pointer'
+				>
 					See tech stack
 				</span>
 			</div>

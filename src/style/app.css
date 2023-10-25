@@ -31,8 +31,28 @@
 	border-radius: 5px;
 }
 
+.scroll-x::-webkit-scrollbar {
+	height: 12px; /* Width of the scrollbar */
+}
+
+.scroll-x:hover::-webkit-scrollbar-thumb {
+	background: #777;
+	border-radius: 5px;
+}
+
 scrollbar-width: thin;
 scrollbar-color: #888 #f0f0f0;
+
+
+
+
+
+
+
+
+
+
+
 
 .left-shadow {
 	-webkit-box-shadow: 5px 0 10px rgba(0, 0, 0);
@@ -56,6 +76,11 @@ h1 .crumb:not(:first-child) {
 	font-size: 18px;
 }
 
+
+
+
+
+/* for themeswitch*/
 .hover-bg {
 	background-color: var(--bg-color);
 }
@@ -63,6 +88,9 @@ h1 .crumb:not(:first-child) {
 .hover-bg:hover {
 	color: var(--hover-color);
 }
+
+
+
 
 .hover-border {
 	border: 1.5px solid var(--bg-color);
@@ -77,24 +105,6 @@ h1 .crumb:not(:first-child) {
 	color: red;
 }
 
-.branch:before {
-	content: "";
-	top: 50%;
-	left: 100%;
-	width: 20px;
-	height: 1px;
-	background-color: var(--bg-color);
-	transform: translateY(-50%);
-	z-index: -1;
-}
 
-.branch:after {
-	content: "";
-	position: absolute;
-	width: 1px;
-	height: 22px;
-	background-color: #7fdbff;
-	transform: translateY(-50%);
-	z-index: -1;
-	border-radius: 5px;
-}
+
+

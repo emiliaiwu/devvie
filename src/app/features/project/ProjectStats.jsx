@@ -18,7 +18,7 @@ const ProjectStats = () => {
 				color: userPreferences.shade.text.primaryText,
 				backgroundColor: userPreferences.shade.card,
 			}}
-			className={`${userPreferences.border} w-full flex flex-col justify-between p-6 shadow-md gap-4`}
+			className={`${userPreferences.border} w-full flex flex-col justify-between p-6 shadow-sm gap-4`}
 		>
 			<div className='flex justify-between items-center'>
 				<h1
@@ -28,7 +28,10 @@ const ProjectStats = () => {
 					Project Stats
 				</h1>
 
-				<span style={{ color: userPreferences.color }} className='text-xs'>
+				<span
+					style={{ color: userPreferences.color }}
+					className='text-xs hover:opacity-80 cursor-pointer'
+				>
 					See full stats
 				</span>
 			</div>
@@ -41,8 +44,11 @@ const ProjectStats = () => {
 					>
 						<p className='text-[13px] mb-1 font-medium'>{item.text}</p>
 
-						<div className="flex items-end gap-1">
-							<div className='text-3xl flex items-end font-semibold'>{item.num}</div><span  className="text-[10px] pb-1">Projects</span>
+						<div className='flex items-end gap-1'>
+							<div className='text-3xl flex items-end font-semibold'>
+								{item.num}
+							</div>
+							<span className='text-[10px] pb-1'>Projects</span>
 						</div>
 					</div>
 				))}
