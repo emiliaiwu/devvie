@@ -144,7 +144,7 @@ const ManageTags = ({ setIsManageTagOpen, generateID }) => {
 								{allProjectTags.map((tag, index) => (
 									<li
 										key={index}
-										className='text-white text-xs px-3 py-[10px] hover:bg-black mr-2 hover:bg-opacity-10 flex justify-between items-center'
+										className='text-white text-xs px-3 py-[10px] flex justify-between items-center'
 									>
 										<Tag color={tag.color}>{tag.tag}</Tag>
 										<div

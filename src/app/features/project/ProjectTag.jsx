@@ -2,6 +2,7 @@ import {
 	AddIcon,
 	CancelCircleIcon,
 	EditCircleIcon,
+	MinusIcon,
 	TagIcon,
 } from "../../data/icon";
 import { ProjectContext, UserPreferencesContext } from "../../context";
@@ -32,7 +33,7 @@ const ProjectTag = () => {
 		}
 	}
 
-	useScrollToDropdown(isTagOpen, dropdownRef)
+	useScrollToDropdown(isTagOpen, dropdownRef);
 
 	// handle manage tags
 	function handleManageTags() {
@@ -48,13 +49,12 @@ const ProjectTag = () => {
 		setSelectedProjectTags(newProjectTags);
 	}
 
+	
+
 	return (
-		<div className="w-full">
-			<div >
-				<div className="text-base px-1 mb-3">
-					Project Tags
-					
-				</div>
+		<div className='w-full relative z-[8]'>
+			<div>
+				<div className='text-base px-1 mb-3'>Project Tags</div>
 
 				<div
 					style={{
@@ -62,9 +62,9 @@ const ProjectTag = () => {
 						borderColor: userPreferences.shade.text.secondaryText,
 						color: userPreferences.shade.text.primaryText,
 					}}
-					className={`${userPreferences.border} flex items-center justify-between px-4 py-2 `}
+					className={`${userPreferences.border} flex items-center justify-between px-4 py-3 `}
 				>
-					<div className='flex-1 min-h-[38px] flex items-center'>
+					<div className='flex-1 flex items-center h-8'>
 						{selectedProjectTags.length > 0 ? (
 							<div className='w-full h-full flex items-center'>
 								<ul className='flex flex-wrap gap-3 items-center'>
@@ -87,17 +87,25 @@ const ProjectTag = () => {
 							<p
 								style={{
 									color: userPreferences.shade.text.secondaryText,
-									}}
-									className="text-base"
+								}}
+								className='text-base'
 							>
 								Add tags
 							</p>
 						)}
 					</div>
 
-					<div onClick={() => setIsTagOpen(true)} className='cursor-pointer'>
+					<div className='cursor-pointer'>
 						<HoverAccentColor>
-							<AddIcon className='w-6 h-6' />
+							{isTagOpen ? (
+								<span onClick={() => setIsTagOpen(false)}>
+									<MinusIcon className='w-6 h-6' />
+								</span>
+							) : (
+								<span onClick={() => setIsTagOpen(true)}>
+									<AddIcon className='w-6 h-6' />
+								</span>
+							)}
 						</HoverAccentColor>
 					</div>
 				</div>
@@ -106,11 +114,14 @@ const ProjectTag = () => {
 			{/* tags dropdown */}
 			{isTagOpen && (
 				<div
-					ref={dropdownRef}
 					onMouseLeave={() => setIsTagOpen(false)}
-					style={{ backgroundColor: userPreferences.shade.card }}
+					ref={dropdownRef}
+					style={{
+						backgroundColor: userPreferences.shade.card,
+						borderColor: userPreferences.shade.other,
+					}}
 					className={`${userPreferences.border}
-					 w-full pt-3 mt-6`}
+					 w-[320px] pt-6 top-28 left-0 absolute border`}
 				>
 					<div className='relative'>
 						{selectedProjectTags.length > maxTags && (
@@ -128,14 +139,14 @@ const ProjectTag = () => {
 									: "opacity-100 overflow-y-scroll"
 							}  h-64  scroll ml-3 mr-2`}
 						>
-							<ul className='flex flex-col py-4 gap-1'>
+							<ul className='flex flex-col gap-1'>
 								{allProjectTags.map((tag) => (
 									<li
 										key={tag.id}
 										onClick={() =>
 											handleSelectedTags(tag.id, tag.tag, tag.color)
 										}
-										className='text-white text-xs p-3 hover:bg-black mr-2 hover:bg-opacity-10 cursor-pointer'
+										className='text-white text-xs p-3  mr-2  cursor-pointer'
 									>
 										<span
 											style={{ backgroundColor: tag.color }}

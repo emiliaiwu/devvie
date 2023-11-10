@@ -3,7 +3,6 @@ import ProjectStack from "./ProjectStack";
 import ProjectStats from "./ProjectStats";
 import { UserPreferencesContext } from "../../context";
 import { useContext } from "react";
-import ProjectNav from "./ProjectNav";
 import { Board, Filter, Sort } from "../../components";
 
 const ProjectBoard = () => {
@@ -11,16 +10,19 @@ const ProjectBoard = () => {
 
 	return (
 		<div className='flex flex-col relative  '>
-			<div
+			{/* <div
 				className={`flex max-w-full justify-between gap-4 mb-14 transition-[height] duration-500 ease`}
 			>
 				<ProjectStack />
 				<ProjectStats />
 				<ProjectCategory />
-			</div>
+			</div> */}
 
 			<div className='mb-4'>
-				<div className='flex flex-col shadow-sm'>
+				<div
+					style={{ borderBottom: `1px solid ${userPreferences.shade.other}` }}
+					className='flex flex-col shadow-sm'
+				>
 					<h1
 						style={{
 							color: userPreferences.shade.text.primaryText,
@@ -30,7 +32,6 @@ const ProjectBoard = () => {
 					>
 						My Projects
 					</h1>
-					<ProjectNav />
 				</div>
 
 				<div className='min-h-[100px] flex items-center px-4'>

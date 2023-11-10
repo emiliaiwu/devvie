@@ -1,105 +1,95 @@
 import { useContext, useState } from "react";
-import { UserPreferencesContext } from "../context";
+import {  UserPreferencesContext } from "../context";
 import { BiDotsVerticalRounded } from "react-icons/bi";
-import { CalendaIcon, FileIcon, MsgIcon } from "../data/icon";
-import { techStack } from "../data/projectData";
-import TeamImg from "./TeamImg";
-const Card = () => {
+import {  DueDateIcon, StartDateIcon } from "../data/icon";
+import Tag from "./Tag";
+import PriorityTag from "./PriorityTag";
+import HoverAccentColor from "./HoverAccentColor";
+import ProjectCardModal from "../features/project/ProjectCardModal";
+
+const Card = ({ project }) => {
 	const { userPreferences } = useContext(UserPreferencesContext);
-	const [showFullText, setShowFullText] = useState(false);
-	const toggleText = () => {
-		console.log(showFullText);
-		setShowFullText(!showFullText);
-	};
+	const [isProjectCardModalOpen, setIsProjectCardModalOpen] = useState(false);
+	const stack = project.stack;
 
 	return (
 		<div
 			style={{ backgroundColor: userPreferences.shade.background }}
-			className={`${userPreferences.border} w-full  py-5 `}
+			className={`${userPreferences.border} w-full relative py-5 `}
 		>
+			{isProjectCardModalOpen && (
+				<div className='absolute right-5 top-12'>
+					<ProjectCardModal
+						project={project}
+						setIsOpen={setIsProjectCardModalOpen}
+					/>
+				</div>
+			)}
+
 			<div className='flex flex-col gap-5'>
 				<div className='flex items-center justify-between px-6'>
-					<div className='flex gap-2 items-center'>
-						<div
-							style={{ backgroundColor: "#3F00FF" }}
-							className='capitalize text-xs px-3 py-[5px] rounded-2xl text-white'
-						>
-							web app
-						</div>
-						<div
-							style={{ backgroundColor: "#ff00bf" }}
-							className='capitalize text-xs px-3 py-[5px] rounded-2xl text-white'
-						>
-							frontend
-						</div>
+					<div className='w-full inline-flex'>
+						<PriorityTag tag={project.priority} />
 					</div>
-					<div>
-						<BiDotsVerticalRounded className='w-6 h-6' />
+					<div
+						onClick={() => setIsProjectCardModalOpen((pre) => !pre)}
+						className='flex items-center gap-2 cursor-pointer'
+					>
+						<HoverAccentColor>
+							<BiDotsVerticalRounded className='w-6 h-6' />
+						</HoverAccentColor>
 					</div>
 				</div>
 
-				<div className='px-6 flex flex-col gap-4'>
+				<div className='px-6'>
+					<div className='flex gap-2 items-center flex-wrap'>
+						{project.tag.map((tag) => (
+							<Tag key={tag.id} color={tag.color}>
+								{tag.tag}
+							</Tag>
+						))}
+					</div>
+				</div>
+
+				<div className='px-6 flex flex-col gap-4 w-full'>
 					<div>
-						<h1 className='text-lg mb-2'>Social Media Tool</h1>
+						<h1
+							className='text-lg mb-2 capitalize w-full '
+							style={{
+								whiteSpace: "normal",
+							}}
+						>
+							{project.title}
+						</h1>
+
 						<p
 							style={{ color: userPreferences.shade.text.secondaryText }}
-							className={`${
-								showFullText ? "line-clamp-none" : "line-clamp-3"
-							} overflow-ellipsis whitespace-normal text-sm leading-6`}
-							onClick={toggleText}
-							onMouseLeave={() => setShowFullText(false)}
+							className={`overflow-ellipsis whitespace-normal text-sm leading-6 line-clamp-3`}
 						>
-							Sover simplifies content planning, creation and scheduling across
-							various social media platforms. Include features for post
-							previews, analytics, and automatic posting.
+							{project.description}
 						</p>
 					</div>
-					<div>
-						<div className='flex justify-between items-center mb-4'>
-							<div className='capitalize text-xs'>
-								<span
-									style={{
-										backgroundColor: "rgba(255,87,36,.15)",
-									}}
-									className='p-1 pr-2 rounded-md text-[#ff5724]'
-								>
-									🔥high priority
-								</span>
-							</div>
 
-							<div
-								style={{
-									color: userPreferences.shade.text.primaryText,
-									backgroundColor: userPreferences.shade.card,
-								}}
-								className='flex items-center gap-2 p-[5px] rounded-md'
-							>
-								<CalendaIcon className='w-4 h-4' />
-								<span className=' text-xs'>2 Nov</span>
-							</div>
-						</div>
-
-						{/* FRAMEWORKS */}
+					<div className='flex justify-between items-center w-full'>
 						<div
-							style={{ color: userPreferences.shade.text.secondaryText }}
-							className='flex items-center gap-3'
+							style={{
+								color: userPreferences.shade.text.primaryText,
+								backgroundColor: userPreferences.shade.card,
+							}}
+							className='flex items-center gap-1 p-2 rounded-md'
 						>
-							{techStack.map((tech, index) =>
-								tech.name === "React" ||
-								tech.name === "TypeScript" ||
-								tech.name === "Tailwind" ||
-								tech.name === "Firebase" ? (
-									<div key={index} className='text-xs'>
-										{tech.name}
-									</div>
-								) : null
-							)}
-							<span
-								style={{ color: userPreferences.shade.text.primaryText }}
-								className='w-5 h-5 text-xs flex justify-center items-center'
-							>
-								+4
-							</span>
+							<StartDateIcon className='w-4 h-4 text-blue-600' />
+							<span className=' text-xs'>{project.startDate}</span>
+						</div>
+						<div
+							style={{
+								color: userPreferences.shade.text.primaryText,
+								backgroundColor: userPreferences.shade.card,
+							}}
+							className='flex items-center gap-1 p-2 rounded-md'
+						>
+							<DueDateIcon className='w-4 h-4 text-red-600' />
+							<span className=' text-xs'>{project.dueDate}</span>
 						</div>
 					</div>
 				</div>
@@ -109,9 +99,37 @@ const Card = () => {
 					style={{
 						borderTop: `1px solid ${userPreferences.shade.other}`,
 					}}
-					className='pt-5 px-6 flex justify-between items-center'
+					className='pt-5 px-6 flex justify-between items-center w-full'
 				>
-					<div className='ml-2'>
+					<div
+						style={{ color: userPreferences.shade.text.primaryText }}
+						className='flex items-center gap-3 text-sm w-full'
+					>
+						Tech :
+						<div
+							style={{ color: userPreferences.shade.text.secondaryText }}
+							className='flex items-center gap-2 justify-between w-full'
+						>
+							{stack.slice(0, 3).map((tech, index) => (
+								<div key={index} className='text-[13px] justify-between'>
+									{tech}
+								</div>
+							))}
+
+
+							{stack.length > 3 && (
+								<div
+									style={{
+										color: userPreferences.shade.text.primaryText,
+									}}
+									className=' text-xs flex items-center'
+								>
+									+{stack.length - 3}
+								</div>
+							)}
+						</div>
+					</div>
+					{/* <div className='ml-2'>
 						<TeamImg />
 					</div>
 
@@ -125,7 +143,7 @@ const Card = () => {
 						<div className='flex items-center gap-1'>
 							<FileIcon /> 5
 						</div>
-					</div>
+					</div> */}
 				</div>
 			</div>
 		</div>

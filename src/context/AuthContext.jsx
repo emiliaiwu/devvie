@@ -14,6 +14,7 @@ import {
 	browserLocalPersistence,
 	browserSessionPersistence,
 	setPersistence,
+	
 } from "firebase/auth";
 import { auth } from "../firebase";
 
@@ -73,6 +74,9 @@ export const AuthContextProvider = ({ children }) => {
 		return signInWithPopup(auth, githubAuthProvider);
 	};
 
+
+	
+
 	useEffect(() => {
 		const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
 			// setLoading(false);
@@ -82,6 +86,9 @@ export const AuthContextProvider = ({ children }) => {
 				setUser(null);
 			}
 		});
+
+	
+
 		return () => {
 			unsubscribe();
 		};

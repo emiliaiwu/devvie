@@ -3,6 +3,11 @@ import { useContext } from "react";
 import ProjectTag from "./ProjectTag";
 import ChooseCategory from "./ChooseCategory";
 import ProjectStatus from "./ProjectStatus";
+import ProjectPriority from "./ProjectPriority";
+import { ChooseDueDate, ChooseStartDate } from "../../components";
+import ProjectTechStack from "./ProjectTechStack";
+import ProjectTeam from "./ProjectTeam";
+
 
 const CreateNewProjectPage = () => {
 	const { userPreferences } = useContext(UserPreferencesContext);
@@ -33,8 +38,11 @@ const CreateNewProjectPage = () => {
 	};
 
 	return (
-		<section className='mx-auto min-h-screen py-5'>
-			<div style={{ fontFamily: userPreferences.font.fontFamily }}>
+		<section className='mx-auto min-h-screen h-full pt-5 pb-20'>
+			<div
+				style={{ fontFamily: userPreferences.font.fontFamily }}
+				className='flex flex-col'
+			>
 				<h1
 					style={{ color: userPreferences.shade.text.primaryText }}
 					className='text-3xl mb-10'
@@ -56,7 +64,7 @@ const CreateNewProjectPage = () => {
 								placeholder='Enter your project title'
 								value={newProjectTitle}
 								onChange={handleTitleChange}
-								className={`${userPreferences.border} w-full p-3 focus:outline-none`}
+								className={`${userPreferences.border} w-full px-4 py-3 focus:outline-none`}
 							/>
 							<p
 								style={{ color: userPreferences.shade.text.secondaryText }}
@@ -75,7 +83,7 @@ const CreateNewProjectPage = () => {
 								onChange={handleDescriptionChange}
 								placeholder='Enter your project description'
 								rows={5}
-								className={`${userPreferences.border} p-3 focus:outline-none`}
+								className={`${userPreferences.border} px-5 py-3 focus:outline-none`}
 							/>
 							<p
 								style={{ color: userPreferences.shade.text.secondaryText }}
@@ -86,15 +94,20 @@ const CreateNewProjectPage = () => {
 						</div>
 					</form>
 
-					<div className='w-2/3 flex flex-col gap-10'>
-						<div className='flex gap-5 justify-between'>
+					<div className='w-2/3 flex flex-col gap-10 min-h-screen mb-44'>
+						<div className='flex gap-3 justify-between'>
 							<ProjectStatus />
-							<ChooseCategory />
+						
 						</div>
-						<div className='flex gap-5 justify-between'>
+						
+						<div className='flex gap-3 justify-between'>
 							<ProjectTag />
-							
+							<ProjectPriority />
 						</div>
+						<div className='flex justify-between gap-3 '>
+							<ChooseStartDate /> <ChooseDueDate />
+						</div>
+						<ProjectTechStack/>
 					</div>
 				</div>
 			</div>

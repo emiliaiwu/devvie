@@ -10,7 +10,7 @@ export default {
 			},
 			colors: {
 				white: "#FFFFFF",
-				blue: "#0000FF",
+				blue2: "#0000FF",
 				offwhite: "#dcdcdc",
 				landingPrimary: "#B6FF9C",
 				landingGrey: "#1A1A1A",

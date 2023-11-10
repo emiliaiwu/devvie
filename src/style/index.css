@@ -17,6 +17,11 @@ body {
 	overflow-x: hidden;
 }
 
+.no-scroll {
+overflow-y: hidden;
+
+}
+
 /*Logo*/
 .logo-name {
 	background-image: url("../assets/text-gradient.png");

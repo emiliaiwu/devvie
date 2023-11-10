@@ -1,11 +1,12 @@
 import { ProjectContext, UserPreferencesContext } from "../../context";
 import { useContext, useState } from "react";
 import { DropdownArrowIcon } from "../../data/icon";
+import { category } from "../../data/projectData";
 
 const ChooseCategory = () => {
 	const { userPreferences } = useContext(UserPreferencesContext);
-	const { categories } = useContext(ProjectContext);
-	const [selectedCategory, setSelectedCategory] = useState("Personal");
+	const { selectedCategory, setSelectedCategory } = useContext(ProjectContext);
+
 	const [isCategoryOpen, setIsCategoryOpen] = useState(false);
 
 	const handleSelect = (e) => {
@@ -41,7 +42,7 @@ const ChooseCategory = () => {
 				{isCategoryOpen && (
 					<div
 						onMouseLeave={() => setIsCategoryOpen(false)}
-						className='absolute w-full top-24'
+						className='absolute w-full top-24 z-50'
 					>
 						<ul
 							style={{
@@ -51,18 +52,15 @@ const ChooseCategory = () => {
 							}}
 							className={`${userPreferences.border} p-3 border`}
 						>
-							<li
-								onClick={handleSelect}
-								className='p-2 mb-1 hover:opacity-100 opacity-60 transition-opacity duration-200 ease'
-							>
-								Personal
-							</li>
-							<li
-								onClick={handleSelect}
-								className='p-2 hover:opacity-100 opacity-60 transition-opacity duration-200 ease'
-							>
-								Teams
-							</li>
+							{category.map((cat) => (
+								<li
+									key={cat}
+									onClick={handleSelect}
+									className='p-2 mb-1 hover:opacity-100 opacity-60 transition-opacity duration-200 ease capitalize'
+								>
+									{cat}
+								</li>
+							))}
 						</ul>
 					</div>
 				)}

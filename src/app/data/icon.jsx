@@ -1073,3 +1073,229 @@ export function DeleteIcon(props) {
 		</svg>
 	);
 }
+
+
+export function DateArrowIcon(props) {
+	return (
+		<svg
+			xmlns='http://www.w3.org/2000/svg'
+			width='1em'
+			height='1em'
+			viewBox='0 0 24 24'
+			{...props}
+		>
+			<g fill='none' stroke='currentColor' strokeWidth='1.5'>
+				<path
+					strokeLinecap='round'
+					strokeLinejoin='round'
+					d='m13.5 9l-3 3l3 3'
+				></path>
+				<path
+					d='M2 12c0-4.714 0-7.071 1.464-8.536C4.93 2 7.286 2 12 2c4.714 0 7.071 0 8.535 1.464C22 4.93 22 7.286 22 12c0 4.714 0 7.071-1.465 8.535C19.072 22 16.714 22 12 22s-7.071 0-8.536-1.465C2 19.072 2 16.714 2 12Z'
+					opacity='.5'
+				></path>
+			</g>
+		</svg>
+	);
+}
+
+
+export function DateDoubleArrowIcon(props) {
+	return (
+		<svg
+			xmlns='http://www.w3.org/2000/svg'
+			width='1em'
+			height='1em'
+			viewBox='0 0 24 24'
+			{...props}
+		>
+			<g fill='none' stroke='currentColor' strokeWidth='1.5'>
+				<path
+					d='M2 12c0-4.714 0-7.071 1.464-8.536C4.93 2 7.286 2 12 2c4.714 0 7.071 0 8.535 1.464C22 4.93 22 7.286 22 12c0 4.714 0 7.071-1.465 8.535C19.072 22 16.714 22 12 22s-7.071 0-8.536-1.465C2 19.072 2 16.714 2 12Z'
+					opacity='.5'
+				></path>
+				<path
+					strokeLinecap='round'
+					strokeLinejoin='round'
+					d='m15.5 9l-3 3l3 3m-4-6l-3 3l3 3'
+				></path>
+			</g>
+		</svg>
+	);
+}
+
+
+
+
+export function AddCheckIcon(props) {
+	return (
+		<svg
+			xmlns='http://www.w3.org/2000/svg'
+			width='1em'
+			height='1em'
+			viewBox='0 0 24 24'
+			{...props}
+		>
+			<g fill='none' stroke='currentColor' strokeWidth='1.5'>
+				<path
+					d='M2 12c0-4.714 0-7.071 1.464-8.536C4.93 2 7.286 2 12 2c4.714 0 7.071 0 8.535 1.464C22 4.93 22 7.286 22 12c0 4.714 0 7.071-1.465 8.535C19.072 22 16.714 22 12 22s-7.071 0-8.536-1.465C2 19.072 2 16.714 2 12Z'
+					opacity='.5'
+				></path>
+				<path strokeLinecap='round' d='M15 12h-3m0 0H9m3 0V9m0 3v3'></path>
+			</g>
+		</svg>
+	);
+}
+
+
+export function CheckedIcon(props) {
+	return (
+		<svg
+			xmlns='http://www.w3.org/2000/svg'
+			width='1em'
+			height='1em'
+			viewBox='0 0 24 24'
+			{...props}
+		>
+			<path
+				fill='currentColor'
+				fillRule='evenodd'
+				d='M12 22c-4.714 0-7.071 0-8.536-1.465C2 19.072 2 16.714 2 12s0-7.071 1.464-8.536C4.93 2 7.286 2 12 2c4.714 0 7.071 0 8.535 1.464C22 4.93 22 7.286 22 12c0 4.714 0 7.071-1.465 8.535C19.072 22 16.714 22 12 22Zm4.03-13.03a.75.75 0 0 1 0 1.06l-5 5a.75.75 0 0 1-1.06 0l-2-2a.75.75 0 1 1 1.06-1.06l1.47 1.47l4.47-4.47a.75.75 0 0 1 1.06 0Z'
+				clipRule='evenodd'
+			></path>
+		</svg>
+	);
+}
+
+
+
+export function MinusIcon(props) {
+	return (
+		<svg
+			xmlns='http://www.w3.org/2000/svg'
+			width='1em'
+			height='1em'
+			viewBox='0 0 24 24'
+			{...props}
+		>
+			<g fill='none' stroke='currentColor' strokeWidth='1.5'>
+				<circle cx='12' cy='12' r='10' opacity='.5'></circle>
+				<path strokeLinecap='round' d='M15 12H9'></path>
+			</g>
+		</svg>
+	);
+}
+
+
+export function InviteIcon(props) {
+	return (
+		<svg
+			xmlns='http://www.w3.org/2000/svg'
+			width='1em'
+			height='1em'
+			viewBox='0 0 24 24'
+			{...props}
+		>
+			<g fill='none' stroke='currentColor' strokeWidth='1.5'>
+				<path d='m17.497 18.485l3.131-9.391c1.248-3.745 1.873-5.618.884-6.606c-.988-.989-2.86-.364-6.606.884l-9.331 3.11c-2.082.694-3.123 1.041-3.439 1.804a1.8 1.8 0 0 0-.133.564c-.059.824.717 1.6 2.269 3.151l.283.283c.254.254.382.382.478.523c.19.28.297.607.31.945c.008.171-.019.35-.072.705c-.196 1.304-.294 1.956-.179 2.458c.23 1 1.004 1.785 2 2.028c.5.123 1.154.034 2.46-.143l.072-.01c.368-.05.552-.075.729-.064c.32.019.63.124.898.303c.147.098.279.23.541.492l.252.252c1.51 1.51 2.265 2.265 3.066 2.226c.22-.011.438-.063.64-.152c.734-.323 1.072-1.336 1.747-3.362Z'></path>
+				<path strokeLinecap='round' d='M6 18L21 3' opacity='.5'></path>
+			</g>
+		</svg>
+	);
+}
+
+
+export function GoToLinkIcon(props) {
+	return (
+		<svg
+			xmlns='http://www.w3.org/2000/svg'
+			width='1em'
+			height='1em'
+			viewBox='0 0 24 24'
+			{...props}
+		>
+			<g
+				fill='none'
+				stroke='currentColor'
+				strokeLinecap='round'
+				strokeWidth='1.5'
+			>
+				<path
+					strokeLinejoin='round'
+					d='m13 11l9-9m0 0h-5.344M22 2v5.344'
+				></path>
+				<path
+					d='M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10s10-4.477 10-10'
+					opacity='.5'
+				></path>
+			</g>
+		</svg>
+	);
+}
+
+
+export function StartDateIcon(props) {
+	return (
+		<svg
+			xmlns='http://www.w3.org/2000/svg'
+			width='1em'
+			height='1em'
+			viewBox='0 0 24 24'
+			{...props}
+		>
+			<path
+				fill='currentColor'
+				fillRule='evenodd'
+				d='M12 22a9 9 0 1 0 0-18a9 9 0 0 0 0 18Zm1.026-11.725a14.49 14.49 0 0 0-.784-.508c-1.072-.652-1.609-.978-2.09-.617c-.48.36-.524 1.117-.612 2.628c-.024.427-.04.846-.04 1.222s.016.795.04 1.222c.088 1.512.132 2.268.613 2.629c.48.36 1.017.034 2.089-.618c.278-.169.547-.341.784-.508c.27-.19.565-.418.862-.66C14.963 14.188 15.5 13.75 15.5 13s-.537-1.188-1.612-2.065c-.297-.242-.591-.47-.862-.66Zm-4.89-8.672a.75.75 0 0 1-.238 1.033l-4 2.5a.75.75 0 0 1-.795-1.272l4-2.5a.75.75 0 0 1 1.033.239Zm7.728 0a.75.75 0 0 1 1.034-.239l4 2.5a.75.75 0 1 1-.795 1.272l-4-2.5a.75.75 0 0 1-.239-1.033Z'
+				clipRule='evenodd'
+			></path>
+		</svg>
+	);
+}
+
+
+
+export function DueDateIcon(props) {
+	return (
+		<svg
+			xmlns='http://www.w3.org/2000/svg'
+			width='1em'
+			height='1em'
+			viewBox='0 0 24 24'
+			{...props}
+		>
+			<path
+				fill='currentColor'
+				fillRule='evenodd'
+				d='M12 22a9 9 0 1 0 0-18a9 9 0 0 0 0 18Zm2.652-11.652a.75.75 0 0 1 0 1.061L13.06 13l1.59 1.591a.75.75 0 0 1-1.06 1.06L12 14.061l-1.592 1.59a.75.75 0 0 1-1.06-1.06l1.59-1.59l-1.59-1.592a.75.75 0 1 1 1.06-1.06L12 11.938l1.591-1.59a.75.75 0 0 1 1.06 0ZM8.136 1.603a.75.75 0 0 1-.238 1.033l-4 2.5a.75.75 0 0 1-.795-1.272l4-2.5a.75.75 0 0 1 1.033.239Zm7.728 0a.75.75 0 0 1 1.034-.239l4 2.5a.75.75 0 1 1-.795 1.272l-4-2.5a.75.75 0 0 1-.239-1.033Z'
+				clipRule='evenodd'
+			></path>
+		</svg>
+	);
+}
+
+
+
+export function StatusIcon(props) {
+	return (
+		<svg
+			xmlns='http://www.w3.org/2000/svg'
+			width='1em'
+			height='1em'
+			viewBox='0 0 24 24'
+			{...props}
+		>
+			<g fill='none' stroke='currentColor' strokeWidth='1.5'>
+				<path
+					strokeLinecap='round'
+					strokeLinejoin='round'
+					d='M11 7L8 17m8-10l-3 10m5-7H7m10 4H6'
+				></path>
+				<path
+					d='M2 12C2 6.477 6.477 2 12 2s10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12Z'
+					opacity='.5'
+				></path>
+			</g>
+		</svg>
+	);
+}

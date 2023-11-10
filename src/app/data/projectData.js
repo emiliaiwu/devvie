@@ -83,11 +83,28 @@ export const projectStatus = [
 ];
 
 export const priorityTags = [
-	{ tag: "🎯High Priority", color: "rgb(255, 49, 49)" },
-	{ tag: "Medium Priority", color: "rgb(255, 95, 31)" },
-	{ tag: "Low Priority", color: "rgb(255, 191, 0)" },
-	{ tag: "Critical", color: "rgb(255, 95, 31)" },
-	{ tag: "ASAP", color: "rgb(255, 95, 31)" },
+	{
+		tag: "High Priority",
+		background: "rgba(255,87,36,.15)",
+		color: "#ff5724",
+	},
+	{
+		tag: "Medium Priority",
+		background: "rgba(255,152,0,.15)",
+		color: "#ff9800",
+	},
+	{
+		tag: "Low Priority",
+		background: "rgba(14,165,233,.15)",
+		color: "#0ea5e9",
+	},
+	{ tag: "Urgent", background: "rgba(240,0,185,.15)", color: "#ff57d8" },
+	{ tag: "Important", background: "rgba(16,185,129,.15)", color: "#10b981" },
+	{
+		tag: "Deadline",
+		background: "rgba(95,90,246,.15)",
+		color: "rgb(95,90,246)",
+	},
 ];
 
 export const techStack = [
@@ -274,8 +291,6 @@ export const techStack = [
 	},
 ];
 
-
-
 export const projectTags = [
 	{ tag: "Web App", color: "#00b287" },
 	{ tag: "Frontend", color: "#dc0cd3" },
@@ -292,3 +307,65 @@ export const projectTags = [
 	{ tag: "Fullstack", color: "#a30ca3" },
 	{ tag: "Open source", color: "#F24C3D" },
 ];
+
+export const daysOfWeek = [
+	"Sunday",
+	"Monday",
+	"Tuesday",
+	"Wednesday",
+	"Thursday",
+	"Friday",
+	"Saturday",
+];
+
+export const monthsOfYear = [
+	"January",
+	"February",
+	"March",
+	"April",
+	"May",
+	"June",
+	"July",
+	"August",
+	"September",
+	"October",
+	"November",
+	"December",
+];
+
+export const allTechStack = [
+	"React",
+	"Angular",
+	"Vue",
+	"Express.js",
+	"Ruby on Rails",
+	"Django",
+	"jQuery",
+	"Firebase",
+	"Bootstrap",
+	"Tailwind",
+	"TensorFlow",
+	"PyTorch",
+	"Redux",
+	"Lodash",
+	"JavaScript",
+	"Python",
+	"Java",
+	"C++",
+	"C#",
+	"Swift",
+	"Go",
+	"Ruby",
+	"HTML",
+	"CSS",
+	"TypeScript",
+	"Perl",
+	"R",
+	"SQL",
+	"PHP",
+	"C",
+];
+
+export const myTechStack = ["React"];
+
+export const category = ["personal", "teams"];

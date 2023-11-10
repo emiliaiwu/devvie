@@ -18,7 +18,7 @@ const FontStyle = () => {
 	const memoizedFontClick = useCallback(handleFontClick, [handleFontClick]);
 
 	return (
-		<div className='lg:w-1/3 relative w-full sm:w-2/3'>
+		<div className='lg:w-1/3 relative w-full sm:w-2/3 '>
 			<div
 				style={{ backgroundColor: newUserPreferences.shade.other }}
 				onClick={memoizedToggleDropDown}
@@ -45,7 +45,7 @@ const FontStyle = () => {
 						backgroundColor: newUserPreferences.shade.other,
 					}}
 					onMouseLeave={() => setIsOpen(false)}
-					className={`${newUserPreferences.border} bg-opacity-40 overflow-hidden px-1 py-5 `}
+					className={`${newUserPreferences.border} bg-opacity-40 overflow-hidden px-1 py-5 absolute w-full z-50`}
 				>
 					<ul
 						style={{

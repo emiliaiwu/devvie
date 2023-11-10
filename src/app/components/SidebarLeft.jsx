@@ -58,7 +58,7 @@ const SidebarLeft = () => {
 										color: userPreferences.shade.text.primaryText,
 									}}
 									className='hidden group-hover:block absolute sidebar-tooltip 
-										left-12 p-2 bg-blue-500 bg-[--tooltip-color] font-medium text-xs rounded'
+										left-12 p-2 bg-[--tooltip-color] font-medium text-xs rounded'
 								>
 									{menu.title}
 								</div>
@@ -100,7 +100,7 @@ const SidebarLeft = () => {
 										color: userPreferences.shade.text.primaryText,
 									}}
 									className='hidden group-hover:block absolute sidebar-tooltip 
-										left-12 p-2 bg-blue-500 bg-[--tooltip-color] font-medium text-xs rounded'
+										left-12 p-2  bg-[--tooltip-color] font-medium text-xs rounded'
 								>
 									{menu.title}
 								</div>
@@ -142,7 +142,7 @@ const SidebarLeft = () => {
 										color: userPreferences.shade.text.primaryText,
 									}}
 									className='hidden group-hover:block absolute sidebar-tooltip 
-										left-12 p-2 bg-blue-500 bg-[--tooltip-color] font-medium text-xs rounded'
+										left-12 p-2 bg-[--tooltip-color] font-medium text-xs rounded'
 								>
 									{menu.title}
 								</div>

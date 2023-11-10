@@ -30,7 +30,7 @@ const DevTestimonials = () => {
 			{developerTestimonials.map((item, index) => (
 				<SwiperSlide key={index}>
 					<div className={`${item.color} rounded-3xl w-[300px] h-[180px] p-5 flex flex-col justify-center`}>
-						<p className='text-black font-DMSans text-sm mb-4'>
+						<p className='text-black font-DMSans text-sm mb-4 whitespace-normal'>
 							{item.message}
 						</p>
 						<div className='flex items-center gap-3'>

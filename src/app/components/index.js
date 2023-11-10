@@ -10,6 +10,10 @@ import Sort from "./Sort";
 import Board from "./Board";
 import HoverAccentColor from "./HoverAccentColor";
 import Tag from "./Tag";
+import PriorityTag from "./PriorityTag";
+import ChooseStartDate from "./ChooseStartDate";
+import ChooseDueDate from "./ChooseDueDate";
+import DatePicker from "./DatePicker";
 export {
 	SidebarLeft,
 	Search,
@@ -23,4 +27,8 @@ export {
 	Board,
 	HoverAccentColor,
 	Tag,
+	PriorityTag,
+	ChooseStartDate,
+	DatePicker,
+	ChooseDueDate,
 };

@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { NavLink, Outlet } from "react-router-dom";
-import { AppContext, UserPreferencesContext } from "../context";
+import { AppContext, ProjectContext, UserPreferencesContext } from "../context";
 import {
 	mainProjects,
 	finishedProjects,
@@ -8,16 +8,35 @@ import {
 } from "../data/projectData";
 
 import { AddProjectIcon } from "../data/icon";
+import CreateNewProjectModal from "../features/project/CreateNewProjectModal";
+import { usePreventBodyScroll } from "../../hooks";
 
 const ProjectLayout = () => {
 	const { isSidebarOpen } = useContext(AppContext);
 	const { userPreferences } = useContext(UserPreferencesContext);
+	const { isCreateNewProjectModalOpen, setIsCreateNewProjectModalOpen } =
+		useContext(ProjectContext);
+
+	usePreventBodyScroll(isCreateNewProjectModalOpen);
 
 	return (
 		<section
 			style={{ backgroundColor: userPreferences.shade.background }}
-			className=' md:pl-20 min-h-screen mt-[70px] md:mt-0 mx-auto '
+			className=' md:pl-20 min-h-screen mt-[70px] md:mt-0 mx-auto relative'
 		>
+			<div
+				className={`${
+					isCreateNewProjectModalOpen ? "right-0" : "-right-[100%]"
+				} absolute transition-all duration-3333333300 ease z-[1000]`}
+			>
+				<div className="z-[1000]">
+					<CreateNewProjectModal />
+				</div>
+				{isCreateNewProjectModalOpen && (
+					<div className='fixed z-[-1] bg-black bg-opacity-80 inset-0'></div>
+				)}
+			</div>
+
 			<div
 				style={{ backgroundColor: userPreferences.shade.background }}
 				className='flex flex-col lg:flex-row justify-between h-full'
@@ -49,13 +68,21 @@ const ProjectLayout = () => {
 						}}
 						className={`${userPreferences.border} border hover:border-dashed mx-7 w-36 px-4 h-9 cursor-pointer whitespace-nowrap`}
 					>
-						<NavLink
+						<button
+							onClick={() => setIsCreateNewProjectModalOpen(true)}
+							className='flex items-center h-full w-full gap-2'
+						>
+							<AddProjectIcon />
+							<span className='capitalize text-sm'>new project</span>
+						</button>
+
+						{/* <NavLink
 							to={"new"}
 							className='flex items-center h-full w-full gap-2'
 						>
 							<AddProjectIcon />
 							<span className='capitalize text-sm'>new project</span>
-						</NavLink>
+						</NavLink> */}
 					</div>
 
 					{/* list */}

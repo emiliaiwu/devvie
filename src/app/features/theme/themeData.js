@@ -91,7 +91,6 @@ export const borderRadiusOptions = [
 // 	},
 // };
 
-
 export const darkShades = {
 	DarkCoder: {
 		background: "#181818",
@@ -137,12 +136,12 @@ export const darkShades = {
 export const lightShades = {
 	DayScript: {
 		background: "#FFFFFF",
-		card: "#F0F0F0",
+		card: "#eeeeee",
 		text: {
 			primaryText: "#000000",
-			secondaryText: "#999999",
+			secondaryText: "#888888",
 		},
-		other: "#E0E0E0",
+		other: "#dedede",
 	},
 
 	LumiCode: {
