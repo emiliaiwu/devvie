@@ -6,8 +6,8 @@ const ChangeStatus = ({project }) => {
 	const { userPreferences } = useContext(UserPreferencesContext);
 	const {
 		columns,
-		setSelectedStatus,
 		setProjectToBeUpdated,
+		setNewProject
 	} = useContext(ProjectContext);
 	const memoizedShapes = useMemo(() => {
 		const shapesArray = projectStatus.map((statusItem) => statusItem.shape);
@@ -15,11 +15,14 @@ const ChangeStatus = ({project }) => {
 	}, []);
 
 	const handleClick = (item) => {
-		setSelectedStatus({
-			id: item.id,
-			title: item.title,
-			color: item.color,
-        });
+		setNewProject((prev) => ({
+			...prev,
+			status: {
+				id: item.id,
+				title: item.title,
+				color: item.color,
+			},
+		}));
         setProjectToBeUpdated(project)
 	};
 
@@ -40,7 +43,7 @@ const ChangeStatus = ({project }) => {
 						key={item.id}
 						className={`${
 							projectStatus.length - 1 === index ? "border-none" : "border-b"
-						} flex items-center gap-2 p-3 pl-7 cursor-pointer`}
+						} flex items-center gap-2 p-3 pl-7 cursor-pointer hover:bg-black hover:bg-opacity-20`}
 					>
 						<span style={{ color: `${item.color}` }}>
 							{createElement(memoizedShapes[index], {

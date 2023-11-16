@@ -13,23 +13,20 @@ import {
 	doc,
 	orderBy,
 	getDoc,
+	setDoc,
 } from "firebase/firestore";
 
 const ProjectContext = createContext();
 
 export const ProjectContextProvider = ({ children }) => {
 	const generateID = useAlphanumericID();
-	const { user, setLoading, loading } = useContext(AuthContext);
+	const { user, setLoading } = useContext(AuthContext);
 	const userId = user ? user.uid : null;
-	const [isProjectModalOpen, setIsProjectModalOpen] = useState(false);
-	const [newProjectTitle, setNewProjectTitle] = useState("");
-	const [newProjectDescription, setNewProjectDescription] = useState("");
-	const [selectedProjectTags, setSelectedProjectTags] = useState([]);
-	const [selectedProjectTechStack, setSelectedProjectTechStack] = useState([]);
-	const [selectedCategory, setSelectedCategory] = useState("Personal");
+	const [isSubmitting, setIsSubmitting] = useState(false);
+
+	// const [isProjectModalOpen, setIsProjectModalOpen] = useState(false);
 	const [isCreateNewProjectModalOpen, setIsCreateNewProjectModalOpen] =
 		useState(false);
-	const [selectedPriority, setSelectedPriority] = useState(priorityTags[0]);
 
 	// add column ID to project Status array
 	const projectColumns = projectStatus.map((statusItem) => ({
@@ -38,25 +35,10 @@ export const ProjectContextProvider = ({ children }) => {
 	}));
 
 	// columns
-	function initializeColumns() {
-		const newColumns = projectColumns.map((statusItem) => ({
-			id: statusItem.id,
-			color: statusItem.color,
-			title: statusItem.status,
-			projects: [],
-		}));
-		return newColumns;
-	}
-	const initialColumns = initializeColumns();
-	const [columns, setColumns] = useState(initialColumns);
-	const [projects, setProjects] = useState([]);
+	const [columns, setColumns] = useState([]);
+	const [projectss, setProjects] = useState([]);
 	const [isUpdating, setIsUpdating] = useState(false);
 	const [projectToBeUpdated, setProjectToBeUpdated] = useState([]);
-	const [selectedStatus, setSelectedStatus] = useState({
-		id: columns[0].id,
-		title: columns[0].title,
-		color: columns[0].color,
-	});
 
 	const memoizedColumns = useMemo(() => {
 		return columns.map((column) => ({
@@ -64,13 +46,170 @@ export const ProjectContextProvider = ({ children }) => {
 		}));
 	}, [columns]);
 
-	// FIREBASE -------------------------------------------------------------
+	const columnsId = useMemo(() => columns?.map((col) => col.id), [columns])
 
-	
+	// date------------------------------------------------------
+	const [selectedDueDate, setSelectedDueDate] = useState(null);
+	const [selectedStartDate, setSelectedStartDate] = useState(null);
+	const [selectedDate, setSelectedDate] = useState(null);
+	const [isDueDateOpen, setIsDueDateOpen] = useState(false);
+	const [isStartDateOpen, setIsStartDateOpen] = useState(false);
+	const [dateToCompare, setDateToCompare] = useState({
+		startDate: "",
+		dueDate: "",
+	});
+
+	useEffect(() => {
+		const today = new Date();
+		const day = today.getDate();
+		// const dayOfWeek = daysOfWeek[today.getDay()];
+		const monthOfYear = today.getMonth();
+		const year = today.getFullYear();
+		const formattedDay = String(day).padStart(2, "0");
+		const formattedDate = `${formattedDay}-${monthOfYear}-${year}`;
+		setSelectedStartDate(formattedDate);
+		setSelectedDueDate(formattedDate);
+		setSelectedDate(formattedDate);
+	}, []);
+
+	// PROJECT
+	const initialProjectState = {
+		title: "",
+		description: "",
+		tag: [],
+		priority: priorityTags[0],
+		stack: [],
+		startDate: selectedDate,
+		dueDate: selectedDate,
+		status: {},
+	};
+
+	const [newProject, setNewProject] = useState(initialProjectState);
+
+	// Modal open and close state
+	const [isNewProjectOpen, setIsNewProjectOpen] = useState({
+		status: false,
+		tag: false,
+		priority: false,
+		stack: false,
+	});
+
+	const handleModalOpen = (key) => {
+		setIsNewProjectOpen((prev) => {
+			const newState = { ...prev };
+
+			// Set the selected key to true, and all others to false
+			Object.keys(newState).forEach((stateKey) => {
+				newState[stateKey] = stateKey === key;
+			});
+
+			return newState;
+		});
+	};
+
+	const handleModalClose = () => {
+		setIsNewProjectOpen((prev) => {
+			const newState = { ...prev };
+
+			// Set all keys to false
+			Object.keys(newState).forEach((stateKey) => {
+				newState[stateKey] = false;
+			});
+
+			return newState;
+		});
+	};
+
+	// Modal Errors
+	const [newProjectErrors, setNewProjectErrors] = useState({
+		title: "",
+		description: "",
+		tag: "",
+		stack: "",
+		status: "",
+		date: "",
+	});
+
+	// Validate Date
+	const validateDate = () => {
+		const startDate = new Date(dateToCompare.startDate);
+		startDate.setHours(0, 0, 0, 0);
+		const dueDate = new Date(dateToCompare.dueDate);
+		dueDate.setHours(0, 0, 0, 0);
+
+		if (dateToCompare.startDate > dateToCompare.dueDate) {
+			setNewProjectErrors((prevErrors) => ({
+				...prevErrors,
+				date: "Start date is greater than due date",
+			}));
+		}
+
+		if (dateToCompare.startDate === dateToCompare.dueDate) {
+			setNewProjectErrors((prevErrors) => ({
+				...prevErrors,
+				date: "Start and due dates are equal",
+			}));
+		}
+	};
+
+	// VALIDATE CREATE NEW PROJECT ERRORS
+	const handleValidation = () => {
+		// Reset errors
+		setNewProjectErrors({
+			title: "",
+			description: "",
+			tag: "",
+			stack: "",
+			status: "",
+			date: "",
+		});
+
+		// validate date
+		validateDate();
+
+		// Validate title
+		if (newProject.title.trim() === "") {
+			setNewProjectErrors((prevErrors) => ({
+				...prevErrors,
+				title: "Title cannot be empty",
+			}));
+		}
+
+		if (newProject.description.trim() === "") {
+			setNewProjectErrors((prevErrors) => ({
+				...prevErrors,
+				description: "Description cannot be empty",
+			}));
+		}
+
+		if (newProject.tag.length === 0) {
+			setNewProjectErrors((prevErrors) => ({
+				...prevErrors,
+				tag: "Pick at least one tag",
+			}));
+		}
+
+		if (newProject.stack.length === 0) {
+			setNewProjectErrors((prevErrors) => ({
+				...prevErrors,
+				stack: "Pick at least one technology",
+			}));
+		}
+
+		if (newProject.status.length === 0) {
+			setNewProjectErrors((prevErrors) => ({
+				...prevErrors,
+				status: "Pick the project status",
+			}));
+		}
+	};
+
+	// FIREBASE -------------------------------------------------------------
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
 				if (user) {
+					setLoading(true);
 					// Fetch columns
 					const columnsRef = collection(
 						firestore,
@@ -121,12 +260,15 @@ export const ProjectContextProvider = ({ children }) => {
 						);
 
 						setColumns(defaultColumns);
+						setLoading(false);
 					} else {
 						setColumns(fetchedColumns);
+						setLoading(false);
 					}
 				}
 			} catch (error) {
 				console.error("Error fetching columns or projects:", error);
+				setLoading(false);
 			}
 		};
 
@@ -135,18 +277,20 @@ export const ProjectContextProvider = ({ children }) => {
 
 	// RESET
 	function reset() {
-		setNewProjectTitle("");
-		setNewProjectDescription("");
-		setSelectedProjectTags([]);
-		setSelectedPriority(priorityTags[0]);
-		setSelectedProjectTechStack([]);
-		setSelectedStartDate(selectedDate);
-		setSelectedDueDate(selectedDate);
-		setSelectedStatus(projectStatus[0]);
 		setIsCreateNewProjectModalOpen(false);
+		setNewProject({
+			title: "",
+			description: "",
+			tag: [],
+			priority: priorityTags[0],
+			stack: [],
+			startDate: selectedStartDate,
+			dueDate: selectedDate,
+			status: [],
+		});
 	}
 
-	// FETCH PROJECTS
+	// FETCH PTOJECTS
 	const fetchProjectsUnderColumn = async (columnId) => {
 		try {
 			// Reference to the projects collection under the specific column
@@ -180,13 +324,19 @@ export const ProjectContextProvider = ({ children }) => {
 		}
 	};
 
-
-
 	// CREATE PROJECT
 	const createNewProject = async () => {
+		setIsSubmitting(true);
+		handleValidation();
+
+		if (Object.values(newProjectErrors).some((value) => value !== "")) {
+			alert("Validation failed. Project not created.");
+			return;
+		}
+
 		try {
 			const matchingColumn = columns.find(
-				(column) => column.title === selectedStatus.title
+				(column) => column.title === newProject.status.title
 			);
 
 			if (matchingColumn) {
@@ -199,14 +349,14 @@ export const ProjectContextProvider = ({ children }) => {
 				);
 
 				const newProjectRef = await addDoc(collection(columnRef, "projects"), {
-					title: newProjectTitle,
-					description: newProjectDescription,
-					tag: selectedProjectTags,
-					priority: selectedPriority,
-					stack: selectedProjectTechStack,
-					startDate: selectedStartDate,
-					dueDate: selectedDueDate,
-					status: selectedStatus,
+					title: newProject.title,
+					description: newProject.description,
+					tag: newProject.tag,
+					priority: newProject.priority,
+					stack: newProject.stack,
+					startDate: newProject.startDate,
+					dueDate: newProject.dueDate,
+					status: newProject.status,
 					columnId: columnId,
 				});
 
@@ -229,56 +379,77 @@ export const ProjectContextProvider = ({ children }) => {
 			} else {
 				console.error(
 					"Matching column not found for the project status:",
-					selectedStatus
+					newProject.status
 				);
 			}
 		} catch (error) {
 			console.error("Error creating project:", error);
 		} finally {
 			// Reset form and close modal
+			setIsSubmitting(false);
 			reset();
+			handleModalClose();
 		}
 	};
 
 	// UPDATE PROJECT
 	const handleUpdateProject = async () => {
-		if (
-			newProjectTitle.trim() === "" &&
-			newProjectDescription.trim() === "" &&
-			selectedStartDate.trim() === "" &&
-			selectedDueDate.trim() === ""
-		) {
-			console.error("All fields are empty or contain only whitespace.");
-			return;
-		}
-
+		setIsSubmitting(true);
 		const updatedProjectData = {
+			...newProject,
 			id: projectToBeUpdated.id,
-			title: newProjectTitle,
-			description: newProjectDescription,
-			tag: selectedProjectTags,
-			priority: selectedPriority,
-			stack: selectedProjectTechStack,
-			startDate: selectedStartDate,
-			dueDate: selectedDueDate,
-			status: selectedStatus,
+			columnId: projectToBeUpdated.columnId,
 		};
 
 		try {
-			const projectRef = doc(
-				firestore,
-				`projectBoard/${userId}/columns/${projectToBeUpdated.columnId}/projects/${projectToBeUpdated.id}`
+			const matchingColumn = columns.find(
+				(column) => column.title === newProject.status.title
 			);
 
-			await updateDoc(projectRef, updatedProjectData);
+			if (matchingColumn) {
+				const newColumnId = matchingColumn.id;
 
-			await fetchProjectsUnderColumn(projectToBeUpdated.columnId);
+				const updatedProjectDataWithColumnId = {
+					...updatedProjectData,
+					columnId:
+						newColumnId !== projectToBeUpdated.columnId
+							? newColumnId
+							: projectToBeUpdated.columnId,
+				};
+
+				if (newColumnId !== projectToBeUpdated.columnId) {
+					// Move project to the new column
+					const projectRef = doc(
+						firestore,
+						`projectBoard/${userId}/columns/${projectToBeUpdated.columnId}/projects/${projectToBeUpdated.id}`
+					);
+					await deleteDoc(projectRef);
+
+					const newProjectRef = doc(
+						firestore,
+						`projectBoard/${userId}/columns/${newColumnId}/projects/${projectToBeUpdated.id}`
+					);
+					await setDoc(newProjectRef, updatedProjectDataWithColumnId);
+				} else {
+					// Just update the project data if the status is the same
+					const projectRef = doc(
+						firestore,
+						`projectBoard/${userId}/columns/${newColumnId}/projects/${projectToBeUpdated.id}`
+					);
+					await updateDoc(projectRef, updatedProjectDataWithColumnId);
+				}
+
+				// Fetch projects for the new and old columns
+				await fetchProjectsUnderColumn(newColumnId);
+				await fetchProjectsUnderColumn(projectToBeUpdated.columnId);
+			}
 
 			console.log("Project updated successfully!");
 		} catch (error) {
 			console.error("Error updating project:", error.message);
 		}
-
+		setIsSubmitting(false);
+		reset();
 		setIsCreateNewProjectModalOpen(false);
 	};
 
@@ -305,26 +476,6 @@ export const ProjectContextProvider = ({ children }) => {
 		}
 	};
 
-	// date------------------------------------------------------
-	const [selectedDueDate, setSelectedDueDate] = useState(null);
-	const [selectedStartDate, setSelectedStartDate] = useState(null);
-	const [selectedDate, setSelectedDate] = useState(null);
-	const [isDueDateOpen, setIsDueDateOpen] = useState(false);
-	const [isStartDateOpen, setIsStartDateOpen] = useState(false);
-
-	useEffect(() => {
-		const today = new Date();
-		const day = today.getDate();
-		// const dayOfWeek = daysOfWeek[today.getDay()];
-		const monthOfYear = today.getMonth();
-		const year = today.getFullYear();
-		const formattedDay = String(day).padStart(2, "0");
-		const formattedDate = `${formattedDay}-${monthOfYear}-${year}`;
-		setSelectedStartDate(formattedDate);
-		setSelectedDueDate(formattedDate);
-		setSelectedDate(formattedDate);
-	}, []);
-
 	// TAGS
 	const projectTagsWithID = projectTags.map((tagObj) => ({
 		id: generateID(),
@@ -342,44 +493,51 @@ export const ProjectContextProvider = ({ children }) => {
 		setIsCreateNewProjectModalOpen(true);
 		setIsUpdating(true);
 		setProjectToBeUpdated(project);
-		setNewProjectTitle(project.title);
-		setNewProjectDescription(project.description);
-		setSelectedProjectTags(project.tag);
-		setSelectedPriority(project.priority);
-		setSelectedProjectTechStack(project.stack);
-		setSelectedStartDate(project.startDate);
-		setSelectedDueDate(project.dueDate);
-		setSelectedStatus(project.status);
+
+		setNewProject((prev) => ({
+			...prev,
+			title: project.title,
+			description: project.description,
+			tag: project.tag,
+			priority: project.priority,
+			stack: project.stack,
+			startDate: project.startDate,
+			dueDate: project.dueDate,
+			status: project.status,
+		}));
+	};
+
+	// Update Status
+	const handleChangeStatus = (project) => {
+		setProjectToBeUpdated(project);
+
+		setNewProject((prev) => ({
+			...prev,
+			title: project.title,
+			description: project.description,
+			tag: project.tag,
+			priority: project.priority,
+			stack: project.stack,
+			startDate: project.startDate,
+			dueDate: project.dueDate,
+			status: project.status,
+		}));
 	};
 
 	// HANDLE CANCEL CREATE NEW PROJECT
 	const handleCancel = () => {
 		setIsCreateNewProjectModalOpen(false);
-		setNewProjectTitle("");
-		setNewProjectDescription("");
-		setSelectedProjectTags([]);
-		setSelectedPriority(priorityTags[0]);
-		setSelectedProjectTechStack([]);
-		setSelectedStartDate(selectedDate);
-		setSelectedDueDate(selectedDate);
-		setSelectedStatus(projectStatus[0]);
+		setNewProject(initialProjectState);
 		setIsUpdating(false);
+		handleModalClose();
 	};
 
 	return (
 		<ProjectContext.Provider
 			value={{
 				createNewProject,
-				setNewProjectTitle,
-				isProjectModalOpen,
-				newProjectTitle,
-				newProjectDescription,
-				setIsProjectModalOpen,
-				setNewProjectDescription,
 				setAllProjectTags,
-				setSelectedProjectTags,
 				allProjectTags,
-				selectedProjectTags,
 				generateID,
 				selectedDueDate,
 				setSelectedDueDate,
@@ -389,16 +547,8 @@ export const ProjectContextProvider = ({ children }) => {
 				setIsDueDateOpen,
 				isStartDateOpen,
 				setIsStartDateOpen,
-				selectedProjectTechStack,
-				setSelectedProjectTechStack,
-				selectedCategory,
-				setSelectedCategory,
 				isCreateNewProjectModalOpen,
 				setIsCreateNewProjectModalOpen,
-				selectedPriority,
-				setSelectedPriority,
-				selectedStatus,
-				setSelectedStatus,
 				isUpdating,
 				setIsUpdating,
 				handleEditProject,
@@ -407,8 +557,19 @@ export const ProjectContextProvider = ({ children }) => {
 				projectColumns,
 				handleCancel,
 				columns: memoizedColumns,
-				projects,
 				setProjectToBeUpdated,
+				handleChangeStatus,
+				newProjectErrors,
+				setNewProjectErrors,
+				isNewProjectOpen,
+				newProject,
+				setNewProject,
+				setDateToCompare,
+				handleModalClose,
+				handleModalOpen,
+				isSubmitting,
+				columnsId,
+				projectss
 			}}
 		>
 			{children}

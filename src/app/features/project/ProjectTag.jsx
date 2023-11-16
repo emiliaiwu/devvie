@@ -3,53 +3,53 @@ import {
 	CancelCircleIcon,
 	EditCircleIcon,
 	MinusIcon,
-	TagIcon,
 } from "../../data/icon";
 import { ProjectContext, UserPreferencesContext } from "../../context";
-import { useContext, useState, useRef, useEffect } from "react";
-import { projectTags } from "../../data/projectData";
+import { useContext, useState } from "react";
 import { HoverAccentColor, Tag } from "../../components";
 import ManageTags from "./ManageTags";
-import { useScrollToDropdown } from "../../../hooks";
 
 const ProjectTag = () => {
 	const { userPreferences } = useContext(UserPreferencesContext);
-	const [isTagOpen, setIsTagOpen] = useState(false);
 	const [isManageTagOpen, setIsManageTagOpen] = useState(false);
 	const maxTags = 2;
 	const {
-		setAllProjectTags,
-		setSelectedProjectTags,
+		isNewProjectOpen,
+		handleModalOpen,
+		handleModalClose,
+		newProject,
+		setNewProject,
 		allProjectTags,
-		selectedProjectTags,
+
 		generateID,
 	} = useContext(ProjectContext);
-	const dropdownRef = useRef(null);
 
 	function handleSelectedTags(id, tag, color) {
-		const exists = selectedProjectTags.some((item) => item.tag === tag);
-		if (!exists && selectedProjectTags.length <= maxTags) {
-			setSelectedProjectTags([...selectedProjectTags, { id, tag, color }]);
+		const exists = newProject.tag.some((item) => item.tag === tag);
+		if (!exists && newProject.tag.length <= maxTags) {
+			setNewProject((prev) => ({
+				...prev,
+				tag: [...prev.tag, { id, tag, color }],
+			}));
 		}
 	}
 
-	useScrollToDropdown(isTagOpen, dropdownRef);
-
 	// handle manage tags
 	function handleManageTags() {
-		setIsTagOpen(false);
+		handleModalClose();
 		setIsManageTagOpen(true);
 	}
 
 	// remove tags
 	function handleDeleteTags(tagToDelete) {
-		const newProjectTags = selectedProjectTags.filter(
+		const newProjectTags = newProject.tag.filter(
 			(tag) => tag.id !== tagToDelete
 		);
-		setSelectedProjectTags(newProjectTags);
+		setNewProject((prev) => ({
+			...prev,
+			tag: newProjectTags,
+		}));
 	}
-
-	
 
 	return (
 		<div className='w-full relative z-[8]'>
@@ -65,10 +65,10 @@ const ProjectTag = () => {
 					className={`${userPreferences.border} flex items-center justify-between px-4 py-3 `}
 				>
 					<div className='flex-1 flex items-center h-8'>
-						{selectedProjectTags.length > 0 ? (
+						{newProject.tag.length > 0 ? (
 							<div className='w-full h-full flex items-center'>
 								<ul className='flex flex-wrap gap-3 items-center'>
-									{selectedProjectTags.map((tag) => (
+									{newProject.tag.map((tag) => (
 										<li key={tag.id}>
 											<Tag color={tag.color}>
 												<p>{tag.tag}</p>
@@ -97,12 +97,12 @@ const ProjectTag = () => {
 
 					<div className='cursor-pointer'>
 						<HoverAccentColor>
-							{isTagOpen ? (
-								<span onClick={() => setIsTagOpen(false)}>
+							{isNewProjectOpen.tag ? (
+								<span onClick={handleModalClose}>
 									<MinusIcon className='w-6 h-6' />
 								</span>
 							) : (
-								<span onClick={() => setIsTagOpen(true)}>
+								<span onClick={() => handleModalOpen("tag")}>
 									<AddIcon className='w-6 h-6' />
 								</span>
 							)}
@@ -112,10 +112,8 @@ const ProjectTag = () => {
 			</div>
 
 			{/* tags dropdown */}
-			{isTagOpen && (
+			{isNewProjectOpen.tag && (
 				<div
-					onMouseLeave={() => setIsTagOpen(false)}
-					ref={dropdownRef}
 					style={{
 						backgroundColor: userPreferences.shade.card,
 						borderColor: userPreferences.shade.other,
@@ -124,7 +122,7 @@ const ProjectTag = () => {
 					 w-[320px] pt-6 top-28 left-0 absolute border`}
 				>
 					<div className='relative'>
-						{selectedProjectTags.length > maxTags && (
+						{newProject.tag.length > maxTags && (
 							<div
 								className={`${userPreferences.border} absolute inset-0 flex justify-center items-center `}
 							>
@@ -134,7 +132,7 @@ const ProjectTag = () => {
 
 						<div
 							className={` ${
-								selectedProjectTags.length > maxTags
+								newProject.tag.length > maxTags
 									? "opacity-30 overflow-hidden"
 									: "opacity-100 overflow-y-scroll"
 							}  h-64  scroll ml-3 mr-2`}

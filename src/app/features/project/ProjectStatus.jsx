@@ -1,27 +1,35 @@
 import { ProjectContext, UserPreferencesContext } from "../../context";
-import { useContext, useState, useRef, createElement, useMemo } from "react";
+import { useContext, useRef, createElement, useMemo } from "react";
 import { projectStatus } from "../../data/projectData";
 import { DropdownArrowIcon } from "../../data/icon";
 import { HoverAccentColor } from "../../components";
 
 const ProjectStatus = () => {
 	const { userPreferences } = useContext(UserPreferencesContext);
-	const { selectedStatus, setSelectedStatus, setSelectedColumnID, columns } =
-		useContext(ProjectContext);
+	const {
+		isNewProjectOpen,
+		handleModalOpen,
+		handleModalClose,
+		newProject,
+		setNewProject,
+		columns,
+	} = useContext(ProjectContext);
 	const dropdownRef = useRef(null);
-	const [isStatusOpen, setIsStatusOpen] = useState();
 	const memoizedShapes = useMemo(() => {
 		const shapesArray = projectStatus.map((statusItem) => statusItem.shape);
 		return shapesArray;
 	}, []);
+
 	const handleClick = (item) => {
-		setSelectedStatus({
-			id: item.id,
-			title: item.title,
-			color: item.color,
-		});
-		setIsStatusOpen(false);
-		setSelectedColumnID(item.id);
+		setNewProject((prev) => ({
+			...prev,
+			status: {
+				id: item.id,
+				title: item.title,
+				color: item.color,
+			},
+		}));
+		handleModalClose()
 	};
 
 	return (
@@ -36,26 +44,28 @@ const ProjectStatus = () => {
 			>
 				<div className='flex items-center gap-1 px-1'>
 					<span
-						style={{ color: `${selectedStatus.color}` }}
-						className='text-base capitalize'
+						style={{ color: `${newProject.status?.color}` }}
+						className='text-base'
 					>
-						{selectedStatus.title}
+						{newProject.status?.title
+							? newProject.status.title
+							: "Choose your project status"}
 					</span>
 				</div>
 				<span
-					onClick={() => setIsStatusOpen(!isStatusOpen)}
+					onClick={() => handleModalOpen('status')}
 					className='cursor-pointer'
 				>
 					<HoverAccentColor>
 						<DropdownArrowIcon
 							className={`${
-								isStatusOpen ? "rotate-180" : ""
+								isNewProjectOpen.status ? "rotate-180" : ""
 							} w-6 h-6 transition-all duration-200 ease`}
 						/>
 					</HoverAccentColor>
 				</span>
 			</div>
-			{isStatusOpen && (
+			{isNewProjectOpen.status && (
 				<div
 					ref={dropdownRef}
 					style={{

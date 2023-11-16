@@ -13,8 +13,12 @@ import ChangeStatus from "./ChangeStatus";
 
 const ProjectCardModal = ({ project, setIsOpen }) => {
 	const { userPreferences } = useContext(UserPreferencesContext);
-	const { handleEditProject, handleDeleteProject, handleUpdateProject } =
-		useContext(ProjectContext);
+	const {
+		handleEditProject,
+		handleDeleteProject,
+		handleUpdateProject,
+		handleChangeStatus,
+	} = useContext(ProjectContext);
 	const [isStatusOpen, setIsStatusOpen] = useState(false);
 	console.log(isStatusOpen);
 
@@ -24,14 +28,20 @@ const ProjectCardModal = ({ project, setIsOpen }) => {
 		setIsStatusOpen(false);
 	};
 
-	const handleChangeStatus = (project) => {
-		handleEditProject(project);
-		setIsOpen(false);
+	const handleChange = (project) => {
+		handleChangeStatus(project);
 		setIsStatusOpen(true);
 	}
 
+	const handleDelete = (project) => {
+		handleDeleteProject(project.id, project.columnId);
+		setIsOpen(false)
+	}
+
+
 	return (
 		<div
+			onMouseLeave={() => setIsOpen(false)}
 			style={{
 				backgroundColor: userPreferences.shade.other,
 				color: userPreferences.shade.text.primaryText,
@@ -54,7 +64,7 @@ const ProjectCardModal = ({ project, setIsOpen }) => {
 				</div>
 			)}
 
-			<div className='flex flex-col gap-2 w-full h-full justify-center px-3'>
+			<div className='flex flex-col gap-2 w-full h-full justify-center px-4'>
 				<HoverAccentColor>
 					<button
 						onClick={() => handleEditProject(project)}
@@ -66,7 +76,7 @@ const ProjectCardModal = ({ project, setIsOpen }) => {
 				</HoverAccentColor>
 				<HoverAccentColor>
 					<button
-						onClick={() => handleChangeStatus(project)}
+						onClick={() => handleChange(project)}
 						className='flex items-center gap-2  text-sm cursor-pointer p-1'
 					>
 						<StatusIcon className='w-[18px] h-[18px]' />{" "}
@@ -75,7 +85,7 @@ const ProjectCardModal = ({ project, setIsOpen }) => {
 				</HoverAccentColor>
 				<HoverAccentColor>
 					<button
-						onClick={() => handleDeleteProject(project.id, project.columnId)}
+						onClick={() => handleDelete(project)}
 						className='flex items-center gap-2  text-sm cursor-pointer p-1'
 					>
 						<DeleteIcon className='w-[18px] h-[18px]' />{" "}

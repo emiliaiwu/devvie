@@ -9,7 +9,7 @@ const ProjectBoard = () => {
 	const { userPreferences } = useContext(UserPreferencesContext);
 
 	return (
-		<div className='flex flex-col relative  '>
+		<div className='flex flex-col relative overflow-x-hidden '>
 			{/* <div
 				className={`flex max-w-full justify-between gap-4 mb-14 transition-[height] duration-500 ease`}
 			>

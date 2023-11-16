@@ -3,7 +3,13 @@ import { useContext, useState } from "react";
 import { UserPreferencesContext } from "../context";
 import { daysOfWeek, monthsOfYear } from "../data/projectData";
 
-const DatePicker = ({ setSelectedDate, setOpen }) => {
+const DatePicker = ({
+	setSelectedDate,
+	setOpen,
+	setNewProject,
+	dateType,
+	setDateToCompare,
+}) => {
 	const { userPreferences } = useContext(UserPreferencesContext);
 	const daysAbbreviations = daysOfWeek.map((day) => day.slice(0, 3));
 	const [currentDate, setCurrentDate] = useState(new Date());
@@ -68,8 +74,19 @@ const DatePicker = ({ setSelectedDate, setOpen }) => {
 		// const dayOfWeek = selectedDate.getDay();
 		const monthOfYear = selectedDate.getMonth();
 		const formattedDay = String(selectedDay).padStart(2, "0");
-		const formattedDate = `${formattedDay}-${monthOfYear}-${year}`;
-		setSelectedDate(formattedDate);
+		const formattedDate = `${year}-${monthOfYear}-${formattedDay}`;
+		const selectedMonth = monthsOfYear[month].slice(0, 3);
+		const date = `${formattedDay} ${selectedMonth}, ${year}`;
+		setSelectedDate(date);
+
+		if (dateType === "startDate") {
+			setNewProject((prev) => ({ ...prev, startDate: date }));
+			setDateToCompare((prev) => ({ ...prev, startDate: formattedDate }));
+		} else if (dateType === "dueDate") {
+			setNewProject((prev) => ({ ...prev, dueDate: date }));
+			setDateToCompare((prev) => ({ ...prev, dueDate: formattedDate }));
+		}
+
 		setOpen(false);
 	};
 

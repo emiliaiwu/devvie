@@ -12,6 +12,9 @@ const ChooseStartDate = () => {
 		setSelectedStartDate,
 		isStartDateOpen,
 		setIsStartDateOpen,
+		setNewProject,
+		newProject,
+		setDateToCompare,
 	} = useContext(ProjectContext);
 
 
@@ -43,7 +46,7 @@ const ChooseStartDate = () => {
 					}}
 					className={`${userPreferences.border} w-full flex items-center gap-2 py-4 px-5`}
 				>
-					<span className='w-full text-base'>{selectedStartDate}</span>
+					<span className='w-full text-base'>{newProject.startDate}</span>
 					<span
 						onClick={() => setIsStartDateOpen(true)}
 						className='cursor-pointer'
@@ -60,7 +63,9 @@ const ChooseStartDate = () => {
 						<DatePicker
 							setSelectedDate={setSelectedStartDate}
 							setOpen={setIsStartDateOpen}
-						/>
+							setNewProject={setNewProject}
+							dateType='startDate'
+							setDateToCompare={setDateToCompare}						/>
 					</div>
 				</Popup>
 			)}

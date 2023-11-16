@@ -1,25 +1,30 @@
 import { ProjectContext, UserPreferencesContext } from "../../context";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { AddCheckIcon, AddIcon, CheckedIcon, MinusIcon } from "../../data/icon";
 import { HoverAccentColor } from "../../components";
 import { allTechStack } from "../../data/projectData";
 
 const ProjectTechStack = () => {
 	const { userPreferences } = useContext(UserPreferencesContext);
-	const { selectedProjectTechStack, setSelectedProjectTechStack } =
-		useContext(ProjectContext);
-	const [isTechStackOpen, setIsTechStackOpen] = useState(false);
+	const {
+		isNewProjectOpen,
+		handleModalOpen,
+		handleModalClose,
+		setNewProject,
+		newProject,
+	} = useContext(ProjectContext);
+
 	const sortedTechStack = allTechStack.slice().sort();
 
 	const handleCheckboxChange = (tech) => {
-		console.log(tech);
-		if (selectedProjectTechStack.includes(tech)) {
-			setSelectedProjectTechStack(
-				selectedProjectTechStack.filter((i) => i !== tech)
-			);
-		} else {
-			setSelectedProjectTechStack([...selectedProjectTechStack, tech]);
-		}
+		const updatedStack = newProject.stack.includes(tech)
+			? newProject.stack.filter((i) => i !== tech)
+			: [...newProject.stack, tech];
+
+		setNewProject((prev) => ({
+			...prev,
+			stack: updatedStack,
+		}));
 	};
 
 	// Tech Component
@@ -32,13 +37,13 @@ const ProjectTechStack = () => {
 				<label className='flex items-center gap-4 cursor-pointer'>
 					<input
 						type='checkbox'
-						checked={selectedProjectTechStack.includes(tech)}
+						checked={newProject.stack.includes(tech)}
 						value={tech}
 						onChange={() => handleCheckboxChange(tech)}
 						className='opacity-0'
 					/>
 					<span className='absolute'>
-						{selectedProjectTechStack.includes(tech) ? (
+						{newProject.stack.includes(tech) ? (
 							<CheckedIcon className='w-5 h-5' />
 						) : (
 							<AddCheckIcon className='w-5 h-5' />
@@ -50,8 +55,6 @@ const ProjectTechStack = () => {
 		);
 	}
 
-	
-
 	return (
 		<div
 			style={{
@@ -59,7 +62,7 @@ const ProjectTechStack = () => {
 				color: userPreferences.shade.text.primaryText,
 			}}
 			className={`${
-				isTechStackOpen ? "h-[500px]" : "h-full"
+				isNewProjectOpen.stack ? "h-[430px]" : "h-full"
 			} w-full mx-auto`}
 		>
 			<div className=''>
@@ -73,9 +76,9 @@ const ProjectTechStack = () => {
 						className={`${userPreferences.border} flex items-center justify-between px-4 gap-4 py-3`}
 					>
 						<div className='min-h-[2rem] text-base flex items-center w-full h-full gap-2 flex-wrap'>
-							{selectedProjectTechStack.length === 0
+							{newProject.stack.length === 0
 								? "Choose the project's tech stack"
-								: selectedProjectTechStack.map((tech) => (
+								: newProject.stack.map((tech) => (
 										<span
 											key={tech}
 											style={{
@@ -90,12 +93,12 @@ const ProjectTechStack = () => {
 						</div>
 						<div className='cursor-pointer'>
 							<HoverAccentColor>
-								{isTechStackOpen ? (
-									<span onClick={() => setIsTechStackOpen(false)}>
+								{isNewProjectOpen.stack ? (
+									<span onClick={handleModalClose}>
 										<MinusIcon className='w-6 h-6' />
 									</span>
 								) : (
-									<span onClick={() => setIsTechStackOpen(true)}>
+									<span onClick={() => handleModalOpen("stack")}>
 										<AddIcon className='w-6 h-6' />
 									</span>
 								)}
@@ -103,7 +106,7 @@ const ProjectTechStack = () => {
 						</div>
 					</div>
 
-					{isTechStackOpen && (
+					{isNewProjectOpen.stack && (
 						<div className='absolute left-0 top-[135%]'>
 							<div
 								style={{

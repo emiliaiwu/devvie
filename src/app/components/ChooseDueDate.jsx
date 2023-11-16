@@ -12,6 +12,9 @@ const ChooseDueDate = () => {
 		setSelectedDueDate,
 		isDueDateOpen,
 		setIsDueDateOpen,
+		setNewProject,
+		newProject,
+		setDateToCompare,
 	} = useContext(ProjectContext);
 
 	return (
@@ -37,7 +40,7 @@ const ChooseDueDate = () => {
 					}}
 					className={`${userPreferences.border} w-full flex items-center gap-2 py-4 px-5`}
 				>
-					<span className='w-full text-base'>{selectedDueDate}</span>
+					<span className='w-full text-base'>{newProject.dueDate}</span>
 					<span
 						onClick={() => setIsDueDateOpen(true)}
 						className='cursor-pointer'
@@ -58,6 +61,9 @@ const ChooseDueDate = () => {
 						<DatePicker
 							setSelectedDate={setSelectedDueDate}
 							setOpen={setIsDueDateOpen}
+							dateType='dueDate'
+							setNewProject={setNewProject}
+							setDateToCompare={setDateToCompare}
 						/>
 					</div>
 				</Popup>

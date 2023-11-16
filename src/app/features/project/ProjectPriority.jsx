@@ -1,17 +1,25 @@
 import { priorityTags } from "../../data/projectData";
 import { ProjectContext, UserPreferencesContext } from "../../context";
-import { useContext, useState, } from "react";
+import { useContext} from "react";
 import { DropdownArrowIcon } from "../../data/icon";
 import { PriorityTag } from "../../components";
 
 const ProjectPriority = () => {
 	const { userPreferences } = useContext(UserPreferencesContext);
-	const [isPriorityOpen, setIsPriorityOpen] = useState(false);
-	const {selectedPriority, setSelectedPriority} = useContext(ProjectContext)
+	const {
+		isNewProjectOpen,
+		handleModalOpen,
+		handleModalClose,
+		newProject,
+		setNewProject,
+	} = useContext(ProjectContext);
 
 	const handleSelect = (tag) => {
-		setIsPriorityOpen(false);
-		setSelectedPriority(tag);
+		handleModalClose()
+		setNewProject((prev) => ({
+			...prev,
+			priority: tag
+		}))
 	};
 
 	return (
@@ -27,19 +35,19 @@ const ProjectPriority = () => {
 					}}
 					className={`${userPreferences.border} flex justify-between px-4 py-3 items-center `}
 				>
-					<PriorityTag tag={selectedPriority} />
+					<PriorityTag tag={newProject.priority} />
 					<span
-						onClick={() => setIsPriorityOpen(!isPriorityOpen)}
+						onClick={() => handleModalOpen('priority')}
 						className='cursor-pointer'
 					>
 						<DropdownArrowIcon
 							className={`${
-								isPriorityOpen ? "rotate-180" : ""
+								isNewProjectOpen.priority ? "rotate-180" : ""
 							} w-6 h-6 transition-all duration-200 ease`}
 						/>
 					</span>
 				</div>
-				{isPriorityOpen && (
+				{isNewProjectOpen.priority && (
 					<div
 						style={{
 							backgroundColor: userPreferences.shade.card,
