@@ -16,8 +16,6 @@ const Avatar = () => {
 		return initials;
 	}
 
-	console.log(userPhoto)
-
 	const initials = getInitials(displayName);
 	const isPhotoAvailable = userPhoto && userPhoto.trim() !== "";
 

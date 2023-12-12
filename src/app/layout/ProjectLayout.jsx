@@ -1,11 +1,12 @@
 import { useContext } from "react";
 import { NavLink, Outlet } from "react-router-dom";
-import { AppContext, ProjectContext, UserPreferencesContext } from "../context";
 import {
-	mainProjects,
-	finishedProjects,
-	allProjects,
-} from "../data/projectData";
+	AppContext,
+	ProjectContext,
+	TaskContext,
+	UserPreferencesContext,
+} from "../context";
+import { projectStatus } from "../data/projectData";
 
 import { AddProjectIcon } from "../data/icon";
 import CreateNewProjectModal from "../features/project/CreateNewProjectModal";
@@ -14,22 +15,44 @@ import { usePreventBodyScroll } from "../../hooks";
 const ProjectLayout = () => {
 	const { isSidebarOpen } = useContext(AppContext);
 	const { userPreferences } = useContext(UserPreferencesContext);
-	const { isCreateNewProjectModalOpen, setIsCreateNewProjectModalOpen } =
-		useContext(ProjectContext);
+	const { isNewTaskModalOpen } = useContext(TaskContext);
+	const {
+		isCreateNewProjectModalOpen,
+		setIsCreateNewProjectModalOpen,
+		allProjects,
+	} = useContext(ProjectContext);
 
-	usePreventBodyScroll(isCreateNewProjectModalOpen);
+	usePreventBodyScroll(isCreateNewProjectModalOpen || isNewTaskModalOpen);
+
+	const renderProjectIcon = (status) => {
+		const statusConfig = projectStatus.find((item) => item.status === status);
+
+		if (statusConfig) {
+			const IconComponent = statusConfig.shape;
+			return (
+				<IconComponent
+					style={{ color: statusConfig.color }}
+					className='w-3 h-3 mr-2'
+				/>
+			);
+		}
+
+		// Return a default icon or handle the case when the status is not found
+		return null;
+	};
 
 	return (
 		<section
 			style={{ backgroundColor: userPreferences.shade.background }}
-			className=' md:pl-20 min-h-screen mt-[70px] md:mt-0 mx-auto relative'
+			className=' md:pl-20 min-h-screen md:mt-0 mx-auto relative'
 		>
+			{/* CREATE NEW PROJECT PAGE */}
 			<div
 				className={`${
 					isCreateNewProjectModalOpen ? "right-0" : "-right-[100%]"
-				} absolute transition-all duration-3333333300 ease z-[1000]`}
+				} absolute transition-all duration-3333333300 ease z-[1000] h-screen overflow-hidden`}
 			>
-				<div className="z-[1000]">
+				<div className='z-[1000]'>
 					<CreateNewProjectModal />
 				</div>
 				{isCreateNewProjectModalOpen && (
@@ -39,7 +62,7 @@ const ProjectLayout = () => {
 
 			<div
 				style={{ backgroundColor: userPreferences.shade.background }}
-				className='flex flex-col lg:flex-row justify-between h-full'
+				className='flex flex-col lg:flex-row justify-between items-start px-2'
 			>
 				{/* sidebar links */}
 				<div
@@ -48,7 +71,7 @@ const ProjectLayout = () => {
 						isSidebarOpen ? "md:w-56 md:opacity-100" : "md:w-0 md:opacity-0"
 					} flex flex-col border-opacity-40 pb-5 min-h-screen md:h-screen md:fixed md:left-[80px] md:right-0 bg-black transition-width duration-500 ease shadow-md z-10 gap-2`}
 				>
-					<div className='h-[70px] px-7 flex pt-3'>
+					<div className='h-[70px] px-4 flex pt-3'>
 						<h1
 							style={{
 								color: userPreferences.shade.text.primaryText,
@@ -61,86 +84,35 @@ const ProjectLayout = () => {
 					</div>
 
 					{/* add new project */}
-					<div
-						style={{
-							borderColor: ` ${userPreferences.color}`,
-							color: userPreferences.color,
-						}}
-						className={`${userPreferences.border} border hover:border-dashed mx-7 w-36 px-4 h-9 cursor-pointer whitespace-nowrap`}
-					>
-						<button
-							onClick={() => setIsCreateNewProjectModalOpen(true)}
-							className='flex items-center h-full w-full gap-2'
+					<div className='flex items-start px-4'>
+						<div
+							style={{
+								borderColor: ` ${userPreferences.color}`,
+								color: userPreferences.color,
+							}}
+							className={`${userPreferences.border} border hover:border-dashed w-40 px-4 h-9 cursor-pointer whitespace-nowrap`}
 						>
-							<AddProjectIcon />
-							<span className='capitalize text-sm'>new project</span>
-						</button>
-
-						{/* <NavLink
-							to={"new"}
-							className='flex items-center h-full w-full gap-2'
-						>
-							<AddProjectIcon />
-							<span className='capitalize text-sm'>new project</span>
-						</NavLink> */}
+							<button
+								onClick={() => setIsCreateNewProjectModalOpen(true)}
+								className='flex items-center h-full w-full gap-2'
+							>
+								<AddProjectIcon />
+								<span className='capitalize text-sm'>new project</span>
+							</button>
+						</div>
 					</div>
 
 					{/* list */}
-					<div className='flex-1 pl-8 scroll md:overflow-y-scroll pt-5 flex flex-col justify-between'>
+					<div className='flex-1 px-4 scroll md:overflow-y-scroll pt-5 flex flex-col justify-between'>
 						<div className='mb-8'>
 							<h2
 								style={{
 									color: userPreferences.shade.text.primaryText,
 									fontFamily: userPreferences.font.fontFamily,
 								}}
-								className='uppercase text-xs md:text-xs font-semibold tracking-wider mb-4'
+								className='uppercase text-lg md:text-base font-semibold tracking-wider mb-4'
 							>
-								Main Projects
-							</h2>
-
-							<ul
-								style={{
-									fontFamily: userPreferences.font.fontFamily,
-								}}
-								className='flex flex-col gap-3'
-							>
-								{mainProjects.map((main, index) => (
-									<li
-										key={index}
-										className={`cursor-pointer flex px-3 hover:bg-${userPreferences.color} hover-color`}
-									>
-										<NavLink
-											style={({ isActive }) => ({
-												fontFamily: userPreferences.font.fontFamily,
-												"--hover-color": userPreferences.color,
-												color: isActive
-													? userPreferences.color
-													: userPreferences.shade.text.secondaryText,
-											})}
-											to={main.url}
-											className={`flex items-center text-[13px]`}
-										>
-											<span
-												className={`flex hover:text-[--hover-color] items-center gap-4`}
-											>
-												{main.projectName}
-											</span>
-										</NavLink>
-									</li>
-								))}
-							</ul>
-						</div>
-
-						{/* ALL PROJECTS */}
-						<div className='mb-8'>
-							<h2
-								style={{
-									color: userPreferences.shade.text.primaryText,
-									fontFamily: userPreferences.font.fontFamily,
-								}}
-								className='uppercase text-xs md:text-xs font-semibold tracking-wider mb-4'
-							>
-								All Projects
+								My Projects
 							</h2>
 
 							<ul
@@ -149,71 +121,26 @@ const ProjectLayout = () => {
 								}}
 								className='flex flex-col gap-4'
 							>
-								{allProjects.map((all, index) => (
+								{allProjects.map((project, index) => (
 									<li
 										key={index}
-										className={`cursor-pointer flex  px-3 hover-color`}
+										className={`cursor-pointer flex hover:bg-${userPreferences.color} hover-color`}
 									>
 										<NavLink
-											style={({ isActive }) => ({
+											to={`${project?.slug}`}
+											style={{
 												fontFamily: userPreferences.font.fontFamily,
 												"--hover-color": userPreferences.color,
-												color: isActive
-													? userPreferences.color
-													: userPreferences.shade.text.secondaryText,
-											})}
-											className={`flex items-center text-[13px]`}
-											to={all.url}
+												color: userPreferences.shade.text.secondaryText,
+											}}
+											className={`flex items-center text-xs`}
 										>
+											{renderProjectIcon(project?.status.title)}
 											<span
-												className={`flex hover:text-[--hover-color] items-center gap-4`}
+												className={`flex hover:text-[--hover-color] items-center gap-4 capitalize whitespace-normal++
+												`}
 											>
-												{all.projectName}
-											</span>
-										</NavLink>
-									</li>
-								))}
-							</ul>
-						</div>
-
-						{/* Finished PROJECTS */}
-						<div className='mb-8'>
-							<h2
-								style={{
-									color: userPreferences.shade.text.primaryText,
-									fontFamily: userPreferences.font.fontFamily,
-								}}
-								className='uppercase text-xs md:text-xs font-semibold tracking-wider mb-4'
-							>
-								Completed Projects
-							</h2>
-
-							<ul
-								style={{
-									fontFamily: userPreferences.font.fontFamily,
-								}}
-								className='flex flex-col gap-4'
-							>
-								{finishedProjects.map((finished, index) => (
-									<li
-										key={index}
-										className={`cursor-pointer flex px-3 hover-color`}
-									>
-										<NavLink
-											style={({ isActive }) => ({
-												fontFamily: userPreferences.font.fontFamily,
-												"--hover-color": userPreferences.color,
-												color: isActive
-													? userPreferences.color
-													: userPreferences.shade.text.secondaryText,
-											})}
-											className={`flex items-center text-[13px]`}
-											to={finished.url}
-										>
-											<span
-												className={`flex hover:text-[--hover-color] items-center gap-4`}
-											>
-												{finished.projectName}
+												{project?.title}
 											</span>
 										</NavLink>
 									</li>
@@ -227,9 +154,11 @@ const ProjectLayout = () => {
 					style={{ backgroundColor: userPreferences.shade.background }}
 					className={`${
 						isSidebarOpen ? "md:ml-56 " : "md:ml-0"
-					} flex-1 transition-width duration-500 ease ml-0 pt-24 mx-auto overflow-x-auto pl-8 pr-10`}
+					} flex-1 transition-width duration-500 ease ml-0 pt-24 mx-auto overflow-x-auto pl-8 pr-10 `}
 				>
-					<Outlet />
+					
+						<Outlet />
+					
 				</div>
 			</div>
 		</section>

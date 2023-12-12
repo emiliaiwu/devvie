@@ -1,8 +1,11 @@
+
 import { Outlet } from "react-router-dom";
 
+
 const Root = () => {
+	
 	return (
-		<div >
+		<div className="root" >
 			<Outlet />
 		</div>
 	);

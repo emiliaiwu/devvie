@@ -8,6 +8,7 @@ export const ColoredButton = ({ children, color, font, border }) => {
 		<div
 			style={{
 				backgroundColor: color || userPreferences.color,
+				color: `${userPreferences.isLightMode ? "white" : "black"}`,
 			}}
 			className={`${
 				border || userPreferences.border

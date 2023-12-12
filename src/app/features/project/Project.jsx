@@ -1,55 +1,65 @@
-import ProjectCategory from "./ProjectCategory";
-import ProjectStack from "./ProjectStack";
-import ProjectStats from "./ProjectStats";
-import { UserPreferencesContext } from "../../context";
-import { useContext } from "react";
-import { Board, Filter, Sort } from "../../components";
+import { ProjectContext, UserPreferencesContext } from "../../context";
+import { useContext, useState } from "react";
+import { Board, Filter } from "../../components";
+import ProjectFilter from "./ProjectFilter";
+import { AddProjectIcon } from "../../data/icon";
 
 const ProjectBoard = () => {
 	const { userPreferences } = useContext(UserPreferencesContext);
+	const [isFilterOpen, setIsFilterOpen] = useState(false);
+	const { handleClearFilters, setIsCreateNewProjectModalOpen, allProjects } =
+		useContext(ProjectContext);
+
+	const handleFilter = () => {
+		handleClearFilters();
+		setIsFilterOpen(!isFilterOpen);
+	};
+
 
 	return (
-		<div className='flex flex-col relative overflow-x-hidden '>
-			{/* <div
-				className={`flex max-w-full justify-between gap-4 mb-14 transition-[height] duration-500 ease`}
-			>
-				<ProjectStack />
-				<ProjectStats />
-				<ProjectCategory />
-			</div> */}
-
-			<div className='mb-4'>
-				<div
-					style={{ borderBottom: `1px solid ${userPreferences.shade.other}` }}
-					className='flex flex-col shadow-sm'
-				>
-					<h1
+		<div
+			style={{
+				backgroundColor: userPreferences.shade.background,
+				color: userPreferences.shade.text.primaryText,
+				fontFamily: userPreferences.font.fontFamily,
+			}}
+			className='flex flex-col relative overflow-x-hidden gap-8 py-4'
+		>
+			<div className='mb-4 z-[40]'>
+				<div className='flex items-end mb-4 gap-2'>
+					<h1 className='text-4xl capitalize'>Projects Board</h1>
+					<span
 						style={{
-							color: userPreferences.shade.text.primaryText,
-							fontFamily: userPreferences.font.fontFamily,
+							color: userPreferences.color,
 						}}
-						className='text-4xl mb-8 capitalize'
+						className='text-base mb-1'
 					>
-						My Projects
-					</h1>
+						({allProjects.length})
+					</span>
 				</div>
 
-				<div className='min-h-[100px] flex items-center px-4'>
+				<div className='flex justify-between items-center'>
 					<div
+						onClick={() => setIsCreateNewProjectModalOpen(true)}
 						style={{
-							color: userPreferences.shade.text.primaryText,
-							fontFamily: userPreferences.font.fontFamily,
+							backgroundColor: userPreferences.color,
+							color: `${userPreferences.isLightMode ? "white" : "black"}`,
 						}}
-						className='flex-1 h-full'
+						className={`${userPreferences.border} flex items-center gap-2 py-2 px-4 cursor-pointer`}
 					>
-						The filters
+						<AddProjectIcon className='w-4 h-4' />
+						<span className='text-sm'>New project</span>
 					</div>
-					<div style={{}} className='flex items-center gap-2'>
-						<Filter />
-						<Sort />
-					</div>
+					<Filter isFilterOpen={isFilterOpen} handleFilter={handleFilter} />
 				</div>
+
+				{isFilterOpen && (
+					<div className='min-h-[60px] mt-6'>
+						<ProjectFilter />
+					</div>
+				)}
 			</div>
+
 			<Board />
 		</div>
 	);

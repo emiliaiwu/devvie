@@ -1,11 +1,12 @@
 import { useContext } from "react";
 import ThemeContext from "./ThemeContext";
 
+
 const AccentColor = () => {
-	const { accentColors, handleColorChange, newUserPreferences } =
-		useContext(ThemeContext);
+	const { handleColorChange, newUserPreferences, accentColors } = useContext(ThemeContext);
 
-
+	
+	
 	return (
 		<div className='grid xs:grid-cols-9 grid-cols-6 sm:grid-cols-12 gap-2 gap-y-8 w-full max-w-[500px] my-6'>
 			{accentColors.map((color, index) => (

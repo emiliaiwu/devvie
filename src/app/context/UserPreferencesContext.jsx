@@ -4,7 +4,8 @@ import { ref, set, onValue, get } from "firebase/database";
 import { database } from "../../firebase";
 import {
 	borderRadiusOptions,
-	accentColors,
+	lightAccentColors,
+	darkAccentColors,
 	fontOptions,
 	darkShades,
 } from "../features/theme/themeData";
@@ -21,8 +22,6 @@ export const UserPreferencesProvider = ({ children }) => {
 	const [selectedDarkShade, setSelectedDarkShade] = useState("DarkCoder");
 	const [isLightMode, setIsLightMode] = useState(false);
 	const [mode, setMode] = useState(isLightMode ? "light" : "dark");
-
-
 	useEffect(() => {
 		setMode(isLightMode ? "light" : "dark");
 	}, [isLightMode]);
@@ -33,13 +32,16 @@ export const UserPreferencesProvider = ({ children }) => {
 	};
 
 	const selectedBorder = borderRadiusOptions[5].style;
-	const selectedColor = accentColors[0];
 	const selectedFont = fontOptions[0];
 	const fontNames = fontOptions.map((font) => font.split(",")[0]);
 	const fontName = fontNames[0];
 
+	const [accentColors, setAccentColors] = useState(
+		isLightMode ? lightAccentColors : darkAccentColors
+	);
+
 	const defaultUserPreferences = {
-		color: selectedColor,
+		color: accentColors[0],
 		border: selectedBorder,
 		mode: mode,
 		isLightMode: isLightMode,
@@ -59,6 +61,7 @@ export const UserPreferencesProvider = ({ children }) => {
 	// update userPreferences
 	const updateUserPreferences = async (newPreferences, shouldSave = null) => {
 		setIsUpdated(false);
+
 		if (user) {
 			const userPreferencesRef = ref(database, `userPreferences/${user.uid}`);
 			try {
@@ -179,6 +182,8 @@ export const UserPreferencesProvider = ({ children }) => {
 				hoverColor,
 				isLightMode,
 				setIsLightMode,
+				setAccentColors,
+				accentColors,
 			}}
 		>
 			{children}

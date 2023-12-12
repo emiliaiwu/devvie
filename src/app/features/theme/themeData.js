@@ -1,23 +1,24 @@
 // accent color:
-export const accentColors = [
+export const lightAccentColors = [
 	"#FF5733",
-	"#33FF57",
-	"#4058F2",
-	"#EABE10",
+	"#3F00FF",
 	"#EA1093",
-	"#3910EA",
-	"#3F8FF7",
-	"#004AFB",
-	"#EA1975",
-	"#38FFD4",
-	"#EA9E10",
-	"#02B0FE",
-	"#FE54FE",
 	"#45E2D2",
+	"#FE54FE",
+	"#EA1975",
+	"#EA9E10",
 	"#0808FF",
-	"#FFA5FF",
 	"#FF00FE",
+];
+
+export const darkAccentColors = [
+	"#33FF57",
+	"#EABE10",
+	"#38FFD4",
 	"#F6DAB0",
+	"#1F75FE",
+	"#FFA5FF",
+	"#02B0FE",
 ];
 
 // font style

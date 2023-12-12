@@ -1,54 +1,23 @@
 import { useContext, useState } from "react";
-import { UserPreferencesContext } from "../context";
+import { ProjectContext, UserPreferencesContext } from "../context";
 import { BiDotsVerticalRounded } from "react-icons/bi";
 import { DueDateIcon, StartDateIcon, TechStackIcon } from "../data/icon";
 import Tag from "./Tag";
 import PriorityTag from "./PriorityTag";
 import HoverAccentColor from "./HoverAccentColor";
 import ProjectCardModal from "../features/project/ProjectCardModal";
-import { useSortable } from "@dnd-kit/sortable";
-import { CSS } from "@dnd-kit/utilities";
+import { Link } from "react-router-dom";
 
 const Card = ({ project }) => {
 	const { userPreferences } = useContext(UserPreferencesContext);
 	const [isProjectCardModalOpen, setIsProjectCardModalOpen] = useState(false);
 	const stack = project.stack;
 
-	const {
-		setNodeRef,
-		attributes,
-		listeners,
-		transform,
-		transition,
-		isDragging,
-	} = useSortable({
-		id: project.id,
-		data: project,
-	});
-
-	const style = {
-		transition,
-		transform: CSS.Transform.toString(transform),
-	};
-
-	if (isDragging) {
-		return (
-			<div ref={setNodeRef} style={style} className=' h-[300px] w-[320px] px-1'>
-				<div
-					style={{
-						backgroundColor: userPreferences.shade.background,
-						borderColor: userPreferences.color,
-					}}
-					className={`${userPreferences.border}  relative py-5 w-full h-full opacity-30  border-2 border-dashed `}
-				></div>
-			</div>
-		);
-	}
 	return (
-		<div ref={setNodeRef} style={style} className='mx-auto'>
+		<div className='mx-auto w-full'>
 			<div
 				style={{ backgroundColor: userPreferences.shade.background }}
-				className={`${userPreferences.border} w-[320px] relative py-5 `}
+				className={`${userPreferences.border} w-full relative py-5 `}
 			>
 				{isProjectCardModalOpen && (
 					<div className='absolute right-5 top-12'>
@@ -59,7 +28,7 @@ const Card = ({ project }) => {
 					</div>
 				)}
 
-				<div className='flex flex-col gap-5'>
+				<div className='flex flex-col gap-4'>
 					<div className='flex items-center justify-between px-5'>
 						<div className='w-full inline-flex'>
 							<PriorityTag tag={project.priority} />
@@ -69,12 +38,12 @@ const Card = ({ project }) => {
 							className='flex items-center gap-2 cursor-pointer'
 						>
 							<HoverAccentColor>
-								<BiDotsVerticalRounded className='w-6 h-6' />
+								<BiDotsVerticalRounded className='w-5 h-5' />
 							</HoverAccentColor>
 						</div>
 					</div>
 
-					<diV className='flex flex-col gap-5' {...attributes} {...listeners}>
+					<div className='flex flex-col gap-5'>
 						<div className='px-5'>
 							<div className='flex gap-2 items-center flex-wrap'>
 								{project.tag.map((tag) => (
@@ -86,19 +55,25 @@ const Card = ({ project }) => {
 						</div>
 
 						<div className='px-5 flex flex-col gap-4 w-full'>
-							<div>
-								<h1
-									className='text-lg mb-2 capitalize w-full '
-									style={{
-										whiteSpace: "normal",
-									}}
-								>
-									{project.title}
-								</h1>
+							<div className="flex flex-col items-start">
+								
+									<HoverAccentColor>
+										<Link to={`/user/projects/${project.slug}`}>
+											<h1
+												className='text-lg mb-2 capitalize '
+												style={{
+													whiteSpace: "normal",
+												}}
+											>
+												{project.title}
+											</h1>
+										</Link>
+									</HoverAccentColor>
+								
 
 								<p
 									style={{ color: userPreferences.shade.text.secondaryText }}
-									className={`overflow-ellipsis whitespace-normal text-sm leading-6 line-clamp-3`}
+									className={`overflow-ellipsis whitespace-normal text-sm leading-5 line-clamp-3`}
 								>
 									{project.description}
 								</p>
@@ -113,7 +88,9 @@ const Card = ({ project }) => {
 									className='flex items-center gap-1 p-2 rounded-md'
 								>
 									<StartDateIcon className='w-4 h-4 text-blue-600' />
-									<span className=' text-xs'>{project.startDate}</span>
+									<span className=' text-xs'>
+										{project.startDate || "No Date"}{" "}
+									</span>
 								</div>
 								<div
 									style={{
@@ -123,7 +100,9 @@ const Card = ({ project }) => {
 									className='flex items-center gap-1 p-2 rounded-md'
 								>
 									<DueDateIcon className='w-4 h-4 text-red-600' />
-									<span className=' text-xs'>{project.dueDate}</span>
+									<span className=' text-xs'>
+										{project.dueDate || "No Date"}
+									</span>
 								</div>
 							</div>
 						</div>
@@ -175,7 +154,7 @@ const Card = ({ project }) => {
 								</div>
 							</div>
 						</div>
-					</diV>
+					</div>
 				</div>
 			</div>
 		</div>

@@ -3,7 +3,7 @@ import {
 	createRoutesFromElements,
 	Route,
 	RouterProvider,
-	Navigate
+	Navigate,
 } from "react-router-dom";
 import Root from "./Root";
 import { LandingPage, NotFound } from "./landing/pages";
@@ -16,13 +16,24 @@ import {
 import ComingSoon from "./careers/ComingSoon";
 import { AppLayout, ProjectLayout } from "./app/layout";
 import SettingsLayout from "./app/layout/SettingsLayout";
-import { Dashboard, Theme, Settings , General, Profile, Project, CreateNewProjectPage} from "./app/pages";
+import {
+	Dashboard,
+	Theme,
+	Settings,
+	General,
+	Profile,
+	Project,
+	Task,
+	TaskBoard,
+	Details,
+	Commit,
+} from "./app/pages";
 import ProtectedRoute from "./app/ProtectedRoute";
 import "./style/devvieLoader.css";
 import "./style/app.css";
 import { AppContext } from "./app/context";
 import { useContext } from "react";
-import MobileSettings from './app/layout/MobileSettings'
+import MobileSettings from "./app/layout/MobileSettings";
 
 // Lazy
 // const LazyDashboard = React.lazy
@@ -51,9 +62,13 @@ const App = () => {
 					}
 				>
 					<Route path='dashboard' element={<Dashboard />} />
-					<Route path='project' element={<ProjectLayout />}>
-						<Route index element={<Project/>}/>
-						<Route path="new" element={<CreateNewProjectPage/> } />
+					<Route path='projects' element={<ProjectLayout />}>
+						<Route index element={<Project />} />
+						<Route path=':slug' element={<Task />}>
+							<Route index element={<TaskBoard />} />
+							<Route path='details' element={<Details />} />
+							<Route path='commits' element={<Commit/>} />
+						</Route>
 					</Route>
 
 					<Route

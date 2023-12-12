@@ -4,6 +4,8 @@ import AppContext from "./AppContext";
 import { AppContextProvider } from "./AppContext";
 import ProjectContext from "./ProjectContext";
 import { ProjectContextProvider } from "./ProjectContext";
+import { TaskProvider } from "./TaskContext";
+import TaskContext from "./TaskContext";
 
 export {
 	UserPreferencesContext,
@@ -11,5 +13,7 @@ export {
 	AppContext,
 	AppContextProvider,
 	ProjectContext,
-	ProjectContextProvider
+	ProjectContextProvider,
+	TaskProvider,
+	TaskContext
 };

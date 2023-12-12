@@ -64,8 +64,8 @@ export const menuLeftBottom = [
 
 export const menuLeftMiddle = [
 	{
-		title: "Project",
-		url: "/user/project",
+		title: "Projects",
+		url: "/user/projects",
 		icon: ProjectIcon,
 	},
 	{

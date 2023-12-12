@@ -78,9 +78,10 @@ const ProjectStatus = () => {
 					<ul className='overflow-y-scroll scroll h-60'>
 						{columns.map((item, index) => (
 							<li
+								key={item.id}
 								onClick={() => handleClick(item)}
 								style={{ borderColor: userPreferences.shade.other }}
-								key={item.id}
+								
 								className={`${
 									projectStatus.length - 1 === index
 										? "border-none"

@@ -14,6 +14,7 @@ import PriorityTag from "./PriorityTag";
 import ChooseStartDate from "./ChooseStartDate";
 import ChooseDueDate from "./ChooseDueDate";
 import DatePicker from "./DatePicker";
+import LoadingButton from "./LoadingButton";
 export {
 	SidebarLeft,
 	Search,
@@ -31,4 +32,5 @@ export {
 	ChooseStartDate,
 	DatePicker,
 	ChooseDueDate,
+	LoadingButton
 };

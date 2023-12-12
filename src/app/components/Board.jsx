@@ -1,20 +1,15 @@
 import Column from "./Column";
-import { useContext, useMemo, useRef } from "react";
+import { useContext } from "react";
 import { ProjectContext, UserPreferencesContext } from "../context";
 import { projectStatus } from "../data/projectData";
 
 const Board = () => {
 	const { userPreferences } = useContext(UserPreferencesContext);
 	const { columns } = useContext(ProjectContext);
-	const boardContainerRef = useRef(null);
 	const shapesArray = projectStatus.map((statusItem) => statusItem.shape);
 
 	return (
-		<div
-			ref={boardContainerRef}
-			id='board-container'
-			className='min-h-screen h-full overflow-x-scroll scroll-x flex gap-6 max-w-full board-container'
-		>
+		<div className='overflow-x-scroll scroll-x flex items-start py-5 gap-6 max-w-full'>
 			{columns.map((col, index) => (
 				<Column
 					key={col.id}
@@ -23,6 +18,7 @@ const Board = () => {
 					icon={shapesArray[index]}
 					columnId={col.id}
 					projects={col.projects}
+					column={col}
 				/>
 			))}
 		</div>

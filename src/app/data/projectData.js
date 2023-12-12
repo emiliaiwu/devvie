@@ -84,26 +84,40 @@ export const projectStatus = [
 
 export const priorityTags = [
 	{
-		tag: "High Priority",
+		tag: "Critical Priority",
 		background: "rgba(255,87,36,.15)",
 		color: "#ff5724",
+		priority: 6,
+	},
+	{
+		tag: "High Priority",
+		background: "rgba(255,152,0,.15)",
+		color: "#ff9800",
+		priority: 5,
 	},
 	{
 		tag: "Medium Priority",
-		background: "rgba(255,152,0,.15)",
-		color: "#ff9800",
+		background: "rgba(14,165,233,.15)",
+		color: "#0ea5e9",
+		priority: 4,
+	},
+	{
+		tag: "Normal Priority",
+		background: "rgba(240,0,185,.15)",
+		color: "#ff57d8",
+		priority: 3,
 	},
 	{
 		tag: "Low Priority",
-		background: "rgba(14,165,233,.15)",
-		color: "#0ea5e9",
+		background: "rgba(16,185,129,.15)",
+		color: "#10b981",
+		priority: 2,
 	},
-	{ tag: "Urgent", background: "rgba(240,0,185,.15)", color: "#ff57d8" },
-	{ tag: "Important", background: "rgba(16,185,129,.15)", color: "#10b981" },
 	{
-		tag: "Deadline",
+		tag: "No Priority",
 		background: "rgba(95,90,246,.15)",
 		color: "rgb(95,90,246)",
+		priority: 1,
 	},
 ];
 
@@ -366,6 +380,19 @@ export const allTechStack = [
 	"C",
 ];
 
-export const myTechStack = ["React"];
-
-export const category = ["personal", "teams"];
+export const taskStatus = [
+	{ status: "to do", color: "#007FFF" },
+	{
+		status: "in progress",
+		color: "rgb(255, 191, 0)",
+	},
+	{
+		status: "needs review",
+		color: "rgb(255, 95, 31)",
+	},
+	{ status: "bug", color: "rgb(255, 49, 49)" },
+	{
+		status: "done",
+		color: "rgb(11, 218, 81)",
+	},
+];

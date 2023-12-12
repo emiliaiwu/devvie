@@ -2,21 +2,23 @@ import { priorityTags } from "../../data/projectData";
 import { ProjectContext, UserPreferencesContext } from "../../context";
 import { useContext } from "react";
 import { DropdownArrowIcon } from "../../data/icon";
-import { PriorityTag } from "../../components";
+import { HoverAccentColor, PriorityTag } from "../../components";
 
-const ProjectPriority = () => {
+const TaskPriority = () => {
 	const { userPreferences } = useContext(UserPreferencesContext);
 	const {
-		isNewProjectOpen,
-		handleModalOpen,
-		handleModalClose,
-		newProject,
-		setNewProject,
+		isNewTaskChildrenOpen,
+		newTask,
+		setNewTask,
+		handleCloseTaskChildren,
+		handleOpenTaskChildren,
 	} = useContext(ProjectContext);
+    
+    console.log(newTask)
 
 	const handleSelect = (tag) => {
-		handleModalClose();
-		setNewProject((prev) => ({
+		handleCloseTaskChildren()
+		setNewTask((prev) => ({
 			...prev,
 			priority: tag,
 		}));
@@ -24,36 +26,42 @@ const ProjectPriority = () => {
 
 	return (
 		<div className='w-full relative z-[6]'>
-			<div className='mb-3 px-1'>
+			<div className='mb-1 px-1'>
 				<h1 className='text-base'>Priority</h1>
 			</div>
 			<div className='w-full flex gap-5 flex-col'>
 				<div
 					style={{
-						backgroundColor: userPreferences.shade.card,
+						backgroundColor: userPreferences.shade.background,
 						color: userPreferences.shade.text.secondaryText,
 					}}
-					className={`${userPreferences.border} flex justify-between px-4 py-3 items-center `}
+					className={`${userPreferences.border} flex justify-between px-4 py-2 items-center `}
 				>
-					<PriorityTag tag={newProject.priority} />
+					<PriorityTag tag={newTask.priority} />
 					<span
-						onClick={() => handleModalOpen("priority")}
+						onClick={() =>
+							isNewTaskChildrenOpen.priority
+								? handleCloseTaskChildren()
+								: handleOpenTaskChildren("priority")
+						}
 						className='cursor-pointer'
 					>
-						<DropdownArrowIcon
-							className={`${
-								isNewProjectOpen.priority ? "rotate-180" : ""
-							} w-6 h-6 transition-all duration-200 ease`}
-						/>
+						<HoverAccentColor>
+							<DropdownArrowIcon
+								className={`${
+									isNewTaskChildrenOpen.priority ? "rotate-180" : ""
+								} w-6 h-6 transition-all duration-200 ease`}
+							/>
+						</HoverAccentColor>
 					</span>
 				</div>
-				{isNewProjectOpen.priority && (
+				{isNewTaskChildrenOpen.priority && (
 					<div
 						style={{
-							backgroundColor: userPreferences.shade.card,
+							backgroundColor: userPreferences.shade.background,
 							borderColor: userPreferences.shade.other,
 						}}
-						className={`${userPreferences.border} absolute w-full md:w-[300px] top-28 px-3 py-4 border `}
+						className={`${userPreferences.border} absolute w-full md:w-[250px] top-[90px] p-3 border `}
 					>
 						<ul
 							className={`w-full overflow-y-scroll scroll h-52 flex flex-col gap-4 p-2 `}
@@ -75,4 +83,4 @@ const ProjectPriority = () => {
 	);
 };
 
-export default ProjectPriority;
+export default TaskPriority;

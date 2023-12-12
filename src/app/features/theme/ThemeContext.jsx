@@ -1,5 +1,10 @@
 import { createContext, useContext, useState, useEffect } from "react";
-import { accentColors, borderRadiusOptions, fontOptions } from "./themeData";
+import {
+	lightAccentColors,
+	darkAccentColors,
+	borderRadiusOptions,
+	fontOptions,
+} from "./themeData";
 import { lightShades, darkShades } from "./themeData";
 import { UserPreferencesContext } from "../../context";
 
@@ -26,6 +31,8 @@ export const ThemeContextProvider = ({ children }) => {
 		updateUserPreferences,
 		isLightMode,
 		setIsLightMode,
+		setAccentColors,
+		accentColors,
 	} = useContext(UserPreferencesContext);
 
 	const lightShade = {
@@ -70,8 +77,10 @@ export const ThemeContextProvider = ({ children }) => {
 	const toggleMode = () => {
 		setLoading(true);
 		const newIsLightMode = userPreferences.isLightMode ? false : true;
+		setAccentColors(newIsLightMode ? lightAccentColors : darkAccentColors);
 		setNewUserPreferences((prevUserPreferences) => ({
 			...prevUserPreferences,
+			color: newIsLightMode ? lightAccentColors[0] : darkAccentColors[0],
 			isLightMode: newIsLightMode,
 			mode: newIsLightMode ? "light" : "dark",
 			shade: newIsLightMode ? lightShade : darkShade,
@@ -79,6 +88,7 @@ export const ThemeContextProvider = ({ children }) => {
 		updateUserPreferences(
 			{
 				...userPreferences,
+				color: newIsLightMode ? lightAccentColors[0] : darkAccentColors[0],
 				isLightMode: newIsLightMode,
 				mode: newIsLightMode ? "light" : "dark",
 				shade: newIsLightMode ? lightShade : darkShade,
@@ -98,6 +108,7 @@ export const ThemeContextProvider = ({ children }) => {
 			shade: lightShade,
 		}));
 		setIsUpdated(false);
+		setAccentColors(lightAccentColors);
 	};
 
 	// dark mode
@@ -110,6 +121,7 @@ export const ThemeContextProvider = ({ children }) => {
 			shade: darkShade,
 		}));
 		setIsUpdated(false);
+		setAccentColors(darkAccentColors);
 	};
 
 	// border

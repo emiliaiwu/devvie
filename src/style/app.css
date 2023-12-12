@@ -8,6 +8,10 @@
 	border-radius: 4px;
 }
 
+.list-disc {
+    list-style-type: disc;
+}
+
 /* Arrow (pointed left) */
 .sidebar-tooltip::before {
 	content: ""; /* Create a pseudo-element */
@@ -23,7 +27,7 @@
 
 /* Accent Color*/
 .scroll::-webkit-scrollbar {
-	width: 8px; /* Width of the scrollbar */
+	width: 9px; /* Width of the scrollbar */
 }
 
 .scroll:hover::-webkit-scrollbar-thumb {

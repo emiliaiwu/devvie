@@ -1,20 +1,20 @@
 import { UserPreferencesContext, ProjectContext } from "../../context";
 import { projectStatus } from "../../data/projectData";
-import { useContext, createElement, useMemo } from "react";
+import { useContext, createElement, useMemo, useState } from "react";
 
-const ChangeStatus = ({project }) => {
+const ChangeStatus = ({ project }) => {
 	const { userPreferences } = useContext(UserPreferencesContext);
-	const {
-		columns,
-		setProjectToBeUpdated,
-		setNewProject
-	} = useContext(ProjectContext);
+	const { columns, setProjectToBeUpdated, setNewProject } =
+		useContext(ProjectContext);
 	const memoizedShapes = useMemo(() => {
 		const shapesArray = projectStatus.map((statusItem) => statusItem.shape);
 		return shapesArray;
 	}, []);
 
-	const handleClick = (item) => {
+	const [selectedItem, setSelectedItem] = useState(null);
+
+	const handleClick = (item, index) => {
+		setSelectedItem(index === selectedItem ? null : index)
 		setNewProject((prev) => ({
 			...prev,
 			status: {
@@ -23,7 +23,7 @@ const ChangeStatus = ({project }) => {
 				color: item.color,
 			},
 		}));
-        setProjectToBeUpdated(project)
+		setProjectToBeUpdated(project);
 	};
 
 	return (
@@ -38,11 +38,13 @@ const ChangeStatus = ({project }) => {
 			<ul className='overflow-y-scroll scroll h-60'>
 				{columns.map((item, index) => (
 					<li
-						onClick={() => handleClick(item)}
+						onClick={() => handleClick(item, index)}
 						style={{ borderColor: userPreferences.shade.other }}
 						key={item.id}
 						className={`${
 							projectStatus.length - 1 === index ? "border-none" : "border-b"
+						} ${
+							index === selectedItem ? "bg-black bg-opacity-50" : ''
 						} flex items-center gap-2 p-3 pl-7 cursor-pointer hover:bg-black hover:bg-opacity-20`}
 					>
 						<span style={{ color: `${item.color}` }}>
