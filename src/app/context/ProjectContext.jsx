@@ -77,9 +77,11 @@ export const ProjectContextProvider = ({ children }) => {
 		startDate: "",
 		dueDate: "",
 	});
+	const [greeting, setGreeting] = useState("");
 
 	useEffect(() => {
 		const today = new Date();
+		const hour = today.getHours();
 		const day = today.getDate();
 		// const dayOfWeek = daysOfWeek[today.getDay()];
 		const monthOfYear = today.getMonth();
@@ -89,6 +91,17 @@ export const ProjectContextProvider = ({ children }) => {
 		setSelectedStartDate(formattedDate);
 		setSelectedDueDate(formattedDate);
 		setSelectedDate(formattedDate);
+
+		let currentGreeting = "";
+		if (hour >= 5 && hour < 12) {
+			currentGreeting = "Good morning";
+		} else if (hour >= 12 && hour < 18) {
+			currentGreeting = "Good afternoon";
+		} else {
+			currentGreeting = "Good evening";
+		}
+
+		setGreeting(currentGreeting);
 	}, []);
 
 	// URL SLUG
@@ -238,6 +251,7 @@ export const ProjectContextProvider = ({ children }) => {
 							color: statusItem.color,
 							title: statusItem.status,
 							order: index,
+							
 						}));
 
 						// Save default columns to Firestore
@@ -520,7 +534,6 @@ export const ProjectContextProvider = ({ children }) => {
 				});
 
 				// Fetch the newly created project data
-
 				const newProjectSnapshot = await getDoc(newProjectRef);
 				const newProjectData = {
 					id: newProjectSnapshot.id,
@@ -878,6 +891,7 @@ export const ProjectContextProvider = ({ children }) => {
 				setOriginalColumns,
 				handleFetchCommits,
 				setColumns,
+				greeting,
 			}}
 		>
 			{children}

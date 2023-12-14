@@ -4,22 +4,13 @@ import {
 	NoteIcon,
 	LibraryIcon,
 	TaskIcon,
-	SearchIcon,
-	CollaborateIcon,
-	TeamIcon,
 	AccountIcon,
-	SettingsIcon,
 	LogoutIcon,
-	SupportIcon,
 	ThemeIcon,
-	AnalyticsIcon,
-	CollectionIcon,
-	ChatroomIcon,
 	PortfolioIcon,
-	Inspiration,
 	SecurityIcon,
 	DeleteAccountIcon,
-	GeneralIcon,
+	ChallengeIcon,
 } from "./icon";
 
 export const menuLeftTop = [
@@ -30,99 +21,63 @@ export const menuLeftTop = [
 	},
 
 	{
-		title: "Inspiration",
-		url: "/user/find-inspiration",
-		icon: Inspiration,
+		title: "Projects",
+		url: "/user/projects",
+		icon: ProjectIcon,
 	},
 
 	{
-		title: "CodeRoom",
-		url: "/user/coderoom",
-		icon: ChatroomIcon,
+		title: "Task",
+		url: "/user/tasks",
+		icon: TaskIcon,
 	},
 
 	{
-		title: "Analytics",
-		url: "/user/analytics",
-		icon: AnalyticsIcon,
-		spacing: true,
+		title: "Library",
+		url: "/user/library",
+		icon: LibraryIcon,
+	},
+
+	{
+		title: "Challenges",
+		url: "/user/challenges",
+		icon: ChallengeIcon,
+	},
+
+	{
+		title: "Appearance",
+		url: "/user/appearance",
+		icon: ThemeIcon,
+	},
+
+	{
+		title: "Profile",
+		url: "/user/profile",
+		icon: AccountIcon,
+	},
+
+	{
+		title: "Portfolio",
+		url: "/user/portfolio",
+		icon: PortfolioIcon,
 	},
 ];
 
 export const menuLeftBottom = [
 	{
-		title: "Settings",
-		url: "/user/settings/general",
-		icon: SettingsIcon,
+		title: "Password",
+		url: "/user/password",
+		icon: SecurityIcon,
 	},
 	{
 		title: "Logout",
 		url: "/user/logout",
 		icon: LogoutIcon,
 	},
-];
 
-export const menuLeftMiddle = [
 	{
-		title: "Projects",
-		url: "/user/projects",
-		icon: ProjectIcon,
-	},
-	{
-		title: "Task",
-		url: "/user/task",
-		icon: TaskIcon,
-	},
-	{
-		title: "Library",
-		url: "/user/library",
-		icon: LibraryIcon,
+		title: "Delete Account",
+		url: "/user/delete-account",
+		icon: DeleteAccountIcon,
 	},
 ];
-
-// SETTINGS
-
-export const settingsList = {
-	profile: [
-		{
-			title: "General",
-			url: "/user/settings/general",
-			icon: SettingsIcon,
-		},
-		{
-			title: "Edit profile",
-			url: "/user/settings/profile",
-			icon: AccountIcon,
-		},
-		{
-			title: "Portfolio",
-			url: "/user/settings/portfolio",
-			icon: PortfolioIcon,
-		},
-	],
-
-	preferences: [
-		{
-			title: "Appearance",
-			url: "/user/settings/appearance",
-			icon: ThemeIcon,
-		},
-	],
-
-	security: [
-		{
-			title: "Password",
-			url: "/user/settings/password",
-			icon: SecurityIcon,
-		},
-	],
-
-	other: [
-		{ title: "Logout", url: "/user/logout", icon: LogoutIcon },
-		{
-			title: "Delete Account",
-			url: "/user/settings/delete-account",
-			icon: DeleteAccountIcon,
-		},
-	],
-};

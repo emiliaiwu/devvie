@@ -3,7 +3,6 @@ import {
 	createRoutesFromElements,
 	Route,
 	RouterProvider,
-	Navigate,
 } from "react-router-dom";
 import Root from "./Root";
 import { LandingPage, NotFound } from "./landing/pages";
@@ -15,32 +14,25 @@ import {
 } from "./pages";
 import ComingSoon from "./careers/ComingSoon";
 import { AppLayout, ProjectLayout } from "./app/layout";
-import SettingsLayout from "./app/layout/SettingsLayout";
 import {
 	Dashboard,
 	Theme,
-	Settings,
-	General,
-	Profile,
-	Project,
 	Task,
 	TaskBoard,
 	Details,
 	Commit,
+	TaskPage,
+	ProjectPage,
 } from "./app/pages";
 import ProtectedRoute from "./app/ProtectedRoute";
 import "./style/devvieLoader.css";
 import "./style/app.css";
-import { AppContext } from "./app/context";
-import { useContext } from "react";
-import MobileSettings from "./app/layout/MobileSettings";
+
 
 // Lazy
 // const LazyDashboard = React.lazy
 
 const App = () => {
-	const { isMobile } = useContext(AppContext);
-
 	const router = createBrowserRouter(
 		createRoutesFromElements(
 			<Route path='/' element={<Root />}>
@@ -62,23 +54,15 @@ const App = () => {
 					}
 				>
 					<Route path='dashboard' element={<Dashboard />} />
+					<Route path='appearance' element={<Theme />} />
+					<Route path='tasks' element={<TaskPage />} />
 					<Route path='projects' element={<ProjectLayout />}>
-						<Route index element={<Project />} />
+						<Route index element={<ProjectPage />} />
 						<Route path=':slug' element={<Task />}>
 							<Route index element={<TaskBoard />} />
 							<Route path='details' element={<Details />} />
-							<Route path='commits' element={<Commit/>} />
+							<Route path='commits' element={<Commit />} />
 						</Route>
-					</Route>
-
-					<Route
-						path='settings'
-						element={isMobile ? <MobileSettings /> : <SettingsLayout />}
-					>
-						{isMobile && <Route index element={<Settings />} />}
-						<Route path='appearance' element={<Theme />} />
-						<Route path='general' element={<General />} />
-						<Route path='profile' element={<Profile />} />
 					</Route>
 				</Route>
 			</Route>

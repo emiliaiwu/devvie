@@ -1,4 +1,4 @@
-import { menuLeftBottom, menuLeftTop, menuLeftMiddle } from "../data/db";
+import { menuLeftBottom, menuLeftTop} from "../data/db";
 import { AppContext } from "../context";
 import { useContext } from "react";
 import { Link } from "react-router-dom";
@@ -41,25 +41,7 @@ const MobileMenu = () => {
 						</li>
 					))}
 				</ul>
-				<ul className='flex flex-col gap-1 mb-8 '>
-					{menuLeftMiddle.map((menu, index) => (
-						<li
-							onClick={() => setIsMenuOpen(false)}
-							key={index}
-							className='h-10 flex items-center relative group'
-						>
-							<Link to={menu.url} className='flex items-center h-full w-full'>
-								<div className='  flex justify-center items-center h-full min-w-[55px]'>
-									{<menu.icon className='w-7 h-5' />}
-								</div>
-
-								<span className='menu-title text-base  h-full flex items-center flex-1'>
-									{menu.title}
-								</span>
-							</Link>
-						</li>
-					))}
-				</ul>
+				
 				<ul className='flex flex-col gap-1'>
 					{menuLeftBottom.map((menu, index) => (
 						<li

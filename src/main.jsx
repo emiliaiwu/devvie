@@ -13,8 +13,11 @@ import {
 
 import { MobileMenuProvider } from "./landing/context";
 import { AppContextProvider } from "./app/context/AppContext.jsx";
-import { ProjectContextProvider, TaskProvider } from "./app/context/index.js";
-import { DashboardContextProvider } from "./app/features/dashboard/DashboardContext.jsx";
+import {
+	ProjectContextProvider,
+	TaskProvider,
+	DashboardContextProvider,
+} from "./app/context/index.js";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
 	<React.StrictMode>

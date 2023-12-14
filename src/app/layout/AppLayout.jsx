@@ -1,5 +1,9 @@
 import { Outlet } from "react-router-dom";
-import { Header, MobileMenu, SidebarLeft } from "../components";
+import {
+	Header,
+	MobileMenu,
+	SidebarLeft,
+} from "../components";
 import { useScrollToTop } from "../../hooks";
 import { useContext } from "react";
 import { UserPreferencesContext } from "../context";
@@ -22,7 +26,7 @@ const AppLayout = () => {
 			</div>
 
 			<div className='hidden lg:flex flex-col relative h-full'>
-				<Header />
+				<Header/>
 				<SidebarLeft />
 
 				<main

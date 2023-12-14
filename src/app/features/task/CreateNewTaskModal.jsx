@@ -11,7 +11,7 @@ import TaskList from "./TaskList";
 import { TaskForm } from "./TaskForm";
 import NewTask from "./NewTask";
 
-const CreateNewTaskModal = ({ columnId, projectId, updatedTaskStatus }) => {
+const CreateNewTaskModal = ({ columnId, projectId, updatedTaskStatus, slug }) => {
 	const { userPreferences } = useContext(UserPreferencesContext);
 	const { isSubmitting, isUpdating, setIsNewTaskModalOpen } =
 		useContext(ProjectContext);
@@ -61,7 +61,7 @@ const CreateNewTaskModal = ({ columnId, projectId, updatedTaskStatus }) => {
 						onClick={() =>
 							isUpdating
 								? handleUpdateTask()
-								: createNewTask(columnId, projectId)
+								: createNewTask(columnId, projectId, slug)
 						}
 						style={{ backgroundColor: userPreferences.color }}
 						className={`${userPreferences.border} h-10 w-36 text-sm text-black font-medium hover:opacity-60 transition-opacity duration-200 ease flex justify-center items-center`}

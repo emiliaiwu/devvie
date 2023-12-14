@@ -1,6 +1,6 @@
 import { devvieboard } from "../../assets";
-import { menuLeftBottom, menuLeftTop, menuLeftMiddle } from "../data/db";
-import { Link, NavLink } from "react-router-dom";
+import { menuLeftBottom, menuLeftTop } from "../data/db";
+import { NavLink } from "react-router-dom";
 import { useContext } from "react";
 import { UserPreferencesContext } from "../context";
 
@@ -59,48 +59,6 @@ const SidebarLeft = () => {
 									}}
 									className='hidden group-hover:block absolute sidebar-tooltip 
 										left-12 p-2 bg-[--tooltip-color] font-medium text-xs rounded'
-								>
-									{menu.title}
-								</div>
-							</NavLink>
-						</li>
-					))}
-				</ul>
-				<ul className='flex flex-col gap-1 px-2'>
-					{menuLeftMiddle.map((menu, index) => (
-						<li
-							style={{ "--hover-color": userPreferences.color }}
-							key={index}
-							className={`h-10 font-DMSans flex items-center justify-center relative group w-full ${userPreferences.border} transition-all duration-200 ease`}
-						>
-							<NavLink
-								to={menu.url}
-								style={({ isActive }) => {
-									return {
-										backgroundColor: isActive
-											? userPreferences.shade.other
-											: "",
-									};
-								}}
-								className={` flex group items-center justify-center h-full w-full rounded-xl
-									
-								`}
-							>
-								<div
-									style={{ color: userPreferences.shade.text.primaryText }}
-									className={`flex justify-center items-center h-full hover:opacity-50 w-full `}
-								>
-									{<menu.icon className='w-5 h-6' />}
-								</div>
-
-								{/* TOOLTIP */}
-								<div
-									style={{
-										"--tooltip-color": userPreferences.shade.other,
-										color: userPreferences.shade.text.primaryText,
-									}}
-									className='hidden group-hover:block absolute sidebar-tooltip 
-										left-12 p-2  bg-[--tooltip-color] font-medium text-xs rounded'
 								>
 									{menu.title}
 								</div>

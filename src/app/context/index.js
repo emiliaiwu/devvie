@@ -6,6 +6,8 @@ import ProjectContext from "./ProjectContext";
 import { ProjectContextProvider } from "./ProjectContext";
 import { TaskProvider } from "./TaskContext";
 import TaskContext from "./TaskContext";
+import DashboardContext from "../features/dashboard/DashboardContext";
+import { DashboardContextProvider } from "../features/dashboard/DashboardContext";
 
 export {
 	UserPreferencesContext,
@@ -15,5 +17,7 @@ export {
 	ProjectContext,
 	ProjectContextProvider,
 	TaskProvider,
-	TaskContext
+	TaskContext,
+	DashboardContext,
+	DashboardContextProvider
 };

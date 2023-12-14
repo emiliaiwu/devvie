@@ -35,7 +35,7 @@ export const TaskProvider = ({ children }) => {
 	const [updatedTaskStatus, setUpdatedTaskStatus] = useState([]);
 
 	// create new task------------------------------------------------------------------------------------------------
-	const createNewTask = async (columnId, projectId) => {
+	const createNewTask = async (columnId, projectId, slug) => {
 		setIsSubmitting(true);
 		const taskColumnId = newTask?.status.id;
 		try {
@@ -54,6 +54,7 @@ export const TaskProvider = ({ children }) => {
 				taskColumnId: taskColumnId,
 				projectId: projectId,
 				columnId: columnId,
+				projectSlug: slug,
 			});
 
 			// Fetch the newly created task data
@@ -94,6 +95,8 @@ export const TaskProvider = ({ children }) => {
 				return updatedColumns;
 			});
 
+
+
 			setOriginalColumns((prevColumns) => {
 				const updatedColumns = [...prevColumns].map((column) => {
 					if (column.id === columnId) {
@@ -133,6 +136,7 @@ export const TaskProvider = ({ children }) => {
 		}
 		// Reset form and close modal
 		setIsSubmitting(false);
+		setNewTask(initialNewTask);
 	};
 
 	// delete task
@@ -184,6 +188,8 @@ export const TaskProvider = ({ children }) => {
 		}
 	};
 
+	console.log(newTask)
+
 	// handle UPDATE Project
 	const handleUpdateTask = async () => {
 		setIsSubmitting(true);
@@ -229,7 +235,10 @@ export const TaskProvider = ({ children }) => {
 			setNewTask(initialNewTask);
 			setIsNewTaskModalOpen(false);
 			setIsStatusOpen(false);
+			setTaskToBeUpdated({})
 		}
+
+		setNewTask(initialNewTask);
 	};
 
 	return (
