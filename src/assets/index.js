@@ -13,6 +13,7 @@ import firebaseIcon from "./1175544_firebase_google_icon.png";
 import javaIcon from './652579_code_command_develop_java_language_icon.png'
 import javascriptIcon from "./652581_code_command_develop_javascript_language_icon.png";
 import jqueryIcon from "./652582_code_develop_framework_javascript_jquery_icon.png";
+import libraryImg from "./ertyf.png";
 
 
 export {
@@ -29,4 +30,5 @@ export {
 	javascriptIcon,
 	jqueryIcon,
 	dashboardImg,
+	libraryImg,
 };

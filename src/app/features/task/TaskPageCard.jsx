@@ -32,7 +32,7 @@ const TaskPageCard = ({ taskColumnId, task, projectColumnId, projectId }) => {
 					<div className='px-5 flex flex-col gap-4 w-full'>
 						<div>
 							<HoverAccentColor>
-								<Link to={`/user/${task?.slug}`}>
+								<Link >
 									<h1
 										className='text-base mb-2 capitalize w-full '
 										style={{

@@ -8,6 +8,8 @@ import { TaskProvider } from "./TaskContext";
 import TaskContext from "./TaskContext";
 import DashboardContext from "../features/dashboard/DashboardContext";
 import { DashboardContextProvider } from "../features/dashboard/DashboardContext";
+import LibraryContext from "./LibraryContext";
+import { LibraryContextProvider } from "./LibraryContext";
 
 export {
 	UserPreferencesContext,
@@ -19,5 +21,7 @@ export {
 	TaskProvider,
 	TaskContext,
 	DashboardContext,
-	DashboardContextProvider
+	DashboardContextProvider,
+	LibraryContext,
+	LibraryContextProvider
 };

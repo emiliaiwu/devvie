@@ -71,7 +71,7 @@ const Header = () => {
 						style={{ color: userPreferences.shade.text.primaryText }}
 						className='md:w-9 md:h-9 rounded-full flex items-center justify-center md:bg-[--bg-color]  cursor-pointer transition-all duration-200 ease'
 					>
-						<Link to={"/user/settings/appearance"}>
+						<Link to={"/user/appearance"}>
 							<ThemeIcon className='w-5 h-5 hover:text-[--hover-color]' />
 						</Link>
 					</div>

@@ -6,7 +6,7 @@ import {
 import { useContext, useEffect } from "react";
 import { HoverAccentColor, PriorityTag, Tag } from "../../components";
 import { Link, NavLink, Outlet, useParams } from "react-router-dom";
-import { AddIcon, EditCircleIcon } from "../../data/icon";
+import { AddIcon } from "../../data/icon";
 import CreateNewTaskModal from "./CreateNewTaskModal";
 import { taskStatus } from "../../data/projectData";
 import { usePreventBodyScroll } from "../../../hooks";
@@ -17,7 +17,6 @@ const Task = () => {
 
 	const {
 		allProjects,
-		handleEditProject,
 		isNewTaskModalOpen,
 		setIsNewTaskModalOpen,
 	} = useContext(ProjectContext);
@@ -31,8 +30,6 @@ const Task = () => {
 	useEffect(() => {
 		window.scrollTo({ top: 0, behavior: "smooth" });
 	}, [slug]);
-
-	console.log(project.slug)
 
 	usePreventBodyScroll(isNewTaskModalOpen);
 
@@ -94,35 +91,20 @@ const Task = () => {
 					{/* breadcrumbs */}
 					<div
 						style={{ color: userPreferences.shade.text.primaryText }}
-						className='text-sm mb-3'
+						className='text-[13px] mb-3 flex items-center'
 					>
-						<Link
-							to={"/user/projects"}
-							className='opacity-50 hover:opacity-100 duration-200 transition-opacity'
-						>
-							projects{" "}
+						<Link to={"/user/projects"} className="mr-1">
+							<HoverAccentColor>projects </HoverAccentColor>
 						</Link>
-						<Link
-							to={`/user/projects/${project?.slug}`}
-							className='opacity-50 hover:opacity-100 duration-200 transition-opacity'
-						>
-							/ {project.slug}
+						<span>/</span>
+						<Link to={`/user/projects/${project?.slug}`} className='lowercase ml-1'>
+							<HoverAccentColor>{project.title}</HoverAccentColor>
 						</Link>
 					</div>
 
 					{/* project title and add task button*/}
 					<div className='flex justify-between items-center mb-6'>
-						<div className='flex items-end gap-4'>
-							<h1 className='text-4xl capitalize'>{project.title}</h1>
-							<span
-								onClick={() => handleEditProject(project)}
-								className='pb-2 cursor-pointer'
-							>
-								<HoverAccentColor>
-									<EditCircleIcon className='w-5 h-5' />
-								</HoverAccentColor>
-							</span>
-						</div>
+						<h1 className='text-4xl capitalize'>{project.title}</h1>
 
 						{/* add task button */}
 						{/* add a toast saying move project to in developement */}

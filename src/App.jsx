@@ -23,6 +23,9 @@ import {
 	Commit,
 	TaskPage,
 	ProjectPage,
+	Library,
+	GeneralCollection,
+	CollectionPage,
 } from "./app/pages";
 import ProtectedRoute from "./app/ProtectedRoute";
 import "./style/devvieLoader.css";
@@ -56,6 +59,11 @@ const App = () => {
 					<Route path='dashboard' element={<Dashboard />} />
 					<Route path='appearance' element={<Theme />} />
 					<Route path='tasks' element={<TaskPage />} />
+					<Route path='library' element={<Library />}>
+						<Route index element={<GeneralCollection />} />
+						<Route path=':slug' element={<CollectionPage />} />
+					</Route>
+
 					<Route path='projects' element={<ProjectLayout />}>
 						<Route index element={<ProjectPage />} />
 						<Route path=':slug' element={<Task />}>

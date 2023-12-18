@@ -20,7 +20,7 @@ const TaskPageBoard = () => {
 				<Link
 					style={{ color: userPreferences.shade.text.secondaryText }}
 					to='/user/projects'
-					className='text-xs mb-6'
+					className='text-[13px] mb-6 font-semibold'
 				>
 					<HoverAccentColor>/ projects</HoverAccentColor>
 				</Link>

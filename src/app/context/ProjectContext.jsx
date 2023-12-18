@@ -104,10 +104,26 @@ export const ProjectContextProvider = ({ children }) => {
 		setGreeting(currentGreeting);
 	}, []);
 
+	// Random Numbers
+	const generateRandomNumbers = () => {
+		let randomNumbers = [];
+
+		for (let i = 0; i < 5; i++) {
+			const randomNumber = Math.floor(Math.random() * 100);
+			randomNumbers.push(randomNumber);
+		}
+
+		return randomNumbers;
+	};
+
+	const randomNumbers = generateRandomNumbers();
+
 	// URL SLUG
 	const generateSlug = (title) => {
 		const cleanedString = title.replace(/[^a-zA-Z0-9\s]/g, "");
-		return cleanedString.replace(/\s+/g, "-").toLowerCase();
+		const randomSlug = randomNumbers.join("");
+		const combinedSlug = `${cleanedString}-${randomSlug}`;
+		return combinedSlug.replace(/\s+/g, "-").toLowerCase();
 	};
 
 	// PROJECT
@@ -193,6 +209,7 @@ export const ProjectContextProvider = ({ children }) => {
 
 	// FIREBASE -------------------------------------------------------------
 	useEffect(() => {
+		let isMounted = true;
 		const fetchData = async () => {
 			try {
 				if (user) {
@@ -251,7 +268,6 @@ export const ProjectContextProvider = ({ children }) => {
 							color: statusItem.color,
 							title: statusItem.status,
 							order: index,
-							
 						}));
 
 						// Save default columns to Firestore
@@ -262,16 +278,18 @@ export const ProjectContextProvider = ({ children }) => {
 							})
 						);
 
-						setColumns(defaultColumns);
-						setTaskColumns(defaultTaskColumns);
-						setOriginalColumns(defaultColumns);
+						if (isMounted) {
+							setColumns(defaultColumns);
+							setTaskColumns(defaultTaskColumns);
+							setOriginalColumns(defaultColumns);
 
-						const allProjects = defaultColumns
-							.map((col) => col.projects)
-							.flat();
-						setAllProjects(allProjects);
+							const allProjects = defaultColumns
+								.map((col) => col.projects)
+								.flat();
+							setAllProjects(allProjects);
 
-						setLoading(false);
+							setLoading(false);
+						}
 					} else {
 						setColumns(fetchedColumns);
 
@@ -376,6 +394,9 @@ export const ProjectContextProvider = ({ children }) => {
 		};
 
 		fetchData();
+		return () => {
+			isMounted = false;
+		};
 	}, [user]);
 
 	useEffect(() => {

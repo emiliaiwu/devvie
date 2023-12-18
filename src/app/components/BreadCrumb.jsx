@@ -13,19 +13,22 @@ function BreadCrumb() {
 		.split("/")
 		.filter((crumb) => crumb !== "")
 		.map((crumb, index) => {
+			const cleanedCrumb = crumb.replace(/[^a-zA-Z ]/g, "");
 			currentLink += `/${crumb}`;
 			if (index === 0) {
 				return;
 			}
 			return (
-				<div key={index} className='crumb cursor-pointer hover:text-[--hover-color] mr-3'>
-					<NavLink  to={currentLink} className='capitalize'>
-						{crumb}
+				<div
+					key={index}
+					className='crumb cursor-pointer hover:text-[--hover-color] mr-3'
+				>
+					<NavLink to={currentLink} className='capitalize text-base'>
+						{cleanedCrumb}
 					</NavLink>
 				</div>
 			);
-        });
-
+		});
 
 	return (
 		<nav
@@ -35,7 +38,7 @@ function BreadCrumb() {
 				"--hover-color": userPreferences.color,
 			}}
 			aria-label='breadcrumbs'
-			className='flex justify-between items-center'
+			className='flex justify-between items-center text-base'
 		>
 			{crumbs}
 		</nav>

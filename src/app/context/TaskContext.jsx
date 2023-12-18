@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useState } from "react";
 import { ProjectContext } from ".";
 import { firestore } from "../../firebase";
 import {
@@ -188,7 +188,7 @@ export const TaskProvider = ({ children }) => {
 		}
 	};
 
-	console.log(newTask)
+
 
 	// handle UPDATE Project
 	const handleUpdateTask = async () => {

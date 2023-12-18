@@ -29,22 +29,20 @@ const Theme = () => {
 
 	return (
 		<section
-			style={{ backgroundColor: newUserPreferences.shade.background }}
-			className={`md:pl-20 min-h-screen md:mt-0 mx-auto`}
+			style={{ backgroundColor: newUserPreferences.shade.card }}
+			className={` md:pl-20 min-h-screen md:mt-0 mx-auto`}
 		>
-			<div className='md:py-24 md:pl-8 md:pr-10  px-6 flex flex-col gap-10 min-h-screen py-20'>
+			<div className='md:py-28 md:pl-8 md:pr-10  px-6 flex flex-col gap-10 min-h-screen py-20'>
 				<div
-					style={{
-						borderBottom: `1px solid ${newUserPreferences.shade.other}`,
-					}}
-					className='mb-6 px-2 hidden lg:block'
+					
+					className='px-2 hidden lg:block'
 				>
 					<h2
 						style={{
 							fontFamily: newUserPreferences.font.fontFamily,
 							color: newUserPreferences.shade.text.primaryText,
 						}}
-						className='text-3xl pb-4 font-medium'
+						className='text-3xl font-medium'
 					>
 						Appearance
 					</h2>

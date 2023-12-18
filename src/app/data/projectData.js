@@ -82,6 +82,48 @@ export const projectStatus = [
 	},
 ];
 
+export const collectionColors = [
+	"rgb(255, 191, 0)",
+	"rgb(11, 218, 81)",
+	"#F01BF4",
+	"#007FFF",
+	"rgb(255, 95, 31)",
+	"#b30000",
+	"#640cc9",
+];
+
+export const linkTags = [
+	{
+		title: "video",
+		color: "red",
+	},
+
+	{
+		title: "Articles",
+		color: "#007FFF",
+	},
+	{
+		title: "Github",
+		color: "rgb(255, 95, 31)",
+	},
+	{
+		title: "course",
+		color: "#640cc9",
+	},
+	{
+		title: "socials",
+		color: "#F01BF4",
+	},
+	{
+		title: "Coding",
+		color: "green",
+	},
+	{
+		title: "Tutorials",
+		color: "rgb(95,90,246)",
+	},
+];
+
 export const priorityTags = [
 	{
 		tag: "Critical Priority",

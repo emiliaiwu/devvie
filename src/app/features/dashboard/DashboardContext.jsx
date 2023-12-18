@@ -28,7 +28,7 @@ export const DashboardContextProvider = ({ children }) => {
 		getUsernameOrEmail();
 	}, [user]);
 
-	console.log(columns);
+
 
 	function shuffleArray(array) {
 		for (let i = array.length - 1; i > 0; i--) {
@@ -120,7 +120,7 @@ export const DashboardContextProvider = ({ children }) => {
 
 		setActiveTasks(allactiveTasks);
 
-		console.log(allactiveTasks);
+		
 	}, [columns]);
 
 	// Function to calculate the percentage of true checked items
