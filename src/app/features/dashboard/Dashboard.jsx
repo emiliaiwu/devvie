@@ -10,12 +10,13 @@ import OverallProjects from "./OverallProjects";
 import TopTechStack from "./TopTechStack";
 import ActiveTasks from "./ActiveTasks";
 import TasksActivity from "./TaskActivity";
+import { useScrollToTop } from "../../../hooks";
 
 const Dashboard = () => {
 	const { userPreferences } = useContext(UserPreferencesContext);
 	const { firstName } = useContext(DashboardContext);
 	const { greeting } = useContext(ProjectContext);
-	
+	useScrollToTop();
 
 	return (
 		<section

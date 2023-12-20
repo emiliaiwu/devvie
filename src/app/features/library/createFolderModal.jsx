@@ -132,17 +132,16 @@ const CreateFolderModal = () => {
 							backgroundColor: userPreferences.color,
 							color: `${userPreferences.isLightMode ? "white" : "black"}`,
 						}}
-						className={`${userPreferences.border} flex items-center gap-2 py-2 px-4 cursor-pointer hover:opacity-60 outline-none`}
+						className={`${userPreferences.border} flex items-center text-sm justify-center gap-2 py-2 px-4 cursor-pointer hover:opacity-60 outline-none h-10 w-24 `}
 					>
-						<span className='text-sm'></span>
+						{isSubmitting ? (
+							<ClipLoader loading={true} color={"#FFFFFF"} size={28} />
+						) : isUpdating ? (
+							"Update"
+						) : (
+							"Create"
+						)}
 					</button>
-					{isSubmitting ? (
-						<ClipLoader loading={true} color={"#FFFFFF"} size={28} />
-					) : isUpdating ? (
-						"Update"
-					) : (
-						"Create"
-					)}
 				</div>
 			</div>
 		</div>

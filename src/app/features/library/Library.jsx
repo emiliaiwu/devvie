@@ -2,20 +2,21 @@ import { useContext } from "react";
 import { LibraryContext, UserPreferencesContext } from "../../context";
 import Banner from "./Banner";
 import CreateFolderModal from "./createFolderModal";
-import { usePreventBodyScroll } from "../../../hooks";
+import { usePreventBodyScroll, useScrollToTop } from "../../../hooks";
 import { Outlet } from "react-router-dom";
-
 
 const Library = () => {
 	const { userPreferences } = useContext(UserPreferencesContext);
-	const { isCreateNewCollectionOpen, isAddLinkOpen } = useContext(LibraryContext);
+	const { isCreateNewCollectionOpen, isAddLinkOpen } =
+		useContext(LibraryContext);
+	useScrollToTop();
 
 	usePreventBodyScroll(isCreateNewCollectionOpen || isAddLinkOpen);
 
 	return (
 		<section
 			style={{
-				backgroundColor: userPreferences.shade.card,
+				backgroundColor: userPreferences.shade.background,
 				fontFamily: userPreferences.font.fontFamily,
 				color: userPreferences.shade.text.primaryText,
 			}}
@@ -34,7 +35,7 @@ const Library = () => {
 				<Banner />
 
 				<div>
-					<Outlet/>
+					<Outlet />
 				</div>
 			</div>
 		</section>

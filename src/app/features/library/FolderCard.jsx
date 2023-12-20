@@ -12,7 +12,7 @@ const FolderCard = ({ collection }) => {
 		<Link to={`${collection?.slug}`}>
 			<div
 				style={{
-					backgroundColor: userPreferences.shade.card,
+					backgroundColor: userPreferences.shade.background,
 				}}
 				className={`${userPreferences.border} w-[180px] h-[130px] p-3 flex justify-center items-center cursor-pointer`}
 			>

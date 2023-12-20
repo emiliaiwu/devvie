@@ -6,7 +6,7 @@ import {
 } from "react-icons/bs";
 import { FaSquare, FaPause, FaBug } from "react-icons/fa";
 import { GoAlertFill } from "react-icons/go";
-import { useAlphanumericID } from "../../hooks";
+
 
 export const mainProjects = [
 	{
@@ -99,11 +99,11 @@ export const linkTags = [
 	},
 
 	{
-		title: "Articles",
+		title: "Article",
 		color: "#007FFF",
 	},
 	{
-		title: "Github",
+		title: "Source code",
 		color: "rgb(255, 95, 31)",
 	},
 	{
@@ -121,6 +121,11 @@ export const linkTags = [
 	{
 		title: "Tutorials",
 		color: "rgb(95,90,246)",
+	},
+
+	{
+		title: "Website",
+		color: "#00b287",
 	},
 ];
 

@@ -73,7 +73,7 @@ const BarChart = () => {
 	};
 
 	const backgroundColors = tasksInColumns.map((status) => status.color);
-	console.log(backgroundColors);
+	
 
 	const data = {
 		labels: tasksInColumns.map((status) => status.status),

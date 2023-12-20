@@ -1,12 +1,14 @@
 import { useContext } from "react";
 import DoughnutChart from "./DoughnutChart";
-import { UserPreferencesContext } from "../../context";
+import { DashboardContext, UserPreferencesContext } from "../../context";
 import { GoToLinkIcon } from "../../data/icon";
 import { Link } from "react-router-dom";
-import { HoverAccentColor } from "../../components";
+import { HoverAccentColor, NoDataSmall } from "../../components";
 
 const OverallProjects = () => {
 	const { userPreferences } = useContext(UserPreferencesContext);
+	const { hasProjects } = useContext(DashboardContext);
+
 	return (
 		<div
 			style={{
@@ -29,9 +31,15 @@ const OverallProjects = () => {
 				</Link>
 			</div>
 
-			<div className='lg:w-[380px] w-full h-[320px] flex justify-center items-center px-5'>
-				<DoughnutChart />
-			</div>
+			{hasProjects ? (
+				<div className='lg:w-[380px] w-full h-[320px] flex justify-center items-center px-5'>
+					<DoughnutChart />
+				</div>
+			) : (
+				<div className=' h-[320px]'>
+					<NoDataSmall paragraph={"There are no projects"} />
+				</div>
+			)}
 		</div>
 	);
 };

@@ -15,6 +15,8 @@ import ChooseStartDate from "./ChooseStartDate";
 import ChooseDueDate from "./ChooseDueDate";
 import DatePicker from "./DatePicker";
 import LoadingButton from "./LoadingButton";
+import NoData from "./NoData";
+import NoDataSmall from "./NoDataSmall";
 
 export {
 	SidebarLeft,
@@ -34,5 +36,6 @@ export {
 	DatePicker,
 	ChooseDueDate,
 	LoadingButton,
-	
+	NoData,
+	NoDataSmall,
 };

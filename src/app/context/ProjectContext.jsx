@@ -138,6 +138,7 @@ export const ProjectContextProvider = ({ children }) => {
 		startDate: selectedDate,
 		dueDate: selectedDate,
 		status: {},
+		taskColumns: [ ]
 	};
 
 	const [newProject, setNewProject] = useState(initialProjectState);
@@ -260,6 +261,7 @@ export const ProjectContextProvider = ({ children }) => {
 							color: statusItem.color,
 							title: statusItem.status,
 							order: index,
+							projects : []
 						}));
 
 						// if taskbaord is empty, add default taskboards

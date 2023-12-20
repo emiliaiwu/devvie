@@ -10,6 +10,8 @@ import DashboardContext from "../features/dashboard/DashboardContext";
 import { DashboardContextProvider } from "../features/dashboard/DashboardContext";
 import LibraryContext from "./LibraryContext";
 import { LibraryContextProvider } from "./LibraryContext";
+import { UserProfileContextProvider } from "./UserProfileContext";
+import UserProfileContext from "./UserProfileContext";
 
 export {
 	UserPreferencesContext,
@@ -23,5 +25,7 @@ export {
 	DashboardContext,
 	DashboardContextProvider,
 	LibraryContext,
-	LibraryContextProvider
+	LibraryContextProvider,
+	UserProfileContext,
+	UserProfileContextProvider
 };

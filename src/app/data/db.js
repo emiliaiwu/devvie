@@ -33,16 +33,11 @@ export const menuLeftTop = [
 	},
 
 	{
-		title: "Library",
-		url: "/user/library",
+		title: "Devmark",
+		url: "/user/devmark",
 		icon: LibraryIcon,
 	},
 
-	{
-		title: "Challenges",
-		url: "/user/challenges",
-		icon: ChallengeIcon,
-	},
 
 	{
 		title: "Appearance",
@@ -58,7 +53,7 @@ export const menuLeftTop = [
 
 	{
 		title: "Portfolio",
-		url: "/user/portfolio",
+		url: "/emiliaiwu",
 		icon: PortfolioIcon,
 	},
 ];

@@ -26,11 +26,12 @@ import {
 	Library,
 	GeneralCollection,
 	CollectionPage,
+	Profile,
+	Portfolio,
 } from "./app/pages";
 import ProtectedRoute from "./app/ProtectedRoute";
 import "./style/devvieLoader.css";
 import "./style/app.css";
-
 
 // Lazy
 // const LazyDashboard = React.lazy
@@ -39,6 +40,7 @@ const App = () => {
 	const router = createBrowserRouter(
 		createRoutesFromElements(
 			<Route path='/' element={<Root />}>
+				<Route path=":username" element={<Portfolio />} />
 				<Route index element={<LandingPage />} />
 				<Route path='signin' element={<SignInPage />} />
 				<Route path='signup' element={<SignUpPage />} />
@@ -59,11 +61,11 @@ const App = () => {
 					<Route path='dashboard' element={<Dashboard />} />
 					<Route path='appearance' element={<Theme />} />
 					<Route path='tasks' element={<TaskPage />} />
-					<Route path='library' element={<Library />}>
+					<Route path='devmark' element={<Library />}>
 						<Route index element={<GeneralCollection />} />
 						<Route path=':slug' element={<CollectionPage />} />
 					</Route>
-
+					<Route path='profile' element={<Profile />} />
 					<Route path='projects' element={<ProjectLayout />}>
 						<Route index element={<ProjectPage />} />
 						<Route path=':slug' element={<Task />}>

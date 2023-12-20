@@ -22,10 +22,11 @@ const Banner = () => {
 					className='flex flex-col justify-center items-start'
 				>
 					<h1 className='lg:text-5xl mb-2 font-semibold text-2xl'>
-						Hello! {firstName}
+						Hello {firstName},
 					</h1>
-					<p className='text-base lg:text-lg max-w-[250px]  lg:max-w-full whitespace-normal'>
-						Welcome to your Developer library
+					<p className="text-xl font-semibold">Welcome to Devmark!</p>
+					<p className='text-sm lg:text-base max-w-[250px]  lg:max-w-full whitespace-normal'>
+						Devmark helps you save important links
 					</p>
 				</div>
 

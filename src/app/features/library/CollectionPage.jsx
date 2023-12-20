@@ -1,19 +1,18 @@
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useContext, useEffect } from "react";
 import { LibraryContext, UserPreferencesContext } from "../../context";
 import { AddIcon } from "../../data/icon";
-import { BreadCrumb } from "../../components";
+import { HoverAccentColor, NoData } from "../../components";
 import Bookmark from "./Bookmark";
 import AddLinkModal from "./AddLinkModal";
 import { usePreventBodyScroll } from "../../../hooks";
+import { noFiles } from "../../../assets";
 const CollectionPage = () => {
 	const { userPreferences } = useContext(UserPreferencesContext);
 	const { userCollection, isAddLinkOpen, setIsAddLinkOpen } =
 		useContext(LibraryContext);
 
 	const { slug } = useParams();
-
-	console.log(slug);
 
 	useEffect(() => {
 		window.scrollTo({ top: 0, behavior: "smooth" });
@@ -23,14 +22,21 @@ const CollectionPage = () => {
 		(collection) => collection.slug === slug
 	);
 
-	console.log(collection)
-
 	usePreventBodyScroll(isAddLinkOpen);
 
 	return (
 		<>
 			<div className='flex justify-between items-center mb-6 px-2'>
-				<BreadCrumb />
+				<div className='flex gap-3'>
+					<Link to={`/user/devmark`} className='text-base'>
+						<HoverAccentColor>Home</HoverAccentColor>
+					</Link>
+					<span>{">"}</span>
+
+					<Link>
+						<HoverAccentColor>{collection?.title}</HoverAccentColor>
+					</Link>
+				</div>
 				{isAddLinkOpen && (
 					<div
 						className={`z-[1000] fixed inset-0 bg-black bg-opacity-80 flex justify-center items-center pt-40 overflow-y-auto pb-20 `}
@@ -54,17 +60,20 @@ const CollectionPage = () => {
 					</button>
 				</div>
 			</div>
-			<div
-				className={`${userPreferences.border} p-8 pb-10 min-h-screen`}
-				style={{
-					backgroundColor: userPreferences.shade.background,
-				}}
-			>
-				<div className='flex gap-6 items-center'>
-					{collection?.links.map((link) => (
-						<Bookmark key={link.title} link={link} />
-					))}
-				</div>
+
+			<div>
+				{collection.links.length !== 0 ? (
+					<div className='grid grid-cols-4 gap-y-6 xxl:grid-cols-6 items-center mt-8 mx-auto'>
+						{collection?.links.map((link) => (
+							<Bookmark key={link.title} link={link} />
+						))}
+					</div>
+				) : (
+					<NoData
+						title={"No Saved Links Yet!"}
+						paragraph={"Click the new link button to start saving links"}
+					/>
+				)}
 			</div>
 		</>
 	);

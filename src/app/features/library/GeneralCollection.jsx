@@ -2,18 +2,27 @@ import { useContext } from "react";
 import { LibraryContext, UserPreferencesContext } from "../../context";
 import CreateFolder from "./CreateFolder";
 import FolderCard from "./FolderCard";
-import BreadCrumb from "../../components/BreadCrumb";
 import { AddIcon } from "../../data/icon";
+import { Link } from "react-router-dom";
+import { HoverAccentColor, NoData } from "../../components";
+import { noFiles } from "../../../assets";
 
 const GeneralCollection = () => {
 	const { userCollection } = useContext(LibraryContext);
 	const { userPreferences } = useContext(UserPreferencesContext);
+	const { setIsCreateNewCollectionOpen } = useContext(LibraryContext);
 	return (
 		<>
 			<div className='flex justify-between items-center mb-6 px-2'>
-				<BreadCrumb />
 				<div>
+					<Link to={`/user/devmark`} className='text-base'>
+						<HoverAccentColor>Home</HoverAccentColor>
+					</Link>
+				</div>
+
+				<div className=''>
 					<button
+						onClick={() => setIsCreateNewCollectionOpen(true)}
 						style={{
 							backgroundColor: userPreferences.color,
 							color: `${userPreferences.isLightMode ? "white" : "black"}`,
@@ -25,18 +34,23 @@ const GeneralCollection = () => {
 					</button>
 				</div>
 			</div>
-			<div
-				className={`${userPreferences.border} p-8 pb-10 min-h-screen`}
-				style={{
-					backgroundColor: userPreferences.shade.background,
-				}}
-			>
-				<div className='flex gap-6 items-center'>
-					{userCollection?.map((collection) => (
-						<FolderCard key={collection.id} collection={collection} />
-					))}
-					<CreateFolder />
-				</div>
+
+			<div>
+				{userCollection.length !== 0 ? (
+					<div
+						style={{ backgroundColor: userPreferences.shade.card }}
+						className={`${userPreferences.border} md:p-10 min-h-screen`}
+					>
+						<div className='grid grid-cols-5 gap-6 items-center xxl:grid-cols-8'>
+							{userCollection?.map((collection) => (
+								<FolderCard key={collection.id} collection={collection} />
+							))}
+							<CreateFolder />
+						</div>
+					</div>
+				) : (
+						<NoData title={'No Collections Yet!'} paragraph={ 'Click the new collection button to start collecting'} />
+				)}
 			</div>
 		</>
 	);

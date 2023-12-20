@@ -6,7 +6,7 @@ import { DropdownArrowIcon } from "../../data/icon";
 import { HoverAccentColor } from "../../components";
 import { ClipLoader } from "react-spinners";
 
-const AddLinkModal = ({collectionId}) => {
+const AddLinkModal = ({ collectionId }) => {
 	const { userPreferences } = useContext(UserPreferencesContext);
 	const {
 		newLink,
@@ -15,7 +15,6 @@ const AddLinkModal = ({collectionId}) => {
 		setIsAddLinkOpen,
 		addLink,
 		isSubmitting,
-		
 	} = useContext(LibraryContext);
 	const [isLinkOpen, setIsLinkOpen] = useState(false);
 
@@ -29,12 +28,24 @@ const AddLinkModal = ({collectionId}) => {
 		setIsLinkOpen(false);
 	};
 
+	const handleTag = (item) => {
+		if (newLink.tag.length < 2) {
+			setNewLink((prev) => {
+				return { ...prev, tag: [...prev.tag, item] };
+			});
+
+		} else {
+			setIsLinkOpen(false);
+			return;
+		}
+
+		
+	};
+
 	const handleCancel = () => {
 		setNewLink(initialLink);
 		setIsAddLinkOpen(false);
 	};
-
-	console.log(newLink);
 
 	return (
 		<div
@@ -88,13 +99,17 @@ const AddLinkModal = ({collectionId}) => {
 								}}
 								className={`${userPreferences.border} bg-transparent text-sm w-full p-3 focus:outline-none h-12  flex justify-between items-center`}
 							>
-								<div>
+								<div className='flex flex-row gap-3 items-center'>
 									{" "}
-									{newLink?.tag.title ? (
-										<Tag title={newLink.tag.title} color={newLink.tag.color} />
-									) : (
-										"Choose tag"
-									)}
+									{newLink.tag
+										? newLink.tag.map((tag) => (
+												<Tag
+													key={tag.title}
+													title={tag.title}
+													color={tag.color}
+												/>
+										  ))
+										: "Choose tag"}
 								</div>
 								<div
 									onClick={() => setIsLinkOpen(!isLinkOpen)}
@@ -122,7 +137,7 @@ const AddLinkModal = ({collectionId}) => {
 							>
 								{linkTags.map((item) => (
 									<li
-										onClick={() => handleChange("tag", item)}
+										onClick={() => handleTag(item)}
 										key={item.title}
 										className='cursor-pointer'
 									>
@@ -146,21 +161,18 @@ const AddLinkModal = ({collectionId}) => {
 					<span className='text-sm'>Cancel</span>
 				</button>
 				<button
-					
 					onClick={() => addLink(collectionId)}
 					style={{
 						backgroundColor: userPreferences.color,
 						color: `${userPreferences.isLightMode ? "white" : "black"}`,
 					}}
-					className={`${userPreferences.border} flex items-center gap-2 py-2 px-4 cursor-pointer hover:opacity-60 outline-none justify-center`}
+					className={`${userPreferences.border} flex text-sm items-center gap-2 py-2 px-4 cursor-pointer hover:opacity-60 outline-none justify-center h-10 w-24`}
 				>
-					<span className='text-sm'>
-						{isSubmitting ? (
-							<ClipLoader loading={true} color={"#FFFFFF"} size={28} />
-						) : (
-							"Save Link"
-						)}
-					</span>
+					{isSubmitting ? (
+						<ClipLoader loading={true} color={"#FFFFFF"} size={28} />
+					) : (
+						"Save Link"
+					)}
 				</button>
 			</div>
 		</div>

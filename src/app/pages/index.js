@@ -10,8 +10,10 @@ import ProjectPage from "../features/project/ProjectPage";
 import Library from "../features/library/Library";
 import GeneralCollection from "../features/library/GeneralCollection";
 import CollectionPage from "../features/library/CollectionPage";
+import Profile from "../features/Profile/Profile";
+import Portfolio from "../features/Profile/Portfolio";
 
 
 export {
-    Dashboard, Theme,  Project, Task, TaskBoard, Details, Commit, TaskPage, ProjectPage, Library, GeneralCollection, CollectionPage
+    Dashboard, Theme,  Project, Task, TaskBoard, Details, Commit, TaskPage, ProjectPage, Library, GeneralCollection, Portfolio, CollectionPage, Profile
 }

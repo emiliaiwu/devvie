@@ -13,6 +13,7 @@ export const DashboardContextProvider = ({ children }) => {
 	const [activeTasks, setActiveTasks] = useState([]);
 	const [tasksInColumns, setTaskInColumns] = useState([]);
 	const [taskGroup, setTaskGroup] = useState({});
+	const [hasProjects, setHasProjects] = useState(false);
 
 	useEffect(() => {
 		const getUsernameOrEmail = () => {
@@ -27,8 +28,6 @@ export const DashboardContextProvider = ({ children }) => {
 
 		getUsernameOrEmail();
 	}, [user]);
-
-
 
 	function shuffleArray(array) {
 		for (let i = array.length - 1; i > 0; i--) {
@@ -97,10 +96,12 @@ export const DashboardContextProvider = ({ children }) => {
 		);
 
 		// Calculate the count for each stack
-		const stackCounts = allStacks?.reduce((counts, stack) => {
-			counts[stack] = (counts[stack] || 0) + 1;
-			return counts;
-		}, {});
+		const stackCounts = allStacks
+			? allStacks.reduce((counts, stack) => {
+					counts[stack] = (counts[stack] || 0) + 1;
+					return counts;
+			  }, {})
+			: {};
 
 		// Convert the stackCounts object to an array of objects
 		const sortedStacks = Object.entries(stackCounts)
@@ -119,8 +120,11 @@ export const DashboardContextProvider = ({ children }) => {
 		);
 
 		setActiveTasks(allactiveTasks);
-
-		
+		setHasProjects(
+			columns.some(
+				(col) => Array.isArray(col.projects) && col.projects.length > 0
+			)
+		);
 	}, [columns]);
 
 	// Function to calculate the percentage of true checked items
@@ -141,8 +145,6 @@ export const DashboardContextProvider = ({ children }) => {
 		(task) => task.percentageChecked !== "0"
 	);
 
-
-
 	return (
 		<DashboardContext.Provider
 			value={{
@@ -153,6 +155,7 @@ export const DashboardContextProvider = ({ children }) => {
 				activeTasksWithPercentage,
 				tasksInColumns,
 				taskGroup,
+				hasProjects,
 				// activeProjectsWithPercentage,
 			}}
 		>

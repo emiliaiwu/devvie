@@ -7,7 +7,6 @@ import {
 	getDoc,
 	getDocs,
 	updateDoc,
-	writeBatch,
 } from "firebase/firestore";
 import { firestore } from "../../firebase";
 import { AuthContext } from "../../context";
@@ -26,7 +25,7 @@ export const LibraryContextProvider = ({ children }) => {
 	const initialLink = {
 		title: "",
 		link: "",
-		tag: {},
+		tag: [],
 	};
 	const [newLink, setNewLink] = useState(initialLink);
 	const [userCollection, setUserCollection] = useState([]);
@@ -64,54 +63,7 @@ export const LibraryContextProvider = ({ children }) => {
 		const fetchCollection = async () => {
 			try {
 				if (user) {
-					const collectionRef = collection(
-						firestore,
-						`library/${userId}/folders`
-					);
-
-					const collectionSnapshot = await getDocs(collectionRef);
-
-					const collectionData = await Promise.all(
-						collectionSnapshot.docs.map(async (doc) => {
-							const folderData = {
-								id: doc.id,
-								...doc.data(),
-							};
-
-							// Fetch links for each folder
-							const linksRef = collection(
-								firestore,
-								`library/${userId}/folders/${doc.id}/links`
-							);
-
-							const linksSnapshot = await getDocs(linksRef);
-
-							const linksData = [];
-							linksSnapshot.forEach((doc) => {
-								const createdAtTimestamp = doc.data().createdAt;
-								const createdAtDate = createdAtTimestamp.toDate();
-
-								const formattedDate = createdAtDate.toLocaleDateString(
-									"en-US",
-									{
-										day: "numeric",
-										month: "short",
-										year: "numeric",
-									}
-								);
-
-								linksData.push({
-									id: doc.id,
-									...doc.data(),
-									createdAt: formattedDate,
-								});
-							});
-
-							return { ...folderData, links: linksData };
-						})
-					);
-
-					setUserCollection(collectionData);
+					fetchCollections();
 				}
 			} catch (error) {
 				console.error("Error fetching folders and links:", error);
@@ -120,6 +72,52 @@ export const LibraryContextProvider = ({ children }) => {
 
 		fetchCollection();
 	}, [user]);
+
+	// Fetch Collestions
+	const fetchCollections = async () => {
+		const collectionRef = collection(firestore, `library/${userId}/folders`);
+
+		const collectionSnapshot = await getDocs(collectionRef);
+
+		const collectionData = await Promise.all(
+			collectionSnapshot.docs.map(async (doc) => {
+				const folderData = {
+					id: doc.id,
+					...doc.data(),
+				};
+
+				// Fetch links for each folder
+				const linksRef = collection(
+					firestore,
+					`library/${userId}/folders/${doc.id}/links`
+				);
+
+				const linksSnapshot = await getDocs(linksRef);
+
+				const linksData = [];
+				linksSnapshot.forEach((doc) => {
+					const createdAtTimestamp = doc.data().createdAt;
+					const createdAtDate = createdAtTimestamp.toDate();
+
+					const formattedDate = createdAtDate.toLocaleDateString("en-US", {
+						day: "numeric",
+						month: "short",
+						year: "numeric",
+					});
+
+					linksData.push({
+						id: doc.id,
+						...doc.data(),
+						createdAt: formattedDate,
+					});
+				});
+
+				return { ...folderData, links: linksData };
+			})
+		);
+
+		setUserCollection(collectionData);
+	};
 
 	// fetch links
 	const fetchLinksInCollection = async (collectionId) => {
@@ -187,6 +185,7 @@ export const LibraryContextProvider = ({ children }) => {
 		} finally {
 			setIsCreateNewCollectionOpen(false);
 			setIsSubmitting(false);
+			setNewCollection(initialCollection);
 		}
 	};
 
@@ -267,6 +266,7 @@ export const LibraryContextProvider = ({ children }) => {
 
 			// Delete the collection document
 			await deleteDoc(collectionRef);
+			fetchCollections();
 
 			console.log("Collection and links deleted successfully");
 		} catch (error) {
@@ -281,10 +281,10 @@ export const LibraryContextProvider = ({ children }) => {
 			...prev,
 			...collection,
 		}));
+		setIsCreateNewCollectionOpen(true);
 	};
 
 	const handleUpdateCollection = async () => {
-		console.log(newCollection);
 		setIsSubmitting(true);
 		try {
 			const collectionId = collectionToBeUpdated.id;
@@ -319,11 +319,12 @@ export const LibraryContextProvider = ({ children }) => {
 			setIsCreateNewCollectionOpen(false);
 			setIsUpdating(false);
 			setIsSubmitting(false);
+			setNewCollection(initialCollection);
 		}
 	};
 
 	// YOUTUBE DATA API
-	
+
 	// const [videoThumbnail, setVideoThumbnail] = useState("");
 
 	// const handleAddVideo = async () => {
@@ -383,7 +384,6 @@ export const LibraryContextProvider = ({ children }) => {
 				handleUpdateCollection,
 				isSubmitting,
 				isUpdating,
-				
 			}}
 		>
 			{children}

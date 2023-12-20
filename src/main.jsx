@@ -18,6 +18,7 @@ import {
 	TaskProvider,
 	DashboardContextProvider,
 	LibraryContextProvider,
+	UserProfileContextProvider,
 } from "./app/context/index.js";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
@@ -34,7 +35,9 @@ ReactDOM.createRoot(document.getElementById("root")).render(
 											<TaskProvider>
 												<DashboardContextProvider>
 													<LibraryContextProvider>
-														<App />
+														<UserProfileContextProvider>
+															<App />
+														</UserProfileContextProvider>
 													</LibraryContextProvider>
 												</DashboardContextProvider>
 											</TaskProvider>

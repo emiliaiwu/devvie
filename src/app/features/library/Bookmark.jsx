@@ -7,38 +7,36 @@ import { Link } from "react-router-dom";
 
 const Bookmark = ({ link }) => {
 	const { userPreferences } = useContext(UserPreferencesContext);
-	const { deleteLink} = useContext(LibraryContext);
-	console.log(link);
+	const { deleteLink } = useContext(LibraryContext);
 
 	return (
-		<div className='relative'>
-			{/* <div>
-				<img src={videoThumbnail} />
-			</div> */}
+		<div className=''>
 			<div
 				style={{
 					backgroundColor: userPreferences.shade.card,
 				}}
-				className={`${userPreferences.border} w-full md:w-[270px] py-3 flex gap-3 px-4 items-center `}
+				className={`${userPreferences.border} w-full md:w-[262px]  flex gap-3 p-4 items-center relative`}
 			>
-				<div className='flex flex-col justify-between gap-2 w-full capitalize'>
-					<div>
-						<Tag title={link?.tag.title} color={link?.tag.color} />
+				<div className='flex flex-col justify-between gap-2 w-full'>
+					<div className='flex flex-row gap-3 items-center'>
+						{link.tag.map((tag) => (
+							<Tag key={tag.title} title={tag.title} color={tag.color} />
+						))}
 					</div>
 
-					<h1 className='text-sm line-clamp-2 whitespace-normal w-[200px] truncate'>
+					<h1 className='text-base line-clamp-2 whitespace-normal w-[200px] truncate'>
 						{link?.title}
 					</h1>
 					<div
 						style={{ color: userPreferences.shade.text.secondaryText }}
-						className='text-xs flex justify-between items-center mt-2'
+						className='text-xs flex justify-between items-center mt-1'
 					>
 						{link.createdAt ? (
 							<span>{link.createdAt.toLocaleString()}</span>
 						) : (
 							<span></span>
 						)}
-						<div className='flex items-center gap-4'>
+						<div className='flex items-center gap-3'>
 							<Link
 								to={`${link?.link}`}
 								target='_blank'
@@ -48,7 +46,10 @@ const Bookmark = ({ link }) => {
 									<GoToLinkIcon className='w-4 h-4' />
 								</HoverAccentColor>
 							</Link>
-							<span onClick={() => deleteLink(link?.collectionId, link?.id)} className='cursor-pointer'>
+							<span
+								onClick={() => deleteLink(link?.collectionId, link?.id)}
+								className='cursor-pointer'
+							>
 								<HoverAccentColor>
 									<DeleteIcon className='w-4 h-4' />
 								</HoverAccentColor>
