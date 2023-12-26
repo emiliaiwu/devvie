@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { UserPreferencesContext } from "../../context";
+import { UserPreferencesContext, UserProfileContext } from "../../context";
 import {
 	Call,
 	Facebook,
@@ -11,26 +11,22 @@ import {
 
 const SocialsForm = () => {
 	const { userPreferences } = useContext(UserPreferencesContext);
-	const [socialLinks, setSocialLinks] = useState({
-		instagram: "",
-		github: "",
-		linkedIn: "",
-		facebook: "",
-		email: "",
-		phoneNumber: "",
-	});
+	const { setUserProfile, userProfile } = useContext(UserProfileContext);
 
 	const handleChange = (e) => {
 		const { name, value } = e.target;
-		setSocialLinks((prevLinks) => ({
-			...prevLinks,
-			[name]: value,
+		setUserProfile((prev) => ({
+			...prev,
+			socials: {
+				...prev.socials,
+				[name]: value,
+			},
 		}));
 	};
 
 	return (
 		<div>
-			<form className='grid lg:grid-cols-3 gap-6'>
+			<form className='grid lg:grid-cols-2 gap-6'>
 				<label
 					style={{
 						borderColor: userPreferences.shade.other,
@@ -46,7 +42,7 @@ const SocialsForm = () => {
 						id='instagram'
 						name='instagram'
 						placeholder='Enter your Instagram link'
-						value={socialLinks.instagram}
+						value={userProfile.socials.instagram}
 						onChange={handleChange}
 						className='bg-transparent  outline-none w-full'
 					/>
@@ -67,32 +63,13 @@ const SocialsForm = () => {
 						id='github'
 						name='github'
 						placeholder='Enter your github link'
-						value={socialLinks.github}
+						value={userProfile.socials.github}
 						onChange={handleChange}
 						className='bg-transparent  outline-none w-full'
 					/>
 				</label>
 
-				<label
-					style={{
-						borderColor: userPreferences.shade.other,
-						color: userPreferences.shade.text.secondaryText,
-					}}
-					htmlFor='facebook'
-					className={`${userPreferences.border} text-base py-2 px-4 w-full border-[1.5px] flex items-center gap-3 `}
-				>
-					<Facebook className='w-6 h-6' />
-
-					<input
-						type='url'
-						id='facebook'
-						name='facebook'
-						placeholder='Enter your facebook link'
-						value={socialLinks.facebook}
-						onChange={handleChange}
-						className='bg-transparent  outline-none w-full'
-					/>
-				</label>
+				
 				<label
 					style={{
 						borderColor: userPreferences.shade.other,
@@ -108,7 +85,7 @@ const SocialsForm = () => {
 						id='linkedIn'
 						name='linkedIn'
 						placeholder='Enter your linkedIn link'
-						value={socialLinks.linkedIn}
+						value={userProfile.socials.linkedIn}
 						onChange={handleChange}
 						className='bg-transparent  outline-none w-full'
 					/>
@@ -127,15 +104,15 @@ const SocialsForm = () => {
 					<input
 						type='email'
 						id='gmail'
-						name='gmail'
+						name='email'
 						placeholder='Enter your gmail '
-						value={socialLinks.gmail}
+						value={userProfile.socials.gmail}
 						onChange={handleChange}
 						className='bg-transparent  outline-none w-full'
 					/>
 				</label>
 
-				<label
+				{/* <label
 					style={{
 						borderColor: userPreferences.shade.other,
 						color: userPreferences.shade.text.secondaryText,
@@ -150,11 +127,11 @@ const SocialsForm = () => {
 						id='phoneNumber'
 						name='phoneNumber'
 						placeholder='Enter your phone number '
-						value={socialLinks.phoneNumber}
+						value={userProfile.socials.phoneNumber}
 						onChange={handleChange}
 						className='bg-transparent  outline-none w-full'
 					/>
-				</label>
+				</label> */}
 			</form>
 		</div>
 	);

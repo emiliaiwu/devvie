@@ -9,10 +9,10 @@ const NoData = ({title, paragraph}) => {
 			<div className='flex justify-center items-center'>
 				<img src={noFiles} className='w-full aspect-auto lg:w-[500px]' />
 			</div>
-			<div className='flex flex-col -mt-8'>
+			<div className='flex flex-col -mt-10'>
 				<h1
 					style={{ color: userPreferences.color }}
-					className='text-4xl pb-4 text-center'
+					className='text-4xl pb-4 text-center font-semibold'
 				>
 					{title}
 				</h1>

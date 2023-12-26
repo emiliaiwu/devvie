@@ -32,15 +32,20 @@ import {
 import ProtectedRoute from "./app/ProtectedRoute";
 import "./style/devvieLoader.css";
 import "./style/app.css";
-
+import { UserProfileContext } from "./app/context";
+import { useContext } from "react";
 // Lazy
 // const LazyDashboard = React.lazy
 
 const App = () => {
+	const { userProfile } = useContext(UserProfileContext);
 	const router = createBrowserRouter(
 		createRoutesFromElements(
 			<Route path='/' element={<Root />}>
-				<Route path=":username" element={<Portfolio />} />
+				{userProfile?.isPublished && (
+					<Route path=':username' element={<Portfolio />} />
+				)}
+
 				<Route index element={<LandingPage />} />
 				<Route path='signin' element={<SignInPage />} />
 				<Route path='signup' element={<SignUpPage />} />
@@ -58,6 +63,7 @@ const App = () => {
 						</ProtectedRoute>
 					}
 				>
+					<Route index element={<Dashboard />} />
 					<Route path='dashboard' element={<Dashboard />} />
 					<Route path='appearance' element={<Theme />} />
 					<Route path='tasks' element={<TaskPage />} />

@@ -7,11 +7,15 @@ import {
 	AccountIcon,
 	LogoutIcon,
 	ThemeIcon,
-	PortfolioIcon,
 	SecurityIcon,
 	DeleteAccountIcon,
 	ChallengeIcon,
 } from "./icon";
+
+
+
+
+
 
 export const menuLeftTop = [
 	{
@@ -51,11 +55,7 @@ export const menuLeftTop = [
 		icon: AccountIcon,
 	},
 
-	{
-		title: "Portfolio",
-		url: "/emiliaiwu",
-		icon: PortfolioIcon,
-	},
+	
 ];
 
 export const menuLeftBottom = [

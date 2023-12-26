@@ -7,8 +7,10 @@ import { useContext, useEffect } from "react";
 import { OutlineButton, ColoredButton } from "../../components/Button";
 import { ClipLoader } from "react-spinners";
 import { useLocation } from "react-router-dom";
+import { useScrollToTop } from "../../../hooks";
 
 const Theme = () => {
+	useScrollToTop();
 	const {
 		handleSavePreferences,
 		handleResetPreferences,
@@ -33,10 +35,7 @@ const Theme = () => {
 			className={` md:pl-20 min-h-screen md:mt-0 mx-auto`}
 		>
 			<div className='md:py-28 md:pl-8 md:pr-10  px-6 flex flex-col gap-10 min-h-screen py-20'>
-				<div
-					
-					className='px-2 hidden lg:block'
-				>
+				<div className='px-2 hidden lg:block'>
 					<h2
 						style={{
 							fontFamily: newUserPreferences.font.fontFamily,

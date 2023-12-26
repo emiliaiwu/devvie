@@ -15,6 +15,7 @@ import jqueryIcon from "./652582_code_develop_framework_javascript_jquery_icon.p
 import libraryImg from "./ertyf.png";
 import noFiles2 from "./24202331_6874630-removebg-preview.png";
 import myBanner from "./brown.png";
+import backupCover from './9024867.jpg'
 
 export {
 	img1,
@@ -33,5 +34,6 @@ export {
 	libraryImg,
 	noFiles,
 	noFiles2,
-	myBanner
+	myBanner,
+	backupCover
 };
