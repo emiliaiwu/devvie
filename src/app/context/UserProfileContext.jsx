@@ -1,27 +1,35 @@
-import { doc, getDoc, setDoc } from "firebase/firestore";
+import { doc, getDoc, onSnapshot, setDoc } from "firebase/firestore";
 import { createContext, useContext, useEffect, useState } from "react";
 import { firestore, storage } from "../../firebase";
 import { v4 } from "uuid";
 import { AuthContext } from "../../context";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
+import { DevvieLoader } from "../../components";
+import { ToastContext } from "./ToastContext";
 
 const UserProfileContext = createContext();
 
 export const UserProfileContextProvider = ({ children }) => {
-	const { user, setLoading } = useContext(AuthContext);
+	const { user, setLoading, loading } = useContext(AuthContext);
 
-	const firstName = user?.displayName.split(" ")[0];
-	const lastName = user?.displayName.split(" ")[1];
-	const userId = user ? user.uid : null;
+	const firstName = user?.displayName?.split(" ")[0];
+	const lastName = user?.displayName?.split(" ")[1];
+	const userId = user?.uid || null;
 	const email = user?.email;
 	const photo = user?.photoURL;
 	const [userTechStack, setUserTechStack] = useState([]);
 	const [isSaving, setIsSaving] = useState(false);
+	const { showToast } = useContext(ToastContext);
+
+	const username =
+		(firstName?.trim() || "") + (lastName?.trim() || "")
+			? `${firstName.trim()} ${lastName.trim()}`.toLowerCase()
+			: "";
 
 	const initialProfile = {
 		firstName: firstName,
 		lastName: lastName,
-		username: "",
+		username: username,
 		jobTitle: "",
 		location: "",
 		aboutYou: "",
@@ -44,7 +52,6 @@ export const UserProfileContextProvider = ({ children }) => {
 		userPhoto: photo,
 	};
 	const [userProfile, setUserProfile] = useState(initialProfile);
-	console.log(userProfile);
 
 	const saveUserProfile = async () => {
 		setIsSaving(true);
@@ -54,8 +61,14 @@ export const UserProfileContextProvider = ({ children }) => {
 			const profileSnapshot = await getDoc(profileRef);
 			const profileData = profileSnapshot.data();
 			setUserProfile(profileData);
+			showToast(
+				"success",
+				"Profile Saved!",
+				"Click publish button to make your profile public"
+			);
 		} catch (error) {
 			console.log("error occured", error);
+			showToast("danger", "Profile Not Saved!", "An error occured");
 		} finally {
 			setIsSaving(false);
 		}
@@ -95,28 +108,45 @@ export const UserProfileContextProvider = ({ children }) => {
 		}
 	};
 
-	useEffect(() => {
-		const fetchProfile = async () => {
-			try {
-				if (user) {
-					setLoading(true);
-					const profileRef = doc(firestore, `usersProfile/${userId}`);
-					const profileSnapshot = await getDoc(profileRef);
-					const profileData = profileSnapshot.data();
-					setUserProfile(profileData);
-				}
-			} catch (error) {
-				console.error("Error fetching profile:", error);
-			} finally {
-				setLoading(false);
-			}
-		};
+	const fetchProfile = async () => {
+		try {
+			setLoading(true);
+			const profileRef = doc(firestore, `usersProfile/${userId}`);
+			const profileSnapshot = await getDoc(profileRef);
 
-		// Call fetchProfile only if there's a user
+			if (profileSnapshot.exists()) {
+				const profileData = profileSnapshot.data();
+				setUserProfile(profileData);
+			} else {
+				console.warn("Profile not found for user ID:", userId);
+			}
+		} catch (error) {
+			console.error("Error fetching profile:", error);
+		}
+	};
+
+	useEffect(() => {
 		if (user) {
 			fetchProfile();
+			const profileRef = doc(firestore, `usersProfile/${userId}`);
+			const unsubscribe = onSnapshot(profileRef, (snapshot) => {
+				if (snapshot.exists()) {
+					const profileData = snapshot.data();
+					setUserProfile(profileData);
+				} else {
+					console.warn("Profile not found for user ID:", userId);
+				}
+			});
+			setLoading(false);
+			return () => {
+				unsubscribe();
+			};
 		}
-	}, [user, userId]); // Include userId in the dependency array if it's used in fetchProfile
+	}, [user, userId]);
+
+	if (loading) {
+		return <DevvieLoader />;
+	}
 
 	return (
 		<UserProfileContext.Provider

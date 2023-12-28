@@ -33,7 +33,7 @@ const SocialsForm = () => {
 						color: userPreferences.shade.text.secondaryText,
 					}}
 					htmlFor='instagram'
-					className={`${userPreferences.border} text-base py-2 px-4 w-full border-[1.5px] flex items-center gap-3 `}
+					className={`${userPreferences.border} text-sm lg:text-base py-2 px-4 w-full border-[1.5px] flex items-center gap-3 `}
 				>
 					<Instagram className='w-7 h-7' />
 
@@ -54,7 +54,7 @@ const SocialsForm = () => {
 						color: userPreferences.shade.text.secondaryText,
 					}}
 					htmlFor='github'
-					className={`${userPreferences.border} text-base py-2 px-4 w-full border-[1.5px] flex items-center gap-3 `}
+					className={`${userPreferences.border} text-sm lg:text-base py-2 px-4 w-full border-[1.5px] flex items-center gap-3 `}
 				>
 					<Github className='w-6 h-6' />
 
@@ -76,7 +76,7 @@ const SocialsForm = () => {
 						color: userPreferences.shade.text.secondaryText,
 					}}
 					htmlFor='linkedIn'
-					className={`${userPreferences.border} text-base py-2 px-4 w-full border-[1.5px] flex items-center gap-3 `}
+					className={`${userPreferences.border} text-sm lg:text-base py-2 px-4 w-full border-[1.5px] flex items-center gap-3 `}
 				>
 					<Linkedin className='w-6 h-6' />
 
@@ -97,7 +97,7 @@ const SocialsForm = () => {
 						color: userPreferences.shade.text.secondaryText,
 					}}
 					htmlFor='gmail'
-					className={`${userPreferences.border} text-base py-2 px-4 w-full border-[1.5px] flex items-center gap-3 `}
+					className={`${userPreferences.border} text-sm lg:text-base py-2 px-4 w-full border-[1.5px] flex items-center gap-3 `}
 				>
 					<Gmail className='w-6 h-6' />
 
@@ -118,7 +118,7 @@ const SocialsForm = () => {
 						color: userPreferences.shade.text.secondaryText,
 					}}
 					htmlFor='phoneNumber'
-					className={`${userPreferences.border} text-base py-2 px-4 w-full border-[1.5px] flex items-center gap-3 `}
+					className={`${userPreferences.border} text-sm lg:text-base py-2 px-4 w-full border-[1.5px] flex items-center gap-3 `}
 				>
 					<Call className='w-6 h-6' />
 

@@ -12,7 +12,7 @@ const OverallProjects = () => {
 	return (
 		<div
 			style={{
-				backgroundColor: userPreferences.shade.card,
+				backgroundColor: userPreferences.shade.background,
 				borderColor: userPreferences.shade.other,
 			}}
 			className={`${userPreferences.border}  bg-white flex flex-col justify-center items-center h-[420px] gap-2 lg:w-1/3`}

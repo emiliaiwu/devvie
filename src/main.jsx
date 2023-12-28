@@ -19,6 +19,7 @@ import {
 	DashboardContextProvider,
 	LibraryContextProvider,
 	UserProfileContextProvider,
+	ToastProvider,
 } from "./app/context/index.js";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
@@ -27,25 +28,27 @@ ReactDOM.createRoot(document.getElementById("root")).render(
 			<SignInContextProvider>
 				<SignUpContextProvider>
 					<UserContextProvider>
-						<UserPreferencesProvider>
-							<ThemeContextProvider>
-								<MobileMenuProvider>
-									<AppContextProvider>
-										<ProjectContextProvider>
-											<TaskProvider>
-												<DashboardContextProvider>
-													<LibraryContextProvider>
-														<UserProfileContextProvider>
-															<App />
-														</UserProfileContextProvider>
-													</LibraryContextProvider>
-												</DashboardContextProvider>
-											</TaskProvider>
-										</ProjectContextProvider>
-									</AppContextProvider>
-								</MobileMenuProvider>
-							</ThemeContextProvider>
-						</UserPreferencesProvider>
+						<ToastProvider>
+							<UserPreferencesProvider>
+								<ThemeContextProvider>
+									<MobileMenuProvider>
+										<AppContextProvider>
+											<ProjectContextProvider>
+												<TaskProvider>
+													<DashboardContextProvider>
+														<LibraryContextProvider>
+															<UserProfileContextProvider>
+																<App />
+															</UserProfileContextProvider>
+														</LibraryContextProvider>
+													</DashboardContextProvider>
+												</TaskProvider>
+											</ProjectContextProvider>
+										</AppContextProvider>
+									</MobileMenuProvider>
+								</ThemeContextProvider>
+							</UserPreferencesProvider>
+						</ToastProvider>
 					</UserContextProvider>
 				</SignUpContextProvider>
 			</SignInContextProvider>

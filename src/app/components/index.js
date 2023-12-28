@@ -17,6 +17,8 @@ import DatePicker from "./DatePicker";
 import LoadingButton from "./LoadingButton";
 import NoData from "./NoData";
 import NoDataSmall from "./NoDataSmall";
+import Logout from "./Logout";
+import DeleteAccount from "./DeleteAccount";
 
 export {
 	SidebarLeft,
@@ -38,4 +40,6 @@ export {
 	LoadingButton,
 	NoData,
 	NoDataSmall,
+	Logout,
+	DeleteAccount
 };

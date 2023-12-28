@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { backupCover } from "../../../assets";
 import {
 	Call,
+	Download,
 	Facebook,
 	Github,
 	Gmail,
@@ -21,62 +22,95 @@ const PortfolioHeader = ({ userPreferences, userProfile }) => {
 	};
 	return (
 		<div
-			className={`flex flex-col relative max-w-[100vw] overflow-hidden mb-10`}
+			className={`flex flex-col justify-center items-center relative w-full overflow-hidden mb-10`}
 		>
-			<div className=''>
+			<div className='w-full'>
 				{userProfile?.coverPhoto === null ? (
 					<div className={`overflow-hidden`}>
 						<img
 							src={backupCover}
-							className='w-full lg:h-[180px] h-[100px] object-cover'
+							className='w-full lg:h-[200px] h-[120px] object-cover'
 						/>
 					</div>
 				) : (
 					<div className={`overflow-hidden`}>
 						<img
 							src={userProfile.coverPhoto}
-							className='w-full h-[100px] lg:h-[180px] object-cover'
+							className='w-full h-[120px] lg:h-[200px] object-cover'
 						/>
 					</div>
 				)}
 			</div>
 			<div
 				style={{ backgroundColor: userPreferences.shade.background }}
-				className='flex h-full w-full pb-14 pt-4'
+				className=' h-full max-w-[1440px] pb-14 pt-4 flex flex-col justify-center items-center w-full'
 			>
 				<div
 					style={{ left: "50%", transform: "translateX(-50%)" }}
-					className='border-[3px] rounded-full bg-transparent p-[7px] absolute top-[100px]'
+					className='border-[3px] rounded-full bg-transparent lg:p-[7px] p-1 absolute lg:top-[100px] top-[70px]'
 				>
 					<div className='rounded-full overflow-hidden '>
 						<img
 							src={userProfile?.userPhoto}
-							className='w-[150px] h-[150px] object-contain'
+							className='lg:w-[150px] lg:h-[150px] w-[80px] h-[80px] object-contain'
 						/>
 					</div>
 				</div>
 
 				<div className='relative w-full'>
-					<div className=' px-6 lg:px-14 flex flex-col justify-center items-center gap-1 text-center mt-[100px]'>
-						<h1 className='text-[28px] font-semibold'>
+					<div className='absolute left-6 lg:left-48  top-4'>
+						<button
+							style={{
+								backgroundColor: userPreferences.color,
+								color: userPreferences.isLightMode ? "white" : "black",
+							}}
+							className={`${userPreferences.border} py-1 md:py-2 px-2 md:px-4 text-xs md:text-sm  hover:scale-110 transition-all duration-150 ease flex items-center gap-1`}
+							type='button'
+						>
+							<Download className="w-4 h-4 md:w-5 md:h-5" />
+							Resume
+						</button>
+					</div>
+
+					<div className=' px-6 lg:px-14 flex flex-col justify-center items-center gap-2 text-center lg:mt-[80px] mt-[60px]'>
+						<h1 className='lg:text-3xl text-2xl font-semibold'>
 							{userProfile.firstName} {userProfile.lastName}
 						</h1>
 						<p
-							className='text-base'
+							className='lg:text-base text-sm'
 							style={{ color: userPreferences.shade.text.secondaryText }}
 						>
 							{userProfile.location}
 						</p>
-						<p className='text-base flex flex-row gap-3 items-center text-center'>
-							<span style={{color: userPreferences.color}}>{userProfile.jobTitle}</span>
+						<p className='lg:text-lg text-base flex flex-row gap-3 items-center text-center'>
+							<span style={{ color: userPreferences.color }}>
+								{userProfile.jobTitle}
+							</span>
 							<span className='text-xl font-bold'>&middot;</span>
 							<span style={{ color: userPreferences.shade.text.secondaryText }}>
 								{userProfile.employmentType}
 							</span>
 						</p>
+						<div
+							style={{ "--hover-color": userPreferences.color }}
+							className='flex items-center gap-5 mt-2 '
+						>
+							{userProfile.hireMe && (
+								<div
+									style={{ "--hove-color": userPreferences.color }}
+									className='flex flex-row gap-3 items-center'
+								>
+									<div
+										style={{ backgroundColor: userPreferences.color }}
+										className='w-3 h-3 rounded-full circle pulse'
+									></div>
+									<h2 className='lg:text-base text-sm'>Available for work</h2>
+								</div>
+							)}
+						</div>
 					</div>
 
-					<div className='absolute right-14 top-2 flex flex-row-reverse gap-14'>
+					<div className='md:absolute lg:right-14 right-8 top-4 flex sm:flex-row-reverse justify-center items-center xl:gap-10 gap-5 flex-col-reverse mt-4 md:mt-0'>
 						{userProfile?.socials &&
 							Object.keys(userProfile.socials).length > 0 && (
 								<ul className='flex gap-4'>
@@ -89,14 +123,14 @@ const PortfolioHeader = ({ userPreferences, userProfile }) => {
 															userPreferences.shade.text.secondaryText,
 													}}
 													key={social}
-													className={`${userPreferences.border} p-3 border flex justify-center items-center`}
+													className={`${userPreferences.border} lg:p-3 p-2 border flex justify-center items-center`}
 												>
 													<HoverAccentColor>
 														<Link to={link}>
 															{socialIcons[social.toLowerCase()] &&
 																React.createElement(
 																	socialIcons[social.toLowerCase()],
-																	{ style: { width: "22px", height: "22px" } }
+																	{ style: { width: "20px", height: "20px" } }
 																)}
 														</Link>
 													</HoverAccentColor>
@@ -105,7 +139,7 @@ const PortfolioHeader = ({ userPreferences, userProfile }) => {
 									)}
 								</ul>
 							)}
-						{userProfile.hireMe && (
+						{userProfile.remotely && (
 							<div
 								style={{ "--hove-color": userPreferences.color }}
 								className='flex flex-row gap-3 items-center'
@@ -116,25 +150,7 @@ const PortfolioHeader = ({ userPreferences, userProfile }) => {
 									}}
 									className='w-3 h-3 rounded-full circle pulse'
 								></div>
-								<h2 className='text-base'>Available for work</h2>
-							</div>
-						)}
-					</div>
-					<div
-						style={{ "--hover-color": userPreferences.color }}
-						className='flex items-center gap-5 absolute left-6 top-4'
-					>
-						
-						{userProfile.remotely && (
-							<div
-								style={{ "--hove-color": userPreferences.color }}
-								className='flex flex-row gap-3 items-center'
-							>
-								<div
-									style={{ backgroundColor: userPreferences.color }}
-									className='w-3 h-3 rounded-full circle pulse'
-								></div>
-								<h2 className='text-base'>Open to Remote jobs</h2>
+								<h2 className='lg:text-base text-sm'>Remotely</h2>
 							</div>
 						)}
 					</div>

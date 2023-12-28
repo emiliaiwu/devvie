@@ -130,7 +130,7 @@ const ProjectsForm = () => {
 						value={formData.title}
 						placeholder='Title'
 						onChange={handleChange}
-						className={`${userPreferences.border} text-base py-2 px-4 w-full bg-transparent border-[1.5px] outline-none `}
+						className={`${userPreferences.border} text-sm lg:text-base py-2 px-4 w-full bg-transparent border-[1.5px] outline-none `}
 					/>
 				</label>
 
@@ -143,12 +143,12 @@ const ProjectsForm = () => {
 						value={formData.description}
 						placeholder='Description'
 						onChange={handleChange}
-						className={` text-base py-2 h-[80px] px-4 w-full bg-transparent outline-none scroll `}
+						className={` text-sm lg:text-base py-2 h-[80px] px-4 w-full bg-transparent outline-none scroll `}
 					/>
 				</label>
 
-				<div className='flex  w-full gap-6'>
-					<label className='w-1/2'>
+				<div className='flex w-full flex-col lg:flex-row gap-6'>
+					<label className='w-full lg:w-1/2'>
 						<input
 							style={{ borderColor: userPreferences.shade.other }}
 							type='url'
@@ -156,11 +156,11 @@ const ProjectsForm = () => {
 							value={formData.link}
 							placeholder='Project link'
 							onChange={handleChange}
-							className={`${userPreferences.border} text-base py-2 px-4 w-full bg-transparent border-[1.5px] outline-none `}
+							className={`${userPreferences.border} text-sm lg:text-base py-2 px-4 w-full bg-transparent border-[1.5px] outline-none `}
 						/>
 					</label>
 
-					<label className='w-1/2'>
+					<label className='w-full lg:w-1/2'>
 						<input
 							style={{ borderColor: userPreferences.shade.other }}
 							type='url'
@@ -168,7 +168,7 @@ const ProjectsForm = () => {
 							value={formData.sourceCode}
 							placeholder='Source code link'
 							onChange={handleChange}
-							className={`${userPreferences.border} text-base py-2 px-4 w-full bg-transparent border-[1.5px] outline-none `}
+							className={`${userPreferences.border} text-sm lg:text-base py-2 px-4 w-full bg-transparent border-[1.5px] outline-none `}
 						/>
 					</label>
 				</div>
@@ -183,7 +183,7 @@ const ProjectsForm = () => {
 								value={techStack}
 								placeholder='Enter tech stack separated by comma'
 								onChange={(e) => setTechStack(e.target.value)}
-								className={`${userPreferences.border} text-base py-2 px-4 w-full bg-transparent border-[1.5px] outline-none `}
+								className={`${userPreferences.border} text-sm lg:text-base py-2 px-4 w-full bg-transparent border-[1.5px] outline-none `}
 							/>
 						</label>
 						<button
@@ -192,7 +192,7 @@ const ProjectsForm = () => {
 								backgroundColor: userPreferences.color,
 								color: userPreferences.isLightMode ? "white" : "black",
 							}}
-							className={`${userPreferences.border} py-2 px-4 text-base md:w-1/2  w-full  hover:scale-[.9] transition-all duration-300 ease`}
+							className={`${userPreferences.border} py-2 px-4 text-sm lg:text-base md:w-1/2  w-full  hover:scale-[.9] transition-all duration-300 ease`}
 							type='button'
 						>
 							Add tech stack
@@ -200,7 +200,7 @@ const ProjectsForm = () => {
 					</div>
 					<div
 						style={{ borderColor: userPreferences.shade.other }}
-						className={`${userPreferences.border} text-base py-3 px-4 w-full h-[120px] bg-transparent border-[1.5px] flex gap-2 flex-wrap`}
+						className={`${userPreferences.border} text-sm lg:text-base py-3 px-4 w-full h-[120px] bg-transparent border-[1.5px] flex gap-2 flex-wrap`}
 					>
 						{formData.techStack.map((skill, index) => (
 							<div key={skill}>
@@ -230,14 +230,14 @@ const ProjectsForm = () => {
 						backgroundColor: userPreferences.color,
 						color: userPreferences.isLightMode ? "white" : "black",
 					}}
-					className={`${userPreferences.border} py-2 px-4 text-base  w-full hover:scale-[.9] transition-all duration-300 ease`}
+					className={`${userPreferences.border} py-2 px-4 text-sm lg:text-base  w-full hover:scale-[.9] transition-all duration-300 ease`}
 					type='button'
 				>
 					{projectUpdating ? "Update Project" : "Add project"}
 				</button>
 			</form>
 
-			<div className='mt-6 flex flex-row flex-wrap gap-4'>
+			<div className='mt-6 flex flex-col md:flex-row flex-wrap justify-center lg:justify-start items-center gap-4'>
 				{userProfile.projects.map((project, index) => (
 					<ProjectCard
 						key={project.title + index}

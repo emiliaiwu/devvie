@@ -1,5 +1,8 @@
 import { useContext, useState } from "react";
-import { UserPreferencesContext, UserProfileContext } from "../../context";
+import {
+	UserPreferencesContext,
+	UserProfileContext,
+} from "../../context";
 import { HoverAccentColor } from "../../components";
 import { CancelCircleIcon, DropdownArrowIcon } from "../../data/icon";
 
@@ -9,20 +12,10 @@ const SkillsForm = () => {
 	const [isOpen, setIsOpen] = useState(false);
 	const [selectedCategory, setSelectedCategory] = useState("");
 	const skillsCategory = ["Languages", "Frameworks", "Tools", "Other"];
-
-	const techSkills = {
-		languages: [],
-		frameworks: [],
-		tools: [],
-		other: [],
-	};
 	const [skill, setSkill] = useState();
-	const [skills, setSkills] = useState(techSkills);
 
 	const handleAddSkills = () => {
-		// Split the input value by commas and trim each name
 		const names = skill.split(",").map((name) => name.trim());
-		// Filter out empty names
 		const filteredNames = names.filter((name) => name !== "");
 		setUserProfile((prevData) => ({
 			...prevData,
@@ -54,7 +47,7 @@ const SkillsForm = () => {
 							borderColor: userPreferences.shade.other,
 							color: userPreferences.shade.text.secondaryText,
 						}}
-						className={`${userPreferences.border} text-base py-2 px-4 w-full bg-transparent border-[1.5px] outline-none flex justify-between items-center`}
+						className={`${userPreferences.border} text-sm lg:text-base py-2 px-4 w-full bg-transparent border-[1.5px] outline-none flex justify-between items-center`}
 					>
 						<span>
 							{selectedCategory.length !== 0
@@ -100,7 +93,7 @@ const SkillsForm = () => {
 						value={skill}
 						placeholder='Enter skills separated by comma'
 						onChange={(e) => setSkill(e.target.value)}
-						className={`${userPreferences.border} text-base py-2 px-4 w-full bg-transparent border-[1.5px] outline-none `}
+						className={`${userPreferences.border} text-sm lg:text-base py-2 px-4 w-full bg-transparent border-[1.5px] outline-none `}
 					/>
 				</label>
 				<button
@@ -109,7 +102,7 @@ const SkillsForm = () => {
 						backgroundColor: userPreferences.color,
 						color: userPreferences.isLightMode ? "white" : "black",
 					}}
-					className={`${userPreferences.border} py-2 px-4 text-base md:w-1/2  w-full  hover:scale-110 transition-all duration-200 ease`}
+					className={`${userPreferences.border} py-2 px-4 text-sm lg:text-base md:w-1/2  w-full  hover:scale-110 transition-all duration-200 ease`}
 					type='button'
 				>
 					Add skills
@@ -117,7 +110,7 @@ const SkillsForm = () => {
 			</div>
 			<div
 				style={{ borderColor: userPreferences.shade.other }}
-				className={`${userPreferences.border} text-base py-3 px-4 w-full h-[120px] bg-transparent border-[1.5px] flex gap-2 flex-wrap`}
+				className={`${userPreferences.border} text-sm lg:text-base py-3 px-4 w-full min-h-[120px] bg-transparent border-[1.5px] flex gap-2 flex-wrap`}
 			>
 				{userProfile.techStack.map((skill, index) => (
 					<div key={skill}>
@@ -126,7 +119,7 @@ const SkillsForm = () => {
 								borderColor: userPreferences.shade.other,
 								color: userPreferences.shade.text.secondaryText,
 							}}
-							className={`${userPreferences.border} px-3 py-1 border text-sm flex items-center gap-1 capitalize`}
+							className={`${userPreferences.border} px-3 py-1 border text-xs lg:text-sm flex items-center gap-1 capitalize`}
 						>
 							{skill}
 							<span

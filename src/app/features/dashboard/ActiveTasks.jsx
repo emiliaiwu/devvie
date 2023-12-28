@@ -18,7 +18,7 @@ const ActiveTasks = () => {
 	return (
 		<div
 			style={{
-				backgroundColor: userPreferences.shade.card,
+				backgroundColor: userPreferences.shade.background,
 			}}
 			className={`${userPreferences.border} w-full lg:w-1/3  h-[360px] flex flex-col justify-center items-center`}
 		>

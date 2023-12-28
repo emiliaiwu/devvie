@@ -14,7 +14,6 @@ import {
 	browserLocalPersistence,
 	browserSessionPersistence,
 	setPersistence,
-	
 } from "firebase/auth";
 import { auth } from "../firebase";
 
@@ -45,7 +44,6 @@ export const AuthContextProvider = ({ children }) => {
 		return signInWithEmailAndPassword(auth, email, password);
 	};
 
-	// sign out
 	const signOutUser = () => {
 		return signOut(auth);
 	};
@@ -74,7 +72,6 @@ export const AuthContextProvider = ({ children }) => {
 		return signInWithPopup(auth, githubAuthProvider);
 	};
 
-
 	
 
 	useEffect(() => {
@@ -87,12 +84,19 @@ export const AuthContextProvider = ({ children }) => {
 			}
 		});
 
-	
-
 		return () => {
 			unsubscribe();
 		};
 	}, []);
+
+
+	const deleteAccount = async () => {
+		try {
+			await user?.delete();
+		} catch (error) {
+			console.error("Error deleting account:", error);
+		}
+	};
 
 	return (
 		<AuthContext.Provider
@@ -109,6 +113,7 @@ export const AuthContextProvider = ({ children }) => {
 				verifyEmail,
 				resetPassword,
 				updateDisplayName,
+				deleteAccount,
 			}}
 		>
 			{children}

@@ -14,8 +14,6 @@ const PersonalInfo = () => {
 		}));
 	};
 
-	console.log(userProfile)
-
 	return (
 		<form
 			style={{
@@ -23,8 +21,8 @@ const PersonalInfo = () => {
 			}}
 			className='w-full flex flex-col gap-6'
 		>
-			<div className='flex  w-full gap-4'>
-				<label className='w-1/2'>
+			<div className='flex flex-col lg:flex-row w-full gap-4'>
+				<label className='w-full lg:w-1/2'>
 					<input
 						style={{ borderColor: userPreferences.shade.other }}
 						type='text'
@@ -32,11 +30,11 @@ const PersonalInfo = () => {
 						value={userProfile.firstName}
 						placeholder='First Name'
 						onChange={handleChange}
-						className={`${userPreferences.border} text-base py-2 px-4 w-full bg-transparent border-[1.5px] outline-none`}
+						className={`${userPreferences.border} text-sm lg:text-base py-2 px-4 w-full bg-transparent border-[1.5px] outline-none`}
 					/>
 				</label>
 
-				<label className='w-1/2'>
+				<label className='w-full lg:w-1/2'>
 					<input
 						style={{ borderColor: userPreferences.shade.other }}
 						type='text'
@@ -44,11 +42,11 @@ const PersonalInfo = () => {
 						value={userProfile.lastName}
 						placeholder='Last Name'
 						onChange={handleChange}
-						className={`${userPreferences.border} text-base py-2 px-4 w-full bg-transparent border-[1.5px] outline-none`}
+						className={`${userPreferences.border} text-sm lg:text-base py-2 px-4 w-full bg-transparent border-[1.5px] outline-none`}
 					/>
 				</label>
 
-				<label className='w-1/2'>
+				<label className='w-full lg:w-1/2'>
 					<input
 						style={{ borderColor: userPreferences.shade.other }}
 						type='text'
@@ -56,13 +54,13 @@ const PersonalInfo = () => {
 						value={userProfile.username}
 						placeholder='Portfolio link slug'
 						onChange={handleChange}
-						className={`${userPreferences.border} text-base py-2 px-4 w-full bg-transparent border-[1.5px] outline-none`}
+						className={`${userPreferences.border} text-sm lg:text-base py-2 px-4 w-full bg-transparent border-[1.5px] outline-none`}
 					/>
 				</label>
 			</div>
 
-			<div className='flex  w-full gap-4'>
-				<label className='w-1/2'>
+			<div className='flex flex-col lg:flex-row w-full gap-4'>
+				<label className='w-full lg:w-1/2'>
 					<input
 						style={{ borderColor: userPreferences.shade.other }}
 						type='text'
@@ -70,14 +68,17 @@ const PersonalInfo = () => {
 						value={userProfile.jobTitle}
 						placeholder='Job title'
 						onChange={handleChange}
-						className={`${userPreferences.border} text-base py-2 px-4 w-full bg-transparent border-[1.5px] outline-none`}
+						className={`${userPreferences.border} text-sm lg:text-base py-2 px-4 w-full bg-transparent border-[1.5px] outline-none`}
 					/>
 				</label>
-				<div className="w-1/2">
-					<EmploymentType employmentType={userProfile?.employmentType} setFormData={setUserProfile}/>
+				<div className='w-full lg:w-1/2'>
+					<EmploymentType
+						employmentType={userProfile?.employmentType}
+						setFormData={setUserProfile}
+					/>
 				</div>
 
-				<label className='w-1/2'>
+				<label className='w-full lg:w-1/2'>
 					<input
 						style={{ borderColor: userPreferences.shade.other }}
 						type='text'
@@ -85,7 +86,7 @@ const PersonalInfo = () => {
 						value={userProfile.location}
 						placeholder='Location'
 						onChange={handleChange}
-						className={`${userPreferences.border} text-base py-2 px-4 w-full bg-transparent border-[1.5px] outline-none`}
+						className={`${userPreferences.border} text-sm lg:text-base py-2 px-4 w-full bg-transparent border-[1.5px] outline-none`}
 					/>
 				</label>
 			</div>
@@ -97,7 +98,7 @@ const PersonalInfo = () => {
 					value={userProfile.aboutYou}
 					placeholder='About You / Bio'
 					onChange={handleChange}
-					className={`${userPreferences.border} text-base py-3 px-4 w-full h-[120px] bg-transparent border-[1.5px] scroll outline-none whitespace-normal`}
+					className={`${userPreferences.border} text-sm lg:text-base py-3 px-4 w-full h-[120px] bg-transparent border-[1.5px] scroll outline-none whitespace-normal`}
 				/>
 			</label>
 		</form>

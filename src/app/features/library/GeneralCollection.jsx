@@ -38,8 +38,8 @@ const GeneralCollection = () => {
 			<div>
 				{userCollection.length !== 0 ? (
 					<div
-						style={{ backgroundColor: userPreferences.shade.card }}
-						className={`${userPreferences.border} md:p-10 min-h-screen`}
+						
+						className={`${userPreferences.border} min-h-screen`}
 					>
 						<div className='grid grid-cols-5 gap-6 items-center xxl:grid-cols-8'>
 							{userCollection?.map((collection) => (

@@ -7,7 +7,7 @@ const TopTechStack = () => {
 	return (
 		<div
 			style={{
-				backgroundColor: userPreferences.shade.card,
+				backgroundColor: userPreferences.shade.background,
 				borderColor: userPreferences.shade.other,
 			}}
 			className={`${userPreferences.border} h-[420px] p-8  flex justify-center items-center w-full lg:w-2/3  `}

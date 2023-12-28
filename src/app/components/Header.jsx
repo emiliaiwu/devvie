@@ -52,9 +52,6 @@ const Header = () => {
 						</div>
 					)}
 
-					<div className='lg:ml-3'>
-						<Search />
-					</div>
 				</div>
 
 				<div
@@ -76,13 +73,7 @@ const Header = () => {
 						</Link>
 					</div>
 
-					<div
-						style={{ color: userPreferences.shade.text.primaryText }}
-						className='md:w-9 md:h-9 rounded-full flex items-center justify-center md:bg-[--bg-color] cursor-pointer transition-all duration-200 ease'
-					>
-						<BellIcon className='w-5 h-5  hover:text-[--hover-color]' />
-					</div>
-
+					
 					<div
 						style={{ borderLeft: `1px solid ${userPreferences.shade.other}` }}
 						className='md:pl-3 md:ml-1 pl-2'

@@ -1,54 +1,53 @@
 import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { UserPreferencesContext, UserProfileContext } from "../../context";
-import NotFound from "../../../landing/pages/NotFound";
+// import NotFound from "../../../landing/pages/NotFound";
 import PortfolioHeader from "./PortfolioHeader";
 import PortfolioAboutMe from "./PortfolioAboutMe";
 import PortfolioSkills from "./PortfolioSkills";
 import PortFolioProjects from "./PortFolioProjects";
 import PortfolioProjectExperience from "./PortfolioProjectExperience";
-import { AuthContext } from "../../../context";
+import PortfolioWorkExperiences from "./PortfolioWorkExperiences";
 
 const Portfolio = () => {
 	const { username } = useParams();
 	const { userPreferences } = useContext(UserPreferencesContext);
 	const { userProfile } = useContext(UserProfileContext);
-	// const { setLoading } = useContext(AuthContext);
-	let portfolioData;
-
-	if (userProfile && userProfile?.username === username) {
-		portfolioData = userProfile;
-	}
 
 	return (
 		<section
 			style={{
-				backgroundColor: userPreferences.shade.card,
+				backgroundColor: userPreferences.shade.background,
 				fontFamily: userPreferences.font.fontFamily,
 				color: userPreferences.shade.text.primaryText,
 			}}
 			className='w-full min-h-screen mx-auto relative overflow-x-hidden pb-20'
 		>
-			<div>
+			<div className='flex justify-center flex-col items-center'>
 				<PortfolioHeader
 					userPreferences={userPreferences}
-					userProfile={portfolioData}
+					userProfile={userProfile}
 				/>
-				<div className='px-6 flex flex-col gap-10 min-h-screen'>
+				<div className='lg:px-6 sm:px-8 flex flex-col lg:gap-10 gap-6 min-h-screen max-w-[1440px] justify-center items-center w-full'>
 					<PortfolioAboutMe
-						userProfile={portfolioData}
+						userProfile={userProfile}
 						userPreferences={userPreferences}
 					/>
 					<PortfolioSkills
-						userProfile={portfolioData}
+						userProfile={userProfile}
 						userPreferences={userPreferences}
 					/>
+
 					<PortFolioProjects
-						userProfile={portfolioData}
+						userProfile={userProfile}
 						userPreferences={userPreferences}
 					/>
 					<PortfolioProjectExperience
-						userProfile={portfolioData}
+						userProfile={userProfile}
+						userPreferences={userPreferences}
+					/>
+					<PortfolioWorkExperiences
+						userProfile={userProfile}
 						userPreferences={userPreferences}
 					/>
 				</div>

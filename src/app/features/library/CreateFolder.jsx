@@ -12,7 +12,7 @@ const CreateFolder = () => {
 			style={{
 				borderColor: userPreferences.shade.text.secondaryText,
 			}}
-			className={`${userPreferences.border} w-[180px] h-[130px] p-3 border-2 border-dotted outline-none cursor-pointer opacity-40 hover:opacity-100 transition-all duration-200 ease `}
+			className={`${userPreferences.border} w-[200px] h-[130px] p-3 border-2 border-dotted outline-none cursor-pointer opacity-40 hover:opacity-100 transition-all duration-200 ease `}
 		>
 			<div className='flex flex-col items-left w-full h-full gap-2'>
 				<div className='flex justify-between'>

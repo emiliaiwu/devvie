@@ -43,7 +43,7 @@ const App = () => {
 		createRoutesFromElements(
 			<Route path='/' element={<Root />}>
 				{userProfile?.isPublished && (
-					<Route path=':username' element={<Portfolio />} />
+					<Route path={`${userProfile.username}`} element={<Portfolio />} />
 				)}
 
 				<Route index element={<LandingPage />} />
@@ -55,6 +55,7 @@ const App = () => {
 				<Route path='reset-password' element={<ResetPasswordPage />} />
 
 				<Route path='*' element={<NotFound />} />
+
 				<Route
 					path='user'
 					element={

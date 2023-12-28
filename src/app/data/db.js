@@ -64,15 +64,7 @@ export const menuLeftBottom = [
 		url: "/user/password",
 		icon: SecurityIcon,
 	},
-	{
-		title: "Logout",
-		url: "/user/logout",
-		icon: LogoutIcon,
-	},
+	
 
-	{
-		title: "Delete Account",
-		url: "/user/delete-account",
-		icon: DeleteAccountIcon,
-	},
+	
 ];

@@ -22,13 +22,13 @@ const EmploymentType = ({ employmentType, setFormData }) => {
 			setIsOpen(false);
 		};
 	return (
-		<div className='relative w-full '>
+		<div className='relative w-full z-[20] '>
 			<div
 				style={{
 					borderColor: userPreferences.shade.other,
 					color: userPreferences.shade.text.secondaryText,
 				}}
-				className={`${userPreferences.border} text-base py-2 px-4 w-full bg-transparent border-[1.5px] outline-none flex justify-between items-center`}
+				className={`${userPreferences.border} text-sm lg:text-base py-2 px-4 w-full bg-transparent border-[1.5px] outline-none flex justify-between items-center`}
 			>
 				<span>
 					{employmentType?.length === 0
@@ -44,7 +44,7 @@ const EmploymentType = ({ employmentType, setFormData }) => {
 				</span>
 			</div>
 			{isOpen && (
-				<div className='absolute top-16 w-2/3'>
+				<div className='absolute top-16 w-full lg:w-2/3'>
 					<ul
 						style={{
 							background: userPreferences.shade.card,
@@ -57,7 +57,7 @@ const EmploymentType = ({ employmentType, setFormData }) => {
 							<li
 								key={type + index}
 								onClick={() => handleEmploymentType(type)}
-								className='py-2 cursor-pointer'
+								className='py-2 cursor-pointer text-sm'
 							>
 								{" "}
 								<HoverAccentColor>{type}</HoverAccentColor>{" "}

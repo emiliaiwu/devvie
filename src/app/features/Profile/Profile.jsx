@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { UserPreferencesContext, UserProfileContext } from "../../context";
 import Header from "./Header";
 import PersonalInfo from "./PersonalInfo";
@@ -10,7 +10,6 @@ import SocialsForm from "./SocialsForm";
 import { useScrollToTop } from "../../../hooks";
 import { CheckCircle } from "../../data/icon";
 import { ClipLoader } from "react-spinners";
-import CertificationForm from "./CertificationForm";
 
 const Profile = () => {
 	useScrollToTop();
@@ -32,14 +31,16 @@ const Profile = () => {
 				fontFamily: userPreferences.font.fontFamily,
 				color: userPreferences.shade.text.primaryText,
 			}}
-			className=' md:pl-20 min-h-screen md:mt-0 mx-auto relative overflow-x-hidden '
+			className=' lg:pl-20 min-h-screen md:mt-0 mx-auto relative overflow-x-hidden w-full flex justify-center items-center'
 		>
-			<div className='md:py-24 md:pl-8 md:pr-10 px-6 flex flex-col gap-10 min-h-screen py-20'>
-				<div className=''>
-					<h1 className='text-4xl mb-2 font-semibold'>My Profile</h1>
+			<div className=' md:pl-8 md:pr-10 px-6 flex flex-col gap-10 min-h-screen py-24 justify-center items-center w-full'>
+				<div className='w-full'>
+					<h1 className='xl:text-4xl mb-2 lg:text-3xl sm:text-3xl text-2xl '>
+						My Profile
+					</h1>
 					<p
 						style={{ color: userPreferences.shade.text.secondaryText }}
-						className='text-base'
+						className='md:text-base text-sm whitespace-normal italic'
 					>
 						Edit, Submit, Publish: Showcase your portfolio now!
 					</p>
@@ -48,15 +49,17 @@ const Profile = () => {
 				<Header />
 				<div
 					style={{ background: userPreferences.shade.background }}
-					className={`${userPreferences.border} p-8`}
+					className={`${userPreferences.border} w-full p-4 md:p-8`}
 				>
-					<h1 className='text-lg mb-4'>Enter your personal information:</h1>
+					<h1 className='text-lg mb-4 whitespace-normal'>
+						Enter your personal information:
+					</h1>
 					<PersonalInfo />
 				</div>
 
 				<div
 					style={{ background: userPreferences.shade.background }}
-					className={`${userPreferences.border} p-8`}
+					className={`${userPreferences.border} w-full p-4 md:p-8 `}
 				>
 					<h1 className='text-lg mb-4'>Enter your tech skills:</h1>
 					<SkillsForm />
@@ -64,7 +67,7 @@ const Profile = () => {
 
 				<div
 					style={{ background: userPreferences.shade.background }}
-					className={`${userPreferences.border} p-8`}
+					className={`${userPreferences.border} w-full p-4 md:p-8`}
 				>
 					<h1 className='text-lg mb-4'>Show your notable projects:</h1>
 					<ProjectsForm />
@@ -100,7 +103,7 @@ const Profile = () => {
 				{userProfile.hasWorkExperience ? (
 					<div
 						style={{ background: userPreferences.shade.background }}
-						className={`${userPreferences.border} p-8`}
+						className={`${userPreferences.border} w-full p-4 md:p-8`}
 					>
 						<h1 className='text-lg mb-6'>Add Work Experience:</h1>
 						<WorkExperienceForm />
@@ -108,7 +111,7 @@ const Profile = () => {
 				) : (
 					<div
 						style={{ background: userPreferences.shade.background }}
-						className={`${userPreferences.border} p-8`}
+						className={`${userPreferences.border} w-full p-4 md:p-8`}
 					>
 						<h1 className='text-lg mb-6'>Add Project Experience:</h1>
 						<ProjectExperienceForm />
@@ -117,18 +120,10 @@ const Profile = () => {
 
 				<div
 					style={{ background: userPreferences.shade.background }}
-					className={`${userPreferences.border} p-8`}
+					className={`${userPreferences.border} w-full p-4 md:p-8`}
 				>
 					<h1 className='text-lg mb-4'>Contact / Socials</h1>
 					<SocialsForm />
-				</div>
-
-				<div
-					style={{ background: userPreferences.shade.background }}
-					className={`${userPreferences.border} p-8`}
-				>
-					<h1 className='text-lg mb-4'>Certification</h1>
-					<CertificationForm/>
 				</div>
 
 				<div className='flex gap-4 justify-end'>

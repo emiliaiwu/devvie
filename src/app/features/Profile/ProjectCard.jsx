@@ -22,44 +22,40 @@ const ProjectCard = ({
 
 	const isLocation = location.pathname === "/user/profile";
 
-	console.log(isLocation);
-
 	return (
 		<div
 			onMouseLeave={() => setIsOpen(false)}
 			style={{
 				backgroundColor: background,
 			}}
-			className={`${userPreferences.border} w-[340px] ${
+			className={`${userPreferences.border} lg:w-[340px] xs:w-[320px] w-full ${
 				!isOpen && "h-[350px]"
 			}  flex flex-col gap-4 justify-between px-6 pt-6 pb-10`}
 		>
 			<div>
 				<div className='flex justify-between items-center'>
-					<div className='flex items-center gap-3 mb-4'>
-						{isLocation && (
-							<div className='flex items-center gap-4 mb-4'>
-								<button
-									onClick={() => handleEditProject(project)}
-									className='cursor pointer'
-									target='_blank'
-								>
-									<HoverAccentColor>
-										<EditCircleIcon className='w-5 h-5' />
-									</HoverAccentColor>
-								</button>
-								<button
-									onClick={() => handleDeleteProject(project)}
-									className='cursor pointer'
-									target='_blank'
-								>
-									<HoverAccentColor>
-										<DeleteIcon className='w-5 h-5' />
-									</HoverAccentColor>
-								</button>
-							</div>
-						)}
-					</div>
+					{isLocation && (
+						<div className='flex items-center justify-center gap-4 mb-4'>
+							<button
+								onClick={() => handleEditProject(project)}
+								className='cursor pointer'
+								target='_blank'
+							>
+								<HoverAccentColor>
+									<EditCircleIcon className='w-5 h-5' />
+								</HoverAccentColor>
+							</button>
+							<button
+								onClick={() => handleDeleteProject(project)}
+								className='cursor pointer'
+								target='_blank'
+							>
+								<HoverAccentColor>
+									<DeleteIcon className='w-5 h-5' />
+								</HoverAccentColor>
+							</button>
+						</div>
+					)}
 
 					<div className='flex justify-end items-center gap-4 mb-4 '>
 						<Link to={project.link} className='cursor pointer' target='_blank'>
@@ -80,7 +76,7 @@ const ProjectCard = ({
 				</div>
 
 				<div>
-					<h1 className='text-xl whitespace-normal my-3 capitalize'>
+					<h1 className='text-lg lg:text-xl whitespace-normal my-3 capitalize'>
 						{project.title}
 					</h1>
 					<p
@@ -96,7 +92,7 @@ const ProjectCard = ({
 					</p>
 				</div>
 			</div>
-			<div className='flex gap-2 flex-wrap text-sm mt-3'>
+			<div className='flex gap-2 flex-wrap text-xs lg:text-sm mt-3'>
 				{project.techStack.map((tech, index) => (
 					<span
 						style={{

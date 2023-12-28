@@ -5,8 +5,8 @@ const ActiveProjects = () => {
 	const { userPreferences } = useContext(UserPreferencesContext);
 	const { activeProjectsWithPercentage } = useContext(DashboardContext);
 
-	const Projects =
-		activeProjectsWithPercentage.length > 4
+	const projects =
+		activeProjectsWithPercentage?.length > 4
 			? activeProjectsWithPercentage.slice(0, 5)
 			: activeProjectsWithPercentage;
 
@@ -15,7 +15,7 @@ const ActiveProjects = () => {
 	return (
 		<div
 			style={{
-				backgroundColor: userPreferences.shade.card,
+				backgroundColor: userPreferences.shade.background,
 			}}
 			className={`${userPreferences.border} w-full lg:w-[380px] h-[360px] flex flex-col justify-center items-center`}
 		>
@@ -28,9 +28,9 @@ const ActiveProjects = () => {
 				Active Projects
 			</h1>
 
-			{activeProjectsWithPercentage.length !== 0 ? (
+			{activeProjectsWithPercentage?.length !== 0 ? (
 				<div className='flex flex-col gap-4 px-6 flex-1 w-full pt-4'>
-					{Projects.map((project, index) => (
+					{projects?.map((project, index) => (
 						<div
 							key={project.title}
 							style={{

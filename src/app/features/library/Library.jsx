@@ -16,7 +16,7 @@ const Library = () => {
 	return (
 		<section
 			style={{
-				backgroundColor: userPreferences.shade.background,
+				backgroundColor: userPreferences.shade.card,
 				fontFamily: userPreferences.font.fontFamily,
 				color: userPreferences.shade.text.primaryText,
 			}}

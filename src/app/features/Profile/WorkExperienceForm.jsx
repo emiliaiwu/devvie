@@ -191,13 +191,13 @@ const WorkExperienceForm = () => {
 	};
 
 	return (
-		<div>
+		<div className='w-full'>
 			<form
 				onSubmit={(e) => e.preventDefault()}
 				className='flex flex-col gap-6 mb-6'
 			>
 				<div className='flex md:flex-row flex-col gap-6'>
-					<label className='w-1/2'>
+					<label className='w-full lg:w-1/2'>
 						<input
 							style={{ borderColor: userPreferences.shade.other }}
 							type='text'
@@ -206,11 +206,11 @@ const WorkExperienceForm = () => {
 							onChange={handleChange}
 							placeholder='Company'
 							required
-							className={`${userPreferences.border} text-base py-2 px-4 w-full bg-transparent border-[1.5px] outline-none `}
+							className={`${userPreferences.border} text-sm lg:text-base py-2 px-4 w-full bg-transparent border-[1.5px] outline-none `}
 						/>
 					</label>
 
-					<label className='w-1/2'>
+					<label className='w-full lg:w-1/2'>
 						<input
 							style={{ borderColor: userPreferences.shade.other }}
 							type='text'
@@ -219,12 +219,12 @@ const WorkExperienceForm = () => {
 							onChange={handleChange}
 							placeholder='Location'
 							required
-							className={`${userPreferences.border} text-base py-2 px-4 w-full bg-transparent border-[1.5px] outline-none `}
+							className={`${userPreferences.border} text-sm lg:text-base py-2 px-4 w-full bg-transparent border-[1.5px] outline-none `}
 						/>
 					</label>
 				</div>{" "}
-				<div className='flex md:flex-row flex-col gap-6'>
-					<label className='w-1/2'>
+				<div className='flex lg:flex-row flex-col gap-6'>
+					<label className='w-full lg:w-1/2'>
 						<input
 							style={{ borderColor: userPreferences.shade.other }}
 							type='text'
@@ -233,11 +233,14 @@ const WorkExperienceForm = () => {
 							onChange={handleChange}
 							placeholder='Job title'
 							required
-							className={`${userPreferences.border} text-base py-2 px-4 w-full bg-transparent border-[1.5px] outline-none `}
+							className={`${userPreferences.border} text-sm lg:text-base py-2 px-4 w-full bg-transparent border-[1.5px] outline-none `}
 						/>
 					</label>
-					<div className='w-1/2 '>
-						<EmploymentType employmentType={formData.employmentType} setFormData={setFormData}/>
+					<div className='w-full lg:w-1/2 '>
+						<EmploymentType
+							employmentType={formData.employmentType}
+							setFormData={setFormData}
+						/>
 					</div>
 					<div className='flex r items-center gap-2'>
 						<div
@@ -259,13 +262,18 @@ const WorkExperienceForm = () => {
 							{formData.isPresent ? (
 								<CheckCircle className='w-6 h-6 absolute cursor-pointer' />
 							) : (
-								<div style={{borderColor: userPreferences.shade.text.primaryText}} className='w-5 h-5 rounded-full border-2 absolute cursor-pointer'></div>
+								<div
+									style={{
+										borderColor: userPreferences.shade.text.primaryText,
+									}}
+									className='w-5 h-5 rounded-full border-2 absolute cursor-pointer'
+								></div>
 							)}
 						</label>
 					</div>
 				</div>
 				<div className='flex md:flex-row flex-col gap-6'>
-					<label className='w-1/2 flex flex-col gap-2 text-base'>
+					<label className='w-full lg:w-1/2 flex flex-col gap-2 text-sm lg:text-base'>
 						Start Date:
 						<input
 							style={{
@@ -277,11 +285,11 @@ const WorkExperienceForm = () => {
 							value={formData.startDate}
 							onChange={handleChange}
 							required
-							className={`${userPreferences.border} text-base py-2 px-4 w-full bg-transparent border-[1.5px] outline-none uppercase `}
+							className={`${userPreferences.border} text-sm lg:text-base py-2 px-4 w-full bg-transparent border-[1.5px] outline-none uppercase `}
 						/>
 					</label>
 
-					<label className='w-1/2 flex flex-col gap-2 text-base'>
+					<label className='w-full lg:w-1/2 flex flex-col gap-2 text-sm lg:text-base'>
 						End Date:
 						<input
 							style={{
@@ -293,7 +301,7 @@ const WorkExperienceForm = () => {
 							value={formData.endDate}
 							onChange={handleChange}
 							disabled={formData.isPresent}
-							className={`${userPreferences.border} text-base py-2 px-4 w-full bg-transparent border-[1.5px] outline-none uppercase `}
+							className={`${userPreferences.border} text-sm lg:text-base py-2 px-4 w-full bg-transparent border-[1.5px] outline-none uppercase `}
 						/>
 					</label>
 				</div>
@@ -310,7 +318,7 @@ const WorkExperienceForm = () => {
 							placeholder='Enter job responsibility'
 							onChange={(e) => setResponsibility(e.target.value)}
 							required
-							className={`${userPreferences.border} text-base py-2 px-4 w-full bg-transparent border-[1.5px] outline-none `}
+							className={`${userPreferences.border} text-sm lg:text-base py-2 px-4 w-full bg-transparent border-[1.5px] outline-none `}
 						/>
 					</label>
 					<button
@@ -323,7 +331,7 @@ const WorkExperienceForm = () => {
 							backgroundColor: userPreferences.color,
 							color: userPreferences.isLightMode ? "white" : "black",
 						}}
-						className={`${userPreferences.border} py-2 px-4 text-base md:w-1/2  w-full hover:scale-[.9] transition-all duration-300 ease`}
+						className={`${userPreferences.border} py-2 px-4 text-sm lg:text-base md:w-1/2  w-full hover:scale-[.9] transition-all duration-300 ease`}
 						type='button'
 					>
 						{isUpdatingItem ? "Update" : "Add job responsibility"}
@@ -331,7 +339,7 @@ const WorkExperienceForm = () => {
 				</div>
 				<div
 					style={{ borderColor: userPreferences.shade.other }}
-					className={`${userPreferences.border} text-base py-3 px-4 w-full h-[180px] bg-transparent border-[1.5px] overflow-y-scroll scroll flex flex-col gap-2`}
+					className={`${userPreferences.border} text-sm lg:text-base py-3 px-4 w-full h-[180px] bg-transparent border-[1.5px] overflow-y-scroll scroll flex flex-col gap-2`}
 				>
 					{formData.responsibilities.map((item, index) => (
 						<div
@@ -365,11 +373,11 @@ const WorkExperienceForm = () => {
 					))}
 				</div>
 			</div>
-			<div className='flex flex-row gap-6 mt-6'>
+			<div className='flex flex-col md:flex-row gap-2 md:gap-6 mt-6'>
 				<button
 					style={{ borderColor: userPreferences.shade.other }}
 					onClick={handleCancel}
-					className={`${userPreferences.border} py-2 px-4 text-base mt-6  w-1/3 border-[1.5px] hover:scale-[.9] transition-all duration-300 ease`}
+					className={`${userPreferences.border} py-2 px-4 text-sm lg:text-base w-full lg:w-1/3 border-[1.5px] hover:scale-[.9] transition-all duration-300 ease`}
 					type='button'
 				>
 					Cancel
@@ -382,7 +390,7 @@ const WorkExperienceForm = () => {
 						backgroundColor: userPreferences.color,
 						color: userPreferences.isLightMode ? "white" : "black",
 					}}
-					className={`${userPreferences.border} py-2 px-4 text-base mt-6  w-2/3 hover:scale-[.9] transition-all duration-300 ease`}
+					className={`${userPreferences.border} py-2 px-4 text-sm lg:text-base w-full lg:w-2/3 hover:scale-[.9] transition-all duration-300 ease`}
 					type='button'
 				>
 					{workUpdating ? "Update" : "Add work experience"}
@@ -400,8 +408,26 @@ const WorkExperienceForm = () => {
 							<div key={work.id} className='flex justify-between items-start'>
 								<div className='flex flex-col gap-3 '>
 									<div className='flex flex-col gap-1'>
-										<h1 className='text-lg font-semibold'>{work.jobTitle}</h1>
-										<p className='text-sm flex flex-row gap-2'>
+										<div className='flex justify-start items-center gap-4'>
+											<span
+												onClick={() => handleEditWorkExperience(work)}
+												className='cursor-pointer'
+											>
+												<HoverAccentColor>
+													<EditCircleIcon className='w-5 h-5' />
+												</HoverAccentColor>
+											</span>
+											<span
+												onClick={() => handleDeleteWorkExperience(work)}
+												className='cursor-pointer'
+											>
+												<HoverAccentColor>
+													<DeleteIcon className='w-5 h-5' />
+												</HoverAccentColor>
+											</span>
+										</div>
+										<h1 className='whitespace-normal text-lg font-semibold'>{work.jobTitle}</h1>
+										<p style={{color: userPreferences.color}} className='text-sm flex flex-row gap-2'>
 											<span>{work.company}</span>&middot;
 											<span>{work.employmentType}</span>
 										</p>
@@ -409,37 +435,19 @@ const WorkExperienceForm = () => {
 											style={{
 												color: userPreferences.shade.text.secondaryText,
 											}}
-											className='text-sm flex flex-row gap-2'
+											className='text-xs italic flex flex-row gap-2'
 										>
 											<span>{work.startDate}</span> {"-"}
 											<span>{work.isPresent ? "Present" : work.endDate}</span>
 										</p>
 									</div>
-									<ul className='list-disc pl-4'>
+									<ul className='list-disc pl-4 max-w-[700px]'>
 										{work.responsibilities.map((task, index) => (
-											<li key={index} className='whitespace-normal text-sm'>
+											<li style={{color: userPreferences.shade.text.secondaryText}} key={index} className='whitespace-normal text-sm py-1'>
 												{task}
 											</li>
 										))}
 									</ul>
-								</div>
-								<div className='flex justify-between items-center gap-4'>
-									<span
-										onClick={() => handleEditWorkExperience(work)}
-										className='cursor-pointer'
-									>
-										<HoverAccentColor>
-											<EditCircleIcon className='w-5 h-5' />
-										</HoverAccentColor>
-									</span>
-									<span
-										onClick={() => handleDeleteWorkExperience(work)}
-										className='cursor-pointer'
-									>
-										<HoverAccentColor>
-											<DeleteIcon className='w-5 h-5' />
-										</HoverAccentColor>
-									</span>
 								</div>
 							</div>
 						))}

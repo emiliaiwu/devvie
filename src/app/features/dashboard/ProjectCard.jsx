@@ -7,7 +7,7 @@ const ProjectCard = ({ backgroundColor, icon, title, count, description }) => {
     const { userPreferences } = useContext(UserPreferencesContext);
 	return (
 		<div
-			style={{ backgroundColor: userPreferences.shade.card }}
+			style={{ backgroundColor: userPreferences.shade.background }}
 			className={`${userPreferences.border} h-28 w-full flex items-center px-6 gap-6`}
 		>
 			<div

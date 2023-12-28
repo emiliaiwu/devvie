@@ -8,6 +8,7 @@ import { OutlineButton, ColoredButton } from "../../components/Button";
 import { ClipLoader } from "react-spinners";
 import { useLocation } from "react-router-dom";
 import { useScrollToTop } from "../../../hooks";
+import ToastDemo from "../toast/ToastDemo";
 
 const Theme = () => {
 	useScrollToTop();
@@ -60,6 +61,7 @@ const Theme = () => {
 
 						<LightDarkMode />
 					</div>
+					<ToastDemo/>
 					<div className='w-full'>
 						<h3
 							style={{

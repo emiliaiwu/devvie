@@ -11,6 +11,7 @@ import TopTechStack from "./TopTechStack";
 import ActiveTasks from "./ActiveTasks";
 import TasksActivity from "./TaskActivity";
 import { useScrollToTop } from "../../../hooks";
+import ActiveProjects from "./ActiveProjects";
 
 const Dashboard = () => {
 	const { userPreferences } = useContext(UserPreferencesContext);
@@ -21,7 +22,7 @@ const Dashboard = () => {
 	return (
 		<section
 			style={{
-				backgroundColor: userPreferences.shade.background,
+				backgroundColor: userPreferences.shade.card,
 				fontFamily: userPreferences.font.fontFamily,
 				color: userPreferences.shade.text.primaryText,
 			}}
@@ -63,6 +64,7 @@ const Dashboard = () => {
 					<OverallProjects />
 					<TopTechStack />
 				</div>
+				<ActiveProjects/>
 			</div>
 		</section>
 	);

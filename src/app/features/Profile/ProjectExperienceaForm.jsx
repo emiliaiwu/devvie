@@ -166,8 +166,11 @@ const ProjectExperienceForm = () => {
 	};
 
 	return (
-		<div>
-			<form onSubmit={handleSubmit} className='flex flex-row gap-5 mb-6'>
+		<div className='w-full'>
+			<form
+				onSubmit={handleSubmit}
+				className='flex flex-col lg:flex-row gap-6 mb-6'
+			>
 				<label className='w-full'>
 					<input
 						style={{ borderColor: userPreferences.shade.other }}
@@ -177,7 +180,7 @@ const ProjectExperienceForm = () => {
 						onChange={handleChange}
 						placeholder='Project title'
 						required
-						className={`${userPreferences.border} text-base py-2 px-4 w-full bg-transparent border-[1.5px] outline-none placeholder:opacity-50`}
+						className={`${userPreferences.border} text-sm lg:text-base py-2 px-4 w-full bg-transparent border-[1.5px] outline-none placeholder:opacity-50`}
 					/>
 				</label>
 
@@ -186,7 +189,7 @@ const ProjectExperienceForm = () => {
 						style={{ borderColor: userPreferences.shade.other }}
 						type='text'
 						value={skill}
-						placeholder='Enter skills separated by comma'
+						placeholder='Skills separated by comma'
 						onChange={(e) => setSkill(e.target.value)}
 						className={`${userPreferences.border} text-sm py-2 px-4 w-full bg-transparent border-[1.5px] outline-none `}
 					/>
@@ -197,7 +200,7 @@ const ProjectExperienceForm = () => {
 						backgroundColor: userPreferences.color,
 						color: userPreferences.isLightMode ? "white" : "black",
 					}}
-					className={`${userPreferences.border} py-2 px-4 text-base md:w-1/2  w-full  hover:scale-110 transition-all duration-200 ease`}
+					className={`${userPreferences.border} py-2 px-4 text-sm lg:text-base lg:w-1/2  w-full  hover:scale-110 transition-all duration-200 ease`}
 					type='button'
 				>
 					Add skills
@@ -205,7 +208,7 @@ const ProjectExperienceForm = () => {
 			</form>
 			<div
 				style={{ borderColor: userPreferences.shade.other }}
-				className={`${userPreferences.border} mb-6 text-base py-3 px-4 w-full h-[120px] bg-transparent border-[1.5px] flex gap-2 flex-wrap`}
+				className={`${userPreferences.border} mb-6 text-sm lg:text-base py-3 px-4 w-full h-[120px] bg-transparent border-[1.5px] flex gap-2 flex-wrap`}
 			>
 				{formData.techStack?.map((skill, index) => (
 					<div key={skill}>
@@ -238,7 +241,7 @@ const ProjectExperienceForm = () => {
 							placeholder='Enter job responsibility'
 							onChange={(e) => setResponsibility(e.target.value)}
 							required
-							className={`${userPreferences.border} text-base py-2 px-4 w-full bg-transparent border-[1.5px] outline-none `}
+							className={`${userPreferences.border} text-sm lg:text-base py-2 px-4 w-full bg-transparent border-[1.5px] outline-none `}
 						/>
 					</label>
 					<button
@@ -251,7 +254,7 @@ const ProjectExperienceForm = () => {
 							backgroundColor: userPreferences.color,
 							color: userPreferences.isLightMode ? "white" : "black",
 						}}
-						className={`${userPreferences.border} py-2 px-4 text-base md:w-1/2  w-full  hover:scale-[.9] transition-all duration-300 ease`}
+						className={`${userPreferences.border} py-2 px-4 text-sm lg:text-base md:w-1/2  w-full  hover:scale-[.9] transition-all duration-300 ease`}
 						type='button'
 					>
 						{isUpdatingItem ? "Update" : "Add job responsibility"}
@@ -259,7 +262,7 @@ const ProjectExperienceForm = () => {
 				</div>
 				<div
 					style={{ borderColor: userPreferences.shade.other }}
-					className={`${userPreferences.border} text-base py-3 px-4 w-full h-[180px] bg-transparent border-[1.5px] overflow-y-scroll scroll flex flex-col gap-2`}
+					className={`${userPreferences.border} text-sm lg:text-base py-3 px-4 w-full h-[180px] bg-transparent border-[1.5px] overflow-y-scroll scroll flex flex-col gap-2`}
 				>
 					{formData.responsibilities.map((item, index) => (
 						<div
@@ -294,11 +297,11 @@ const ProjectExperienceForm = () => {
 				</div>
 			</div>
 
-			<div className='flex flex-row gap-6 mt-6'>
+			<div className='flex flex-col lg:flex-row gap-6 mt-6'>
 				<button
 					style={{ borderColor: userPreferences.shade.other }}
 					onClick={handleCancel}
-					className={`${userPreferences.border} py-2 px-4 text-base mt-6  w-1/3 border-[1.5px] hover:scale-[.9] transition-all duration-300 ease `}
+					className={`${userPreferences.border} py-2 px-4 text-sm lg:text-base  w-full lg:w-1/3 border-[1.5px] hover:scale-[.9] transition-all duration-300 ease `}
 					type='button'
 				>
 					Cancel
@@ -313,7 +316,7 @@ const ProjectExperienceForm = () => {
 						backgroundColor: userPreferences.color,
 						color: userPreferences.isLightMode ? "white" : "black",
 					}}
-					className={`${userPreferences.border} py-2 px-4 text-base mt-6  w-2/3  hover:scale-[.9] transition-all duration-300 ease`}
+					className={`${userPreferences.border} py-2 px-4 text-sm lg:text-base w-full lg:w-2/3  hover:scale-[.9] transition-all duration-300 ease`}
 					type='button'
 				>
 					{projectUpdating ? "Update" : "Add project experience"}
@@ -322,34 +325,14 @@ const ProjectExperienceForm = () => {
 
 			<div
 				style={{ backgroundColor: userPreferences.shade.card }}
-				className={`${userPreferences.border} px-5 pt-2 pb-6 mt-8 min-h-[200px]`}
+				className={`${userPreferences.border} px-5 pt-2 pb-6 mt-8 min-h-[200px] w-full`}
 			>
-				<div className='flex flex-col gap-4 mt-6'>
+				<div className='flex flex-col gap-4 mt-6 w-full'>
 					<h1 className='text-xl'>Project Experience:</h1>
 					<div className='flex flex-col gap-8'>
 						{userProfile.projectExperience?.map((project) => (
-							<div
-								key={project.id}
-								className='flex justify-between items-start'
-							>
-								<div className='flex flex-col gap-1 '>
-									<h1 className='text-lg font-semibold'>{project.title}</h1>
-									<div className='flex flex-row gap-2 mb-2'>
-										{project.techStack?.map((tech) => (
-											<span key={tech} className='text-xs italic'>
-												{tech}
-											</span>
-										))}
-									</div>
-									<ul className='list-disc pl-4'>
-										{project.responsibilities.map((task, index) => (
-											<li key={index} className='whitespace-normal text-sm'>
-												{task}
-											</li>
-										))}
-									</ul>
-								</div>
-								<div className='flex justify-between items-center gap-4'>
+							<div key={project.id} className='flex flex-col gap-1 w-full '>
+								<div className='flex justify-start items-center gap-4'>
 									<span
 										onClick={() => handleEditProjectExperience(project)}
 										className='cursor-pointer'
@@ -367,6 +350,21 @@ const ProjectExperienceForm = () => {
 										</HoverAccentColor>
 									</span>
 								</div>
+								<h1 className='text-lg font-semibold'>{project.title}</h1>
+								<div className='flex flex-row gap-1 mb-2 flex-wrap w-full'>
+									{project.techStack?.map((tech) => (
+										<span style={{color: userPreferences.color}} key={tech} className='text-xs italic'>
+											{tech}
+										</span>
+									))}
+								</div>
+								<ul className='list-disc pl-4 max-w-[500px]'>
+									{project.responsibilities.map((task, index) => (
+										<li style={{color: userPreferences.shade.text.secondaryText}} key={index} className='whitespace-normal text-sm'>
+											{task}
+										</li>
+									))}
+								</ul>
 							</div>
 						))}
 					</div>

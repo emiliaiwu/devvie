@@ -12,6 +12,8 @@ import LibraryContext from "./LibraryContext";
 import { LibraryContextProvider } from "./LibraryContext";
 import { UserProfileContextProvider } from "./UserProfileContext";
 import UserProfileContext from "./UserProfileContext";
+import { ToastContext, ToastProvider } from "./ToastContext";
+
 
 export {
 	UserPreferencesContext,
@@ -27,5 +29,7 @@ export {
 	LibraryContext,
 	LibraryContextProvider,
 	UserProfileContext,
-	UserProfileContextProvider
+	UserProfileContextProvider,
+	ToastContext,
+	ToastProvider,
 };

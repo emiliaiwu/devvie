@@ -13,7 +13,7 @@ const Bookmark = ({ link }) => {
 		<div className=''>
 			<div
 				style={{
-					backgroundColor: userPreferences.shade.card,
+					backgroundColor: userPreferences.shade.background,
 				}}
 				className={`${userPreferences.border} w-full md:w-[262px]  flex gap-3 p-4 items-center relative`}
 			>
