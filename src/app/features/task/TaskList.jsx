@@ -67,7 +67,7 @@ const TaskList = () => {
 			</div>
 
 			<div className='flex flex-col gap-5 relative'>
-				<div className='flex gap-3 w-full'>
+				<div className='flex flex-col ss:flex-row gap-3 w-full'>
 					<div
 						style={{
 							backgroundColor: userPreferences.shade.background,
@@ -104,7 +104,7 @@ const TaskList = () => {
 					</button>
 				</div>
 
-				<div className='flex flex-col gap-2 absolute top-16 right-0 left-0'>
+				<div className='flex flex-col gap-2 absolute ss:top-16 top-28  right-0 left-0'>
 					{newTask.list.map((item, index) => (
 						<NewTaskItem
 							key={index}

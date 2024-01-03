@@ -1,7 +1,6 @@
 import { useContext } from "react";
 import { UserPreferencesContext } from "../../context";
 import { HoverAccentColor, PriorityTag } from "../../components";
-import { DeleteIcon, EditCircleIcon, MoveIcon } from "../../data/icon";
 import TaskPageCardList from "./TaskPageCardList";
 import { Link } from "react-router-dom";
 
@@ -19,20 +18,12 @@ const TaskPageCard = ({ taskColumnId, task, projectColumnId, projectId }) => {
 						<div className='w-full inline-flex'>
 							<PriorityTag tag={task.priority} />
 						</div>
-
-						<div className='flex items-center gap-3'>
-							<EditCircleIcon className='w-4 h-4' />
-
-							<MoveIcon className='w-4 h-4' />
-
-							<DeleteIcon className='w-4 h-4' />
-						</div>
 					</div>
 
 					<div className='px-5 flex flex-col gap-4 w-full'>
 						<div>
 							<HoverAccentColor>
-								<Link >
+								<Link to={`/user/projects/${task.projectSlug}`}>
 									<h1
 										className='text-base mb-2 capitalize w-full '
 										style={{

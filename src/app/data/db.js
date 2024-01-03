@@ -1,21 +1,12 @@
 import {
 	DashboardIcon,
 	ProjectIcon,
-	NoteIcon,
 	LibraryIcon,
 	TaskIcon,
 	AccountIcon,
-	LogoutIcon,
 	ThemeIcon,
 	SecurityIcon,
-	DeleteAccountIcon,
-	ChallengeIcon,
 } from "./icon";
-
-
-
-
-
 
 export const menuLeftTop = [
 	{
@@ -42,7 +33,6 @@ export const menuLeftTop = [
 		icon: LibraryIcon,
 	},
 
-
 	{
 		title: "Appearance",
 		url: "/user/appearance",
@@ -54,8 +44,6 @@ export const menuLeftTop = [
 		url: "/user/profile",
 		icon: AccountIcon,
 	},
-
-	
 ];
 
 export const menuLeftBottom = [
@@ -64,7 +52,4 @@ export const menuLeftBottom = [
 		url: "/user/password",
 		icon: SecurityIcon,
 	},
-	
-
-	
 ];

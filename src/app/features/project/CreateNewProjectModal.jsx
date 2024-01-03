@@ -58,23 +58,23 @@ const CreateNewProjectModal = () => {
 		>
 			<div
 				style={{ fontFamily: userPreferences.font.fontFamily }}
-				className='flex flex-col py-8'
+				className='flex flex-col py-4 md:py-8'
 			>
 				<h1
 					style={{ color: userPreferences.shade.text.primaryText }}
-					className='text-3xl p-5'
+					className='text-xl sm:text-2xl lg:text-3xl p-2 md:p-5'
 				>
 					Create New Project
 				</h1>
 				<div
 					style={{ color: userPreferences.shade.text.primaryText }}
 					ref={contentRef}
-					className=' gap-6 justify-between overflow-y-scroll scroll h-screen p-5'
+					className=' gap-6 justify-between overflow-y-scroll scroll h-screen p-2 md:p-5'
 				>
 					{/* PROJECT FORM */}
 					<form className='w-full mb-4'>
 						<div className='flex flex-col gap-2 mb-4'>
-							<label className='block text-base'> Title </label>
+							<label className='block text-sm sm:text-base'> Title </label>
 							<input
 								style={{ backgroundColor: userPreferences.shade.card }}
 								type='text'
@@ -83,7 +83,7 @@ const CreateNewProjectModal = () => {
 								placeholder='Enter your project title'
 								value={newProject.title}
 								onChange={(e) => handleInputChange("title", e.target.value)}
-								className={`${userPreferences.border} w-full px-4 py-3 focus:outline-none text-base mb-1`}
+								className={`${userPreferences.border} w-full px-4 py-3 focus:outline-none text-sm sm:text-base mb-1`}
 							/>
 						</div>
 
@@ -91,7 +91,7 @@ const CreateNewProjectModal = () => {
 							<label htmlFor='description'>Description</label>
 							<div
 								style={{ backgroundColor: userPreferences.shade.card }}
-								className={`${userPreferences.border} py-3 overflow-hidden mb-1 pl-5 pr-2 m-auto w-full`}
+								className={`${userPreferences.border} py-3 overflow-hidden mb-1 p-3 md:pl-5 md:pr-2 m-auto w-full`}
 							>
 								<textarea
 									style={{ backgroundColor: userPreferences.shade.card }}
@@ -112,11 +112,10 @@ const CreateNewProjectModal = () => {
 
 					<div className='w-full flex flex-col gap-8 mb-10'>
 						<div className='flex flex-col gap-3'>
-							<ProjectStatus />
-
 							<div className='flex flex-col gap-2'>
 								<ProjectTag />
 							</div>
+							<ProjectStatus />
 
 							<ProjectPriority />
 							<div
@@ -124,7 +123,7 @@ const CreateNewProjectModal = () => {
 								className={`${userPreferences.border} flex items-center my-2 p-4`}
 							>
 								{/* Checkbox for "No Date" option */}
-								<label className='flex items-center gap-2 relative text-base'>
+								<label className='flex items-center gap-2 relative text-sm sm:text-base'>
 									<input
 										onChange={() => setIsNoDate(!isNoDate)}
 										type='checkbox'
@@ -145,7 +144,7 @@ const CreateNewProjectModal = () => {
 							</div>
 
 							{!isNoDate && (
-								<div className='flex justify-between gap-3 '>
+								<div className='flex flex-col sm:flex-row justify-between gap-3 '>
 									<ChooseStartDate />
 									<div className='w-full'>
 										<ChooseDueDate />
@@ -157,18 +156,23 @@ const CreateNewProjectModal = () => {
 								<ProjectTechStack />
 							</div>
 						</div>
-						<div className='flex justify-between items-center mb-28'>
+						<div
+							style={{
+								color: `${userPreferences.isLightMode ? "white" : "black"}`,
+							}}
+							className='flex justify-between items-center mb-28'
+						>
 							<button
 								onClick={handleCancel}
 								style={{ backgroundColor: userPreferences.color }}
-								className={`${userPreferences.border} h-11 px-7 text-sm text-black font-medium hover:opacity-60 transition-opacity duration-200 ease`}
+								className={`${userPreferences.border} h-11 px-7 text-sm  font-medium hover:opacity-60 transition-opacity duration-200 ease`}
 							>
 								Cancel
 							</button>
 							<button
 								onClick={isUpdating ? handleUpdateProject : createNewProject}
 								style={{ backgroundColor: userPreferences.color }}
-								className={`${userPreferences.border} h-11 w-36 text-sm text-black font-medium hover:opacity-60 transition-opacity duration-200 ease flex justify-center items-center`}
+								className={`${userPreferences.border} h-11 w-36 text-sm  font-medium hover:opacity-60 transition-opacity duration-200 ease flex justify-center items-center`}
 							>
 								{isSubmitting ? (
 									<ClipLoader loading={true} color={"#FFFFFF"} size={32} />

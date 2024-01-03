@@ -1,8 +1,6 @@
 import { useContext, useState } from "react";
 import { UserPreferencesContext, UserProfileContext } from "../../context";
 import {
-	Call,
-	Facebook,
 	Github,
 	Gmail,
 	Instagram,
@@ -96,17 +94,17 @@ const SocialsForm = () => {
 						borderColor: userPreferences.shade.other,
 						color: userPreferences.shade.text.secondaryText,
 					}}
-					htmlFor='gmail'
+					htmlFor='email'
 					className={`${userPreferences.border} text-sm lg:text-base py-2 px-4 w-full border-[1.5px] flex items-center gap-3 `}
 				>
 					<Gmail className='w-6 h-6' />
 
 					<input
 						type='email'
-						id='gmail'
+						id='email'
 						name='email'
-						placeholder='Enter your gmail '
-						value={userProfile.socials.gmail}
+						placeholder='Enter your email'
+						value={userProfile.socials.email}
 						onChange={handleChange}
 						className='bg-transparent  outline-none w-full'
 					/>

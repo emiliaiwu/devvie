@@ -13,7 +13,7 @@ const MemoizedColumn = React.memo(
 					fontFamily: userPreferences.font.fontFamily,
 					backgroundColor: userPreferences.shade.card,
 				}}
-				className={`${userPreferences.border} w-[280] lg:w-[320px] pb-5 flex-shrink-0 overflow-hidden`}
+				className={`${userPreferences.border} w-[280px] xs:w-[320px] pb-5 flex-shrink-0 overflow-hidden`}
 			>
 				<div className='flex items-center justify-between mb-5  '>
 					<div

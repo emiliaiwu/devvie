@@ -33,20 +33,19 @@ const Theme = () => {
 	return (
 		<section
 			style={{ backgroundColor: newUserPreferences.shade.card }}
-			className={` md:pl-20 min-h-screen md:mt-0 mx-auto`}
+			className={` lg:pl-20 min-h-screen lg:mt-0 mx-auto`}
 		>
-			<div className='md:py-28 md:pl-8 md:pr-10  px-6 flex flex-col gap-10 min-h-screen py-20'>
-				<div className='px-2 hidden lg:block'>
-					<h2
-						style={{
-							fontFamily: newUserPreferences.font.fontFamily,
-							color: newUserPreferences.shade.text.primaryText,
-						}}
-						className='text-3xl font-medium'
-					>
-						Appearance
-					</h2>
-				</div>
+			<div className='lg:py-28 lg:pl-8 lg:pr-10 px-6 flex flex-col gap-8 min-h-screen py-20'>
+				<h2
+					style={{
+						fontFamily: newUserPreferences.font.fontFamily,
+						color: newUserPreferences.shade.text.primaryText,
+					}}
+					className='text-2xl md:text-3xl font-medium px-2 pt-5'
+				>
+					Appearance
+				</h2>
+
 				<div className=' flex flex-col items-center lg:items-start gap-8 mb-5 lg:px-2'>
 					<div className='w-full'>
 						<h3
@@ -54,14 +53,14 @@ const Theme = () => {
 								fontFamily: newUserPreferences.font.fontFamily,
 								color: newUserPreferences.shade.text.primaryText,
 							}}
-							className='text-lg mb-5 font-medium'
+							className='text-lg mb-5 font-medium text-center sm:text-left'
 						>
 							Choose your preferred mode
 						</h3>
 
 						<LightDarkMode />
 					</div>
-					<ToastDemo/>
+					{/* <ToastDemo/> */}
 					<div className='w-full'>
 						<h3
 							style={{
@@ -140,6 +139,7 @@ const Theme = () => {
 								border={newUserPreferences.border}
 								font={newUserPreferences.font.fontFamily}
 								color={newUserPreferences.color}
+								fontColor={newUserPreferences.isLightMode ? 'white' : 'black'}
 							>
 								{isUpdating ? (
 									<ClipLoader loading={true} color={"#FFFFFF"} size={32} />

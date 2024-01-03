@@ -28,7 +28,7 @@ const ChooseStartDate = () => {
 			style={{ fontFamily: userPreferences.font.fontFamily }}
 			className='w-full'
 		>
-			<div className='mb-3 px-1'>
+			<div className='my-2 px-1'>
 				<h1
 					style={{
 						color: userPreferences.shade.text.primaryText,

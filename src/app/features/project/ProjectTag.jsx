@@ -52,7 +52,7 @@ const ProjectTag = () => {
 	}
 
 	return (
-		<div className='w-full relative z-[8]'>
+		<div className='w-full relative z-[10]'>
 			<div>
 				<div className='text-base px-1 mb-3'>Project Tags</div>
 
@@ -88,7 +88,7 @@ const ProjectTag = () => {
 								style={{
 									color: userPreferences.shade.text.secondaryText,
 								}}
-								className='text-base'
+								className='text-sm sm:text-base'
 							>
 								Add tags
 							</p>
@@ -119,7 +119,7 @@ const ProjectTag = () => {
 						borderColor: userPreferences.shade.other,
 					}}
 					className={`${userPreferences.border}
-					 w-[320px] pt-6 top-28 left-0 absolute border`}
+					 lg:w-[320px] w-[280px] sm:w-[300px] pt-6 top-28 left-0 absolute border`}
 				>
 					<div className='relative'>
 						{newProject.tag.length > maxTags && (
@@ -164,7 +164,7 @@ const ProjectTag = () => {
 						}}
 						className='flex justify-center items-center p-4 border-t'
 					>
-						<div onClick={handleManageTags} className='cursor-pointer'>
+						<div onClick={handleManageTags} className='cursor-pointer text-sm sm:text-base'>
 							<HoverAccentColor
 								className={
 									"inline-flex items-center text-base justify-center gap-3"

@@ -13,19 +13,12 @@ const ProjectOverview = () => {
 	return (
 		<div className="flex flex-col">
 			<h1
-				className='text-2xl'
+				className='text-xl md:text-2xl'
 				style={{ color: userPreferences.shade.text.primaryText }}
 			>
 				Project Overview
 			</h1>
-			<div className='flex flex-col lg:flex-row justify-between items-center gap-6 mt-3'>
-				{/* <ProjectCard
-					backgroundColor='#dc0cd3'
-					icon={<ProjectIcon className='w-8 h-8' />}
-					title='Total Projects'
-					count={totalProjects}
-					description='Total Projects'
-				/> */}
+			<div className='grid lg:grid-cols-4 ss:grid-cols-2 items-center gap-6 mt-3 flex-wrap'>
 				<ProjectCard
 					backgroundColor='rgb(11, 218, 81)'
 					icon={<CheckCircle className='w-8 h-8' />}

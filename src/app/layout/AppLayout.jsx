@@ -7,17 +7,25 @@ import {
 	SidebarLeft,
 } from "../components";
 import { useScrollToTop } from "../../hooks";
-import { useContext, useState } from "react";
-import { ToastContext, UserPreferencesContext } from "../context";
+import { useContext } from "react";
+import {
+	ToastContext,
+	UserPreferencesContext,
+	UserProfileContext,
+} from "../context";
 import Toast from "../features/toast/Toast";
 
 const AppLayout = () => {
 	const { userPreferences } = useContext(UserPreferencesContext);
 	const { toasting } = useContext(ToastContext);
+	const {
+		wantToLogout,
+		setWantToLogout,
+		wantToDeleteAccount,
+		setWantToDeleteAccount,
+	} = useContext(UserProfileContext);
 	useScrollToTop();
 
-	const [wantToLogout, setWantToLogout] = useState(false);
-	const [wantToDeleteAccount, setWantToDeleteAccount] = useState(false);
 	return (
 		<div
 			style={{ backgroundColor: userPreferences.shade.background }}
@@ -35,7 +43,7 @@ const AppLayout = () => {
 			)}
 
 			{toasting && (
-				<div className="fixed inset-0 z-[1000]">
+				<div className='fixed inset-0 z-[1000]'>
 					<Toast />
 				</div>
 			)}
@@ -43,7 +51,10 @@ const AppLayout = () => {
 			<div className='lg:hidden flex flex-col relative w-full h-full'>
 				<Header />
 				<MobileMenu />
-				<main className='transition-width duration-200 ease min-h-full bg-black'>
+				<main
+					style={{ backgroundColor: userPreferences.shade.background }}
+					className='transition-width duration-200 ease min-h-full '
+				>
 					<Outlet />
 				</main>
 			</div>
@@ -57,7 +68,7 @@ const AppLayout = () => {
 
 				<main
 					style={{ backgroundColor: userPreferences.shade.background }}
-					className='transition-width duration-200 ease bg-black h-screen '
+					className='transition-width duration-200 ease h-screen '
 				>
 					<Outlet />
 				</main>

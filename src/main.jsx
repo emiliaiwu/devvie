@@ -27,8 +27,8 @@ ReactDOM.createRoot(document.getElementById("root")).render(
 		<AuthContextProvider>
 			<SignInContextProvider>
 				<SignUpContextProvider>
-					<UserContextProvider>
-						<ToastProvider>
+					<ToastProvider>
+						<UserContextProvider>
 							<UserPreferencesProvider>
 								<ThemeContextProvider>
 									<MobileMenuProvider>
@@ -48,8 +48,8 @@ ReactDOM.createRoot(document.getElementById("root")).render(
 									</MobileMenuProvider>
 								</ThemeContextProvider>
 							</UserPreferencesProvider>
-						</ToastProvider>
-					</UserContextProvider>
+						</UserContextProvider>
+					</ToastProvider>
 				</SignUpContextProvider>
 			</SignInContextProvider>
 		</AuthContextProvider>

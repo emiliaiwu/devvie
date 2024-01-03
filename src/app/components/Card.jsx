@@ -45,37 +45,40 @@ const Card = ({ project }) => {
 
 					<div className='flex flex-col gap-5'>
 						<div className='px-5'>
-							<div className='flex gap-2 items-center flex-wrap'>
-								{project.tag.map((tag) => (
-									<Tag key={tag.id} color={tag.color}>
-										{tag.tag}
-									</Tag>
-								))}
+							<div
+								style={{ color: userPreferences.shade.text.secondaryText }}
+								className='flex gap-2 items-center flex-wrap'
+							>
+								{project.tag.length !== 0
+									? project.tag.map((tag) => (
+											<Tag key={tag.id} color={tag.color}>
+												{tag.tag}
+											</Tag>
+									  ))
+									: "No project tags"}
 							</div>
 						</div>
 
 						<div className='px-5 flex flex-col gap-4 w-full'>
-							<div className="flex flex-col items-start">
-								
-									<HoverAccentColor>
-										<Link to={`/user/projects/${project.slug}`}>
-											<h1
-												className='text-lg mb-2 capitalize '
-												style={{
-													whiteSpace: "normal",
-												}}
-											>
-												{project.title}
-											</h1>
-										</Link>
-									</HoverAccentColor>
-								
+							<div className='flex flex-col items-start'>
+								<HoverAccentColor>
+									<Link to={`/user/projects/${project.slug}`}>
+										<h1
+											className='text-lg mb-2 capitalize '
+											style={{
+												whiteSpace: "normal",
+											}}
+										>
+											{project.title || `project${project.slug}`}
+										</h1>
+									</Link>
+								</HoverAccentColor>
 
 								<p
 									style={{ color: userPreferences.shade.text.secondaryText }}
 									className={`overflow-ellipsis whitespace-normal text-sm leading-5 line-clamp-3`}
 								>
-									{project.description}
+									{project.description || 'No description yet'}
 								</p>
 							</div>
 
@@ -126,7 +129,8 @@ const Card = ({ project }) => {
 									}}
 									className='flex items-center gap-3 justify-between w-full border-l pl-2'
 								>
-									<div className='flex items-center gap-3'>
+									{stack.length === 0 && 'No project stack'}
+									<div className='xs:flex items-center gap-3 hidden'>
 										{stack.slice(0, 3).map((tech, index) => (
 											<div
 												style={{
@@ -146,9 +150,34 @@ const Card = ({ project }) => {
 												color: userPreferences.shade.text.primaryText,
 												backgroundColor: userPreferences.shade.card,
 											}}
-											className=' text-xs flex items-center rounded-full w-6 h-6 justify-center'
+											className=' text-xs hidden xs:flex items-center rounded-full w-6 h-6 justify-center'
 										>
 											+{stack.length - 3}
+										</div>
+									)}
+									<div className='xs:hidden flex items-center gap-3'>
+										{stack.slice(0, 2).map((tech, index) => (
+											<div
+												style={{
+													borderColor: userPreferences.shade.text.secondaryText,
+												}}
+												key={index}
+												className={`text-[13px] justify-end`}
+											>
+												{tech}
+											</div>
+										))}
+									</div>
+
+									{stack.length > 2 && (
+										<div
+											style={{
+												color: userPreferences.shade.text.primaryText,
+												backgroundColor: userPreferences.shade.card,
+											}}
+											className=' text-xs xs:hidden flex items-center rounded-full w-6 h-6 justify-center'
+										>
+											+{stack.length - 2}
 										</div>
 									)}
 								</div>

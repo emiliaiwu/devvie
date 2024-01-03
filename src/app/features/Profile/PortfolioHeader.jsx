@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { backupCover } from "../../../assets";
+import { backupAvatar, backupCover } from "../../../assets";
 import {
 	Call,
 	Download,
@@ -51,27 +51,15 @@ const PortfolioHeader = ({ userPreferences, userProfile }) => {
 				>
 					<div className='rounded-full overflow-hidden '>
 						<img
-							src={userProfile?.userPhoto}
-							className='lg:w-[150px] lg:h-[150px] w-[80px] h-[80px] object-contain'
+							src={userProfile?.userPhoto || backupAvatar}
+							className={`${
+								backupAvatar && "object-cover bg-white"
+							}  lg:w-[150px] lg:h-[150px] w-[80px] h-[80px] object-contain`}
 						/>
 					</div>
 				</div>
 
 				<div className='relative w-full'>
-					<div className='absolute left-6 lg:left-48  top-4'>
-						<button
-							style={{
-								backgroundColor: userPreferences.color,
-								color: userPreferences.isLightMode ? "white" : "black",
-							}}
-							className={`${userPreferences.border} py-1 md:py-2 px-2 md:px-4 text-xs md:text-sm  hover:scale-110 transition-all duration-150 ease flex items-center gap-1`}
-							type='button'
-						>
-							<Download className="w-4 h-4 md:w-5 md:h-5" />
-							Resume
-						</button>
-					</div>
-
 					<div className=' px-6 lg:px-14 flex flex-col justify-center items-center gap-2 text-center lg:mt-[80px] mt-[60px]'>
 						<h1 className='lg:text-3xl text-2xl font-semibold'>
 							{userProfile.firstName} {userProfile.lastName}
@@ -82,15 +70,20 @@ const PortfolioHeader = ({ userPreferences, userProfile }) => {
 						>
 							{userProfile.location}
 						</p>
-						<p className='lg:text-lg text-base flex flex-row gap-3 items-center text-center'>
-							<span style={{ color: userPreferences.color }}>
-								{userProfile.jobTitle}
-							</span>
-							<span className='text-xl font-bold'>&middot;</span>
-							<span style={{ color: userPreferences.shade.text.secondaryText }}>
-								{userProfile.employmentType}
-							</span>
-						</p>
+						{userProfile.jobTitle && userProfile.employmentType && (
+							<p className='lg:text-lg text-base flex flex-row gap-3 items-center text-center'>
+								<span style={{ color: userPreferences.color }}>
+									{userProfile.jobTitle}
+								</span>
+								<span className='text-xl font-bold'>&middot;</span>
+								<span
+									style={{ color: userPreferences.shade.text.secondaryText }}
+								>
+									{userProfile.employmentType}
+								</span>
+							</p>
+						)}
+
 						<div
 							style={{ "--hover-color": userPreferences.color }}
 							className='flex items-center gap-5 mt-2 '

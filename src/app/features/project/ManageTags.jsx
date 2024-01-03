@@ -1,4 +1,8 @@
-import { ProjectContext, UserPreferencesContext } from "../../context";
+import {
+	ProjectContext,
+	ToastContext,
+	UserPreferencesContext,
+} from "../../context";
 import { useContext, useState } from "react";
 import {
 	CancelCircleIcon,
@@ -8,16 +12,25 @@ import {
 } from "../../data/icon";
 import { projectTags } from "../../data/projectData";
 import { HoverAccentColor, Tag } from "../../components";
+import { doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
+import { firestore } from "../../../firebase";
+import { ClipLoader } from "react-spinners";
 
 const ManageTags = ({ setIsManageTagOpen, generateID }) => {
 	const [selectedColor, setSelectedColor] = useState("#00b287");
 	const [isColorOpen, setIsColorOpen] = useState(false);
 	const [newTag, setNewTag] = useState("");
 	const { userPreferences } = useContext(UserPreferencesContext);
-	const { setAllProjectTags, allProjectTags } = useContext(ProjectContext);
+	const {
+		setAllProjectTags,
+		allProjectTags,
+		userId,
+		setIsSubmitting,
+		isSubmitting,
+	} = useContext(ProjectContext);
 	const [tagToBeUpdated, setTagToBeUpdated] = useState(null);
 	const [isUpdating, setIsUpdating] = useState(false);
-	const [tagExistsMsg, setTagExistsMsg] = useState("");
+	const { showToast } = useContext(ToastContext);
 
 	const handleColor = (color) => {
 		setSelectedColor(color);
@@ -27,7 +40,6 @@ const ManageTags = ({ setIsManageTagOpen, generateID }) => {
 
 	const handleTagInput = (e) => {
 		setNewTag(e.target.value);
-		setTagExistsMsg("");
 	};
 
 	const handleTagToBeUpdated = (tag) => {
@@ -38,25 +50,52 @@ const ManageTags = ({ setIsManageTagOpen, generateID }) => {
 	};
 
 	// submit
-	const handleSubmit = (e) => {
+	const handleSubmit = async (e) => {
 		e.preventDefault();
+		setIsSubmitting(true);
+
 		if (newTag.trim() === "") {
 			return;
 		}
+
 		const tagExists = allProjectTags.some((tag) => tag.tag === newTag);
+
 		if (tagExists) {
-			setTagExistsMsg(`Tag "${newTag}" already exists.`);
+			showToast("info", "Tag already exists!", "Create a new tag");
 		} else {
 			const newTagObject = {
-				id: generateID,
+				id: generateID(),
 				tag: newTag,
 				color: selectedColor,
 			};
 
-			const updatedTags = [...allProjectTags, newTagObject].sort((a, b) =>
-				a.tag.localeCompare(b.tag)
-			);
-			setAllProjectTags(updatedTags);
+			try {
+				const tagRef = doc(firestore, "projectTags", userId);
+				const tagSnapshot = await getDoc(tagRef);
+
+				if (tagSnapshot.exists()) {
+					// If the document already exists, update the tags
+					const existingTags = tagSnapshot.data().tags || [];
+					const updatedTags = [...existingTags, newTagObject];
+
+					await setDoc(tagRef, { tags: updatedTags });
+					setAllProjectTags(updatedTags);
+				} else {
+					// If the document does not exist, create a new one with the new tag
+					await setDoc(tagRef, { tags: [newTagObject] });
+					setAllProjectTags([newTagObject]);
+				}
+
+				showToast(
+					"success",
+					"New tag created!",
+					"Check the Tag list to use tag"
+				);
+				setIsSubmitting(false);
+			} catch (error) {
+				setIsSubmitting(false);
+				showToast("danger", "Error creating tag", error.message);
+			}
 		}
 
 		setSelectedColor("#00b287");
@@ -65,7 +104,8 @@ const ManageTags = ({ setIsManageTagOpen, generateID }) => {
 	};
 
 	// update
-	const handleUpdate = (e) => {
+	const handleUpdate = async (e) => {
+		setIsSubmitting(true);
 		e.preventDefault();
 
 		if (newTag.trim() === "") {
@@ -75,8 +115,9 @@ const ManageTags = ({ setIsManageTagOpen, generateID }) => {
 		const tagExists = allProjectTags.some(
 			(tag) => tag.tag === newTag && tag.color === selectedColor
 		);
+
 		if (tagExists) {
-			setTagExistsMsg(`Tag "${newTag}" already exists.`);
+			showToast("info", "Tag already exists!", "Create a new tag");
 		} else {
 			if (tagToBeUpdated) {
 				const updatedTags = allProjectTags.map((tag) =>
@@ -85,27 +126,55 @@ const ManageTags = ({ setIsManageTagOpen, generateID }) => {
 						: tag
 				);
 
+				// Update the tags in the Firestore database
+				try {
+					const tagRef = doc(firestore, "projectTags", userId);
+					await updateDoc(tagRef, { tags: updatedTags });
+					showToast(
+						"success",
+						"Tag has been Updated!",
+						"Check the list to use tag"
+					);
+					setIsSubmitting(false);
+				} catch (error) {
+					showToast("danger", "Error updating tag", error.message);
+					setIsSubmitting(false);
+				}
+
+				// Update the state with the new tags
 				const sortedTags = [...updatedTags].sort((a, b) =>
 					a.tag.localeCompare(b.tag)
 				);
 				setAllProjectTags(sortedTags);
 			}
 		}
+
 		setSelectedColor("#00b287");
 		setNewTag("");
 		setIsUpdating(false);
 		setIsColorOpen(false);
+		setTagToBeUpdated(null);
 	};
 
 	// delete
-	const handleTagDelete = (id) => {
-		const newProjectTags = allProjectTags.filter((tag) => id !== tag.id);
-		setAllProjectTags(newProjectTags);
+	const handleDelete = async (tagToDelete) => {
+		try {
+			const updatedTags = allProjectTags.filter(
+				(tag) => tag.id !== tagToDelete
+			);
+			await updateDoc(doc(firestore, "projectTags", userId), {
+				tags: updatedTags,
+			});
+			setAllProjectTags(updatedTags);
+			showToast("success", "Tag has been deleted!", "Create a new tag");
+		} catch (error) {
+			showToast("danger", "Error deleting tag", error.message);
+		}
 	};
 
 	return (
-		<div className='fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-80'>
-			<div className='relative'>
+		<div className='fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-80 overflow-y-scroll min-h-screen h-full'>
+			<div className='relative flex justify-center items-center mt-24'>
 				<div
 					onClick={() => setIsManageTagOpen(false)}
 					style={{
@@ -119,7 +188,7 @@ const ManageTags = ({ setIsManageTagOpen, generateID }) => {
 				</div>
 				<div
 					style={{ backgroundColor: userPreferences.shade.card }}
-					className={`${userPreferences.border} lg:w-[450px] flex flex-col px-6 pb-4 gap-4`}
+					className={`${userPreferences.border} w-[300px] xs:w-[320px] ss:w-[380px] md:w-[450px] flex flex-col px-6 pb-4 gap-4`}
 				>
 					<h1
 						style={{
@@ -131,7 +200,6 @@ const ManageTags = ({ setIsManageTagOpen, generateID }) => {
 						Manage Project Tags
 					</h1>
 					<div className='w-full mb-2'>
-						<p>{tagExistsMsg}</p>
 						<h2 className='text-base mb-3 flex items-center px-1'>
 							Current Tags
 							<TagIcon className='ml-2 w-4 h-4' />
@@ -160,7 +228,7 @@ const ManageTags = ({ setIsManageTagOpen, generateID }) => {
 												<EditCircleIcon className='w-[18px] h-[18px]' />{" "}
 											</span>
 											<span
-												onClick={() => handleTagDelete(tag.id)}
+												onClick={() => handleDelete(tag.id)}
 												className='cursor-pointer opacity-50 hover:opacity-100 transition-opacity duration-200 ease'
 											>
 												<DeleteIcon className='w-[18px] h-[18px]' />
@@ -182,7 +250,7 @@ const ManageTags = ({ setIsManageTagOpen, generateID }) => {
 						<form
 							onSubmit={isUpdating ? handleUpdate : handleSubmit}
 							style={{ color: userPreferences.shade.text.primaryText }}
-							className='flex justify-between items-center gap-3 w-full'
+							className='flex flex-col md:flex-row justify-between items-center gap-3 w-full'
 						>
 							{/* tag */}
 							<div className='w-full flex-1'>
@@ -214,16 +282,22 @@ const ManageTags = ({ setIsManageTagOpen, generateID }) => {
 								<input
 									style={{ color: userPreferences.shade.text.secondaryText }}
 									value={selectedColor}
-									className={`w-full  pr-2 text-sm focus:outline-none bg-transparent`}
+									className={`w-full  pr-2 text-sm focus:outline-none bg-transparent h-11`}
 									onChange={(e) => setSelectedColor(e.target.value)}
 								/>
 							</div>
 
 							<button
 								style={{ backgroundColor: userPreferences.color }}
-								className={`${userPreferences.border} h-10 px-7 text-sm text-black font-medium hover:opacity-60 transition-opacity duration-200 ease`}
+								className={`${userPreferences.border} h-10 px-7 text-sm text-black font-medium hover:opacity-60 transition-opacity duration-200 ease w-24 `}
 							>
-								{isUpdating ? "Update" : "Create"}
+								{isSubmitting ? (
+									<ClipLoader loading={true} color={"#FFFFFF"} size={32} />
+								) : isUpdating ? (
+									"Update"
+								) : (
+									"Create"
+								)}
 							</button>
 						</form>
 

@@ -13,7 +13,7 @@ const MemoizedColumn = React.memo(
 					fontFamily: userPreferences.font.fontFamily,
 					backgroundColor: userPreferences.shade.card,
 				}}
-				className={`${userPreferences.border} w-[300px] lg:w-[340px] pb-5 flex-shrink-0 overflow-hidden`}
+				className={`${userPreferences.border} w-[280px]  xs:w-[320px] lg:w-[340px] pb-5 flex-shrink-0 overflow-hidden`}
 			>
 				<div className='flex items-center justify-between mb-5  '>
 					<div
@@ -24,7 +24,7 @@ const MemoizedColumn = React.memo(
 							<span>
 								<IconComponent className='w-[13px] h-[13px] mr-1' />
 							</span>
-							<span className='text-lg capitalize'>{statusName}</span>{" "}
+							<span className='text-base md:text-lg capitalize'>{statusName}</span>{" "}
 						</div>
 
 						<div

@@ -7,7 +7,6 @@ import { PriorityTag, Tag } from "../../components";
 const Details = () => {
 	const { userPreferences } = useContext(UserPreferencesContext);
 	const { project } = useOutletContext();
-	console.log(project);
 
 	return (
 		<section
@@ -20,8 +19,8 @@ const Details = () => {
 			<div className='flex flex-col gap-8'>
 				<div className='max-w-[500px] w-full '>
 					<h1 className='text-xl mb-1'>Description:</h1>
-					<p className='whitespace-normal text-sm leading-6'>
-						{project?.description}
+					<p className='whitespace-normal text-sm md:text-base leading-6'>
+						{project?.description || "No description yet"}
 					</p>
 				</div>
 
@@ -31,7 +30,10 @@ const Details = () => {
 						{project.features.length !== 0 ? (
 							<ul className='list-disc pl-4 '>
 								{project.features.map((feature, index) => (
-									<li key={index} className='text-base mb-1'>
+									<li
+										key={index}
+										className='text-sm md:text-base mb-1 whitespace-normal'
+									>
 										{feature}
 									</li>
 								))}
@@ -47,19 +49,24 @@ const Details = () => {
 					</div>
 				</div>
 
-				<div className='flex items-center gap-14'>
+				<div className='flex items-start gap-14'>
 					<div
 						style={{ color: userPreferences.shade.text.secondaryText }}
 						className='text-sm'
 					>
 						Tags:
 					</div>
-					<div className='flex gap-3'>
-						{project.tag.map((tag) => (
-							<Tag key={tag.id} color={tag.color}>
-								{tag.tag}
-							</Tag>
-						))}
+					<div
+						style={{ color: userPreferences.shade.text.primaryText }}
+						className='flex gap-3 flex-wrap text-sm'
+					>
+						{project.tag.length !== 0
+							? project.tag.map((tag) => (
+									<Tag key={tag.id} color={tag.color}>
+										{tag.tag}
+									</Tag>
+							  ))
+							: "Add project tags"}
 					</div>
 				</div>
 
@@ -114,7 +121,7 @@ const Details = () => {
 					</div>
 				</div>
 
-				<div className='flex items-center gap-11 max-w-[450px] w-full'>
+				<div className='flex items-start gap-11 max-w-[450px] w-full'>
 					<div
 						style={{ color: userPreferences.shade.text.secondaryText }}
 						className='text-sm'
@@ -122,18 +129,20 @@ const Details = () => {
 						Stack:
 					</div>
 					<div className='min-h-[2rem] flex items-center w-full h-full gap-2 flex-wrap'>
-						{project.stack.map((tech) => (
-							<span
-								key={tech}
-								style={{
-									color: userPreferences.shade.text.primaryText,
-									borderColor: userPreferences.shade.card,
-								}}
-								className={`${userPreferences.border} border px-3 py-1 text-xs`}
-							>
-								{tech}
-							</span>
-						))}
+						{project.stack.length !== 0
+							? project.stack.map((tech) => (
+									<span
+										key={tech}
+										style={{
+											color: userPreferences.shade.text.primaryText,
+											borderColor: userPreferences.shade.card,
+										}}
+										className={`${userPreferences.border} border px-3 py-1 text-xs`}
+									>
+										{tech}
+									</span>
+							  ))
+							: "Add tech stack"}
 					</div>
 				</div>
 			</div>

@@ -1,18 +1,16 @@
-import { useContext, useState } from "react";
-import { ProjectContext, UserPreferencesContext } from "../../context";
+import { useContext } from "react";
+import {
+	ProjectContext,
+	ToastContext,
+	UserPreferencesContext,
+} from "../../context";
 import { ClipLoader } from "react-spinners";
+import axios from "axios";
 
-const CommitForm = ({
-	project,
-	username,
-	setUsername,
-	repoName,
-	setRepoName,
-	setIsFetchingCommits,
-}) => {
+const CommitForm = ({ project, error, formData, setFormData, setError }) => {
 	const { userPreferences } = useContext(UserPreferencesContext);
+	const { showToast } = useContext(ToastContext);
 	const {
-		handleFetchCommits,
 		handleUpdateProject,
 		isSubmitting,
 		setProjectToBeUpdated,
@@ -20,17 +18,42 @@ const CommitForm = ({
 		newProject,
 		generateSlug,
 	} = useContext(ProjectContext);
-	const [owner, setOwner] = useState("");
-	const [repo, setRepo] = useState("");
 
-	const handleFetch = () => {
-		// const formattedUsername = owner.trim().toLowerCase();
-		// const formattedRepoName = repo.trim().toLowerCase();
-		// handleFetchCommits(project, formattedUsername, formattedRepoName);
-		handleUpdateProject();
-		// setUsername(formattedUsername);
-		// setRepoName(formattedRepoName);
+	const handleFetch = async () => {
+		let shouldExecuteLogic = true; // Flag variable
+
+		try {
+			const response = await axios.get(
+				`https://api.github.com/repos/${newProject.repoOwner}/${newProject.repoName}/commits`
+			);
+			handleUpdateProject();
+		} catch (error) {
+			// If an error occurs, handle it and show a toast message
+			setError(error.message);
+			showToast(
+				"danger",
+				"Commits Not found!",
+				"Make sure the repo name and owner is correct"
+			);
+
+			// Reset newProject values to empty strings
+			setNewProject((prev) => ({
+				...prev,
+				repoOwner: "",
+				repoName: "",
+			}));
+
+			// Set the flag to false to prevent further logic execution
+			shouldExecuteLogic = false;
+		}
+
+		// Only execute the logic if shouldExecuteLogic is true
+		if (shouldExecuteLogic) {
+			handleUpdateProject();
+		}
 	};
+
+	console.log(newProject.repoOwner);
 
 	const handleRepoOwner = (project, owner) => {
 		const formattedUsername = owner.trim().toLowerCase();
@@ -68,8 +91,6 @@ const CommitForm = ({
 		}));
 	};
 
-	console.log(newProject);
-
 	return (
 		<div>
 			<div className='mb-5'>
@@ -78,7 +99,7 @@ const CommitForm = ({
 					style={{
 						color: userPreferences.shade.text.secondaryText,
 					}}
-					className='max-w-[400px] whitespace-normal text-sm'
+					className='max-w-[400px] text-sm whitespace-normal'
 				>
 					Get a quick snapshot of your project's history.
 				</p>
@@ -98,7 +119,6 @@ const CommitForm = ({
 						value={newProject.repoOwner}
 						onChange={(e) => handleRepoOwner(project, e.target.value)}
 						className={`${userPreferences.border} w-full py-[10px] px-4 bg-transparent text-sm outline-none `}
-						placeholder='Enter github username'
 						style={{ backgroundColor: userPreferences.shade.other }}
 					/>
 				</div>
@@ -114,7 +134,6 @@ const CommitForm = ({
 						value={newProject.repoName}
 						onChange={(e) => handleRepoName(project, e.target.value)}
 						className={`${userPreferences.border} w-full py-[10px] px-4 bg-transparent outline-none text-sm`}
-						placeholder='Enter project repo name'
 						style={{ backgroundColor: userPreferences.shade.other }}
 					/>
 				</div>

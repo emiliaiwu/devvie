@@ -3,9 +3,14 @@ import { noFiles2 } from "../../assets";
 import { UserPreferencesContext } from "../context";
 import { AuthContext } from "../../context";
 
-const DeleteAccount = ({ wantToDeleteAccount, setWantToDeleteAccount}) => {
+const DeleteAccount = ({ wantToDeleteAccount, setWantToDeleteAccount }) => {
 	const { userPreferences } = useContext(UserPreferencesContext);
 	const { deleteAccount } = useContext(AuthContext);
+
+	const deleteA = () => {
+		setWantToDeleteAccount(false);
+		deleteAccount();
+	};
 	return (
 		<div
 			className={`z-[1000] fixed inset-0 bg-black bg-opacity-80 flex justify-center items-center overflow-y-auto`}
@@ -40,7 +45,7 @@ const DeleteAccount = ({ wantToDeleteAccount, setWantToDeleteAccount}) => {
 						Naah, just kidding
 					</button>
 					<button
-						onClick={deleteAccount}
+						onClick={deleteA}
 						style={{ borderColor: userPreferences.color }}
 						className={`${userPreferences.border} text-base p-3 w-full border hover:opacity-50 transition-opacity duration-200 ease-in-out`}
 					>

@@ -67,7 +67,7 @@ const Toast = () => {
 					backgroundColor: userPreferences.shade.background,
 					borderColor: `${color}`,
 				}}
-				className={`${userPreferences.border} relative border w-[280px] xs:w-[300px] md:w-[320px] min-h-[120px] overflow-hidden flex justify-center items-center `}
+				className={`${userPreferences.border} relative border w-[260px] xs:w-[280px]  min-h-[100px] overflow-hidden flex justify-center items-center `}
 			>
 				<div className='flex justify-between items-center w-full h-full'>
 					<div
@@ -90,12 +90,12 @@ const Toast = () => {
 							</div>
 						</div>
 					</div>
-					<div className='w-full h-full pr-10'>
+					<div className='w-full h-full pr-6 flex flex-col gap-1'>
 						<h1
 							style={{
 								color: `${color}`,
 							}}
-							className='text-lg whitespace-normal mb-1'
+							className='text-base whitespace-normal'
 						>
 							{toast.title}
 						</h1>
@@ -103,7 +103,7 @@ const Toast = () => {
 							style={{
 								color: userPreferences.shade.text.secondaryText,
 							}}
-							className='text-sm whitespace-normal'
+							className='text-xs whitespace-normal'
 						>
 							{toast.message}
 						</p>

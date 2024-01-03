@@ -20,16 +20,17 @@ import {
 	getDoc,
 	setDoc,
 } from "firebase/firestore";
+import { ToastContext } from "./ToastContext";
+
 
 const ProjectContext = createContext();
 
 export const ProjectContextProvider = ({ children }) => {
+	const { showToast } = useContext(ToastContext);
 	const generateID = useAlphanumericID();
 	const { user, setLoading } = useContext(AuthContext);
 	const userId = user ? user.uid : null;
 	const [isSubmitting, setIsSubmitting] = useState(false);
-
-	// const [isProjectModalOpen, setIsProjectModalOpen] = useState(false);
 	const [isCreateNewProjectModalOpen, setIsCreateNewProjectModalOpen] =
 		useState(false);
 
@@ -138,7 +139,7 @@ export const ProjectContextProvider = ({ children }) => {
 		startDate: selectedDate,
 		dueDate: selectedDate,
 		status: {},
-		taskColumns: [ ]
+		taskColumns: [],
 	};
 
 	const [newProject, setNewProject] = useState(initialProjectState);
@@ -152,14 +153,21 @@ export const ProjectContextProvider = ({ children }) => {
 	});
 
 	const handleModalOpen = (key) => {
-		const newValues = {
-			status: false,
-			tag: false,
-			priority: false,
-			stack: false,
-		};
-		newValues[key] = true;
-		setIsNewProjectOpen(newValues);
+		// If the current key is already open, close it
+		if (isNewProjectOpen[key]) {
+			setIsNewProjectOpen({
+				status: false,
+				tag: false,
+				priority: false,
+				stack: false,
+			});
+		} else {
+			// If the current key is closed, open it
+			setIsNewProjectOpen((prevValues) => ({
+				...prevValues,
+				[key]: true,
+			}));
+		}
 	};
 
 	const handleModalClose = () => {
@@ -190,14 +198,20 @@ export const ProjectContextProvider = ({ children }) => {
 	});
 
 	const handleOpenTaskChildren = (key) => {
-		const newValues = {
-			priority: false,
-			tag: false,
-			status: false,
-		};
-
-		newValues[key] = true;
-		setNewTaskChildrenOpen(newValues);
+		// If the current key is already open, close it
+		if (isNewTaskChildrenOpen[key]) {
+			setNewTaskChildrenOpen({
+				priority: false,
+				tag: false,
+				status: false,
+			});
+		} else {
+			// If the current key is closed, open it
+			setNewTaskChildrenOpen((prevValues) => ({
+				...prevValues,
+				[key]: true,
+			}));
+		}
 	};
 
 	const handleCloseTaskChildren = () => {
@@ -208,7 +222,7 @@ export const ProjectContextProvider = ({ children }) => {
 		});
 	};
 
-	// FIREBASE -------------------------------------------------------------
+	// FIREBASE
 	useEffect(() => {
 		let isMounted = true;
 		const fetchData = async () => {
@@ -261,7 +275,7 @@ export const ProjectContextProvider = ({ children }) => {
 							color: statusItem.color,
 							title: statusItem.status,
 							order: index,
-							projects : []
+							projects: [],
 						}));
 
 						// if taskbaord is empty, add default taskboards
@@ -306,7 +320,12 @@ export const ProjectContextProvider = ({ children }) => {
 					}
 				}
 			} catch (error) {
-				console.error("Error fetching columns or projects:", error);
+				console.error("Error fetching projects:", error);
+				showToast(
+					"danger",
+					"Projects failed to fetch",
+					"An error occured, please connect your internet or try again later"
+				);
 				setLoading(false);
 			}
 		};
@@ -349,11 +368,15 @@ export const ProjectContextProvider = ({ children }) => {
 						return updatedProject;
 					})
 				);
-
-				console.log("TaskColumns under column and projects:", updatedColumns);
 				return updatedColumns;
 			} catch (error) {
-				console.error("Error fetching taskColumns:", error);
+				showToast(
+					"danger",
+					"Tasks failed to fetch",
+					"An error occured, please connect your internet or try again later"
+				);
+
+				console.log(error);
 				return [];
 			}
 		};
@@ -390,6 +413,11 @@ export const ProjectContextProvider = ({ children }) => {
 
 				return updatedTaskColumns;
 			} catch (error) {
+				showToast(
+					"danger",
+					"Tasks failed to fetch",
+					"An error occured, please connect your internet or try again later"
+				);
 				console.error("Error fetching tasks:", error);
 				return [];
 			}
@@ -517,7 +545,6 @@ export const ProjectContextProvider = ({ children }) => {
 				return updateColumns;
 			});
 
-			console.log("Projects under the column:", projectsData);
 			setIsSubmitting(false);
 		} catch (error) {
 			console.error("Error fetching projects, task columns, or tasks:", error);
@@ -583,8 +610,6 @@ export const ProjectContextProvider = ({ children }) => {
 					})
 				);
 
-				console.log(createdTaskColumns);
-
 				setColumns((prevColumns) => {
 					const updatedColumns = prevColumns.map((column) =>
 						column.id === columnId
@@ -614,21 +639,23 @@ export const ProjectContextProvider = ({ children }) => {
 					);
 					return updatedColumns;
 				});
-			} else {
-				console.error(
-					"Matching column not found for the project status:",
-					newProject.status
+				showToast(
+					"success",
+					"Project Created!",
+					"Click the title to open the task board"
 				);
+			} else {
+				showToast("danger", "Project Not Created!", "Select project status");
 			}
 		} catch (error) {
-			console.error("Error creating project:", error);
+			showToast("danger", "Project Not Created!", error.message);
+			console.error("Error creating project:", error.message);
 		} finally {
 			setIsSubmitting(false);
 			handleModalClose();
 			reset();
 			setIsCreateNewProjectModalOpen(false);
 		}
-		// Reset form and close modal
 		setIsSubmitting(false);
 	};
 
@@ -705,8 +732,9 @@ export const ProjectContextProvider = ({ children }) => {
 				setIsSubmitting(false);
 			}
 
-			console.log("Project updated successfully!");
+			showToast("success", "Project Updated!", "Start creating tasks");
 		} catch (error) {
+			showToast("danger", "Project Not Updated", error.message);
 			console.error("Error updating project:", error.message);
 			setIsSubmitting(false);
 		}
@@ -746,14 +774,18 @@ export const ProjectContextProvider = ({ children }) => {
 			await fetchProjectsUnderColumn(columnId);
 
 			console.log(columnId);
-
-			console.log("Project deleted successfully!");
+			showToast(
+				"success",
+				"Project Deleted!",
+				"This project cannot be retrieved"
+			);
 		} catch (error) {
 			console.error("Error deleting project:", error);
+			showToast("danger", "Project Not Deleted!", error.message);
 		}
 	};
 
-	// TAGS
+	// PROJECT TAGS
 	const projectTagsWithID = projectTags.map((tagObj) => ({
 		id: generateID(),
 		tag: tagObj.tag,
@@ -764,6 +796,50 @@ export const ProjectContextProvider = ({ children }) => {
 		a.tag.localeCompare(b.tag)
 	);
 	const [allProjectTags, setAllProjectTags] = useState([...sortedTags]);
+
+	useEffect(() => {
+		const fetchTags = async () => {
+			try {
+				if (!user) {
+					return;
+				}
+
+				setLoading(true);
+
+				const tagRef = doc(firestore, "projectTags", userId);
+				const tagSnapshot = await getDoc(tagRef);
+
+				if (tagSnapshot.exists()) {
+					const tagData = tagSnapshot.data();
+					setAllProjectTags(tagData.tags || []); // Assuming tags are stored in an array under 'tags' key
+				} else {
+					await uploadDefaultTags();
+				}
+
+				setLoading(false);
+			} catch (error) {
+				console.error("Error fetching/updating project tags:", error);
+				setLoading(false);
+			}
+		};
+
+		const uploadDefaultTags = async () => {
+			try {
+				const defaultTags = [...sortedTags]; // Change this to your default tags
+				await setDoc(doc(firestore, "projectTags", userId), {
+					tags: defaultTags,
+				});
+				setAllProjectTags(defaultTags);
+			} catch (error) {
+				console.error("Error uploading default project tags:", error);
+			}
+		};
+
+		fetchTags();
+	}, [user]);
+
+
+	
 
 	// UPDATE TO NEWPROJECT
 	const handleProjectUpdate = (project) => {
@@ -802,16 +878,6 @@ export const ProjectContextProvider = ({ children }) => {
 		handleModalClose();
 	};
 
-	// HANDLE OWNER AND REPO NAMES TO FETCH COMMITS
-	const handleFetchCommits = (project, owner, repoName) => {
-		setProjectToBeUpdated(project);
-		setNewProject((prev) => ({
-			...prev,
-			repoOwner: owner,
-			repoName: repoName,
-		}));
-	};
-
 	// FILTER
 	const handleFilterProject = () => {
 		const updatedColumns = columns.map((column) => {
@@ -847,6 +913,7 @@ export const ProjectContextProvider = ({ children }) => {
 		setColumns(originalColumns);
 	};
 
+	allProjectTags;
 	return (
 		<ProjectContext.Provider
 			value={{
@@ -912,7 +979,6 @@ export const ProjectContextProvider = ({ children }) => {
 				taskToBeUpdated,
 				initialNewTask,
 				setOriginalColumns,
-				handleFetchCommits,
 				setColumns,
 				greeting,
 			}}

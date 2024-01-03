@@ -29,7 +29,7 @@ const CreateNewTaskModal = ({ columnId, projectId, updatedTaskStatus, slug }) =>
 			style={{
 				backgroundColor: userPreferences.shade.card,
 			}}
-			className={`${userPreferences.border}  flex justify-center items-center w-full lg:w-[550px] lg:px-3  `}
+			className={`flex justify-center items-center w-full lg:w-[550px] lg:px-3 mt-28 `}
 		>
 			<div
 				style={{ fontFamily: userPreferences.font.fontFamily }}
@@ -37,7 +37,7 @@ const CreateNewTaskModal = ({ columnId, projectId, updatedTaskStatus, slug }) =>
 			>
 				<h1
 					style={{ color: userPreferences.shade.text.primaryText }}
-					className='text-2xl pt-3 mb-4'
+					className='text-2xl sm:text-3xl lg:text-4xl pt-3 mb-4'
 				>
 					Create New Task
 				</h1>

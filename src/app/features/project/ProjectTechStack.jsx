@@ -1,8 +1,11 @@
-import { ProjectContext, UserPreferencesContext } from "../../context";
+import {
+	ProjectContext,
+	UserPreferencesContext,
+	UserProfileContext,
+} from "../../context";
 import { useContext } from "react";
 import { AddCheckIcon, AddIcon, CheckedIcon, MinusIcon } from "../../data/icon";
 import { HoverAccentColor } from "../../components";
-import { allTechStack } from "../../data/projectData";
 
 const ProjectTechStack = () => {
 	const { userPreferences } = useContext(UserPreferencesContext);
@@ -14,7 +17,9 @@ const ProjectTechStack = () => {
 		newProject,
 	} = useContext(ProjectContext);
 
-	const sortedTechStack = allTechStack.slice().sort();
+	const { userProfile } = useContext(UserProfileContext);
+
+	const sortedTechStack = userProfile?.techStack.slice().sort();
 
 	const handleCheckboxChange = (tech) => {
 		const updatedStack = newProject.stack.includes(tech)
@@ -66,7 +71,7 @@ const ProjectTechStack = () => {
 			} w-full mx-auto`}
 		>
 			<div className=''>
-				<h1 className='mb-4 px-1'>Project TechStack</h1>
+				<h1 className='my-2 px-1'>Project TechStack</h1>
 				<div className='relative'>
 					<div
 						style={{
@@ -75,9 +80,9 @@ const ProjectTechStack = () => {
 						}}
 						className={`${userPreferences.border} flex items-center justify-between px-4 gap-4 py-3`}
 					>
-						<div className='min-h-[2rem] text-base flex items-center w-full h-full gap-2 flex-wrap'>
+						<div className='min-h-[2rem] text-sm md:text-base flex items-center w-full h-full gap-2 flex-wrap'>
 							{newProject.stack.length === 0
-								? "Choose the project's tech stack"
+								? "Choose the project's tech "
 								: newProject.stack.map((tech) => (
 										<span
 											key={tech}
@@ -112,13 +117,17 @@ const ProjectTechStack = () => {
 								style={{
 									backgroundColor: userPreferences.shade.card,
 								}}
-								className={`${userPreferences.border} w-[320px] py-5 pr-3`}
+								className={`${userPreferences.border}  w-[280px] ss:w-[300px] md:w-[320px] py-5 pr-3`}
 							>
-								<ul className='h-[280px] overflow-y-scroll scroll'>
-									{sortedTechStack.map((tech) => (
-										<Tech key={tech} tech={tech} />
-									))}
-								</ul>
+								{sortedTechStack.length === 0 ? (
+									<p style={{color: userPreferences.color}} className="whitespace-normal text-base h-full flex justify-center items-center p-4 md:p-8 ml-6 w-full">To include your tech stack, please visit your profile page.</p>
+								) : (
+									<ul className='h-[280px] overflow-y-scroll scroll'>
+										{sortedTechStack.map((tech) => (
+											<Tech key={tech} tech={tech} />
+										))}
+									</ul>
+								)}
 							</div>
 						</div>
 					)}

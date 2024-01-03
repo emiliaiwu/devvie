@@ -35,7 +35,7 @@ const ChangeTaskStatus = ({ taskStatus }) => {
 	return (
 		<div
 			style={{ backgroundColor: userPreferences.shade.card }}
-			className={`${userPreferences.border} flex justify-center items-center flex-col p-6 w-[320px]`}
+			className={`${userPreferences.border} flex justify-center items-center flex-col p-6 xs:w-[320px] w-[280px]`}
 		>
 			<h1 className='mb-3'>Change Task Status</h1>
 			<div

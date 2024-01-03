@@ -3,15 +3,25 @@ import { UserPreferencesContext, UserProfileContext } from "../../context";
 import EmploymentType from "./EmploymentType";
 const PersonalInfo = () => {
 	const { userPreferences } = useContext(UserPreferencesContext);
-	const { userProfile, setUserProfile } =
+	const { userProfile, setUserProfile, generateSlug } =
 		useContext(UserProfileContext);
+	let username;
 
 	const handleChange = (e) => {
 		const { name, value } = e.target;
-		setUserProfile((prevData) => ({
-			...prevData,
-			[name]: value,
-		}));
+		if (name === "username") {
+			username = value;
+
+			setUserProfile((prevData) => ({
+				...prevData,
+				[name]: generateSlug(username),
+			}));
+		} else {
+			setUserProfile((prevData) => ({
+				...prevData,
+				[name]: value,
+			}));
+		}
 	};
 
 	return (
@@ -51,7 +61,7 @@ const PersonalInfo = () => {
 						style={{ borderColor: userPreferences.shade.other }}
 						type='text'
 						name='username'
-						value={userProfile.username}
+						value={username}
 						placeholder='Portfolio link slug'
 						onChange={handleChange}
 						className={`${userPreferences.border} text-sm lg:text-base py-2 px-4 w-full bg-transparent border-[1.5px] outline-none`}

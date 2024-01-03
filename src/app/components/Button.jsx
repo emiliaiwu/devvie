@@ -1,14 +1,14 @@
 import { useContext } from "react";
 import { UserPreferencesContext } from "../context";
 
-export const ColoredButton = ({ children, color, font, border }) => {
+export const ColoredButton = ({ children, color, font, border, fontColor }) => {
 	const { userPreferences } = useContext(UserPreferencesContext);
 
 	return (
 		<div
 			style={{
 				backgroundColor: color || userPreferences.color,
-				color: `${userPreferences.isLightMode ? "white" : "black"}`,
+				color: fontColor,
 			}}
 			className={`${
 				border || userPreferences.border
@@ -16,7 +16,7 @@ export const ColoredButton = ({ children, color, font, border }) => {
 		>
 			<span
 				style={{ fontFamily: font || userPreferences.font.fontFamily }}
-				className='text-base  font-semibold text-black'
+				className='text-base  font-semibold'
 			>
 				{children}
 			</span>

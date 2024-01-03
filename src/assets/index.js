@@ -17,6 +17,7 @@ import noFiles2 from "./24202331_6874630-removebg-preview.png";
 import myBanner from "./brown.png";
 import backupCover from './9024867.jpg';
 import logoutImg from "./8652575-removebg-preview.png";
+import backupAvatar from './backupImg.png'
 
 export {
 	img1,
@@ -37,5 +38,6 @@ export {
 	noFiles2,
 	myBanner,
 	backupCover,
-	logoutImg
+	logoutImg,
+	backupAvatar
 };

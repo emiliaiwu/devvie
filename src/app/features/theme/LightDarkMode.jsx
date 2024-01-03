@@ -19,8 +19,8 @@ const LightDarkMode = () => {
 
 
 	return (
-		<div className='w-full lg:px-0 flex lg:items-start flex-col'>
-			<div className='flex flex-col sm:flex-row gap-6 mb-10'>
+		<div className='w-full lg:px-0 flex lg:items-start flex-col sm:justify-normal justify-center items-center sm:items-start'>
+			<div className='flex flex-col sm:flex-row justify-center sm:justify-normal gap-6 mb-10'>
 				<div className='flex flex-col items-start lg:items-center gap-5 mb-6 lg:mb-0'>
 					<button
 						className={`${newUserPreferences.border} p-2 relative hover:scale-[1.05] transition-all duration-200 ease`}

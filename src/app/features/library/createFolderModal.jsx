@@ -38,7 +38,7 @@ const CreateFolderModal = () => {
 			style={{
 				backgroundColor: userPreferences.shade.background,
 			}}
-			className={`${userPreferences.border} w-full md:w-[360px] h-[460px] px-5 py-8 outline-none cursor-pointer`}
+			className={`${userPreferences.border} w-[280px] xs:w-[300px] ss:w-[360px] lg:w-[400px] h-[460px] px-5 py-8 outline-none cursor-pointer`}
 		>
 			<div className='flex flex-col justify-between w-full h-full gap-3'>
 				<h1 className='text-xl'>Create new collection</h1>

@@ -26,14 +26,14 @@ const CollectionPage = () => {
 
 	return (
 		<>
-			<div className='flex justify-between items-center mb-6 px-2'>
+			<div className='flex justify-between flex-col-reverse ss:flex-row gap-6 items-center mb-6 px-2'>
 				<div className='flex gap-3'>
 					<Link to={`/user/devmark`} className='text-base'>
 						<HoverAccentColor>Home</HoverAccentColor>
 					</Link>
 					<span>{">"}</span>
 
-					<Link>
+					<Link className="whitespace-normal">
 						<HoverAccentColor>{collection?.title}</HoverAccentColor>
 					</Link>
 				</div>
@@ -63,7 +63,7 @@ const CollectionPage = () => {
 
 			<div>
 				{collection.links.length !== 0 ? (
-					<div className='grid grid-cols-4 gap-y-6 xxl:grid-cols-6 items-center mt-8 mx-auto'>
+					<div className='grid md:grid-cols-3 xl:grid-cols-4 ss:grid-cols-2 gap-y-6 xxl:grid-cols-6 items-center mt-8 mx-auto gap-x-4'>
 						{collection?.links.map((link) => (
 							<Bookmark key={link.title} link={link} />
 						))}

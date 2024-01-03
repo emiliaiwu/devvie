@@ -6,6 +6,11 @@ import { AuthContext } from "../../context";
 const Logout = ({ setWantToLogout, wantToLogout }) => {
 	const { userPreferences } = useContext(UserPreferencesContext);
 	const { signOutUser } = useContext(AuthContext);
+
+	const signOut = () => {
+		setWantToLogout(false);
+		signOutUser();
+	};
 	return (
 		<div
 			className={`z-[1000] fixed inset-0 bg-black bg-opacity-80 flex justify-center items-center overflow-y-auto`}
@@ -40,7 +45,7 @@ const Logout = ({ setWantToLogout, wantToLogout }) => {
 						Naah, just kidding
 					</button>
 					<button
-						onClick={signOutUser}
+						onClick={signOut}
 						style={{ borderColor: userPreferences.color }}
 						className={`${userPreferences.border} text-base p-3 w-full border hover:opacity-50 transition-opacity duration-200 ease-in-out`}
 					>

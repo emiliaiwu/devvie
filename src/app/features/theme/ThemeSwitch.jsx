@@ -20,9 +20,9 @@ const ThemeSwitch = () => {
 					className='hover-bg cursor-pointer md:w-9 md:h-9 flex justify-center items-center rounded-full transition-all duration-200 ease'
 				>
 					{userPreferences.isLightMode ? (
-						<LightIcon className='w-5 h-5 ' />
+						<LightIcon className='w-6 h-6 ' />
 					) : (
-						<DarkIcon className='w-5 h-5 ' />
+						<DarkIcon className='w-6 h-6 ' />
 					)}
 				</div>
 			</div>

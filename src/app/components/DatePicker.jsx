@@ -147,7 +147,7 @@ const DatePicker = ({
 				borderColor: userPreferences.shade.other,
 				fontFamily: userPreferences.font.fontFamily,
 			}}
-			className={`${userPreferences.border} w-[350px] mx-auto py-5 px-4 border flex flex-col gap-6 justify-between`}
+			className={`${userPreferences.border} w-[280px] ss:w-[300px] md:w-[350px] mx-auto py-5 px-4 border flex flex-col gap-6 justify-between`}
 		>
 			<div
 				style={{ color: userPreferences.shade.text.primaryText }}
@@ -172,7 +172,7 @@ const DatePicker = ({
 					</span>
 				</div>
 
-				<h1 className='text-lg flex items-center gap-2'>
+				<h1 className='text-base md:text-lg flex items-center gap-2'>
 					<span>{currentMonth}</span>
 					<span>{year}</span>
 				</h1>
@@ -202,14 +202,14 @@ const DatePicker = ({
 						<span
 							style={{ color: userPreferences.shade.text.secondaryText }}
 							key={day}
-							className='text-[15px] font-medium flex items-center justify-center'
+							className='text-sm md:text-[15px] font-medium flex items-center justify-center'
 						>
 							{day}
 						</span>
 					))}
 				</div>
 
-				<div className='grid grid-cols-7 gap-[5px] text-sm flex-1'>
+				<div className='grid grid-cols-7 gap-[5px] text-xs md:text-sm flex-1'>
 					{prevDays}
 					{days}
 					{nextDays}
@@ -223,7 +223,7 @@ const DatePicker = ({
 						backgroundColor: userPreferences.shade.other,
 						color: userPreferences.shade.text.primaryText,
 					}}
-					className={`${userPreferences.border} py-3 w-full cursor-pointer text-sm`}
+					className={`${userPreferences.border} py-2 w-full cursor-pointer text-sm`}
 				>
 					Cancel
 				</button>
@@ -231,9 +231,9 @@ const DatePicker = ({
 					onClick={handleSave}
 					style={{
 						backgroundColor: userPreferences.color,
-						color: userPreferences.shade.text.primaryText,
+						color: userPreferences.isLightMode ? 'white' : 'black',
 					}}
-					className={`${userPreferences.border} py-3 w-full cursor-pointer text-sm`}
+					className={`${userPreferences.border} py-2 w-full cursor-pointer text-sm`}
 				>
 					Save Date
 				</button>

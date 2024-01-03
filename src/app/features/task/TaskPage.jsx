@@ -43,7 +43,7 @@ const TaskPage = () => {
 				color: userPreferences.shade.text.primaryText,
 				fontFamily: userPreferences.font.fontFamily,
 			}}
-			className=' md:pl-20 min-h-screen md:mt-0 mx-auto relative'
+			className=' lg:pl-20 min-h-screen lg:mt-0 mx-auto relative'
 		>
 			<div
 				style={{ backgroundColor: userPreferences.shade.background }}
@@ -53,8 +53,8 @@ const TaskPage = () => {
 				<div
 					style={{ backgroundColor: userPreferences.shade.card }}
 					className={`${
-						isSidebarOpen ? "md:w-56 md:opacity-100" : "md:w-0 md:opacity-0"
-					} flex flex-col border-opacity-40 pb-5 min-h-screen md:h-screen md:fixed md:left-[80px] md:right-0 bg-black transition-width duration-500 ease shadow-md z-10 gap-2`}
+						isSidebarOpen ? "lg:w-56 lg:opacity-100" : "lg:w-0 lg:opacity-0"
+					} hidden lg:flex flex-col border-opacity-40 pb-5 min-h-screen lg:h-screen lg:fixed lg:left-[80px] lg:right-0 bg-black transition-width duration-500 ease shadow-lg z-10 gap-2`}
 				>
 					<div className='h-[70px] px-4 flex pt-3'>
 						<h1 className='text-2xl tracking-tight flex items-center font-medium '>
@@ -63,7 +63,7 @@ const TaskPage = () => {
 					</div>
 
 					{/* list */}
-					<div className='flex-1 px-4 scroll md:overflow-y-scroll pt-5 flex flex-col justify-between'>
+					<div className='flex-1 px-4 scroll lg:overflow-y-scroll pt-5 flex flex-col justify-between'>
 						<div className='mb-8'>
 							<h2
 								style={{
@@ -100,7 +100,7 @@ const TaskPage = () => {
 												className={`flex hover:text-[--hover-color] items-center gap-4 capitalize whitespace-normal++
 												`}
 											>
-												{project?.title}
+												{project?.title || `project${project?.slug}`}
 											</span>
 										</NavLink>
 									</li>
@@ -113,8 +113,8 @@ const TaskPage = () => {
 				<div
 					style={{ backgroundColor: userPreferences.shade.background }}
 					className={`${
-						isSidebarOpen ? "md:ml-56 " : "md:ml-0"
-					} flex-1 transition-width duration-500 ease ml-0 pt-24 mx-auto overflow-x-auto pl-8 pr-10 `}
+						isSidebarOpen ? "lg:ml-56 " : "lg:ml-0"
+					} flex-1 transition-width duration-500 ease ml-0 pt-24 mx-auto overflow-x-auto lg:pl-8 lg:pr-10 justify-center items-center w-full px-4 `}
 				>
 					<TaskPageBoard />
 				</div>

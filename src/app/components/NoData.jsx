@@ -12,13 +12,13 @@ const NoData = ({title, paragraph}) => {
 			<div className='flex flex-col -mt-10'>
 				<h1
 					style={{ color: userPreferences.color }}
-					className='text-4xl pb-4 text-center font-semibold'
+					className='text-2xl sm:text-3xl lg:text-4xl pb-1 text-center font-semibold'
 				>
 					{title}
 				</h1>
 				<p
 					style={{ color: userPreferences.shade.text.secondaryText }}
-					className='text-base text-center whitespace-normal'
+					className='text-sm md:text-base text-center whitespace-normal'
 				>
 					{paragraph}
 				</p>

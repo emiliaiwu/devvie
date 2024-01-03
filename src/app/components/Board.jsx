@@ -1,15 +1,14 @@
 import Column from "./Column";
 import { useContext } from "react";
-import { ProjectContext, UserPreferencesContext } from "../context";
+import { ProjectContext } from "../context";
 import { projectStatus } from "../data/projectData";
 
 const Board = () => {
-	const { userPreferences } = useContext(UserPreferencesContext);
 	const { columns } = useContext(ProjectContext);
 	const shapesArray = projectStatus.map((statusItem) => statusItem.shape);
 
 	return (
-		<div className='overflow-x-scroll scroll-x flex items-start py-5 gap-6 max-w-full'>
+		<div className='ss:overflow-x-scroll scroll-x ss:flex ss:flex-row sm:items-start py-5 gap-6 w-full ss:max-w-full grid ss:justify-normal justify-center items-center '>
 			{columns.map((col, index) => (
 				<Column
 					key={col.id}

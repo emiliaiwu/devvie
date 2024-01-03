@@ -12,7 +12,7 @@ const TaskBoard = () => {
 	const projectId = project.id;
 	
 	return (
-		<div className='overflow-x-scroll scroll-x flex items-start gap-6 max-w-full pb-6'>
+		<div className='ss:overflow-x-scroll ss:scroll-x ss:flex grid justify-center items-center ss:justify-normal ss:items-start gap-6 max-w-full pb-6'>
 			{columns?.map((col) => (
 				<TaskColumn
 					key={col.id}

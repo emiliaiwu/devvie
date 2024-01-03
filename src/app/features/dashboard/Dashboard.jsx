@@ -3,6 +3,7 @@ import {
 	DashboardContext,
 	ProjectContext,
 	UserPreferencesContext,
+	UserProfileContext,
 } from "../../context";
 import { dashboardImg } from "../../../assets";
 import ProjectOverview from "./ProjectOverview";
@@ -11,12 +12,12 @@ import TopTechStack from "./TopTechStack";
 import ActiveTasks from "./ActiveTasks";
 import TasksActivity from "./TaskActivity";
 import { useScrollToTop } from "../../../hooks";
-import ActiveProjects from "./ActiveProjects";
 
 const Dashboard = () => {
 	const { userPreferences } = useContext(UserPreferencesContext);
 	const { firstName } = useContext(DashboardContext);
 	const { greeting } = useContext(ProjectContext);
+	const { userProfile } = useContext(UserProfileContext);
 	useScrollToTop();
 
 	return (
@@ -26,9 +27,9 @@ const Dashboard = () => {
 				fontFamily: userPreferences.font.fontFamily,
 				color: userPreferences.shade.text.primaryText,
 			}}
-			className=' md:pl-20 min-h-screen md:mt-0 mx-auto '
+			className=' lg:pl-20 min-h-screen md:mt-0 mx-auto '
 		>
-			<div className='md:py-24 md:pl-8 md:pr-10  px-6 flex flex-col gap-10 min-h-screen py-20'>
+			<div className='md:py-24 md:pl-8 md:pr-10  px-4 sm:px-6 flex flex-col gap-10 min-h-screen py-20'>
 				<div className=' h-full relative'>
 					<div
 						style={{ backgroundColor: userPreferences.color }}
@@ -38,15 +39,18 @@ const Dashboard = () => {
 							style={{ color: userPreferences.isLightMode ? "white" : "black" }}
 							className='flex flex-col justify-center items-start'
 						>
-							<h1 className='lg:text-5xl mb-2 font-semibold text-2xl'>
-								{greeting}, {firstName}
+							<h1 className='lg:text-5xl mb-2 font-semibold text-2xl whitespace-normal'>
+								{greeting},{" "}
+								<span className='capitalize'>
+									{userProfile.firstName || firstName}
+								</span>
 							</h1>
 							<p className='text-base lg:text-lg max-w-[250px]  lg:max-w-full whitespace-normal'>
 								Ready to build, manage and track your projects?
 							</p>
 						</div>
 
-						<div className='overflow-hidden hidden lg:flex'>
+						<div className='overflow-hidden hidden sm:flex'>
 							<img
 								src={dashboardImg}
 								className='h-[250px] w-auto absolute right-16 bottom-0'
@@ -56,7 +60,7 @@ const Dashboard = () => {
 				</div>
 
 				<ProjectOverview />
-				<div className='flex justify-between items-center gap-6'>
+				<div className='flex flex-col lg:flex-row justify-between items-center gap-6'>
 					<TasksActivity /> <ActiveTasks />
 				</div>
 
@@ -64,7 +68,6 @@ const Dashboard = () => {
 					<OverallProjects />
 					<TopTechStack />
 				</div>
-				<ActiveProjects/>
 			</div>
 		</section>
 	);

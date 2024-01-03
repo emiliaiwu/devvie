@@ -52,7 +52,7 @@ const AddLinkModal = ({ collectionId }) => {
 			style={{
 				backgroundColor: userPreferences.shade.background,
 			}}
-			className={`${userPreferences.border} w-full md:w-[350px] px-3  py-6 h-[450px] flex flex-col justify-between`}
+			className={`${userPreferences.border} w-[280px] xs:w-[300px] ss:w-[350px] lg:w-[400px] px-3  py-6 h-[450px] flex flex-col justify-between`}
 		>
 			<h1 className='text-xl px-2'>Add Link</h1>
 			<div className='overflow-y-scroll scroll px-2'>

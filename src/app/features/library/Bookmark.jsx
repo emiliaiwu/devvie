@@ -15,7 +15,7 @@ const Bookmark = ({ link }) => {
 				style={{
 					backgroundColor: userPreferences.shade.background,
 				}}
-				className={`${userPreferences.border} w-full md:w-[262px]  flex gap-3 p-4 items-center relative`}
+				className={`${userPreferences.border} lg:w-[262px] md:w-[230px] w-full  flex gap-3 p-4 items-center relative`}
 			>
 				<div className='flex flex-col justify-between gap-2 w-full'>
 					<div className='flex flex-row gap-3 items-center'>

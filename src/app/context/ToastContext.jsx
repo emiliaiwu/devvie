@@ -11,11 +11,16 @@ export const ToastProvider = ({ children }) => {
 	const [toasting, setToasting] = useState(false);
 
 	const showToast = (type, title, message) => {
+		// Extract the part of the error message before the colon
+		const errorMessage = message
+			? message.split(":")[0].trim()
+			: "An error occurred";
+
 		setToasting(true);
 		setToast({
 			type: type,
 			title: title,
-			message: message,
+			message: errorMessage,
 		});
 	};
 

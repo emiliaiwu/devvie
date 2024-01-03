@@ -33,7 +33,7 @@ const ProjectStatus = () => {
 	};
 
 	return (
-		<div className='w-full relative z-10'>
+		<div className='w-full relative z-[8]'>
 			<div className='text-base px-1 mb-3'>Project Status</div>
 			<div
 				style={{
@@ -73,7 +73,7 @@ const ProjectStatus = () => {
 						color: userPreferences.shade.text.primaryText,
 						borderColor: userPreferences.shade.other,
 					}}
-					className={`${userPreferences.border} top-24 w-[300px] absolute border pr-1 pt-4 pb-3`}
+					className={`${userPreferences.border} top-24 w-[280px] md:w-[300px] absolute border pr-1 pt-4 pb-3`}
 				>
 					<ul className='overflow-y-scroll scroll h-60'>
 						{columns.map((item, index) => (
@@ -90,12 +90,12 @@ const ProjectStatus = () => {
 							>
 								<span style={{ color: `${item.color}` }}>
 									{createElement(memoizedShapes[index], {
-										className: "w-[13px] h-[13px] mr-1",
+										className: "sm:w-[13px] sm:h-[13px] h-4 w-4 mr-1",
 									})}
 								</span>
 								<span
 									style={{ color: `${item.color}` }}
-									className='text-base capitalize'
+									className='text-sm sm:text-base capitalize'
 								>
 									{item.title}
 								</span>

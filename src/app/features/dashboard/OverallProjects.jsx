@@ -32,7 +32,7 @@ const OverallProjects = () => {
 			</div>
 
 			{hasProjects ? (
-				<div className='lg:w-[380px] w-full h-[320px] flex justify-center items-center px-5'>
+				<div className='lg:w-[320px] w-full h-[320px] flex justify-center items-center px-5'>
 					<DoughnutChart />
 				</div>
 			) : (

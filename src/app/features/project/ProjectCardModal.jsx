@@ -54,9 +54,9 @@ const ProjectCardModal = ({ project, setIsOpen }) => {
 				<div className='fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-80'>
 					<div
 						style={{ backgroundColor: userPreferences.shade.card }}
-						className={`${userPreferences.border} py-7 w-[400px] flex flex-col items-center gap-3`}
+						className={`${userPreferences.border} py-7 w-[280px] xs:w-[320px] ss:w-[360px] md:w-[400px] flex flex-col items-center gap-3`}
 					>
-						<div className='w-[300px] flex justify-center items-center flex-col gap-3'>
+						<div className='w-[250px]  ss:w-[300px] flex justify-center items-center flex-col gap-3'>
 							<h1 className='px-2 text-xl w-full'>Change Project Status</h1>
 							<ChangeStatus project={project} />
 

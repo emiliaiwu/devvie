@@ -15,11 +15,8 @@ import ChangeTaskStatus from "./ChangeTaskStatus";
 const Task = () => {
 	const { userPreferences } = useContext(UserPreferencesContext);
 
-	const {
-		allProjects,
-		isNewTaskModalOpen,
-		setIsNewTaskModalOpen,
-	} = useContext(ProjectContext);
+	const { allProjects, isNewTaskModalOpen, setIsNewTaskModalOpen } =
+		useContext(ProjectContext);
 
 	const { isStatusOpen, updatedTaskStatus, setUpdatedTaskStatus } =
 		useContext(TaskContext);
@@ -56,14 +53,16 @@ const Task = () => {
 		project?.status.title === "backlog" || project?.status.title === "to build";
 
 	return (
-		<section className={`md:pl-20 min-h-screen md:mt-0 mx-auto`}>
+		<section
+			className={`lg:pl-20 min-h-screen lg:mt-0 mx-auto overflow-x-hidden`}
+		>
 			<div
 				style={{
 					color: userPreferences.shade.text.primaryText,
 					fontFamily: userPreferences.font.fontFamily,
 					backgroundColor: userPreferences.shade.background,
 				}}
-				className='flex flex-col relative overflow-x-hidden gap-8 md:pl-8 md:mt-0 mx-auto md:py-24 md:pr-10 '
+				className='flex flex-col relative overflow-x-hidden gap-8 lg:pl-8 lg:mt-0 mx-auto py-24 lg:pr-10 px-6 '
 			>
 				{isNewTaskModalOpen && (
 					<div
@@ -93,18 +92,25 @@ const Task = () => {
 						style={{ color: userPreferences.shade.text.primaryText }}
 						className='text-[13px] mb-3 flex items-center'
 					>
-						<Link to={"/user/projects"} className="mr-1">
+						<Link to={"/user/projects"} className='mr-1'>
 							<HoverAccentColor>projects </HoverAccentColor>
 						</Link>
 						<span>/</span>
-						<Link to={`/user/projects/${project?.slug}`} className='lowercase ml-1'>
-							<HoverAccentColor>{project.title}</HoverAccentColor>
+						<Link
+							to={`/user/projects/${project?.slug}`}
+							className='lowercase ml-1'
+						>
+							<HoverAccentColor>
+								{project.title || `project${project.slug}`}
+							</HoverAccentColor>
 						</Link>
 					</div>
 
 					{/* project title and add task button*/}
-					<div className='flex justify-between items-center mb-6'>
-						<h1 className='text-4xl capitalize'>{project.title}</h1>
+					<div className='flex justify-between items-center mb-6 gap-2'>
+						<h1 className='text-2xl sm:text-3xl md:text-4xl capitalize whitespace-normal'>
+							{project.title || `project${project.slug}`}
+						</h1>
 
 						{/* add task button */}
 						{/* add a toast saying move project to in developement */}
@@ -119,10 +125,10 @@ const Task = () => {
 								color: `${userPreferences.isLightMode ? "white" : "black"}`,
 								opacity: `${inActiveButton ? "50%" : "100%"}`,
 							}}
-							className={`${userPreferences.border} flex items-center gap-2 py-2 px-4 cursor-pointer hover:opacity-60 outline-none`}
+							className={`ss:${userPreferences.border} rounded-full flex items-center gap-2 py-2 px-2 ss:px-4 cursor-pointer hover:opacity-60 outline-none`}
 						>
 							<AddIcon className='w-5 h-5' />
-							<span className='text-sm'>New task</span>
+							<span className='text-sm hidden ss:block'>New task</span>
 						</button>
 					</div>
 
@@ -155,14 +161,19 @@ const Task = () => {
 								{project.dueDate ? project.dueDate : "No date yet"}
 							</div>
 						</div>
-						<div className='flex items-center gap-14'>
+						<div className='flex gap-14'>
 							<div className='text-sm'>Tags:</div>
-							<div className='flex gap-3'>
-								{project.tag.map((tag) => (
-									<Tag key={tag.id} color={tag.color}>
-										{tag.tag}
-									</Tag>
-								))}
+							<div
+								style={{ color: userPreferences.shade.text.primaryText }}
+								className='flex gap-3 flex-wrap text-sm'
+							>
+								{project.tag.length !== 0
+									? project.tag.map((tag) => (
+											<Tag key={tag.id} color={tag.color}>
+												{tag.tag}
+											</Tag>
+									  ))
+									: "Add project tags"}
 							</div>
 						</div>
 					</div>
@@ -172,11 +183,11 @@ const Task = () => {
 					{/* links */}
 					<div
 						style={{ borderColor: userPreferences.shade.other }}
-						className='flex justify-between items-center border-b mb-10'
+						className='flex flex-col ss:flex-row justify-between items-center border-b mb-10'
 					>
 						<div
 							style={{ borderColor: userPreferences.color }}
-							className='flex gap-10 text-base'
+							className='flex flex-col justify-center items-center ss:flex-row gap-10 text-base'
 						>
 							<NavLink
 								style={({ isActive }) => ({

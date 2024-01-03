@@ -29,27 +29,39 @@ const Portfolio = () => {
 					userProfile={userProfile}
 				/>
 				<div className='lg:px-6 sm:px-8 flex flex-col lg:gap-10 gap-6 min-h-screen max-w-[1440px] justify-center items-center w-full'>
-					<PortfolioAboutMe
-						userProfile={userProfile}
-						userPreferences={userPreferences}
-					/>
-					<PortfolioSkills
-						userProfile={userProfile}
-						userPreferences={userPreferences}
-					/>
+					{userProfile.aboutYou.length !== 0 && (
+						<PortfolioAboutMe
+							userProfile={userProfile}
+							userPreferences={userPreferences}
+						/>
+					)}
 
-					<PortFolioProjects
-						userProfile={userProfile}
-						userPreferences={userPreferences}
-					/>
-					<PortfolioProjectExperience
-						userProfile={userProfile}
-						userPreferences={userPreferences}
-					/>
-					<PortfolioWorkExperiences
-						userProfile={userProfile}
-						userPreferences={userPreferences}
-					/>
+					{userProfile.techStack.length !== 0 && (
+						<PortfolioSkills
+							userProfile={userProfile}
+							userPreferences={userPreferences}
+						/>
+					)}
+
+					{userProfile.projects.length !== 0 && (
+						<PortFolioProjects
+							userProfile={userProfile}
+							userPreferences={userPreferences}
+						/>
+					)}
+					{userProfile.projectExperience.length !== 0 && (
+						<PortfolioProjectExperience
+							userProfile={userProfile}
+							userPreferences={userPreferences}
+						/>
+					)}
+
+					{userProfile.workExperience.length !== 0 && (
+						<PortfolioWorkExperiences
+							userProfile={userProfile}
+							userPreferences={userPreferences}
+						/>
+					)}
 				</div>
 			</div>
 		</section>

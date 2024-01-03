@@ -13,10 +13,13 @@ export const lightAccentColors = [
 
 export const darkAccentColors = [
 	"#33FF57",
+	"#FF8C99",
 	"#EABE10",
+	"#A3FFFF",
 	"#38FFD4",
 	"#F6DAB0",
 	"#1F75FE",
+	"#FFB84D",
 	"#FFA5FF",
 	"#02B0FE",
 ];

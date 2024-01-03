@@ -14,7 +14,7 @@ const FolderCard = ({ collection }) => {
 				style={{
 					backgroundColor: userPreferences.shade.background,
 				}}
-				className={`${userPreferences.border} w-[200px] h-[130px] p-3 flex justify-center items-center cursor-pointer`}
+				className={`${userPreferences.border} xs:w-[160px] ss:w-[200px] sm:w-[180px] md:w-[200px] h-[130px] p-3 flex justify-center items-center cursor-pointer`}
 			>
 				<div className='flex flex-col items-left w-full h-full gap-2'>
 					<div className='flex justify-between'>

@@ -39,32 +39,32 @@ const ProjectPage = () => {
 	return (
 		<section
 			style={{ backgroundColor: userPreferences.shade.background }}
-			className=' md:pl-20 min-h-screen md:mt-0 mx-auto relative'
+			className='lg:pl-20 min-h-screen lg:mt-0 mx-auto relative max-w-[100vw] overflow-hidden'
 		>
 			{/* CREATE NEW PROJECT PAGE */}
 			<div
 				className={`${
-					isCreateNewProjectModalOpen ? "right-0" : "-right-[100%]"
-				} absolute transition-all duration-3333333300 ease z-[1000] h-screen overflow-hidden`}
+					isCreateNewProjectModalOpen ? "right-0" : "-right-[200%]"
+				} absolute transition-width duration-3333333300 ease z-[1000] h-screen overflow-hidden w-full`}
 			>
-				<div className='z-[1000]'>
+				<div className='z-[1000] w-full'>
 					<CreateNewProjectModal />
 				</div>
 				{isCreateNewProjectModalOpen && (
-					<div className='fixed z-[-1] bg-black bg-opacity-80 inset-0'></div>
+					<div className='fixed z-[-1] bg-black bg-opacity-90 inset-0'></div>
 				)}
 			</div>
 
 			<div
 				style={{ backgroundColor: userPreferences.shade.background }}
-				className='flex flex-col lg:flex-row justify-between items-start px-2'
+				className='flex flex-col lg:flex-row justify-between items-start px-4 lg:px-2'
 			>
 				{/* sidebar links */}
 				<div
 					style={{ backgroundColor: userPreferences.shade.card }}
 					className={`${
-						isSidebarOpen ? "md:w-56 md:opacity-100" : "md:w-0 md:opacity-0"
-					} flex flex-col border-opacity-40 pb-5 min-h-screen md:h-screen md:fixed md:left-[80px] md:right-0 bg-black transition-width duration-500 ease shadow-md z-10 gap-2`}
+						isSidebarOpen ? "lg:w-56 lg:opacity-100" : "lg:w-0 md:opacity-0"
+					} lg:flex flex-col border-opacity-40 pb-5 min-h-screen md:h-screen md:fixed md:left-[80px] md:right-0 bg-black transition-width duration-500 ease shadow-md z-10 gap-2 hidden`}
 				>
 					<div className='h-[70px] px-4 flex pt-3'>
 						<h1
@@ -135,7 +135,7 @@ const ProjectPage = () => {
 												className={`flex hover:text-[--hover-color] items-center gap-4 capitalize whitespace-normal++
 												`}
 											>
-												{project?.title}
+												{project?.title || `project${project?.slug}`}
 											</span>
 										</NavLink>
 									</li>
@@ -148,10 +148,10 @@ const ProjectPage = () => {
 				<div
 					style={{ backgroundColor: userPreferences.shade.background }}
 					className={`${
-						isSidebarOpen ? "md:ml-56 " : "md:ml-0"
-					} flex-1 transition-width duration-500 ease ml-0 pt-24 mx-auto overflow-x-auto pl-8 pr-10 `}
+						isSidebarOpen ? "lg:ml-56 " : "lg:ml-0"
+					} lg:flex-1 transition-all w-full duration-500 ease ml-0 lg:pt-24 pt-20 mx-auto overflow-x-auto lg:pl-8 lg:pr-3 `}
 				>
-					<ProjectBoard/>
+					<ProjectBoard />
 				</div>
 			</div>
 		</section>

@@ -12,7 +12,6 @@ import {
 	ForgotPasswordPage,
 	ResetPasswordPage,
 } from "./pages";
-import ComingSoon from "./careers/ComingSoon";
 import { AppLayout, ProjectLayout } from "./app/layout";
 import {
 	Dashboard,
@@ -49,8 +48,6 @@ const App = () => {
 				<Route index element={<LandingPage />} />
 				<Route path='signin' element={<SignInPage />} />
 				<Route path='signup' element={<SignUpPage />} />
-				<Route path='hire-developers' element={<ComingSoon />} />
-				<Route path='discover-projects' element={<ComingSoon />} />
 				<Route path='forgot-password' element={<ForgotPasswordPage />} />
 				<Route path='reset-password' element={<ResetPasswordPage />} />
 

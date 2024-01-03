@@ -6,21 +6,28 @@ import {
 } from "../../context";
 import { CameraIcon, CheckCircle } from "../../data/icon";
 import { Link } from "react-router-dom";
+import { backupAvatar } from "../../../assets";
 
 const Header = () => {
 	const { userPreferences } = useContext(UserPreferencesContext);
 	const { userProfile, setUserProfile, handleFileUpload } =
 		useContext(UserProfileContext);
+	const { showToast } = useContext(ToastContext);
 
 	const handleCheck = (key) => {
-		setUserProfile((prevData) => {
-			const updatedProfile = {
-				...prevData,
-				[key]: !prevData[key],
-			};
+		if (userProfile.username.trim() !== "") {
+			setUserProfile((prevData) => {
+				const updatedProfile = {
+					...prevData,
+					[key]: !prevData[key],
+				};
 
-			return updatedProfile;
-		});
+				return updatedProfile;
+			});
+		} else {
+			showToast("warning", "Link is empty", "Enter your portfolio link slug");
+			return;
+		}
 	};
 
 	return (
@@ -74,8 +81,10 @@ const Header = () => {
 				<div className='-mt-24 relative'>
 					<div className='rounded-full overflow-hidden '>
 						<img
-							src={userProfile?.userPhoto}
-							className='md:w-[140px] md:h-[140px] w-[90px] h-[90px] object-contain'
+							src={userProfile?.userPhoto || backupAvatar}
+							className={`${
+								backupAvatar && "object-cover bg-white"
+							}  md:w-[140px] md:h-[140px] w-[90px] h-[90px] object-contain`}
 						/>
 					</div>
 					<div
@@ -108,14 +117,14 @@ const Header = () => {
 				</div>
 
 				<div className='absolute left-1/2 transform -translate-x-1/2 lg:transform-none lg:right-0 lg:left-auto top-4 md:top-16 lg:top-0 lg:pr-4 '>
-					<div className="flex justify-between gap-6">
+					<div className='flex justify-between gap-6'>
 						<button
 							onClick={() => handleCheck("isPublished")}
 							style={{
 								backgroundColor: userPreferences.color,
 								color: userPreferences.isLightMode ? "white" : "black",
 							}}
-							className={`${userPreferences.border} py-1 md:py-2 px-2 md:px-4 text-xs md:text-sm  hover:scale-110 transition-all duration-150 ease inline-block`}
+							className={`${userPreferences.border} py-1 md:py-2 px-2 md:px-4 text-xs md:text-sm  hover:scale-110 transition-all duration-150 ease inline-block cursor-pointer`}
 							type='button'
 						>
 							{userProfile?.isPublished ? "Unpublish" : "Publish"}
@@ -128,7 +137,7 @@ const Header = () => {
 								backgroundColor: userPreferences.color,
 								color: userPreferences.isLightMode ? "white" : "black",
 							}}
-							className={`${userPreferences.border} py-1 md:py-2 px-2 md:px-4 text-xs md:text-sm  hover:scale-110 transition-all duration-150 ease inline-block`}
+							className={`${userPreferences.border} py-1 md:py-2 px-2 md:px-4 text-xs md:text-sm  hover:scale-110 transition-all duration-150 ease inline-block cursor-pointer`}
 							type='button'
 						>
 							Preview

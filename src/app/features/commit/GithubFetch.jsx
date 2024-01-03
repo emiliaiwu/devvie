@@ -1,16 +1,9 @@
 import axios from "axios";
-import { useEffect, useState, useContext } from "react";
+import { useEffect, useContext } from "react";
 import { UserPreferencesContext } from "../../context";
 
-const GithubFetch = ({
-	owner,
-	repo,
-	setError,
-	commits,
-	setCommits,
-}) => {
+const GithubFetch = ({ owner, repo, commits, setCommits, setError }) => {
 	const { userPreferences } = useContext(UserPreferencesContext);
-
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
@@ -18,9 +11,15 @@ const GithubFetch = ({
 					`https://api.github.com/repos/${owner}/${repo}/commits`
 				);
 				setCommits(response.data);
+				setError("");
+				// Clear any previous errors
 			} catch (error) {
+				setError(error);
 				console.error("Error fetching GitHub data:", error);
-				setError("Error fetching GitHub data. Please try again.");
+				setCommits([]);
+				return;
+			} finally {
+				setError(null);
 			}
 		};
 
@@ -28,7 +27,7 @@ const GithubFetch = ({
 	}, [owner, repo]);
 
 	const commitsByDate = {};
-	commits.forEach((commit) => {
+	commits?.forEach((commit) => {
 		const commitDate = new Date(
 			commit.commit.committer.date
 		).toLocaleDateString();
@@ -49,17 +48,15 @@ const GithubFetch = ({
 		});
 	});
 
-	console.log(commits);
-
 	return (
 		<div className='w-full'>
-			{commits.length !== 0 && (
+			{commits?.length !== 0 && (
 				<>
 					<div className='mb-8'>
 						<h1 className='text-2xl mb-1'>Project Commits</h1>
 						<p
 							style={{ color: userPreferences.shade.text.secondaryText }}
-							className='text-sm'
+							className='text-sm whitespace-normal'
 						>
 							Below is a breakdown of all commits for {repo}
 						</p>
@@ -68,9 +65,7 @@ const GithubFetch = ({
 					<ul className='flex flex-col gap-10'>
 						{Object.entries(commitsByDate).map(([date, commitMessages]) => (
 							<li key={date}>
-								<div
-									className={`flex justify-center items-center gap-6  `}
-								>
+								<div className={`flex justify-center items-center gap-6  `}>
 									{/* <span
 										style={{ borderColor: userPreferences.shade.other }}
 										className='border-b w-full'
@@ -90,7 +85,7 @@ const GithubFetch = ({
 										({ message, time, url, alt, name }, index) => (
 											<li
 												key={index}
-												className='flex  items-start gap-2 w-full'
+												className='flex sm:flex-row flex-col  items-start gap-2 w-full'
 											>
 												<div>
 													<img
@@ -109,7 +104,7 @@ const GithubFetch = ({
 															style={{
 																color: userPreferences.shade.text.secondaryText,
 															}}
-															className='text-sm'
+															className='text-sm whitespace-normal'
 														>
 															committed a message:
 														</span>

@@ -68,15 +68,19 @@ export const DashboardContextProvider = ({ children }) => {
 			return groups;
 		}, {});
 
-		// Create an array of objects with status and count
-		const newTaskGroup = Object.keys(taskGroups).map((status) => ({
+		
+
+		const newTaskGroup = Object.keys(taskGroups ?? {}).map((status) => ({
 			status: status,
-			color: taskGroups[status][0].color,
-			count: taskGroups[status].reduce(
-				(total, task) => total + task.tasks.length,
-				0
-			),
+			color: taskGroups?.[status]?.[0]?.color ?? "#000000", // Default color if not available
+			count:
+				taskGroups?.[status]?.reduce?.(
+					(total, task) => total + (task.tasks?.length ?? 0),
+					0
+				) ?? 0, // Default count if not available
 		}));
+
+
 
 		setTaskInColumns(newTaskGroup);
 
@@ -114,8 +118,8 @@ export const DashboardContextProvider = ({ children }) => {
 
 		// get the active tasks
 		const allactiveTasks = columns?.flatMap((column) =>
-			column.projects.flatMap((project) =>
-				project.taskColumns.flatMap((taskCol) => taskCol.tasks)
+			column?.projects.flatMap((project) =>
+				project?.taskColumns.flatMap((taskCol) => taskCol?.tasks)
 			)
 		);
 
@@ -129,20 +133,20 @@ export const DashboardContextProvider = ({ children }) => {
 
 	// Function to calculate the percentage of true checked items
 	const calculatePercentage = (list) => {
-		const totalTasks = list.length;
-		const trueCheckedTasks = list.filter((item) => item.checked).length;
+		const totalTasks = list?.length;
+		const trueCheckedTasks = list?.filter((item) => item?.checked)?.length;
 		const percentage = (trueCheckedTasks / totalTasks) * 100;
-		return percentage.toFixed(0);
+		return percentage?.toFixed(0);
 	};
 
 	// Mapping the data to a new array with title and percentage
 	const activeTasksWithPercent = activeTasks?.map((task) => ({
-		title: task.title,
-		percentageChecked: calculatePercentage(task.list),
+		title: task?.title,
+		percentageChecked: calculatePercentage(task?.list),
 	}));
 
-	const activeTasksWithPercentage = activeTasksWithPercent.filter(
-		(task) => task.percentageChecked !== "0"
+	const activeTasksWithPercentage = activeTasksWithPercent?.filter(
+		(task) => task?.percentageChecked !== "0"
 	);
 
 	return (

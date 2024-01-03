@@ -41,7 +41,7 @@ const GeneralCollection = () => {
 						
 						className={`${userPreferences.border} min-h-screen`}
 					>
-						<div className='grid grid-cols-5 gap-6 items-center xxl:grid-cols-8'>
+						<div className='grid xs:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 sm:grid-cols-3  gap-6 items-center xxl:grid-cols-8 justify-center lg:justify-start'>
 							{userCollection?.map((collection) => (
 								<FolderCard key={collection.id} collection={collection} />
 							))}

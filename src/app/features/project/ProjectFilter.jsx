@@ -1,8 +1,12 @@
 import { useContext, useState } from "react";
-import { ProjectContext, UserPreferencesContext } from "../../context";
+import {
+	ProjectContext,
+	UserPreferencesContext,
+	UserProfileContext,
+} from "../../context";
 import { HoverAccentColor, PriorityTag, Tag } from "../../components";
 import { CancelCircleIcon, DropdownArrowIcon } from "../../data/icon";
-import { allTechStack, priorityTags } from "../../data/projectData";
+import { priorityTags } from "../../data/projectData";
 
 const ProjectFilter = () => {
 	const {
@@ -17,8 +21,8 @@ const ProjectFilter = () => {
 		handleClearFilters,
 		handleClearFilter,
 	} = useContext(ProjectContext);
-
-	const sortedTechStack = allTechStack.slice().sort();
+	const { userProfile } = useContext(UserProfileContext);
+	const sortedTechStack = userProfile?.techStack.slice().sort();
 
 	const { userPreferences } = useContext(UserPreferencesContext);
 	const [isStackOpen, setIsStackOpen] = useState(false);
@@ -40,23 +44,19 @@ const ProjectFilter = () => {
 		handleClearFilter();
 	};
 
-	console.log(filterTag);
-	console.log(filterStack);
-	console.log(filterPriority);
-
 	return (
 		<div
 			className={`${userPreferences.border} 
-             flex gap-4 items-center `}
+             flex flex-col md:flex-row gap-4 items-center `}
 		>
-			<div className='flex gap-4 justify-between w-full'>
+			<div className='flex gap-4 flex-col md:flex-row justify-between w-full'>
 				<div className='relative w-full'>
 					<div
 						style={{
 							backgroundColor: userPreferences.shade.card,
 							color: userPreferences.shade.text.primaryText,
 						}}
-						className={`${userPreferences.border} flex justify-between items-center py-3 px-4 w-full h-12`}
+						className={`${userPreferences.border} flex justify-between items-center py-3 px-4 w-full h-12 z-[50]`}
 					>
 						{filterStack ? (
 							<p
@@ -95,27 +95,36 @@ const ProjectFilter = () => {
 								backgroundColor: userPreferences.shade.card,
 								borderColor: userPreferences.shade.other,
 							}}
-							className={`${userPreferences.border} py-5 pl-4 pr-3 absolute w-full top-16 border `}
+							className={`${userPreferences.border} py-5 pl-4 pr-3 absolute w-full top-16 border z-[50]`}
 						>
-							<div className='h-56 overflow-y-scroll scroll'>
-								<ul className='flex flex-col gap-2'>
-									{sortedTechStack.map((tech) => (
-										<li
-											key={tech}
-											className='text-white text-sm p-2 cursor-pointer'
-											onClick={() => setFilterStack(tech)}
-										>
-											<span
-												style={{
-													borderColor: userPreferences.shade.other,
-												}}
-												className='px-3 py-[5px] rounded-2xl border'
+							<div className='h-56 overflow-y-scroll scroll flex justify-center items-center '>
+								{sortedTechStack.length === 0 ? (
+									<p
+										style={{ color: userPreferences.color }}
+										className='whitespace-normal text-base max-w-[200px] h-full flex justify-center items-center'
+									>
+										To include your tech stack, please visit your profile.
+									</p>
+								) : (
+									<ul className='flex flex-col gap-2'>
+										{sortedTechStack.map((tech) => (
+											<li
+												key={tech}
+												className='text-white text-sm p-2 cursor-pointer'
+												onClick={() => setFilterStack(tech)}
 											>
-												{tech}
-											</span>
-										</li>
-									))}
-								</ul>
+												<span
+													style={{
+														borderColor: userPreferences.shade.other,
+													}}
+													className='px-3 py-[5px] rounded-2xl border'
+												>
+													{tech}
+												</span>
+											</li>
+										))}
+									</ul>
+								)}
 							</div>
 						</div>
 					)}
@@ -161,7 +170,7 @@ const ProjectFilter = () => {
 								backgroundColor: userPreferences.shade.card,
 								borderColor: userPreferences.shade.other,
 							}}
-							className={`${userPreferences.border} py-5 pl-4 pr-3 absolute w-full top-16 border `}
+							className={`${userPreferences.border} py-5 pl-4 pr-3 absolute w-full top-16 border z-[40]`}
 						>
 							<div className='h-56 overflow-y-scroll scroll'>
 								<ul className='flex flex-col gap-1'>

@@ -11,25 +11,38 @@ const UserProfileContext = createContext();
 
 export const UserProfileContextProvider = ({ children }) => {
 	const { user, setLoading, loading } = useContext(AuthContext);
-
-	const firstName = user?.displayName?.split(" ")[0];
-	const lastName = user?.displayName?.split(" ")[1];
+	const [openImage, setOpenImage] = useState(false);
+	const [wantToLogout, setWantToLogout] = useState(false);
+	const [wantToDeleteAccount, setWantToDeleteAccount] = useState(false);
 	const userId = user?.uid || null;
-	const email = user?.email;
-	const photo = user?.photoURL;
 	const [userTechStack, setUserTechStack] = useState([]);
 	const [isSaving, setIsSaving] = useState(false);
 	const { showToast } = useContext(ToastContext);
+	
+	// Random Numbers
+	const generateRandomNumbers = () => {
+		let randomNumbers = [];
 
-	const username =
-		(firstName?.trim() || "") + (lastName?.trim() || "")
-			? `${firstName.trim()} ${lastName.trim()}`.toLowerCase()
-			: "";
+		for (let i = 0; i < 5; i++) {
+			const randomNumber = Math.floor(Math.random() * 100);
+			randomNumbers.push(randomNumber);
+		}
+
+		return randomNumbers;
+	};
+
+	const randomNumbers = generateRandomNumbers();
+	const generateSlug = (title) => {
+		const cleanedString = title.replace(/[^a-zA-Z0-9\s]/g, "");
+		const randomSlug = randomNumbers.join("");
+		const combinedSlug = `${cleanedString}-${randomSlug}`;
+		return combinedSlug.replace(/\s+/g, "-").toLowerCase();
+	};
 
 	const initialProfile = {
-		firstName: firstName,
-		lastName: lastName,
-		username: username,
+		firstName: "",
+		lastName: "",
+		username: "",
 		jobTitle: "",
 		location: "",
 		aboutYou: "",
@@ -44,14 +57,16 @@ export const UserProfileContextProvider = ({ children }) => {
 		share: true,
 		education: [],
 		certification: [],
-		socials: {
-			email: email,
-		},
+		socials: {},
 		hasWorkExperience: false,
 		coverPhoto: null,
-		userPhoto: photo,
+		userPhoto: "",
 	};
 	const [userProfile, setUserProfile] = useState(initialProfile);
+	const dpName = userProfile?.firstName + " " + userProfile?.lastName;
+	const displayName =
+		userProfile?.firstName.length === 0 ? user?.displayName : dpName;
+	const email = user?.email;
 
 	const saveUserProfile = async () => {
 		setIsSaving(true);
@@ -157,8 +172,16 @@ export const UserProfileContextProvider = ({ children }) => {
 				setUserTechStack,
 				isSaving,
 				saveUserProfile,
-
+				openImage,
+				setOpenImage,
 				handleFileUpload,
+				wantToLogout,
+				setWantToLogout,
+				wantToDeleteAccount,
+				setWantToDeleteAccount,
+				displayName,
+				email,
+				generateSlug,
 			}}
 		>
 			{children}

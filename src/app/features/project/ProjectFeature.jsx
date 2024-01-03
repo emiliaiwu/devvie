@@ -60,7 +60,7 @@ const ProjectFeature = () => {
 				placeholder='Enter key features'
 				value={feature}
 				onChange={(e) => setFeature(e.target.value)}
-				className={`${userPreferences.border} w-full px-4 py-3 focus:outline-none text-base mb-1`}
+				className={`${userPreferences.border} w-full px-4 py-3 focus:outline-none text-sm md:text-base mb-1`}
 			/>
 			<div className="flex flex-col gap-2">
 				{newProject.features?.map((feature) => (
