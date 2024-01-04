@@ -28,7 +28,6 @@ import {
 	Profile,
 	Portfolio,
 } from "./app/pages";
-import ProtectedRoute from "./app/ProtectedRoute";
 import "./style/devvieLoader.css";
 import "./style/app.css";
 import { UserProfileContext } from "./app/context";
@@ -46,21 +45,14 @@ const App = () => {
 				)}
 
 				<Route index element={<LandingPage />} />
-				<Route path='signin' element={<SignInPage />} />
-				<Route path='signup' element={<SignUpPage />} />
-				<Route path='forgot-password' element={<ForgotPasswordPage />} />
-				<Route path='reset-password' element={<ResetPasswordPage />} />
+				<Route path='/signin' element={<SignInPage />} />
+				<Route path='/signup' element={<SignUpPage />} />
+				<Route path='/forgot-password' element={<ForgotPasswordPage />} />
+				<Route path='/reset-password' element={<ResetPasswordPage />} />
 
 				<Route path='*' element={<NotFound />} />
 
-				<Route
-					path='user'
-					element={
-						<ProtectedRoute>
-							<AppLayout />
-						</ProtectedRoute>
-					}
-				>
+				<Route path='user' element={<AppLayout />}>
 					<Route index element={<Dashboard />} />
 					<Route path='dashboard' element={<Dashboard />} />
 					<Route path='appearance' element={<Theme />} />

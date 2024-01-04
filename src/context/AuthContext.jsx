@@ -21,7 +21,7 @@ const AuthContext = createContext();
 
 export const AuthContextProvider = ({ children }) => {
 	const [user, setUser] = useState(null);
-	const [loading, setLoading] = useState(true);
+	const [loading, setLoading] = useState(false);
 
 	const updateDisplayName = (userName) => {
 		return updateProfile(auth.currentUser, { displayName: userName });
@@ -45,6 +45,7 @@ export const AuthContextProvider = ({ children }) => {
 	};
 
 	const signOutUser = () => {
+		setUser(null);
 		return signOut(auth);
 	};
 
@@ -93,6 +94,7 @@ export const AuthContextProvider = ({ children }) => {
 	const deleteAccount = async () => {
 		try {
 			await user?.delete();
+			setUser(null);
 		} catch (error) {
 			console.error("Error deleting account:", error);
 		}

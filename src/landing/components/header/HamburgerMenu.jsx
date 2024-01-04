@@ -6,11 +6,11 @@ const HamburgerMenu = () => {
 
 	return (
 		<button
-			className={`${isMobileMenuOpen ? "active" : ""} hamburger-menu`}
+			className={`${isMobileMenuOpen ? "active" : ""} hamburger-menu z-50`}
 			onClick={toggleMobileMenu}
 		>
-			<div className='bar'></div>
-			<div className='bar'></div>
+			
+			<div className='bar bg-black'></div>
 			<div className='bar'></div>
 		</button>
 	);

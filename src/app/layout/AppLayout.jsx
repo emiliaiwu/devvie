@@ -1,4 +1,4 @@
-import { Outlet } from "react-router-dom";
+import { Navigate, Outlet } from "react-router-dom";
 import {
 	DeleteAccount,
 	Header,
@@ -14,6 +14,8 @@ import {
 	UserProfileContext,
 } from "../context";
 import Toast from "../features/toast/Toast";
+import { DevvieLoader } from "../../components";
+import { AuthContext } from "../../context";
 
 const AppLayout = () => {
 	const { userPreferences } = useContext(UserPreferencesContext);
@@ -25,6 +27,17 @@ const AppLayout = () => {
 		setWantToDeleteAccount,
 	} = useContext(UserProfileContext);
 	useScrollToTop();
+
+
+	const { user, loading } = useContext(AuthContext);
+
+	if (loading) {
+		return <DevvieLoader />;
+	}
+
+	if (!user) {
+		return <Navigate to='/signin' />;
+	}
 
 	return (
 		<div

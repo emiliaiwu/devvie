@@ -7,7 +7,7 @@ const NavLinks = ({ className }) => {
 			{navLinks.map((link, index) => (
 				<li
 					key={index}
-					className='text-white text-left cursor-pointer text-base font-[500] font-DMSans bg-transparent hover:text-landingPrimary transition-all duration-150 ease-in-out'
+					className=' text-black text-left cursor-pointer text-sm md:text-base font-[500] font-DMSans bg-transparent hover:text-landingPrimary transition-all duration-150 ease-in-out'
 				>
 					<NavLink to={link.url} className={`${className}`}>
 						{link.label}

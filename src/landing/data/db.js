@@ -1,10 +1,9 @@
 import { img1, img2, img3, img4, img5, img6 } from "../../assets";
 
 export const navLinks = [
-	{ url: "#how-it-works", label: "How It Works" },
+	{ url: "#benefits", label: "Benefits" },
 	{ url: "#features", label: "Features" },
-	{ url: "discover-projects", label: "Projects" },
-	{ url: "hire-developers", label: "Hire Developers" },
+	{ url: "#how-it-works", label: "How It Works" },
 ];
 
 export const devImages = [

@@ -8,22 +8,25 @@ const MobileMenu = () => {
 	const { isMobileMenuOpen } = useContext(MobileMenuContext);
 
 	return (
-		<div className='lg:hidden'>
+		<div
+			style={{ "--bg-color": "black" }}
+			className='lg:hidden flex items-center gap-4'
+		>
+			<Button
+				url={"signin"}
+				text={"Login"}
+				className={" text-black bg-landingPrimary block z-50 md:hidden"}
+			/>
+
 			<HamburgerMenu />
 			<nav
-				className={`absolute w-full left-0 bg-landingGrey pt-36 px-6 flex flex-col justify-between pb-4 transition-all duration-500 ease z-[-1]   ${
-					isMobileMenuOpen ? "h-screen top-0" : "h-0 top-[-1000px]"
+				className={`fixed w-full bg-white pt-12 px-6 flex flex-col justify-between pb-4 transition-all duration-500 ease border-b border-black -bottom-[100%] top-[60px] h-[180px]   ${
+					isMobileMenuOpen ? "left-0" : "left-[-100%]"
 				}`}
 			>
-				<ul className='flex flex-col gap-8 p-1'>
-					<NavLinks className={"text-2xl inline"} />
+				<ul className='flex flex-col gap-4 p-1'>
+					<NavLinks className={"text-base inline"} />
 				</ul>
-
-				<Button
-					url={"signup"}
-					text={"Get Started For Free"}
-					className={" text-black bg-landingPrimary block"}
-				/>
 			</nav>
 		</div>
 	);

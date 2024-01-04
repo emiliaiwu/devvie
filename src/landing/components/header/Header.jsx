@@ -9,16 +9,18 @@ const Header = () => {
 	const { container, flexCenter, flexBetween } = styles;
 
 	return (
-		<header className={`bg-black ${flexCenter} z-20 relative`}>
-			<div className={`${container} px-6 py-6 bg-black`}>
-				<div className='flex justify-between items-center bg-black '>
+		<header className={` ${flexCenter} fixed w-full bg-white z-[1000] top-0 left-0`}>
+			<div
+				className={`${container} px-4 sm:px-6 h-[60px] md:h-[80px] flex items-center w-full relative`}
+			>
+				<div className='flex justify-between items-center w-full '>
 					<Logo />
 					<nav className='hidden lg:flex'>
 						<ul className='flex gap-6'>
 							<NavLinks />
 						</ul>
 					</nav>
-					<div className={`${flexBetween} gap-4 hidden lg:flex`}>
+					<div className={`${flexBetween} gap-4 hidden md:flex`}>
 						<Button
 							url={"signin"}
 							text={"Log in"}
@@ -30,14 +32,9 @@ const Header = () => {
 							className={" text-black bg-landingPrimary"}
 						/>
 					</div>
+
+					
 					<MobileMenu />
-					{/* <Button
-						url={"login"}
-						text={"Log in"}
-						className={
-							" text-white bg-landingGrey absolute sm:hidden bottom-2 right-2 z-[-2]"
-						}
-					/> */}
 				</div>
 			</div>
 		</header>

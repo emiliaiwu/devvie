@@ -5,12 +5,12 @@ const Logo = () => {
 	return (
 		<Link
 			to={"/"}
-			className='cursor-pointer hover:translate-y-[-5px] transition-all duration-200 ease-in-out'
+			className='cursor-pointer hover:translate-y-[-5px] transition-all duration-200 ease-in-out z-50'
 		>
 			<div className='flex items-center gap-1'>
-				<img src={devvieboard} alt='logo' width={30} height={30} />
+				<img src={devvieboard} alt='logo' className="w-[20px] h-[20px] md:w-[30px] md:h-[30px]" />
 				<h1
-					className={`font-DMSans text-3xl font-[700] ml-1 text-white`}
+					className={`font-DMSans text-2xl md:text-3xl font-[700] ml-1 text-black tracking-tight`}
 				>
 					Devvie
 				</h1>
