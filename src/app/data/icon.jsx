@@ -1645,3 +1645,129 @@ export function Call(props) {
 		</svg>
 	);
 }
+
+
+
+
+export function InterfaceIcon(props) {
+	return (
+		<svg
+			xmlns='http://www.w3.org/2000/svg'
+			width='1em'
+			height='1em'
+			viewBox='0 0 24 24'
+			{...props}
+		>
+			<g fill='none'>
+				<path
+					stroke='currentColor'
+					strokeWidth='1.5'
+					d='M2 12c0-4.714 0-7.071 1.464-8.536C4.93 2 7.286 2 12 2c4.714 0 7.071 0 8.535 1.464C22 4.93 22 7.286 22 12c0 4.714 0 7.071-1.465 8.535C19.072 22 16.714 22 12 22s-7.071 0-8.536-1.465C2 19.072 2 16.714 2 12Z'
+				></path>
+				<path
+					fill='currentColor'
+					d='M7 6a1 1 0 1 1-2 0a1 1 0 0 1 2 0Zm3 0a1 1 0 1 1-2 0a1 1 0 0 1 2 0Zm3 0a1 1 0 1 1-2 0a1 1 0 0 1 2 0Z'
+				></path>
+				<path
+					stroke='currentColor'
+					strokeLinecap='round'
+					strokeWidth='1.5'
+					d='M2 9.5h20M9 21V10'
+				></path>
+			</g>
+		</svg>
+	);
+}
+
+export function PlatformIcon(props) {
+	return (
+		<svg
+			xmlns='http://www.w3.org/2000/svg'
+			width='1em'
+			height='1em'
+			viewBox='0 0 24 24'
+			{...props}
+		>
+			<g fill='none' stroke='currentColor' strokeWidth='1.5'>
+				<path
+					strokeLinecap='round'
+					d='M11 17H8c-2.828 0-4.243 0-5.121-.879C2 15.243 2 13.828 2 11v-1c0-3.771 0-5.657 1.172-6.828C4.343 2 6.229 2 10 2h5.5c2.335 0 3.502 0 4.386.472a4 4 0 0 1 1.642 1.642C22 4.998 22 6.165 22 8.5'
+				></path>
+				<path d='M14 15c0-1.886 0-2.828.586-3.414C15.172 11 16.114 11 18 11c1.886 0 2.828 0 3.414.586C22 12.172 22 13.114 22 15v3c0 1.886 0 2.828-.586 3.414C20.828 22 19.886 22 18 22c-1.886 0-2.828 0-3.414-.586C14 20.828 14 19.886 14 18v-3Z'></path>
+				<path strokeLinecap='round' d='M19 20h-2m-6 2H8m3 0v-5m0-4H2'></path>
+			</g>
+		</svg>
+	);
+}
+
+export function AuthIcon(props) {
+	return (
+		<svg
+			xmlns='http://www.w3.org/2000/svg'
+			width='1em'
+			height='1em'
+			viewBox='0 0 24 24'
+			{...props}
+		>
+			<g fill='none' stroke='currentColor'>
+				<path
+					strokeWidth='1.5'
+					d='M2 16c0-2.828 0-4.243.879-5.121C3.757 10 5.172 10 8 10h8c2.828 0 4.243 0 5.121.879C22 11.757 22 13.172 22 16c0 2.828 0 4.243-.879 5.121C20.243 22 18.828 22 16 22H8c-2.828 0-4.243 0-5.121-.879C2 20.243 2 18.828 2 16Z'
+				></path>
+				<path
+					strokeLinecap='round'
+					strokeWidth='1.5'
+					d='M6 10V8a6 6 0 1 1 12 0v2'
+				></path>
+				<path
+					strokeLinecap='round'
+					strokeLinejoin='round'
+					strokeWidth='2'
+					d='M8 16h.009m3.982 0H12m3.991 0H16'
+				></path>
+			</g>
+		</svg>
+	);
+}
+
+export function ToastIcon(props) {
+	return (
+		<svg
+			xmlns='http://www.w3.org/2000/svg'
+			width='1em'
+			height='1em'
+			viewBox='0 0 24 24'
+			{...props}
+		>
+			<g fill='none' stroke='currentColor' strokeWidth='1.5'>
+				<path d='M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2S2 6.477 2 12c0 1.6.376 3.112 1.043 4.453c.178.356.237.763.134 1.148l-.595 2.226a1.3 1.3 0 0 0 1.591 1.591l2.226-.595a1.634 1.634 0 0 1 1.149.133A9.958 9.958 0 0 0 12 22Z'></path>
+				<path
+					strokeLinecap='round'
+					strokeLinejoin='round'
+					d='M9 12.08L11 14l4-4'
+				></path>
+			</g>
+		</svg>
+	);
+}
+
+
+export function CommitIcon(props) {
+	return (
+		<svg
+			xmlns='http://www.w3.org/2000/svg'
+			width='1em'
+			height='1em'
+			viewBox='0 0 24 24'
+			{...props}
+		>
+			<g fill='none' stroke='currentColor' strokeWidth='1.5'>
+				<path
+					strokeLinecap='round'
+					d='m15.5 9l.172.172c1.333 1.333 2 2 2 2.828c0 .828-.667 1.495-2 2.828L15.5 15m-2.206-7.83L12 12l-1.294 4.83M8.5 9l-.171.172c-1.334 1.333-2 2-2 2.828c0 .828.666 1.495 2 2.828L8.5 15'
+				></path>
+				<path d='M2 12c0-4.714 0-7.071 1.464-8.536C4.93 2 7.286 2 12 2c4.714 0 7.071 0 8.535 1.464C22 4.93 22 7.286 22 12c0 4.714 0 7.071-1.465 8.535C19.072 22 16.714 22 12 22s-7.071 0-8.536-1.465C2 19.072 2 16.714 2 12Z'></path>
+			</g>
+		</svg>
+	);
+}

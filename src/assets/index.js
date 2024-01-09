@@ -15,9 +15,13 @@ import jqueryIcon from "./652582_code_develop_framework_javascript_jquery_icon.p
 import libraryImg from "./ertyf.png";
 import noFiles2 from "./24202331_6874630-removebg-preview.png";
 import myBanner from "./brown.png";
-import backupCover from './9024867.jpg';
+import backupCover from "./9024867.jpg";
 import logoutImg from "./8652575-removebg-preview.png";
-import backupAvatar from './backupImg.png'
+import backupAvatar from "./backupImg.png";
+import heroImg from "./Screenshot1.png";
+import ctaImg from "./Apex_1704552764560.png";
+import emilia from "./emilia.png";
+import signImg from "./21742832_6491983.jpg";
 
 export {
 	img1,
@@ -39,5 +43,9 @@ export {
 	myBanner,
 	backupCover,
 	logoutImg,
-	backupAvatar
+	backupAvatar,
+	heroImg,
+	ctaImg,
+	emilia,
+	signImg
 };

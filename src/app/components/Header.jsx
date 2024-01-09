@@ -31,10 +31,13 @@ const Header = () => {
 
 	return (
 		<header
-			style={{ backgroundColor: userPreferences.shade.background }}
+			style={{
+				backgroundColor: userPreferences.shade.background,
+				borderColor: userPreferences.shade.other,
+			}}
 			className={`${
 				isSidebarOpen && isProjectLocation ? "lg:left-[304px]" : "lg:left-20"
-			} h-[70px] px-3 md:h-20 md:px-5 lg:px-6 fixed top-0 right-0 left-0 z-[110] transition-all duration-500 ease flex items-center justify-center md:py-2 max-w-[100vw]`}
+			} h-[70px] px-3 md:h-20 md:px-5 lg:px-6 fixed top-0 right-0 left-0 z-[110] transition-all duration-500 ease flex items-center justify-center md:py-2 max-w-[100vw] border-b`}
 		>
 			<div className='flex justify-between items-center w-full'>
 				{/* MENU */}

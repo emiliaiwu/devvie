@@ -67,18 +67,18 @@ const Toast = () => {
 					backgroundColor: userPreferences.shade.background,
 					borderColor: `${color}`,
 				}}
-				className={`${userPreferences.border} relative border w-[260px] xs:w-[280px]  min-h-[100px] overflow-hidden flex justify-center items-center `}
+				className={`${userPreferences.border} relative border w-[260px] xs:w-[280px] min-h-[100px] overflow-hidden flex justify-center items-center `}
 			>
 				<div className='flex justify-between items-center w-full h-full'>
 					<div
 						style={{
 							"--hove-color": `${color}`,
 						}}
-						className='h-full w-[140px] flex justify-center items-center'
+						className='h-full w-[100px] flex justify-center items-center'
 					>
 						<div
 							style={{ backgroundColor: userPreferences.shade.background }}
-							className='h-full w-full flex justify-center items-center rounded-l-2xl'
+							className='h-full w-full flex justify-center items-center'
 						>
 							<div
 								style={{

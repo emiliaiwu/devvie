@@ -1,13 +1,24 @@
 import { Header, Hero } from "../components";
+import Benefits from "../components/benefits/Benefits";
+import Cta from "../components/benefits/CTA";
+import Features from "../components/benefits/Features";
+import Footer from "../components/benefits/Footer";
+
+import Toast from "../components/benefits/Toast";
 
 const LandingPage = () => {
 	return (
-		<div className='max-w-[100vw] w-full mx-auto flex justify-center items-center overflow-x-hidden'>
+		<div className='max-w-[100vw] w-full mx-auto flex justify-between flex-col items-center overflow-x-hidden'>
 			<Header />
-			<main className='flex justify-center items-center w-full px-6 bg-whiteOff min-h-screen '>
+			<main className='flex justify-center items-center flex-col w-full min-h-screen  '>
 				<Hero />
+				<Benefits />
+				<Features />
+				<Cta />
+				{/* <Toast /> */}
+				{/* <Founder/> */}
 			</main>
-			<footer></footer>
+			<Footer />
 		</div>
 	);
 };

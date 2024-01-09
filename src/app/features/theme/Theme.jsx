@@ -60,7 +60,7 @@ const Theme = () => {
 
 						<LightDarkMode />
 					</div>
-					{/* <ToastDemo/> */}
+					<ToastDemo/>
 					<div className='w-full'>
 						<h3
 							style={{

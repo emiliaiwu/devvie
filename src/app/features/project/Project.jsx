@@ -1,15 +1,27 @@
-import { ProjectContext, UserPreferencesContext } from "../../context";
+import {
+	DashboardContext,
+	ProjectContext,
+	UserPreferencesContext,
+	UserProfileContext,
+} from "../../context";
 import { useContext, useState } from "react";
 import { Board, Filter } from "../../components";
 import ProjectFilter from "./ProjectFilter";
 import { AddProjectIcon } from "../../data/icon";
 import { useScrollToTop } from "../../../hooks";
+import { dashboardImg } from "../../../assets";
 
 const ProjectBoard = () => {
 	const { userPreferences } = useContext(UserPreferencesContext);
 	const [isFilterOpen, setIsFilterOpen] = useState(false);
-	const { handleClearFilters, setIsCreateNewProjectModalOpen, allProjects } =
-		useContext(ProjectContext);
+	const { firstName } = useContext(DashboardContext);
+	const { userProfile } = useContext(UserProfileContext);
+	const {
+		handleClearFilters,
+		setIsCreateNewProjectModalOpen,
+		allProjects,
+		greeting,
+	} = useContext(ProjectContext);
 
 	useScrollToTop();
 
@@ -27,19 +39,35 @@ const ProjectBoard = () => {
 			}}
 			className='flex flex-col relative overflow-x-hidden gap-8 py-4 w-full'
 		>
-			<div className='mb-4 z-[40] w-full'>
-				<div className='flex items-end mb-4 gap-2'>
-					<h1 className='text-2xl sm:text-3xl lg:text-4xl capitalize'>
-						Projects Board
-					</h1>
-					<span
-						style={{
-							color: userPreferences.color,
-						}}
-						className='text-sm lg:text-base mb-1'
+			<div className='mb-4 z-[40] w-full md:pr-8'>
+				<div
+					style={{ backgroundColor: userPreferences.color }}
+					className={`${userPreferences.border} h-[190px] mt-12 flex justify-between items-center px-6 lg:px-20 relative mb-10`}
+				>
+					<div
+						style={{ color: userPreferences.isLightMode ? "white" : "black" }}
+						className='flex flex-col justify-center items-start'
 					>
-						({allProjects.length})
-					</span>
+						<h1 className='lg:text-5xl mb-2 font-semibold text-2xl whitespace-normal'>
+							Hello,{" "}
+							<span className='capitalize'>
+								{userProfile.firstName || firstName}
+							</span>
+						</h1>
+						<p className='text-lg lg:text-xl max-w-[250px]  lg:max-w-full whitespace-normal font-semibold mt-1 tracking-tight'>
+							This is your project board
+						</p>
+						<p className='text-sm max-w-[250px]  lg:max-w-full whitespace-normal mt-2'>
+							Ready to build, manage and track your projects?
+						</p>
+					</div>
+
+					<div className='overflow-hidden hidden sm:flex'>
+						<img
+							src={dashboardImg}
+							className='h-[250px] w-auto absolute right-16 bottom-0'
+						/>
+					</div>
 				</div>
 
 				<div className='flex flex-row justify-between items-center gap-4'>

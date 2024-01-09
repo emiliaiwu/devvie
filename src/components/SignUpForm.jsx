@@ -33,9 +33,9 @@ const SignUpForm = () => {
 	return (
 		<div className='w-full py-10 md:pt-20 px-3 sm:px-6 flex flex-col justify-between items-left gap-8 md:gap-10  '>
 			<div className='flex justify-center items-center flex-col'>
-				<div className='lg:hidden mb-6'>
+				<Link to={"/"} className=' mb-6'>
 					<img src={devvieboard} width={50} height={50} alt='logo' />
-				</div>
+				</Link>
 
 				<h1 className='font-DMSans sm:text-4xl text-3xl lg:text-[42px] font-[800] mb-1 text-center'>
 					Hello Dev!
@@ -159,11 +159,15 @@ const SignUpForm = () => {
 					)}
 				</div>
 
-				<div className="mt-5">
+				<div className='mt-5'>
 					{/* SUBMIT BUTTON */}
 					<button
 						type='submit'
-						className='bg-black h-12 w-full rounded-md button-hover text-base font-DMSans font-[500] text-white transition-all duration-200 ease cursor-pointer flex justify-center items-center'
+						className={`${
+							email && password
+								? "bg-landingPrimary opacity-100"
+								: "bg-landingPrimary opacity-50"
+						} h-12 w-full rounded-md button-hover text-base font-DMSans font-[500] text-white transition-all duration-200 ease cursor-pointer flex justify-center items-center`}
 					>
 						{isSubmitting ? (
 							<ClipLoader loading={true} color={"#FFFFFF"} size={32} />

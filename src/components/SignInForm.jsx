@@ -48,10 +48,10 @@ const SignInForm = () => {
 	return (
 		<div className='w-full py-10 md:pt-20 px-3 sm:px-6 flex flex-col justify-between items-left gap-8 md:gap-10 h-full '>
 			<div className=' flex justify-center items-center flex-col'>
-				<div className='lg:hidden mb-6'>
+				<Link to={"/"} className=' mb-6'>
 					<img src={devvieboard} width={50} height={50} alt='logo' />
-				</div>
-				<h1 className='font-DMSans text-3xl lg:text-[42px] sm:text-4xl font-[800] mb-1 text-center'>
+				</Link>
+				<h1 className='font-DMSans text-3xl lg:text-[42px  sm:text-4xl font-[800] mb-1 text-center'>
 					Hello Again!
 				</h1>
 				<p className='text-sm text-gray-400 font-DMSans font-[500] text-center'>
@@ -142,7 +142,7 @@ const SignInForm = () => {
 					)}
 				</div>
 
-				<div className="mt-5">
+				<div className='mt-5'>
 					<div className='flex items-center justify-between text-sm font-DMSans font-semibold text-black mb-6'>
 						<label className='flex'>
 							<input
@@ -169,7 +169,9 @@ const SignInForm = () => {
 						type='submit'
 						// disabled={!(email && password)}
 						className={`${
-							email && password ? "bg-black" : "bg-black"
+							email && password
+								? "bg-landingPrimary opacity-100"
+								: "bg-landingPrimary opacity-50"
 						} h-12 button-hover w-full rounded-md text-base font-DMSans font-[600] text-white hover:bg-black transition-all duration-200 ease cursor-pointer flex justify-center items-center`}
 					>
 						{isSubmitting ? (
