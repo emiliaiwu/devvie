@@ -27,7 +27,7 @@ const GeneralCollection = () => {
 							backgroundColor: userPreferences.color,
 							color: `${userPreferences.isLightMode ? "white" : "black"}`,
 						}}
-						className={`${userPreferences.border} flex items-center gap-1 py-2 px-3 cursor-pointer hover:opacity-60 outline-none transition-all duration-150 ease`}
+						className={`${userPreferences.border} flex items-center gap-1 py-2 px-3 cursor-pointer hover:opacity-60 outline-none transition-all duration-150 ease `}
 					>
 						<AddIcon className='w-5 h-5' />
 						<span className='text-sm'> new collection</span>
@@ -37,19 +37,21 @@ const GeneralCollection = () => {
 
 			<div>
 				{userCollection.length !== 0 ? (
-					<div
-						
-						className={`${userPreferences.border} min-h-screen`}
-					>
+					<div className={`${userPreferences.border} min-h-screen`}>
 						<div className='grid xs:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 sm:grid-cols-3  gap-6 items-center xxl:grid-cols-8 justify-center lg:justify-start'>
 							{userCollection?.map((collection) => (
 								<FolderCard key={collection.id} collection={collection} />
 							))}
-							<CreateFolder />
+							<div className="hidden md:flex">
+								<CreateFolder />
+							</div>
 						</div>
 					</div>
 				) : (
-						<NoData title={'No Collections Yet!'} paragraph={ 'Click the new collection button to start collecting'} />
+					<NoData
+						title={"No Collections Yet!"}
+						paragraph={"Click the new collection button to start collecting"}
+					/>
 				)}
 			</div>
 		</>

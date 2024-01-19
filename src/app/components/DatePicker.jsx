@@ -19,7 +19,7 @@ const DatePicker = ({
 	const daysInMonth = (year, month) => {
 		return new Date(year, month + 1, 0).getDate();
 	};
-	const currentDay = new Date().getDate();
+	// const currentDay = new Date().getDate();
 	const totalDays = daysInMonth(year, month);
 	const firstDay = new Date(year, month, 1).getDay();
 	const currentMonth = monthsOfYear[month];

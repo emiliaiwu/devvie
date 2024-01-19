@@ -5,9 +5,8 @@ const team = [img1, img2, img3, img4, img5, img6];
 
 const TeamImg = () => {
 	const { userPreferences } = useContext(UserPreferencesContext);
-	const firstThreeMembers = team.slice(0, 3); // Get the first three members
-	const remainingMembers = team.slice(3); // Get the remaining members
-
+	const firstThreeMembers = team.slice(0, 3);
+	const remainingMembers = team.slice(3);
 	return (
 		<div
 			style={{
@@ -29,8 +28,8 @@ const TeamImg = () => {
 					<div
 						style={{
 							border: `1px solid ${userPreferences.shade.background} `,
-                            color: userPreferences.shade.text.primaryText,
-                            backgroundColor: userPreferences.shade.other
+							color: userPreferences.shade.text.primaryText,
+							backgroundColor: userPreferences.shade.other,
 						}}
 						className='w-8 h-8 rounded-full overflow-hidden -ml-2 flex justify-center items-center text-sm'
 					>

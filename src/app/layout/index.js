@@ -1,9 +1,4 @@
 import AppLayout from "./AppLayout";
 import ProjectLayout from "./ProjectLayout";
 
-
-
-
-export {
-    AppLayout, ProjectLayout
-}
+export { AppLayout, ProjectLayout };

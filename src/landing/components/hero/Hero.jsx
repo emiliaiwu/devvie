@@ -26,14 +26,14 @@ const Hero = () => {
 						</p>
 					</div>
 					<div>
-						<h1 className='text-black w-[320px] whitespace-break-spaces font-DMSans text-[45px] leading-[54px] sm:text-[45px] text-center sm:leading-[55px] font-[800] sm:w-[70vw] md:text-[55px] lg:text-[65px] xl:text-[80px] xxl:text-[90px] md:leading-[70px] xl:w-[1000px] tracking-tight xl:leading-[100px] overflow-hidden xxl:leading-[120px]'>
+						<h1 className='text-black w-[320px] whitespace-break-spaces font-DMSans text-[45px] leading-[54px] sm:text-[50px] text-center sm:leading-[60px] font-[800] sm:w-[70vw] md:text-[55px] lg:text-[65px] xl:text-[80px] xxl:text-[90px] md:leading-[70px] xl:w-[1000px] tracking-tight xl:leading-[100px] overflow-hidden xxl:leading-[120px]'>
 							The Best Tool for Aspiring
 							<DynamicText />
 							Developers
 						</h1>
 					</div>
 					<div className='mb-5'>
-						<p className='text-landingGreyText text-sm text-center leading-6 w-full md:w-[60vw]  whitespace-break-spaces lg:w-[650px] md:text-base md:leading-7 lg:text-lg lg:leading-8 xl:text-xl xl:leading-9'>
+						<p className='text-landingGreyText text-sm text-center leading-6 w-full md:w-[60vw]  whitespace-break-spaces lg:w-[650px] md:text-base md:leading-7 lg:text-lg lg:leading-8 xl:text-xl xl:leading-9 ss:w-[350px]'>
 							Build, track and manage your personal projects. Save relevant
 							links, publish portfolio and stay productive while learning to
 							code.

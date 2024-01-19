@@ -1,17 +1,17 @@
 import { DateArrowIcon, DateDoubleArrowIcon } from "../data/icon";
 import { useContext, useState } from "react";
 import { UserPreferencesContext } from "../context";
-import { daysOfWeek, monthsOfYear } from "../data/projectData";
+import {  monthsOfYear } from "../data/projectData";
 
 const ProjectDatePicker = () => {
 	const { userPreferences } = useContext(UserPreferencesContext);
 
 	const [currentDate, setCurrentDate] = useState(new Date());
-	const [selectedDay, setSelectedDay] = useState("1");
+	// const [selectedDay, setSelectedDay] = useState("1");
 	const year = currentDate.getFullYear();
 	const month = currentDate.getMonth();
 
-	const daysOfWeekAbbr = daysOfWeek.map((day) => day.slice(0, 3));
+	// const daysOfWeekAbbr = daysOfWeek.map((day) => day.slice(0, 3));
 	const daysInMonth = (year, month) => {
 		return new Date(year, month + 1, 0).getDate();
 	};

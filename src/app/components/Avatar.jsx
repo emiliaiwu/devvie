@@ -1,5 +1,4 @@
 import { useContext } from "react";
-
 import { UserProfileContext } from "../context";
 import { backupAvatar } from "../../assets";
 import { AuthContext } from "../../context";

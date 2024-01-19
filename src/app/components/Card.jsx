@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { ProjectContext, UserPreferencesContext } from "../context";
+import { UserPreferencesContext } from "../context";
 import { BiDotsVerticalRounded } from "react-icons/bi";
 import { DueDateIcon, StartDateIcon, TechStackIcon } from "../data/icon";
 import Tag from "./Tag";

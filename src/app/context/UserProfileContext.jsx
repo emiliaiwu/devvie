@@ -4,7 +4,6 @@ import { firestore, storage } from "../../firebase";
 import { v4 } from "uuid";
 import { AuthContext } from "../../context";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
-import { DevvieLoader } from "../../components";
 import { ToastContext } from "./ToastContext";
 
 const UserProfileContext = createContext();
@@ -12,8 +11,7 @@ const UserProfileContext = createContext();
 export const UserProfileContextProvider = ({ children }) => {
 	const { user, setLoading, loading } = useContext(AuthContext);
 	const [openImage, setOpenImage] = useState(false);
-	const [wantToLogout, setWantToLogout] = useState(false);
-	const [wantToDeleteAccount, setWantToDeleteAccount] = useState(false);
+	
 	const userId = user?.uid || null;
 	const [userTechStack, setUserTechStack] = useState([]);
 	const [isSaving, setIsSaving] = useState(false);
@@ -159,9 +157,7 @@ export const UserProfileContextProvider = ({ children }) => {
 		}
 	}, [user, userId]);
 
-	if (loading) {
-		return <DevvieLoader />;
-	}
+	
 
 	return (
 		<UserProfileContext.Provider
@@ -175,10 +171,7 @@ export const UserProfileContextProvider = ({ children }) => {
 				openImage,
 				setOpenImage,
 				handleFileUpload,
-				wantToLogout,
-				setWantToLogout,
-				wantToDeleteAccount,
-				setWantToDeleteAccount,
+				
 				displayName,
 				email,
 				generateSlug,

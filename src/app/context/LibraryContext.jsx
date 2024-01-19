@@ -323,44 +323,6 @@ export const LibraryContextProvider = ({ children }) => {
 		}
 	};
 
-	// YOUTUBE DATA API
-
-	// const [videoThumbnail, setVideoThumbnail] = useState("");
-
-	// const handleAddVideo = async () => {
-	// 	try {
-	// 		// Use YouTube API to get video information
-	// 		const apiKey = "AIzaSyBXPZCYomTDjZOPx1aDUbbHDqHrviwr_hQ";
-	// 		const videoId = extractVideoIdFromUrl(newLink?.link);
-	// 		const apiUrl = `https://www.googleapis.com/youtube/v3/videos?id=${videoId}&key=${apiKey}&part=snippet`;
-
-	// 		const response = await fetch(apiUrl);
-	// 		const data = await response.json();
-
-	// 		// Extract video details
-	// 		const videoDetails = data.items[0].snippet;
-	// 		const thumbnailUrl = videoDetails.thumbnails.default.url;
-
-	// 		// Update state with thumbnail
-	// 		setVideoThumbnail(thumbnailUrl);
-
-	// 		// Save bookmark with video details (e.g., in Firebase Firestore)
-	// 		// Your bookmark saving logic here...
-
-	// 		console.log("Bookmark added successfully!");
-	// 	} catch (error) {
-	// 		console.error("Error adding bookmark:", error);
-	// 	}
-	// };
-
-	// const extractVideoIdFromUrl = (url) => {
-	// 	// Extract video ID from YouTube URL
-	// 	const regex =
-	// 		/(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/;
-	// 	const match = url.match(regex);
-	// 	return match ? match[1] : null;
-	// };
-
 	return (
 		<LibraryContext.Provider
 			value={{

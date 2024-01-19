@@ -56,7 +56,7 @@ const ForgotPasswordForm = () => {
 							<h1 className='font-DMSans text-3xl sm:text-4xl font-[800] tracking-tight text-center mb-3'>
 								Forgot Password?
 							</h1>
-							<p className='text-sm text-gray-400 font-DMSans font-[500] text-center max-w-[300px]'>
+							<p className='text-sm text-gray-400 font-DMSans font-[500] text-center max-w-[300px] whitespace-normal'>
 								{
 									"Enter the email address associated with your account to get password reset link"
 								}
@@ -92,7 +92,7 @@ const ForgotPasswordForm = () => {
 						</div>
 						<button
 							type='submit'
-							className='bg-black h-12 w-full button-hover rounded-md text-base font-DMSans font-[600] text-white cursor-pointer flex justify-center items-center'
+							className='bg-landingPrimary h-12 w-full button-hover rounded-md text-base font-DMSans font-[600] text-white cursor-pointer flex justify-center items-center'
 						>
 							{isSubmitting ? (
 								<ClipLoader loading={true} color={"#FFFFFF"} size={32} />

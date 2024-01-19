@@ -15,7 +15,6 @@ const SignUpForm = () => {
 		handleSignUp,
 		isPasswordVisible,
 		setIsPasswordVisible,
-		// error,
 		emailErr,
 		passwordErr,
 		handleEmailChange,
@@ -31,13 +30,13 @@ const SignUpForm = () => {
 	const navigate = useNavigate();
 
 	return (
-		<div className='w-full py-10 md:pt-20 px-3 sm:px-6 flex flex-col justify-between items-left gap-8 md:gap-10  '>
+		<div className='w-full py-10 md:pt-20 px-3 sm:px-6 flex flex-col justify-between items-left gap-8   '>
 			<div className='flex justify-center items-center flex-col'>
 				<Link to={"/"} className=' mb-6'>
 					<img src={devvieboard} width={50} height={50} alt='logo' />
 				</Link>
 
-				<h1 className='font-DMSans sm:text-4xl text-3xl lg:text-[42px] font-[800] mb-1 text-center'>
+				<h1 className='font-DMSans sm:text-4xl text-2xl lg:text-[42px] font-[800] mb-1 text-center'>
 					Hello Dev!
 				</h1>
 				<p className='text-sm text-gray-400 font-DMSans font-[500] text-center'>
@@ -70,7 +69,7 @@ const SignUpForm = () => {
 			</div>
 
 			<form
-				className='flex flex-col gap-5'
+				className='flex flex-col gap-3'
 				onSubmit={(e) => handleSignUp(e, navigate)}
 			>
 				{/* {error && (

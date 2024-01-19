@@ -12,9 +12,9 @@ const Footer = () => {
 			className={`relative flex items-center justify-center bg-[#F0E7FF]  w-full flex-col font-DMSans `}
 		>
 			<div
-				className={`${boxWidth} ${flexCenter} w-full h-full text-black flex flex-col md:gap-16 gap-10 pl-8 md:pl-0`}
+				className={`${boxWidth} ${flexCenter} w-full h-full text-black flex flex-col md:gap-16 gap-10 max-w-[1440px]`}
 			>
-				<div className='w-[170px] h-[170px] rounded-full overflow-hidden absolute -top-12 bg-white p-1 lg:left-16 left-6'>
+				<div className='md:w-[170px] md:h-[170px] w-[130px] h-[130px] rounded-full overflow-hidden absolute -top-12 bg-white p-1 lg:left-16 left-6'>
 					<img
 						loading='lazy'
 						alt="Emilia's Picture"
@@ -23,15 +23,15 @@ const Footer = () => {
 					/>
 				</div>
 
-				<div className='flex md:flex-row flex-col justify-between w-full lg:pl-[190px] pt-24 lg:pt-0 gap-3'>
+				<div className='flex md:flex-row flex-col justify-between w-full lg:pl-[190px] pt-12 md:pt-24 lg:pt-0 gap-3'>
 					<div className='flex flex-col justify-between h-full'>
 						<h1 className='text-3xl font-bold tracking-tight '>Emilia Iwu</h1>
 						<p className='text-base flex items-center gap-2'>
 							Frontend Developer{" "}
 							<span className='text-3xl font-bold'>&middot;</span> Nigeria.
 						</p>
-						<p className='text-base flex items-center gap-2'>
-							<span className="font-bold">Devvie </span> was designed and developed by me.
+						<p className='text-base whitespace-normal' >
+							Devvie was designed and developed by me.
 						</p>
 					</div>
 

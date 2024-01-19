@@ -50,8 +50,6 @@ const App = () => {
 				<Route path='/forgot-password' element={<ForgotPasswordPage />} />
 				<Route path='/reset-password' element={<ResetPasswordPage />} />
 
-				<Route path='*' element={<NotFound />} />
-
 				<Route path='user' element={<AppLayout />}>
 					<Route index element={<Dashboard />} />
 					<Route path='dashboard' element={<Dashboard />} />
@@ -69,8 +67,11 @@ const App = () => {
 							<Route path='details' element={<Details />} />
 							<Route path='commits' element={<Commit />} />
 						</Route>
+						<Route path='*' element={<NotFound />} />
 					</Route>
+					<Route path='*' element={<NotFound />} />
 				</Route>
+				<Route path='*' element={<NotFound />} />
 			</Route>
 		)
 	);

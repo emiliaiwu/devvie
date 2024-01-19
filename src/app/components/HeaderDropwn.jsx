@@ -2,16 +2,12 @@ import { useContext } from "react";
 import { UserPreferencesContext, UserProfileContext } from "../context";
 import { DeleteAccountIcon, LogoutIcon } from "../data/icon";
 import HoverAccentColor from "./HoverAccentColor";
+import UserContext from "../context/UserContext";
 
 const HeaderDropwn = () => {
 	const { userPreferences } = useContext(UserPreferencesContext);
-	const {
-		setOpenImage,
-		setWantToDeleteAccount,
-		setWantToLogout,
-		displayName,
-		email,
-	} = useContext(UserProfileContext);
+	const { setWantToDeleteAccount, setWantToLogout } = useContext(UserContext);
+	const { displayName, email, setOpenImage } = useContext(UserProfileContext);
 
 	const handleLogout = () => {
 		setWantToLogout(true);

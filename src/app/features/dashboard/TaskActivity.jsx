@@ -1,7 +1,5 @@
 import { useContext } from "react";
 import { DashboardContext, UserPreferencesContext } from "../../context";
-import { AddIcon } from "../../data/icon";
-import { Link } from "react-router-dom";
 import BarChart from "./BarChart";
 import NoDataSmall from "../../components/NoDataSmall";
 

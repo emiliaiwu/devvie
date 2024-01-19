@@ -11,6 +11,7 @@ import CreateNewTaskModal from "./CreateNewTaskModal";
 import { taskStatus } from "../../data/projectData";
 import { usePreventBodyScroll } from "../../../hooks";
 import ChangeTaskStatus from "./ChangeTaskStatus";
+import NoTask from "./NoTask";
 
 const Task = () => {
 	const { userPreferences } = useContext(UserPreferencesContext);
@@ -45,7 +46,7 @@ const Task = () => {
 
 	// Project Error Boundary
 	if (!project) {
-		return <div>Project not found.</div>;
+		return <NoTask />;
 	}
 
 	// disable create new task

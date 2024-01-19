@@ -2,20 +2,17 @@ import { Navigate, Outlet } from "react-router-dom";
 import {
 	DeleteAccount,
 	Header,
+	LoadingOut,
 	Logout,
 	MobileMenu,
 	SidebarLeft,
 } from "../components";
 import { useScrollToTop } from "../../hooks";
 import { useContext } from "react";
-import {
-	ToastContext,
-	UserPreferencesContext,
-	UserProfileContext,
-} from "../context";
+import { ToastContext, UserPreferencesContext } from "../context";
 import Toast from "../features/toast/Toast";
 import { DevvieLoader } from "../../components";
-import { AuthContext } from "../../context";
+import { AuthContext, UserContext } from "../../context";
 
 const AppLayout = () => {
 	const { userPreferences } = useContext(UserPreferencesContext);
@@ -25,19 +22,28 @@ const AppLayout = () => {
 		setWantToLogout,
 		wantToDeleteAccount,
 		setWantToDeleteAccount,
-	} = useContext(UserProfileContext);
+	} = useContext(UserContext);
 	useScrollToTop();
 
-
-	const { user, loading } = useContext(AuthContext);
+	const { user, loading, renderGoodbye } = useContext(AuthContext);
 
 	if (loading) {
 		return <DevvieLoader />;
 	}
 
-	if (!user) {
+	if (user && !window.location.pathname.startsWith("/user")) {
+		return <Navigate to='/user/dashboard' />;
+	}
+
+	if (!user && renderGoodbye) {
+		return <LoadingOut />;
+	} else if (!user) {
 		return <Navigate to='/signin' />;
 	}
+
+	// if (!user) {
+	// 	return <Navigate to='/signin' />;
+	// }
 
 	return (
 		<div
@@ -54,6 +60,8 @@ const AppLayout = () => {
 					setWantToDeleteAccount={setWantToDeleteAccount}
 				/>
 			)}
+
+			{renderGoodbye && <LoadingOut />}
 
 			{toasting && (
 				<div className='fixed inset-0 z-[1000]'>

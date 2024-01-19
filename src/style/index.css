@@ -76,7 +76,7 @@ body {
 	justify-content: space-between;
 	cursor: pointer;
 	width: 30px;
-	height: 10px;
+	height: 15px;
 	transition: transform 0.3s ease;
 }
 

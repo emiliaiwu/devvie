@@ -23,7 +23,7 @@ const PasswordResetDone = () => {
 				<div className='flex justify-center items-center w-full'>
 					<Link
 						to={"/signin"}
-						className='w-full button-hover font-DMSans font-[500] bg-black text-white py-3 rounded-md cursor-pointer text-center'
+						className='w-full button-hover font-DMSans font-[500] bg-landingPrimary text-white py-3 rounded-md cursor-pointer text-center'
 					>
 						Login to continue
 					</Link>

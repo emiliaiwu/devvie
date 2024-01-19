@@ -30,7 +30,7 @@ const MailSent = ({ email, handleCancel, setResetPasswordEmailSent }) => {
 					{" "}
 					<button
 						onClick={openEmailClient}
-						className='w-full button-hover font-DMSans font-[500] bg-black text-white py-3 rounded-md cursor-pointer '
+						className='w-full button-hover font-DMSans font-[500] bg-landingPrimary text-white py-3 rounded-md cursor-pointer '
 					>
 						Open Email
 					</button>

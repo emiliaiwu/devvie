@@ -167,7 +167,7 @@ const ResetPasswordForm = ({ query, isActionCodeValid }) => {
 						<button
 							type='submit'
 							className='
-					 h-12 w-full button-hover rounded-md text-base font-DMSans font-[600] bg-black text-white hover:bg-black transition-all duration-200 ease cursor-pointer flex justify-center items-center'
+					 h-12 w-full button-hover rounded-md text-base font-DMSans font-[600] bg-landingPrimary text-white hover:bg-black transition-all duration-200 ease cursor-pointer flex justify-center items-center'
 						>
 							{isSubmitting ? (
 								<ClipLoader loading={true} color={"#FFFFFF"} size={32} />

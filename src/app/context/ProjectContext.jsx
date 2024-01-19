@@ -22,7 +22,6 @@ import {
 } from "firebase/firestore";
 import { ToastContext } from "./ToastContext";
 
-
 const ProjectContext = createContext();
 
 export const ProjectContextProvider = ({ children }) => {
@@ -48,6 +47,7 @@ export const ProjectContextProvider = ({ children }) => {
 
 	// columns
 	const [columns, setColumns] = useState([]);
+	const [isColumnsEmpty, setIsColumnsEmpty] = useState(false);
 	const [taskColumns, setTaskColumns] = useState([]);
 	const [originalColumns, setOriginalColumns] = useState(columns);
 	const [allProjects, setAllProjects] = useState([]);
@@ -272,39 +272,35 @@ export const ProjectContextProvider = ({ children }) => {
 					if (fetchedColumns.length === 0) {
 						// If columns are empty, add default columns
 						const defaultColumns = projectColumns.map((statusItem, index) => ({
+							id: statusItem.id,
 							color: statusItem.color,
 							title: statusItem.status,
 							order: index,
 							projects: [],
 						}));
-
 						// if taskbaord is empty, add default taskboards
-
 						const defaultTaskColumns = taskColumns.map((statusItem, index) => ({
 							color: statusItem.color,
 							title: statusItem.status,
 							order: index,
 						}));
-
 						// Save default columns to Firestore
-						await Promise.all(
-							defaultColumns.map(async (columnData) => {
-								const newColumnRef = await addDoc(columnsRef, columnData);
-								return { id: newColumnRef.id, ...columnData };
-							})
-						);
-
+						// await Promise.all(
+						// 	defaultColumns.map(async (columnData) => {
+						// 		const newColumnRef = await addDoc(columnsRef, columnData);
+						// 		return { id: newColumnRef.id, ...columnData };
+						// 	})
+						// );
 						if (isMounted) {
 							setColumns(defaultColumns);
 							setTaskColumns(defaultTaskColumns);
 							setOriginalColumns(defaultColumns);
-
 							const allProjects = defaultColumns
 								.map((col) => col.projects)
 								.flat();
 							setAllProjects(allProjects);
-
 							setLoading(false);
+							setIsColumnsEmpty(true);
 						}
 					} else {
 						setColumns(fetchedColumns);
@@ -316,6 +312,7 @@ export const ProjectContextProvider = ({ children }) => {
 							.map((col) => col.projects)
 							.flat();
 						setAllProjects(allProjectsFromFetchedColumns);
+						setIsColumnsEmpty(false);
 						setLoading(false);
 					}
 				}
@@ -428,6 +425,8 @@ export const ProjectContextProvider = ({ children }) => {
 			isMounted = false;
 		};
 	}, [user]);
+
+
 
 	useEffect(() => {
 		const allProjects = columns.map((col) => col.projects).flat();
@@ -556,6 +555,46 @@ export const ProjectContextProvider = ({ children }) => {
 	const createNewProject = async () => {
 		setIsSubmitting(true);
 		try {
+			if (isColumnsEmpty) {
+				// Check if there are existing columns
+				const columnsRef = collection(
+					firestore,
+					`projectBoard/${userId}/columns`
+				);
+
+				const orderedColumnsQuery = query(columnsRef, orderBy("order"));
+				const columnsSnapshot = await getDocs(orderedColumnsQuery);
+
+				const existingColumns = columnsSnapshot.docs.map((doc) => doc.data());
+
+				if (existingColumns.length === 0) {
+					// Columns are empty, push default columns
+					const defaultColumns = projectColumns.map((statusItem, index) => ({
+						color: statusItem.color,
+						title: statusItem.status,
+						order: index,
+						projects: [],
+					}));
+
+					// Save default columns to Firestore
+					await Promise.all(
+						defaultColumns.map(async (columnData) => {
+							const newColumnRef = await addDoc(columnsRef, columnData);
+							return { id: newColumnRef.id, ...columnData };
+						})
+					);
+				}
+
+				// Fetch columns again after creating default columns
+				const columnsSnapshotAfterDefault = await getDocs(columnsRef);
+				const columnsAfterDefault = columnsSnapshotAfterDefault.docs.map(
+					(doc) => doc.data()
+				);
+
+				setColumns(columnsAfterDefault);
+				setOriginalColumns(columnsAfterDefault);
+			}
+
 			const matchingColumn = columns.find(
 				(column) => column.title === newProject.status.title
 			);
@@ -837,9 +876,6 @@ export const ProjectContextProvider = ({ children }) => {
 
 		fetchTags();
 	}, [user]);
-
-
-	
 
 	// UPDATE TO NEWPROJECT
 	const handleProjectUpdate = (project) => {

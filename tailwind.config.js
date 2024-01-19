@@ -12,7 +12,7 @@ export default {
 				white: "#ffffff",
 				whiteOff: "#F6F8F8",
 				blue2: "#0000FF",
-				offwhite: "#dcdcdc",
+				offwhite: "#F0E7FF",
 				landingPrimary: "#804EFF",
 				landingGrey: "#1A1A1A",
 				landingGreyText: "#848482",

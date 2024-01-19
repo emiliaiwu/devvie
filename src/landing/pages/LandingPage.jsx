@@ -4,7 +4,7 @@ import Cta from "../components/benefits/CTA";
 import Features from "../components/benefits/Features";
 import Footer from "../components/benefits/Footer";
 
-import Toast from "../components/benefits/Toast";
+
 
 const LandingPage = () => {
 	return (
@@ -15,8 +15,7 @@ const LandingPage = () => {
 				<Benefits />
 				<Features />
 				<Cta />
-				{/* <Toast /> */}
-				{/* <Founder/> */}
+			
 			</main>
 			<Footer />
 		</div>

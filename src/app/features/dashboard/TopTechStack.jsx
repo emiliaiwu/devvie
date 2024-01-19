@@ -15,7 +15,7 @@ const TopTechStack = () => {
 			className={`${userPreferences.border} h-[420px] p-8  flex justify-center items-center w-full lg:w-2/3  `}
 		>
 			<div className='w-full h-[360px] flex justify-center items-center'>
-				{topStacks.length === 0 ? <NoDataSmall paragraph={"There are no projects"} /> : <AreaChart />}
+				{topStacks.length === 0 ? <NoDataSmall paragraph={"Add tech stack to projects"} /> : <AreaChart />}
 			</div>
 		</div>
 	);

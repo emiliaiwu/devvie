@@ -8,7 +8,6 @@ import Popup from "./Popup";
 const ChooseStartDate = () => {
 	const { userPreferences } = useContext(UserPreferencesContext);
 	const {
-		selectedStartDate,
 		setSelectedStartDate,
 		isStartDateOpen,
 		setIsStartDateOpen,

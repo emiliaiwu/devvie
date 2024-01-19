@@ -19,7 +19,6 @@ const SignInForm = () => {
 		setRememberMe,
 		isPasswordVisible,
 		setIsPasswordVisible,
-		error,
 		emailErr,
 		passwordErr,
 		handleEmailChange,
@@ -46,12 +45,12 @@ const SignInForm = () => {
 	}, [location]);
 
 	return (
-		<div className='w-full py-10 md:pt-20 px-3 sm:px-6 flex flex-col justify-between items-left gap-8 md:gap-10 h-full '>
+		<div className='w-full py-10 md:pt-20 px-3 sm:px-6 flex flex-col justify-between items-left gap-8  h-full '>
 			<div className=' flex justify-center items-center flex-col'>
 				<Link to={"/"} className=' mb-6'>
 					<img src={devvieboard} width={50} height={50} alt='logo' />
 				</Link>
-				<h1 className='font-DMSans text-3xl lg:text-[42px  sm:text-4xl font-[800] mb-1 text-center'>
+				<h1 className='font-DMSans text-2xl lg:text-[42px]  sm:text-4xl font-[800] mb-1 text-center'>
 					Hello Again!
 				</h1>
 				<p className='text-sm text-gray-400 font-DMSans font-[500] text-center'>
@@ -85,7 +84,7 @@ const SignInForm = () => {
 
 			{/* form */}
 			<form
-				className='flex flex-col gap-5'
+				className='flex flex-col gap-3'
 				onSubmit={(e) => handleSignIn(e, navigate)}
 			>
 				<div>

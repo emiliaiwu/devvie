@@ -24,7 +24,7 @@ const InvalidLink = () => {
 
 				<Link
 					to={"/forgot-password"}
-					className='button-hover w-full font-DMSans font-[500] bg-black text-white py-3 rounded-md cursor-pointer text-center '
+					className='button-hover w-full font-DMSans font-[500] bg-landingPrimary text-white py-3 rounded-md cursor-pointer text-center '
 				>
 					Send new reset link
 				</Link>

@@ -8,7 +8,6 @@ import Popup from "./Popup";
 const ChooseDueDate = () => {
 	const { userPreferences } = useContext(UserPreferencesContext);
 	const {
-		selectedDueDate,
 		setSelectedDueDate,
 		isDueDateOpen,
 		setIsDueDateOpen,

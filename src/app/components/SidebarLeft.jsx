@@ -1,9 +1,8 @@
 import { devvieboard } from "../../assets";
-import { menuLeftBottom, menuLeftTop } from "../data/db";
+import { menuLeftTop } from "../data/db";
 import { NavLink } from "react-router-dom";
 import { useContext } from "react";
 import { UserPreferencesContext } from "../context";
-import Logout from "./Logout";
 import { DeleteAccountIcon, LogoutIcon } from "../data/icon";
 
 const SidebarLeft = ({ setWantToLogout, setWantToDeleteAccount }) => {

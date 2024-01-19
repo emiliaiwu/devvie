@@ -5,7 +5,6 @@ import {
 	TaskIcon,
 	AccountIcon,
 	ThemeIcon,
-	SecurityIcon,
 } from "./icon";
 
 export const menuLeftTop = [
@@ -46,10 +45,4 @@ export const menuLeftTop = [
 	},
 ];
 
-export const menuLeftBottom = [
-	{
-		title: "Password",
-		url: "/user/password",
-		icon: SecurityIcon,
-	},
-];
+

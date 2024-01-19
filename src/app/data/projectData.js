@@ -7,12 +7,6 @@ import {
 import { FaSquare, FaPause, FaBug } from "react-icons/fa";
 import { GoAlertFill } from "react-icons/go";
 
-export const projectNavLinks = [
-	{ nav: "Board", url: "/user/project" },
-	{ nav: "Project Ideas", url: "user/project/project-ideas" },
-	{ nav: "Notes", url: "/user/project/notes" },
-	{ nav: "Commits", url: "/user/project/commits" },
-];
 
 export const projectStatus = [
 	{ status: "backlog", color: "#808080", shape: FaSquare },
